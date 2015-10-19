@@ -196,3 +196,4 @@ FakesAssemblies/
 *.opt
 
 cocos2d/
+proj.win32/Debug.win32
