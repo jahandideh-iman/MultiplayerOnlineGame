@@ -6,7 +6,7 @@ USING_NS_CC;
 
 
 ServerGame::~ServerGame(){
-
+	GameSocket::CleanUpNetwork();
 }
 
 Scene* ServerGame::createScene()
@@ -47,8 +47,14 @@ bool ServerGame::init()
 
 	this->scheduleUpdate();
 
-	//serverSocket = new GameSocket();
-	//serverSocket->Open(8082);
+	
+
+	auto res = GameSocket::InitialNetwork();
+	if (res)
+		CCLOG("---------------------- Network Initialized ----------------------------");
+
+	serverSocket = new GameSocket();
+	serverSocket->Open(8082);
 
 	return true;
 }
@@ -67,7 +73,9 @@ void ServerGame::updateNetwork()
 {
 	CCLOG("------------------------- Updating Network -----------------------");
 	InternetAddress senderAddress;
-	//serverSocket->Receive(senderAddress, 
+	char data[256];
+	serverSocket->Receive(senderAddress, data, 256);
+	CCLOG("data is : %s", data);
 }
 
 void ServerGame::update(float dt)

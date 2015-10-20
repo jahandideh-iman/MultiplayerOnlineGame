@@ -14,6 +14,9 @@ public:
 	GameSocket();
 	~GameSocket();
 
+	static bool InitialNetwork();
+	static void CleanUpNetwork();
+
 	bool Open(unsigned short port);
 	void Close();
 	bool IsOpen() const;
@@ -24,6 +27,8 @@ public:
 		void * data,
 		int size);
 
+private:
+	SOCKET socket = 0;
 
 };
 
