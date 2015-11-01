@@ -35,8 +35,14 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto glview = director->getOpenGLView();
     if(!glview) {
         glview = GLViewImpl::create("My Game");
+		glview->setFrameSize(683, 768);
         director->setOpenGLView(glview);
     }
+
+
+	//auto designSize = Size(683, 768);
+	//glview->setDesignResolutionSize(designSize.width, designSize.
+		//height, ResolutionPolicy::EXACT_FIT);
 
     // turn on display FPS
     director->setDisplayStats(true);
@@ -57,7 +63,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
 // This function will be called when the app is inactive. When comes a phone call,it's be invoked too
 void AppDelegate::applicationDidEnterBackground() {
-    Director::getInstance()->stopAnimation();
+    //Director::getInstance()->stopAnimation();
 
     // if you use SimpleAudioEngine, it must be pause
     // SimpleAudioEngine::getInstance()->pauseBackgroundMusic();

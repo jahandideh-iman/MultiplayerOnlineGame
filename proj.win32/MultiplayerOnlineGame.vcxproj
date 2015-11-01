@@ -144,6 +144,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMainMenu.cpp" />
     <ClCompile Include="..\Classes\GameSocket.cpp" />
     <ClCompile Include="..\Classes\InternetAddress.cpp" />
+    <ClCompile Include="..\Classes\Message.cpp" />
     <ClCompile Include="..\Classes\ServerGame.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -153,6 +154,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMainMenu.h" />
     <ClInclude Include="..\Classes\GameSocket.h" />
     <ClInclude Include="..\Classes\InternetAddress.h" />
+    <ClInclude Include="..\Classes\Message.h" />
     <ClInclude Include="..\Classes\ServerGame.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>

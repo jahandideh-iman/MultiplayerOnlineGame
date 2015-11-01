@@ -1,5 +1,6 @@
 #include "GameMainMenu.h"
 #include "ServerGame.h"
+#include "ClientGame.h"
 
 
 USING_NS_CC;
@@ -81,5 +82,6 @@ void GameMainMenu::StartServer(Ref* pSender)
 
 void GameMainMenu::StartClient(Ref* pSender)
 {
+	CCDirector::getInstance()->replaceScene(ClientGame::createScene());
 
 }

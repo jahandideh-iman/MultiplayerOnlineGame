@@ -71,11 +71,12 @@ void ServerGame::menuCloseCallback(Ref* pSender)
 
 void ServerGame::updateNetwork()
 {
-	CCLOG("------------------------- Updating Network -----------------------");
+	//CCLOG("------------------------- Updating Network -----------------------");
 	InternetAddress senderAddress;
 	char data[256];
-	serverSocket->Receive(senderAddress, data, 256);
-	CCLOG("data is : %s", data);
+	auto res = serverSocket->Receive(senderAddress, data, 256);
+	if (res != 0)
+		CCLOG("data is : %s", data);
 }
 
 void ServerGame::update(float dt)

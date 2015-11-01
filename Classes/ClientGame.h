@@ -2,6 +2,9 @@
 
 #include "cocos2d.h"
 
+class GameSocket;
+
+
 class ClientGame : public cocos2d::Layer
 {
 public:
@@ -16,5 +19,11 @@ public:
 	void updateNetwork();
 
 	CREATE_FUNC(ClientGame);
+
+private:
+	void joinServer(Ref* pSender);
+	
+private:
+	GameSocket *socket = nullptr;
 };
 

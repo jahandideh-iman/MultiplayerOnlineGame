@@ -1,4 +1,6 @@
 #include "ClientGame.h"
+#include "GameSocket.h"
+#include "InternetAddress.h"
 
 USING_NS_CC;
 
@@ -25,8 +27,17 @@ bool ClientGame::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+	auto joinServerButton = MenuItemImage::create(
+		"JoinButton.png",
+		"JoinButton.png",
+		CC_CALLBACK_1(ClientGame::joinServer, this));
 
+	joinServerButton->setPosition(Vec2(origin.x + visibleSize.width * 0.5 - joinServerButton->getContentSize().width / 2,
+		origin.y + visibleSize.height * 0.4 - joinServerButton->getContentSize().height / 2));
 
+	auto menu = Menu::create(joinServerButton, NULL);
+	menu->setPosition(Vec2::ZERO);
+	this->addChild(menu, 1);
 
 
 	auto label = Label::createWithTTF("Client", "fonts/Marker Felt.ttf", 24);
@@ -39,6 +50,13 @@ bool ClientGame::init()
 	this->addChild(label, 1);
 
 	this->scheduleUpdate();
+
+	auto res = GameSocket::InitialNetwork();
+	if (res)
+		CCLOG("---------------------- Network Initialized ----------------------------");
+
+	socket = new GameSocket();
+	socket->Open(0);
 
 	return true;
 }
@@ -55,10 +73,18 @@ void ClientGame::menuCloseCallback(Ref* pSender)
 
 void ClientGame::updateNetwork()
 {
-	CCLOG("------------------------- Updating Network -----------------------");
+	//CCLOG("------------------------- Updating Network -----------------------");
 }
 
 void ClientGame::update(float dt)
 {
 	updateNetwork();
+}
+
+void ClientGame::joinServer(Ref* pSender)
+{
+
+	InternetAddress address("127.0.0.1",8082);
+	char* message = "hello";
+	socket->Send(address, message, sizeof(message) );
 }

@@ -11,6 +11,8 @@ public:
 		unsigned short port);
 	InternetAddress(unsigned int address,
 		unsigned short port);
+	InternetAddress(char *address, unsigned short port);
+
 	unsigned int GetAddress() const;
 	unsigned char GetA() const;
 	unsigned char GetB() const;
