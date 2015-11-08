@@ -1,6 +1,8 @@
 #include "ClientGame.h"
 #include "GameSocket.h"
 #include "InternetAddress.h"
+#include "NetworkManager.h"
+#include "Join.h"
 
 USING_NS_CC;
 
@@ -55,8 +57,7 @@ bool ClientGame::init()
 	if (res)
 		CCLOG("---------------------- Network Initialized ----------------------------");
 
-	socket = new GameSocket();
-	socket->Open(0);
+	NetworkManager::get()->setPort(0);
 
 	return true;
 }
@@ -78,13 +79,14 @@ void ClientGame::updateNetwork()
 
 void ClientGame::update(float dt)
 {
-	updateNetwork();
+	NetworkManager::get()->update(dt);
 }
 
 void ClientGame::joinServer(Ref* pSender)
 {
-
+	
 	InternetAddress address("127.0.0.1",8082);
-	char* message = "hello";
-	socket->Send(address, message, sizeof(message) );
+	NetworkManager::get()->sendMessage(Join(), address);
+	//char* message = "hello";
+	//socket->Send(address, message, sizeof(message) );
 }

@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "GameMainMenu.h"
+#include "NetworkManager.h"
 
 USING_NS_CC;
 
@@ -9,6 +10,7 @@ AppDelegate::AppDelegate() {
 
 AppDelegate::~AppDelegate() 
 {
+	NetworkManager::get()->teardown();
 }
 
 //if you want a different context,just modify the value of glContextAttrs
@@ -30,6 +32,11 @@ static int register_all_packages()
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
+
+	auto r = NetworkManager::get()->setup();
+	if (r == false)
+		return false;
+
     // initialize director
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
@@ -57,6 +64,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // run
     director->runWithScene(scene);
+
 
     return true;
 }

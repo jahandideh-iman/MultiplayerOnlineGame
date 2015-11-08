@@ -21,7 +21,7 @@ public:
 	void Close();
 	bool IsOpen() const;
 	bool Send(const Address & destination,
-		const void * data,
+		const char * data,
 		int size);
 	int Receive(Address & sender,
 		void * data,

@@ -18,11 +18,9 @@ public:
 
 	void menuCloseCallback(cocos2d::Ref* pSender);
 
-	void updateNetwork();
 
 	CREATE_FUNC(ServerGame);
 
 private:
-	GameSocket *serverSocket = nullptr;
 };
 

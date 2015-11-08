@@ -1,12 +1,13 @@
 #include "ServerGame.h"
 #include "GameSocket.h"
 #include "InternetAddress.h"
+#include "NetworkManager.h"
 
 USING_NS_CC;
 
 
 ServerGame::~ServerGame(){
-	GameSocket::CleanUpNetwork();
+
 }
 
 Scene* ServerGame::createScene()
@@ -23,7 +24,6 @@ Scene* ServerGame::createScene()
 bool ServerGame::init()
 {
 
-	
 	if (!Layer::init())
 	{
 		return false;
@@ -31,9 +31,6 @@ bool ServerGame::init()
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
-
-
 
 
 	auto label = Label::createWithTTF("Server", "fonts/Marker Felt.ttf", 24);
@@ -48,13 +45,8 @@ bool ServerGame::init()
 	this->scheduleUpdate();
 
 	
+	NetworkManager::get()->setPort(8082);
 
-	auto res = GameSocket::InitialNetwork();
-	if (res)
-		CCLOG("---------------------- Network Initialized ----------------------------");
-
-	serverSocket = new GameSocket();
-	serverSocket->Open(8082);
 
 	return true;
 }
@@ -69,17 +61,8 @@ void ServerGame::menuCloseCallback(Ref* pSender)
 #endif
 }
 
-void ServerGame::updateNetwork()
-{
-	//CCLOG("------------------------- Updating Network -----------------------");
-	InternetAddress senderAddress;
-	char data[256];
-	auto res = serverSocket->Receive(senderAddress, data, 256);
-	if (res != 0)
-		CCLOG("data is : %s", data);
-}
 
 void ServerGame::update(float dt)
 {
-	updateNetwork();
+	NetworkManager::get()->update(dt);
 }

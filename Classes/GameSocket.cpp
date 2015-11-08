@@ -18,6 +18,7 @@ GameSocket::GameSocket()
 
 GameSocket::~GameSocket()
 {
+	
 }
 
 bool GameSocket::InitialNetwork()
@@ -66,6 +67,7 @@ int GameSocket::Receive(Address & sender, void * data, int size)
 
 	int bytes = ::recvfrom(socket, (char*)data, size, 0, (sockaddr*)&from, &fromLength);
 
+
 	auto error = WSAGetLastError();
 
 	//CCLOG("Error: %d ", error);
@@ -78,12 +80,12 @@ int GameSocket::Receive(Address & sender, void * data, int size)
 	unsigned int from_port =
 		ntohs(from.sin_port);
 
-	CCLOG("data is %c", (char*)data);
+	//CCLOG("data is %c", (char*)data);
 
 	return bytes;
 }
 
-bool GameSocket::Send(const Address & destination, const void * data, int size)
+bool GameSocket::Send(const Address & destination, const char * data, int size)
 {
 	sockaddr_in address;
 	address.sin_family = AF_INET;
