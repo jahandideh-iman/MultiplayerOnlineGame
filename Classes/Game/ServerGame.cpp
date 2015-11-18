@@ -1,10 +1,10 @@
 #include "ServerGame.h"
-#include "GameSocket.h"
-#include "InternetAddress.h"
-#include "NetworkManager.h"
+#include "Network/NetworkManager.h"
+#include "GameLevel.h"
 
 USING_NS_CC;
 
+using namespace mog;
 
 ServerGame::~ServerGame(){
 
@@ -45,9 +45,9 @@ bool ServerGame::init()
 	this->scheduleUpdate();
 
 	
-	NetworkManager::get()->setPort(8082);
+	network::NetworkManager::get()->setPort(8082);
 
-
+	LoadLevel(new GameLevel());
 	return true;
 }
 
@@ -64,5 +64,28 @@ void ServerGame::menuCloseCallback(Ref* pSender)
 
 void ServerGame::update(float dt)
 {
-	NetworkManager::get()->update(dt);
+	network::NetworkManager::get()->update(dt);
+}
+
+void ServerGame::joinNewPlayer(PlayerInfo *info)
+{
+	playersInfo.push_back(info);
+	//NetworkManager::sendMessage();
+}
+
+void ServerGame::LoadLevel(Level *level)
+{
+	currentLevel = level;
+	for (GameObject *o : level->getGameObjects())
+	{
+		addGameObject(o);
+	}
+}
+
+void mog::ServerGame::addGameObject(GameObject *object)
+{
+	for (Component *o : object->getComponents())
+	{
+		o->addSelfToGame(this);
+	}
 }

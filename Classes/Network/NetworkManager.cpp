@@ -10,6 +10,8 @@
 #include "Message.h"
 
 
+using namespace mog::network;
+
 NetworkManager *NetworkManager::manager = nullptr;
 
 NetworkManager::NetworkManager()
@@ -52,21 +54,21 @@ bool NetworkManager::teardown()
 
 void NetworkManager::setPort(unsigned port)
 {
-	socket = new GameSocket();
-	socket->Open(port);
+	socket = new network::GameSocket();
+	socket->open(port);
 }
 
 void NetworkManager::update(float dt)
 {
 	InternetAddress senderAddress;
 	char data[256];
-	auto size = socket->Receive(senderAddress, data, 256);
+	auto size = socket->receive(senderAddress, data, 256);
 
 	if (size != 0)
 	{
 		CCLOG("data is : %s", data);
 		auto id = extractMessageId(data, size);
-		MessageDatabase::get()->find(id)->execute(NetworkData(data,size));
+		MessageDatabase::get()->find(id)->execute(NetworkData(data,size), senderAddress);
 	}
 		
 }
@@ -74,7 +76,7 @@ void NetworkManager::update(float dt)
 void NetworkManager::sendMessage(const Message &m, const InternetAddress &dest)
 {
 	NetworkData *nd = m.write();
-	socket->Send(dest, nd->data, nd->size);
+	socket->send(dest, nd->data, nd->size);
 
 	delete nd;
 }

@@ -139,31 +139,47 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Classes\AppDelegate.cpp" />
-    <ClCompile Include="..\Classes\ClientGame.cpp" />
-    <ClCompile Include="..\Classes\Command.cpp" />
-    <ClCompile Include="..\Classes\GameMainMenu.cpp" />
-    <ClCompile Include="..\Classes\GameSocket.cpp" />
-    <ClCompile Include="..\Classes\InternetAddress.cpp" />
-    <ClCompile Include="..\Classes\Join.cpp" />
-    <ClCompile Include="..\Classes\Message.cpp" />
-    <ClCompile Include="..\Classes\MessageDatabase.cpp" />
-    <ClCompile Include="..\Classes\NetworkManager.cpp" />
-    <ClCompile Include="..\Classes\ServerGame.cpp" />
+    <ClCompile Include="..\Classes\Engine\Component.cpp" />
+    <ClCompile Include="..\Classes\Engine\Game.cpp" />
+    <ClCompile Include="..\Classes\Engine\GameObject.cpp" />
+    <ClCompile Include="..\Classes\Engine\GlobalData.cpp" />
+    <ClCompile Include="..\Classes\Engine\Level.cpp" />
+    <ClCompile Include="..\Classes\Engine\SpriteComponent.cpp" />
+    <ClCompile Include="..\Classes\Game\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\Game\ClientGame.cpp" />
+    <ClCompile Include="..\Classes\Game\GameLevel.cpp" />
+    <ClCompile Include="..\Classes\Game\GameMainMenu.cpp" />
+    <ClCompile Include="..\Classes\Game\Join.cpp" />
+    <ClCompile Include="..\Classes\Game\PlayerInfo.cpp" />
+    <ClCompile Include="..\Classes\Game\ServerGame.cpp" />
+    <ClCompile Include="..\Classes\Network\Command.cpp" />
+    <ClCompile Include="..\Classes\Network\GameSocket.cpp" />
+    <ClCompile Include="..\Classes\Network\InternetAddress.cpp" />
+    <ClCompile Include="..\Classes\Network\Message.cpp" />
+    <ClCompile Include="..\Classes\Network\MessageDatabase.cpp" />
+    <ClCompile Include="..\Classes\Network\NetworkManager.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Classes\AppDelegate.h" />
-    <ClInclude Include="..\Classes\ClientGame.h" />
-    <ClInclude Include="..\Classes\Command.h" />
-    <ClInclude Include="..\Classes\GameMainMenu.h" />
-    <ClInclude Include="..\Classes\GameSocket.h" />
-    <ClInclude Include="..\Classes\InternetAddress.h" />
-    <ClInclude Include="..\Classes\Join.h" />
-    <ClInclude Include="..\Classes\Message.h" />
-    <ClInclude Include="..\Classes\MessageDatabase.h" />
-    <ClInclude Include="..\Classes\NetworkManager.h" />
-    <ClInclude Include="..\Classes\ServerGame.h" />
+    <ClInclude Include="..\Classes\Engine\Component.h" />
+    <ClInclude Include="..\Classes\Engine\Game.h" />
+    <ClInclude Include="..\Classes\Engine\GameObject.h" />
+    <ClInclude Include="..\Classes\Engine\GlobalData.h" />
+    <ClInclude Include="..\Classes\Engine\Level.h" />
+    <ClInclude Include="..\Classes\Engine\SpriteComponent.h" />
+    <ClInclude Include="..\Classes\Game\AppDelegate.h" />
+    <ClInclude Include="..\Classes\Game\ClientGame.h" />
+    <ClInclude Include="..\Classes\Game\GameLevel.h" />
+    <ClInclude Include="..\Classes\Game\GameMainMenu.h" />
+    <ClInclude Include="..\Classes\Game\Join.h" />
+    <ClInclude Include="..\Classes\Game\PlayerInfo.h" />
+    <ClInclude Include="..\Classes\Game\ServerGame.h" />
+    <ClInclude Include="..\Classes\Network\Command.h" />
+    <ClInclude Include="..\Classes\Network\GameSocket.h" />
+    <ClInclude Include="..\Classes\Network\InternetAddress.h" />
+    <ClInclude Include="..\Classes\Network\Message.h" />
+    <ClInclude Include="..\Classes\Network\MessageDatabase.h" />
+    <ClInclude Include="..\Classes\Network\NetworkManager.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

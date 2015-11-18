@@ -2,6 +2,7 @@
 #include <WinSock2.h>
 #include <ws2tcpip.h>
 
+using mog::network::InternetAddress;
 
 InternetAddress::InternetAddress()
 {
@@ -19,12 +20,12 @@ InternetAddress::InternetAddress(char *address, unsigned short port)
 	this->port = port;
 }
 
-unsigned int InternetAddress::GetAddress() const
+unsigned int InternetAddress::getAddress() const
 {
 	return address;
 }
 
-unsigned short InternetAddress::GetPort() const
+unsigned short InternetAddress::getPort() const
 {
 	return port;
 }

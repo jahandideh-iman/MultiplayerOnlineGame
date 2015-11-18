@@ -3,6 +3,8 @@
 #include "cocos2d.h"
 #include "InternetAddress.h"
 
+using mog::network::GameSocket;
+
 GameSocket::GameSocket()
 {
 	socket = ::socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
@@ -18,30 +20,10 @@ GameSocket::GameSocket()
 
 GameSocket::~GameSocket()
 {
-	
+	closesocket(socket);
 }
 
-bool GameSocket::InitialNetwork()
-{
-	WSADATA wsaData;
-	int iResult;
-
-	// Initialize Winsock
-	iResult = ::WSAStartup(MAKEWORD(2, 2), &wsaData);
-	if (iResult != 0) {
-		CCLOG("WSAStartup failed: %d\n", iResult);
-		return false;
-	}
-
-	return true;
-}
-
-void GameSocket::CleanUpNetwork()
-{
-	::WSACleanup();
-}
-
-bool GameSocket::Open(unsigned short port)
+bool GameSocket::open(unsigned short port)
 {
 	sockaddr_in address;
 	address.sin_family = AF_INET;
@@ -60,14 +42,14 @@ bool GameSocket::Open(unsigned short port)
 	return true;
 }
 
-int GameSocket::Receive(Address & sender, void * data, int size)
+int GameSocket::receive(Address &sender, void *data, int size)
 {
 	sockaddr_in from;
 	socklen_t fromLength = sizeof(from);
 
 	int bytes = ::recvfrom(socket, (char*)data, size, 0, (sockaddr*)&from, &fromLength);
 
-
+	
 	auto error = WSAGetLastError();
 
 	//CCLOG("Error: %d ", error);
@@ -85,13 +67,13 @@ int GameSocket::Receive(Address & sender, void * data, int size)
 	return bytes;
 }
 
-bool GameSocket::Send(const Address & destination, const char * data, int size)
+bool GameSocket::send(const Address & destination, const char * data, int size)
 {
 	sockaddr_in address;
 	address.sin_family = AF_INET;
-	address.sin_addr.s_addr = destination.GetAddress();
+	address.sin_addr.s_addr = destination.getAddress();
 	address.sin_port =
-		htons((unsigned short)destination.GetPort());
+		htons((unsigned short)destination.getPort());
 
 	int sent_bytes =
 		sendto(socket,

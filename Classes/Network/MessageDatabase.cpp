@@ -1,6 +1,10 @@
 #include "MessageDatabase.h"
 #include "Message.h"
-#include "Join.h"
+#include "Game/Join.h"
+
+
+
+using namespace mog::network;
 
 MessageDatabase *MessageDatabase::db = nullptr;
 
@@ -8,7 +12,7 @@ MessageDatabase *MessageDatabase::db = nullptr;
 class EmptyMessage : public Message
 {
 public:
-	virtual void execute(const NetworkData &data)const override{}
+	virtual void execute(const NetworkData &data, const InternetAddress &address )const override{}
 	virtual NetworkData *write() const override { return nullptr; }
 	virtual unsigned getCode() const override  { return 0; }
 };

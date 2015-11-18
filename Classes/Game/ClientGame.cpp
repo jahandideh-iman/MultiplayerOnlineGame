@@ -1,10 +1,14 @@
 #include "ClientGame.h"
-#include "GameSocket.h"
-#include "InternetAddress.h"
-#include "NetworkManager.h"
+#include "Network/NetworkManager.h"
+#include "Network/InternetAddress.h"
 #include "Join.h"
 
 USING_NS_CC;
+
+using mog::network::Join;
+using mog::network::NetworkManager;
+using mog::network::InternetAddress;
+using mog::ClientGame;
 
 Scene* ClientGame::createScene()
 {
@@ -53,9 +57,6 @@ bool ClientGame::init()
 
 	this->scheduleUpdate();
 
-	auto res = GameSocket::InitialNetwork();
-	if (res)
-		CCLOG("---------------------- Network Initialized ----------------------------");
 
 	NetworkManager::get()->setPort(0);
 

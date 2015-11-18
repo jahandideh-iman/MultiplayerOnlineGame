@@ -1,8 +1,10 @@
 #include "AppDelegate.h"
 #include "GameMainMenu.h"
-#include "NetworkManager.h"
+#include "Network/NetworkManager.h"
 
 USING_NS_CC;
+
+using mog::network::NetworkManager;
 
 AppDelegate::AppDelegate() {
 
@@ -60,7 +62,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto scene = GameMainMenu::createScene();
+    auto scene = mog::GameMainMenu::createScene();
 
     // run
     director->runWithScene(scene);

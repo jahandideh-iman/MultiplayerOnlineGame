@@ -5,6 +5,8 @@
 
 USING_NS_CC;
 
+using mog::GameMainMenu;
+
 Scene* GameMainMenu::createScene()
 {
     auto scene = Scene::create();
