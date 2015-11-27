@@ -23,10 +23,10 @@ namespace mog
 			bool open(unsigned short port);
 			void close();
 			bool isOpen() const;
-			bool send(const Address & destination,
+			bool send(const Address &destination,
 				const char * data,
 				int size);
-			int receive(Address & sender,
+			int receive(Address &sender,
 				void * data,
 				int size);
 

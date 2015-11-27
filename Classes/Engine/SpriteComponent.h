@@ -8,10 +8,9 @@ namespace mog
 	class SpriteComponent : public Component
 	{
 	public:
-		SpriteComponent();
 		~SpriteComponent();
 
-		SpriteComponent(cocos2d::Sprite *sprite);
+		SpriteComponent(const std::string &fileName);
 
 		virtual void addSelfToGame(Game *g);
 

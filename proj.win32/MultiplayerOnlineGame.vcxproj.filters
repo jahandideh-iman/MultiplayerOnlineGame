@@ -19,21 +19,18 @@
     <Filter Include="src\Engine">
       <UniqueIdentifier>{736b6367-3eae-4224-8c1f-f2a9104b1a68}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Network\Messages">
+      <UniqueIdentifier>{076bb751-6127-416c-a0dd-9e5e3ea46e39}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Network\Command.cpp">
-      <Filter>src\Network</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Network\GameSocket.cpp">
       <Filter>src\Network</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Network\InternetAddress.cpp">
-      <Filter>src\Network</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Network\Message.cpp">
       <Filter>src\Network</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Network\MessageDatabase.cpp">
@@ -81,21 +78,36 @@
     <ClCompile Include="..\Classes\Engine\GlobalData.cpp">
       <Filter>src\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Network\Message.cpp">
+      <Filter>src\Network\Messages</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Network\Command.cpp">
+      <Filter>src\Network\Messages</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Network\LoadLevel.cpp">
+      <Filter>src\Network\Messages</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Pawn.cpp">
+      <Filter>src\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Engine\NetworkComponent.cpp">
+      <Filter>src\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Network\GameObjectRepresenter.cpp">
+      <Filter>src\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Network\RepresenterDatabase.cpp">
+      <Filter>src\Network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
       <Filter>win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Network\Command.h">
-      <Filter>src\Network</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Network\GameSocket.h">
       <Filter>src\Network</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Network\InternetAddress.h">
-      <Filter>src\Network</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Network\Message.h">
       <Filter>src\Network</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Network\MessageDatabase.h">
@@ -142,6 +154,27 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Engine\GlobalData.h">
       <Filter>src\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Network\Message.h">
+      <Filter>src\Network\Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Network\Command.h">
+      <Filter>src\Network\Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Network\LoadLevel.h">
+      <Filter>src\Network\Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Pawn.h">
+      <Filter>src\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Engine\NetworkComponent.h">
+      <Filter>src\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Network\GameObjectRepresenter.h">
+      <Filter>src\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Network\RepresenterDatabase.h">
+      <Filter>src\Network</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

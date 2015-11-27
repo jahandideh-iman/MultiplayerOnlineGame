@@ -1,6 +1,7 @@
 #include "MessageDatabase.h"
 #include "Message.h"
 #include "Game/Join.h"
+#include "LoadLevel.h"
 
 
 
@@ -21,6 +22,8 @@ MessageDatabase::MessageDatabase()
 {
 	auto j = new Join();
 	map.emplace(j->getCode(), j);
+	auto k = new LoadLevel();
+	map.emplace(k->getCode(), k);
 }
 
 

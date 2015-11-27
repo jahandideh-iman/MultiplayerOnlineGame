@@ -10,5 +10,7 @@ namespace mog
 	public:
 		GameLevel();
 		~GameLevel();
+
+		char *getName() const override;
 	};
 }

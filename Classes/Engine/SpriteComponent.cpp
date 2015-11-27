@@ -1,23 +1,19 @@
 #include "SpriteComponent.h"
 #include "Game.h"
 
-using mog::SpriteComponent;
-using mog::Game;
 
-SpriteComponent::SpriteComponent()
+
+mog::SpriteComponent::SpriteComponent(std::string &fileName)
 {
+	this->sprite = cocos2d::Sprite::create(fileName);
 }
 
-SpriteComponent::SpriteComponent(cocos2d::Sprite *sprite)
+mog::SpriteComponent::~SpriteComponent()
 {
-	this->sprite = sprite;
+	//TODO: write this.
 }
 
-SpriteComponent::~SpriteComponent()
+void mog::SpriteComponent::addSelfToGame(Game *g)
 {
-}
-
-void SpriteComponent::addSelfToGame(Game *g)
-{
-	g->addChild(sprite, sprite->getZOrder());
+	g->addChild(sprite, sprite->getLocalZOrder());
 }

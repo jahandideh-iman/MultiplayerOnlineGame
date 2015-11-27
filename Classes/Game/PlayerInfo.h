@@ -4,13 +4,12 @@
 #include <string>
 namespace mog
 {
-	class PlayerInfo
+	struct PlayerInfo
 	{
 	public:
 		PlayerInfo(std::string &name, const network::InternetAddress *address);
 		~PlayerInfo();
 
-	private:
 		std::string name;
 		const network::InternetAddress *address;
 	};

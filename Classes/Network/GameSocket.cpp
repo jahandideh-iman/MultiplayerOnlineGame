@@ -59,8 +59,12 @@ int GameSocket::receive(Address &sender, void *data, int size)
 	unsigned int from_address =
 		ntohl(from.sin_addr.s_addr);
 
+	
 	unsigned int from_port =
 		ntohs(from.sin_port);
+
+	sender.setPort(from_port);
+	sender.setAddress(from_address);
 
 	//CCLOG("data is %c", (char*)data);
 
@@ -71,9 +75,11 @@ bool GameSocket::send(const Address & destination, const char * data, int size)
 {
 	sockaddr_in address;
 	address.sin_family = AF_INET;
-	address.sin_addr.s_addr = destination.getAddress();
+	address.sin_addr.s_addr = htonl(destination.getAddress());
 	address.sin_port =
 		htons((unsigned short)destination.getPort());
+
+	int wtf = ntohs(address.sin_port);
 
 	int sent_bytes =
 		sendto(socket,

@@ -2,6 +2,7 @@
 #include "Network/NetworkManager.h"
 #include "Network/InternetAddress.h"
 #include "Join.h"
+#include "Engine/GlobalData.h"
 
 USING_NS_CC;
 
@@ -60,6 +61,8 @@ bool ClientGame::init()
 
 	NetworkManager::get()->setPort(0);
 
+	mog::GlobalData::gameType = T_Client;
+
 	return true;
 }
 
@@ -73,10 +76,6 @@ void ClientGame::menuCloseCallback(Ref* pSender)
 #endif
 }
 
-void ClientGame::updateNetwork()
-{
-	//CCLOG("------------------------- Updating Network -----------------------");
-}
 
 void ClientGame::update(float dt)
 {

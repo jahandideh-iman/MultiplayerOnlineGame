@@ -16,7 +16,7 @@ InternetAddress::InternetAddress(unsigned int address, unsigned short port)
 
 InternetAddress::InternetAddress(char *address, unsigned short port)
 {
-	this->address =inet_addr(address);
+	this->address =ntohl(inet_addr(address));
 	this->port = port;
 }
 
@@ -28,4 +28,14 @@ unsigned int InternetAddress::getAddress() const
 unsigned short InternetAddress::getPort() const
 {
 	return port;
+}
+
+void mog::network::InternetAddress::setAddress(unsigned address)
+{
+	this->address = address;
+}
+
+void mog::network::InternetAddress::setPort(unsigned short port)
+{
+	this->port = port;
 }

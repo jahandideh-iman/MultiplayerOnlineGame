@@ -24,13 +24,9 @@ namespace mog
 
 		void joinNewPlayer(PlayerInfo *info);
 
-	private:
-		void LoadLevel(Level *level);
-		void addGameObject(GameObject *object);
 
 	private:
 
 		std::vector<PlayerInfo*> playersInfo;
-		Level *currentLevel = nullptr;
 	};
 }

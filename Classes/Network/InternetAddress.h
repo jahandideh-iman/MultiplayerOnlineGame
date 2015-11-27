@@ -24,6 +24,9 @@ namespace mog
 			unsigned char getD() const;
 			unsigned short getPort() const;
 
+			void setAddress(unsigned address);
+			void setPort(unsigned short port);
+
 		private:
 			unsigned int address;
 			unsigned short port;

@@ -1,6 +1,8 @@
 #include "ServerGame.h"
 #include "Network/NetworkManager.h"
 #include "GameLevel.h"
+#include "Engine/GlobalData.h"
+#include "Network/LoadLevel.h"
 
 USING_NS_CC;
 
@@ -47,6 +49,8 @@ bool ServerGame::init()
 	
 	network::NetworkManager::get()->setPort(8082);
 
+	mog::GlobalData::gameType = mog::GameType::T_Server;
+
 	LoadLevel(new GameLevel());
 	return true;
 }
@@ -70,22 +74,6 @@ void ServerGame::update(float dt)
 void ServerGame::joinNewPlayer(PlayerInfo *info)
 {
 	playersInfo.push_back(info);
+	mog::network::NetworkManager::get()->sendMessage(mog::network::LoadLevel(currentLevel->getName()), *info->address);
 	//NetworkManager::sendMessage();
-}
-
-void ServerGame::LoadLevel(Level *level)
-{
-	currentLevel = level;
-	for (GameObject *o : level->getGameObjects())
-	{
-		addGameObject(o);
-	}
-}
-
-void mog::ServerGame::addGameObject(GameObject *object)
-{
-	for (Component *o : object->getComponents())
-	{
-		o->addSelfToGame(this);
-	}
 }
