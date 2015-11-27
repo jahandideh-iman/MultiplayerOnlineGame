@@ -19,22 +19,16 @@ mog::network::LoadLevel::~LoadLevel()
 {
 }
 
-unsigned mog::network::LoadLevel::getCode() const
+
+mog::network::Buffer *mog::network::LoadLevel::serialize() const
 {
-	return 2000;
+	auto buffer = new Buffer();
+	buffer->write(levelName);
+	
+	return buffer;
 }
 
-mog::network::NetworkData * mog::network::LoadLevel::write() const
-{
-	auto data = new char[20];
-	auto s = sprintf(data, "%u", this->getCode());
-	strcpy(&data[s + 1], levelName);
-
-	NetworkData *nd = new NetworkData(data, s + 1 + 6);
-	return nd;
-}
-
-void mog::network::LoadLevel::execute(const NetworkData &data, const network::InternetAddress &address) const
+void mog::network::LoadLevel::execute(const Buffer &data, const network::InternetAddress &address) const
 {
 	if (GlobalData::gameType == GameType::T_Client)
 		GlobalData::game->LoadLevel(new GameLevel());

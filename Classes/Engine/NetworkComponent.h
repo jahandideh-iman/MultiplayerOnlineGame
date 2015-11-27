@@ -13,6 +13,8 @@ namespace mog
 
 		void addRepVar(const std::string &name, int *address);
 
+		void addSelfToGame(Game *g){};
+
 	private:
 		std::unordered_map<std::string, int*> replicationVars;
 	};

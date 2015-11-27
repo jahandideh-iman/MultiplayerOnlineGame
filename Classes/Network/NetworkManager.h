@@ -1,10 +1,12 @@
 #pragma once
 
+#include "Engine/Types.h"
 
 namespace mog
 {
 	namespace network
 	{
+		class Buffer;
 		class GameSocket;
 		class Message;
 		class InternetAddress;
@@ -27,7 +29,8 @@ namespace mog
 			NetworkManager();
 			~NetworkManager();
 
-			unsigned extractMessageId(char* message, unsigned size);
+			ID extractMessageId(char* message, unsigned size);
+			Buffer extractMessageData(char* message, unsigned size);
 
 		private:
 			GameSocket *socket = nullptr;

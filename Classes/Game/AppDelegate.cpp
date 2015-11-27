@@ -1,13 +1,15 @@
 #include "AppDelegate.h"
 #include "GameMainMenu.h"
 #include "Network/NetworkManager.h"
+#include "Game/Pawn.h"
+#include "Network/ConstructorDatabase.h"
 
 USING_NS_CC;
 
 using mog::network::NetworkManager;
+using mog::Pawn;
 
 AppDelegate::AppDelegate() {
-
 }
 
 AppDelegate::~AppDelegate() 
@@ -67,7 +69,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // run
     director->runWithScene(scene);
 
-
+	REGISTER_CONSTRUCTOR(Pawn);
     return true;
 }
 

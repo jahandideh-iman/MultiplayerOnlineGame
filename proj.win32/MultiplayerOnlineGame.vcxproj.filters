@@ -93,10 +93,16 @@
     <ClCompile Include="..\Classes\Engine\NetworkComponent.cpp">
       <Filter>src\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Network\GameObjectRepresenter.cpp">
+    <ClCompile Include="..\Classes\Network\NetworkObject.cpp">
       <Filter>src\Network</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Network\RepresenterDatabase.cpp">
+    <ClCompile Include="..\Classes\Network\ConstructorDatabase.cpp">
+      <Filter>src\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Network\Buffer.cpp">
+      <Filter>src\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Network\NetworkObjectConstructor.cpp">
       <Filter>src\Network</Filter>
     </ClCompile>
   </ItemGroup>
@@ -170,10 +176,22 @@
     <ClInclude Include="..\Classes\Engine\NetworkComponent.h">
       <Filter>src\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Network\GameObjectRepresenter.h">
+    <ClInclude Include="..\Classes\Network\NetworkObject.h">
       <Filter>src\Network</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Network\RepresenterDatabase.h">
+    <ClInclude Include="..\Classes\Network\ConstructorDatabase.h">
+      <Filter>src\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Engine\Types.h">
+      <Filter>src\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Engine\Macros.h">
+      <Filter>src\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Network\Buffer.h">
+      <Filter>src\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Network\NetworkObjectConstructor.h">
       <Filter>src\Network</Filter>
     </ClInclude>
   </ItemGroup>

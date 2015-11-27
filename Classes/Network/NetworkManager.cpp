@@ -8,6 +8,7 @@
 
 #include "cocos2d.h" //For CCLOG 
 #include "Message.h"
+#include "Buffer.h"
 
 
 using namespace mog::network;
@@ -66,25 +67,50 @@ void NetworkManager::update(float dt)
 
 	if (size != 0)
 	{
-		CCLOG("data is : %s", data);
-		auto id = extractMessageId(data, size);
-		MessageDatabase::get()->find(id)->execute(NetworkData(data,size), senderAddress);
+		ID messageId = extractMessageId(data, size);
+		Buffer messageData = extractMessageData(data, size);
+		CCLOG("Message ID is : %s", messageId.c_str());
+		CCLOG("data is : %s", messageData.getData());
+		MessageDatabase::get()->find(messageId)->execute(messageData, senderAddress);
 	}
 		
 }
 
 void NetworkManager::sendMessage(const Message &m, const InternetAddress &dest)
 {
-	NetworkData *nd = m.write();
-	socket->send(dest, nd->data, nd->size);
+	auto buffer = new Buffer();
+	buffer->write(m.getID());
+	buffer->write(":");
+	buffer->write(*m.serialize());
+	socket->send(dest, buffer->getData(), buffer->getSize());
 
-	delete nd;
+	delete buffer;
 }
 
-unsigned NetworkManager::extractMessageId(char* message, unsigned size)
+mog::ID NetworkManager::extractMessageId(char* message, unsigned size)
 {
-	char buffer[10];
-	strcpy(buffer, message);
-	CCLOG("Message ID is : %s", buffer);
-	return atoi(buffer);
+	char buffer[21];
+	int i;
+	for (i = 0; i < 20; i++)
+	{
+		if (message[i] == ':')
+			break;
+		buffer[i] = message[i];
+	}
+	buffer[i] = '\0';
+
+	return ID(buffer);
+	//return atoi(buffer);
+}
+
+mog::network::Buffer mog::network::NetworkManager::extractMessageData(char* message, unsigned size)
+{
+	int i;
+	for (i = 0; i < 20; i++)
+	{
+		if (message[i] == ':')
+			break;
+	}
+
+	return Buffer(message+i+1);
 }

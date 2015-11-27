@@ -11,11 +11,11 @@ namespace mog
 			Join();
 			~Join();
 
-			virtual void execute(const NetworkData &data, const InternetAddress& address) const override;
+			virtual void execute(const Buffer &buffer, const InternetAddress& address) const override;
 
-			virtual NetworkData *write() const override;
+			virtual Buffer *serialize() const override;
 
-			virtual unsigned getCode() const override;
+			AUTOID(Join,getID)
 		};
 	}
 }

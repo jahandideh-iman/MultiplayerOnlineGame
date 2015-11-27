@@ -13,9 +13,10 @@ namespace mog
 			LoadLevel();
 			~LoadLevel();
 
-			virtual void execute(const NetworkData &data, const network::InternetAddress &address) const;
-			virtual NetworkData *write() const;
-			virtual unsigned getCode() const;
+			virtual void execute(const Buffer &data, const network::InternetAddress &address) const;
+			virtual Buffer *serialize() const;
+
+			AUTOID(LoadLevel, getID)
 
 		private:
 			char *levelName = nullptr;

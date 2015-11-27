@@ -3,7 +3,7 @@
 
 
 
-mog::SpriteComponent::SpriteComponent(std::string &fileName)
+mog::SpriteComponent::SpriteComponent(const std::string &fileName)
 {
 	this->sprite = cocos2d::Sprite::create(fileName);
 }

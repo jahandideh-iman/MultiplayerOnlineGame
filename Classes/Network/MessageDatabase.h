@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Engine/Types.h"
 #include <unordered_map>
 
 
@@ -15,7 +16,7 @@ namespace mog
 
 			static MessageDatabase *get();
 
-			const Message * find(unsigned messageId);
+			const Message * find(ID messageId);
 		private:
 			MessageDatabase();
 			~MessageDatabase();
@@ -23,7 +24,7 @@ namespace mog
 		private:
 			static MessageDatabase *db;
 
-			std::unordered_map<unsigned, Message *> map;
+			std::unordered_map<ID, Message *> map;
 
 		};
 	}

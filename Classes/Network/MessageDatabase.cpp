@@ -2,6 +2,7 @@
 #include "Message.h"
 #include "Game/Join.h"
 #include "LoadLevel.h"
+#include "Engine/Types.h"
 
 
 
@@ -9,21 +10,23 @@ using namespace mog::network;
 
 MessageDatabase *MessageDatabase::db = nullptr;
 
-
-class EmptyMessage : public Message
+namespace mog
 {
-public:
-	virtual void execute(const NetworkData &data, const InternetAddress &address )const override{}
-	virtual NetworkData *write() const override { return nullptr; }
-	virtual unsigned getCode() const override  { return 0; }
-};
+	class EmptyMessage : public Message
+	{
+	public:
+		virtual void execute(const Buffer &data, const InternetAddress &address)const override{}
+		virtual Buffer *serialize() const override { return nullptr; }
+		AUTOID(EmptyMessage, getID)
+	};
+}
 
 MessageDatabase::MessageDatabase()
 {
 	auto j = new Join();
-	map.emplace(j->getCode(), j);
+	map.emplace(j->getID(), j);
 	auto k = new LoadLevel();
-	map.emplace(k->getCode(), k);
+	map.emplace(k->getID(), k);
 }
 
 
@@ -38,7 +41,7 @@ MessageDatabase * MessageDatabase::get()
 	return db;
 }
 
-const Message *MessageDatabase::find(unsigned messageId)
+const Message *MessageDatabase::find(mog::ID messageId)
 {
 	auto res = map.find(messageId);
 	if (res == map.end())
