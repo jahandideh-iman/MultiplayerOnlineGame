@@ -146,6 +146,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\Engine\Level.cpp" />
     <ClCompile Include="..\Classes\Engine\NetworkComponent.cpp" />
     <ClCompile Include="..\Classes\Engine\SpriteComponent.cpp" />
+    <ClCompile Include="..\Classes\Engine\Utilities.cpp" />
     <ClCompile Include="..\Classes\Game\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\Game\ClientGame.cpp" />
     <ClCompile Include="..\Classes\Game\GameLevel.cpp" />
@@ -156,6 +157,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\Game\ServerGame.cpp" />
     <ClCompile Include="..\Classes\Network\Buffer.cpp" />
     <ClCompile Include="..\Classes\Network\Command.cpp" />
+    <ClCompile Include="..\Classes\Network\NetworkGameObject.cpp" />
     <ClCompile Include="..\Classes\Network\NetworkObjectConstructor.cpp" />
     <ClCompile Include="..\Classes\Network\GameSocket.cpp" />
     <ClCompile Include="..\Classes\Network\InternetAddress.cpp" />
@@ -165,6 +167,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\Network\NetworkObject.cpp" />
     <ClCompile Include="..\Classes\Network\NetworkManager.cpp" />
     <ClCompile Include="..\Classes\Network\ConstructorDatabase.cpp" />
+    <ClCompile Include="..\Classes\Network\ParameterContainer.cpp" />
+    <ClCompile Include="..\Classes\Network\ReplicateInstance.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +181,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\Engine\NetworkComponent.h" />
     <ClInclude Include="..\Classes\Engine\SpriteComponent.h" />
     <ClInclude Include="..\Classes\Engine\Types.h" />
+    <ClInclude Include="..\Classes\Engine\Utilities.h" />
     <ClInclude Include="..\Classes\Game\AppDelegate.h" />
     <ClInclude Include="..\Classes\Game\ClientGame.h" />
     <ClInclude Include="..\Classes\Game\GameLevel.h" />
@@ -187,6 +192,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\Game\ServerGame.h" />
     <ClInclude Include="..\Classes\Network\Buffer.h" />
     <ClInclude Include="..\Classes\Network\Command.h" />
+    <ClInclude Include="..\Classes\Network\NetworkGameObject.h" />
     <ClInclude Include="..\Classes\Network\NetworkObjectConstructor.h" />
     <ClInclude Include="..\Classes\Network\GameSocket.h" />
     <ClInclude Include="..\Classes\Network\InternetAddress.h" />
@@ -196,6 +202,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\Network\NetworkObject.h" />
     <ClInclude Include="..\Classes\Network\NetworkManager.h" />
     <ClInclude Include="..\Classes\Network\ConstructorDatabase.h" />
+    <ClInclude Include="..\Classes\Network\ParameterContainer.h" />
+    <ClInclude Include="..\Classes\Network\ReplicateInstance.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

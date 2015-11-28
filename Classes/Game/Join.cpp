@@ -17,19 +17,16 @@ Join::~Join()
 {
 }
 
-network::Buffer *Join::serialize() const
+void mog::network::Join::fillData(ParameterContainer *parameters) const
 {
-	auto buffer = new Buffer();
-	buffer->write("Hello");
-	return buffer;
+	parameters->put("message", "hello");
 }
 
-void Join::execute(const network::Buffer &buffer, const network::InternetAddress &address) const
+void mog::network::Join::execute(const ParameterContainer &parameters, const InternetAddress& address) const
 {
-	CCLOG("join is %s", buffer.getData());
 	auto server = dynamic_cast<ServerGame*> (GlobalData::game);
 	std::string name = "name";
 
 	if (server != nullptr)
-		server->joinNewPlayer(new PlayerInfo(name, &address));	
+		server->joinNewPlayer(new PlayerInfo(name, &address));
 }

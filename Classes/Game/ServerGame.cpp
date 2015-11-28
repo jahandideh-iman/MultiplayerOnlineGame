@@ -3,6 +3,8 @@
 #include "GameLevel.h"
 #include "Engine/GlobalData.h"
 #include "Network/LoadLevel.h"
+#include "Network/ReplicateInstance.h"
+#include "Game/Pawn.h"
 
 USING_NS_CC;
 
@@ -74,6 +76,11 @@ void ServerGame::update(float dt)
 void ServerGame::joinNewPlayer(PlayerInfo *info)
 {
 	playersInfo.push_back(info);
+	network::NetworkGameObject *p = new Pawn();
+	p->addSelfToGame(this);
+	
 	mog::network::NetworkManager::get()->sendMessage(mog::network::LoadLevel(currentLevel->getName()), *info->address);
+	mog::network::NetworkManager::get()->sendMessage(mog::network::ReplicateInstance(p), *info->address);
+
 	//NetworkManager::sendMessage();
 }

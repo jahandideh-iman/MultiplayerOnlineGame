@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <sstream>
 
 namespace mog
 {
@@ -19,11 +20,16 @@ namespace mog
 			void write(const Buffer &other);
 			void write(const char* c);
 
-			const char *getData() const;
+			void readLine(char *line, int length);
+			bool eof() const;
+
+			char *getData() const;
 			unsigned getSize() const;
 
 		private:
-			std::string data;
+			//std::string data;
+			std::stringstream stream;
+
 		};
 	}
 }

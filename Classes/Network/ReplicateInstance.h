@@ -6,22 +6,23 @@ namespace mog
 {
 	namespace network
 	{
-		class LoadLevel : public Message
+		class NetworkGameObject;
+		class ReplicateInstance : public Message
 		{
 		public:
-			LoadLevel(char *name);
-			LoadLevel();
-			~LoadLevel();
+			ReplicateInstance(NetworkGameObject *object);
+			~ReplicateInstance();
 
 			virtual void execute(const ParameterContainer &parameters, const network::InternetAddress &address) const override;
-			
-			AUTOID(LoadLevel, getID)
+
+			AUTOID(ReplicateInstance,getID)
 
 		protected:
 			virtual void fillData(ParameterContainer *parameters) const override;
 
 		private:
-			char *levelName = nullptr;
+			NetworkGameObject *object = nullptr;
+
 		};
 	}
 }

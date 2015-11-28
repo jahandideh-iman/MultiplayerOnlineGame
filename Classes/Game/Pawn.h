@@ -1,12 +1,11 @@
 #pragma once
-#include "Engine/GameObject.h"
-#include "network/NetworkObject.h"
+#include "network/NetworkGameObject.h"
 #include "Engine/Macros.h"
 
 namespace mog
 {
 	class Pawn :
-		public GameObject, public network::NetworkObject
+		public network::NetworkGameObject
 	{
 	public:
 		Pawn();

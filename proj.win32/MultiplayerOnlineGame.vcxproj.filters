@@ -105,6 +105,18 @@
     <ClCompile Include="..\Classes\Network\NetworkObjectConstructor.cpp">
       <Filter>src\Network</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Engine\Utilities.cpp">
+      <Filter>src\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Network\ReplicateInstance.cpp">
+      <Filter>src\Network\Messages</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Network\NetworkGameObject.cpp">
+      <Filter>src\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Network\ParameterContainer.cpp">
+      <Filter>src\Network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -192,6 +204,18 @@
       <Filter>src\Network</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Network\NetworkObjectConstructor.h">
+      <Filter>src\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Engine\Utilities.h">
+      <Filter>src\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Network\ReplicateInstance.h">
+      <Filter>src\Network\Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Network\NetworkGameObject.h">
+      <Filter>src\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Network\ParameterContainer.h">
       <Filter>src\Network</Filter>
     </ClInclude>
   </ItemGroup>

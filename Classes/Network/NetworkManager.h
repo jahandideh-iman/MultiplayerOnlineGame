@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Engine/Types.h"
+#include "Network/NetworkGameObject.h"
+#include "Engine/NetworkComponent.h"
+#include <map>
 
 namespace mog
 {
@@ -25,6 +28,9 @@ namespace mog
 			bool setup();
 			bool teardown();
 
+			void addNetworkGameObject(NetworkGameObject *o);
+			void addNetworkComponent(NetworkComponent *c);
+
 		private:
 			NetworkManager();
 			~NetworkManager();
@@ -34,6 +40,9 @@ namespace mog
 
 		private:
 			GameSocket *socket = nullptr;
+
+			unsigned id = 0;
+			std::map<unsigned, NetworkGameObject*> networkGameObjects;
 
 		private:
 			static NetworkManager *manager;

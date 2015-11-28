@@ -15,9 +15,11 @@ namespace mog
 	class EmptyMessage : public Message
 	{
 	public:
-		virtual void execute(const Buffer &data, const InternetAddress &address)const override{}
-		virtual Buffer *serialize() const override { return nullptr; }
+		virtual void execute(const ParameterContainer &parameters, const InternetAddress &address)const override{}
+		
 		AUTOID(EmptyMessage, getID)
+	protected:
+		virtual void fillData(ParameterContainer *parameters) const override{};
 	};
 }
 

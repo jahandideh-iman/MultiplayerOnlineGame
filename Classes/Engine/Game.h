@@ -14,9 +14,6 @@ namespace mog
 
 		void LoadLevel(Level *level) ;
 
-	private:
-		void addGameObject(GameObject *object);
-
 	protected:
 		Level *currentLevel = nullptr;
 	};

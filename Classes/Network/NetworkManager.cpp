@@ -69,9 +69,10 @@ void NetworkManager::update(float dt)
 	{
 		ID messageId = extractMessageId(data, size);
 		Buffer messageData = extractMessageData(data, size);
+		ParameterContainer parameters(messageData);
 		CCLOG("Message ID is : %s", messageId.c_str());
 		CCLOG("data is : %s", messageData.getData());
-		MessageDatabase::get()->find(messageId)->execute(messageData, senderAddress);
+		MessageDatabase::get()->find(messageId)->execute(parameters, senderAddress);
 	}
 		
 }
@@ -113,4 +114,11 @@ mog::network::Buffer mog::network::NetworkManager::extractMessageData(char* mess
 	}
 
 	return Buffer(message+i+1);
+}
+
+void mog::network::NetworkManager::addNetworkGameObject(NetworkGameObject *o)
+{
+	networkGameObjects.emplace(id, o);
+	o->setIndex(id);
+	id++;
 }
