@@ -23,7 +23,7 @@ void mog::GameObject::addComponent(Component *c)
 	components.push_back(c);
 }
 
-void mog::GameObject::addSelfToGame(Game *game)
+void mog::GameObject::addComponentsToGame(Game *game)
 {
 	for (Component *o : getComponents())
 	{
@@ -31,7 +31,34 @@ void mog::GameObject::addSelfToGame(Game *game)
 	}
 }
 
+mog::Component * mog::GameObject::findComponent(ID id)
+{
+	for (auto c : components)
+	{
+		if (c->getId() == id)
+			return c;
+	}
+
+	return nullptr;
+}
+
 void mog::GameObject::setPosition(Point pos)
 {
+	position = pos;
+}
 
+mog::Point mog::GameObject::getPosition() const
+{
+	return position;
+}
+
+void mog::GameObject::onAddedToGame(Game *game)
+{
+	addComponentsToGame(game);
+}
+
+void mog::GameObject::update(float dt)
+{
+	for (auto c : components)
+		c->update(dt);
 }

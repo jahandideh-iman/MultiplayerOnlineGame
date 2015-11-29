@@ -3,6 +3,10 @@
 #include "Network/NetworkManager.h"
 #include "Game/Pawn.h"
 #include "Network/ConstructorDatabase.h"
+#include "Network/MessageDatabase.h"
+#include "Network/LoadLevel.h"
+#include "Game/Join.h"
+#include "Network/ReplicateInstance.h"
 
 USING_NS_CC;
 
@@ -46,7 +50,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto glview = director->getOpenGLView();
     if(!glview) {
         glview = GLViewImpl::create("My Game");
-		glview->setFrameSize(683, 768);
+		glview->setFrameSize(683, 600);
         director->setOpenGLView(glview);
     }
 
@@ -70,6 +74,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->runWithScene(scene);
 
 	REGISTER_CONSTRUCTOR(Pawn);
+
+	mog::network::MessageDatabase::get()->registerMessage(new mog::network::LoadLevel());
+	mog::network::MessageDatabase::get()->registerMessage(new mog::network::Join());
+	mog::network::MessageDatabase::get()->registerMessage(new mog::network::ReplicateInstance());
     return true;
 }
 

@@ -13,7 +13,7 @@ namespace mog
 			NetworkGameObject();
 			virtual ~NetworkGameObject();
 
-			virtual void addSelfToGame(Game *game);
+			virtual void onAddedToGame(Game *game) override;
 
 			unsigned getIndex();
 			void setIndex(unsigned i);

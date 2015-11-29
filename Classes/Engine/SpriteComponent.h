@@ -10,9 +10,11 @@ namespace mog
 	public:
 		~SpriteComponent();
 
-		SpriteComponent(const std::string &fileName);
+		SpriteComponent(ID id, const GameObject *owner, const std::string &fileName);
 
 		virtual void addSelfToGame(Game *g);
+
+		virtual void update(float dt) override;
 
 	private:
 		cocos2d::Sprite *sprite = nullptr;

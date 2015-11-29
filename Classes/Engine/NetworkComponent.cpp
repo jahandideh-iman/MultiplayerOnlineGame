@@ -1,7 +1,7 @@
 #include "NetworkComponent.h"
 
 
-mog::NetworkComponent::NetworkComponent()
+mog::NetworkComponent::NetworkComponent(ID id, const GameObject *owner) : Component(id, owner)
 {
 }
 

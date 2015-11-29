@@ -11,9 +11,9 @@ mog::network::NetworkGameObject::~NetworkGameObject()
 {
 }
 
-void mog::network::NetworkGameObject::addSelfToGame(Game *game)
+void mog::network::NetworkGameObject::onAddedToGame(Game *game)
 {
-	GameObject::addSelfToGame(game);
+	GameObject::onAddedToGame(game);
 	NetworkManager::get()->addNetworkGameObject(this);
 }
 

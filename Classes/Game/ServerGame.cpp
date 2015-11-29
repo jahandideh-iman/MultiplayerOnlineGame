@@ -53,7 +53,7 @@ bool ServerGame::init()
 
 	mog::GlobalData::gameType = mog::GameType::T_Server;
 
-	LoadLevel(new GameLevel());
+	loadLevel(new GameLevel());
 	return true;
 }
 
@@ -70,6 +70,7 @@ void ServerGame::menuCloseCallback(Ref* pSender)
 
 void ServerGame::update(float dt)
 {
+	Game::update(dt);
 	network::NetworkManager::get()->update(dt);
 }
 
@@ -77,7 +78,8 @@ void ServerGame::joinNewPlayer(PlayerInfo *info)
 {
 	playersInfo.push_back(info);
 	network::NetworkGameObject *p = new Pawn();
-	p->addSelfToGame(this);
+	p->setPosition(Point(200, 200));
+	addGameObject(p);
 	
 	mog::network::NetworkManager::get()->sendMessage(mog::network::LoadLevel(currentLevel->getName()), *info->address);
 	mog::network::NetworkManager::get()->sendMessage(mog::network::ReplicateInstance(p), *info->address);

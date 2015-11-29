@@ -27,13 +27,22 @@ namespace mog
 		void addComponent(Component *c);
 		std::vector<mog::Component *> getComponents();
 
-		virtual void addSelfToGame(Game *game);
+		virtual void onAddedToGame(Game *game);
+
+		virtual void update(float dt);
 
 		void setPosition(Point pos);
-		Point getPosition();
+		Point getPosition() const;
+
+		Component *findComponent(ID id);
+
+	protected:
+		virtual void addComponentsToGame(Game *game);
 
 	private:
 		std::vector<mog::Component *> components;
+
+		Point position;
 
 	};
 }

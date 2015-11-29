@@ -4,8 +4,8 @@
 
 mog::Pawn::Pawn()
 {
-	addComponent(new SpriteComponent("pawn.png"));
-	addComponent(new NetworkComponent());
+	addComponent(new SpriteComponent("sprite",this,"pawn.png"));
+	addComponent(new NetworkComponent("net",this));
 }
 
 

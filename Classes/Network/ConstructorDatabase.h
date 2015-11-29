@@ -22,6 +22,8 @@ namespace mog
 			static ConstructorDatabase *get();
 			bool registerConstrcutor(NetworkObjectConstructor *c);
 
+			NetworkObject *create(ID typeId) const;
+
 		private:
 			ConstructorDatabase();
 			~ConstructorDatabase();

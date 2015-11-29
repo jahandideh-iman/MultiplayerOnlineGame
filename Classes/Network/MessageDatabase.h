@@ -16,7 +16,9 @@ namespace mog
 
 			static MessageDatabase *get();
 
-			const Message * find(ID messageId);
+			const Message *find(ID messageId);
+
+			void registerMessage(Message *m);
 		private:
 			MessageDatabase();
 			~MessageDatabase();

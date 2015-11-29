@@ -21,16 +21,12 @@ namespace mog
 	protected:
 		virtual void fillData(ParameterContainer *parameters) const override{};
 	};
+
 }
 
 MessageDatabase::MessageDatabase()
 {
-	auto j = new Join();
-	map.emplace(j->getID(), j);
-	auto k = new LoadLevel();
-	map.emplace(k->getID(), k);
 }
-
 
 MessageDatabase::~MessageDatabase()
 {
@@ -43,10 +39,15 @@ MessageDatabase * MessageDatabase::get()
 	return db;
 }
 
-const Message *MessageDatabase::find(mog::ID messageId)
+const mog::network::Message *MessageDatabase::find(mog::ID messageId)
 {
 	auto res = map.find(messageId);
 	if (res == map.end())
 		return new EmptyMessage();
 	return res->second;
+}
+
+void mog::network::MessageDatabase::registerMessage(Message *m)
+{
+	map.emplace(m->getID(), m);
 }

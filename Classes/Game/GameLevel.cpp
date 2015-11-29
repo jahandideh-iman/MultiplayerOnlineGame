@@ -6,7 +6,7 @@ using mog::GameLevel;
 GameLevel::GameLevel()
 {
 	GameObject * o = new GameObject();
-	o->addComponent(new SpriteComponent("background.png"));
+	o->addComponent(new SpriteComponent("sprite",o,"background.png"));
 	addGameObject(o);
 }
 

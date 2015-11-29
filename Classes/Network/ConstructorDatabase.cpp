@@ -27,4 +27,9 @@ mog::network::ConstructorDatabase * mog::network::ConstructorDatabase::get()
 	return database;
 }
 
+mog::network::NetworkObject * mog::network::ConstructorDatabase::create(ID typeId) const
+{
+	return reps.find(typeId)->second->create();
+}
+
 

@@ -11,6 +11,7 @@ namespace mog
 		{
 		public:
 			ReplicateInstance(NetworkGameObject *object);
+			ReplicateInstance();
 			~ReplicateInstance();
 
 			virtual void execute(const ParameterContainer &parameters, const network::InternetAddress &address) const override;

@@ -8,7 +8,7 @@ namespace mog
 	class NetworkComponent : public Component
 	{
 	public:
-		NetworkComponent();
+		NetworkComponent(ID id, const GameObject *owner);
 		~NetworkComponent();
 
 		void addRepVar(const std::string &name, int *address);
