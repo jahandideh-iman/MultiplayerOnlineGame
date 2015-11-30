@@ -11,7 +11,7 @@ Message::~Message()
 {
 }
 
-mog::network::Buffer * mog::network::Message::serialize() const
+mog::Buffer * mog::network::Message::serialize() const
 {
 	auto parameters = new ParameterContainer();
 	fillData(parameters);

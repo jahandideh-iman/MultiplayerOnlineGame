@@ -10,7 +10,7 @@ mog::NetworkComponent::~NetworkComponent()
 {
 }
 
-void mog::NetworkComponent::addRepVar(const std::string &name, int *address)
+void mog::NetworkComponent::addVariable(const std::string &name, Serializable *var)
 {
-	replicationVars.emplace(name, address);
+	replicationVars.emplace(name, var);
 }

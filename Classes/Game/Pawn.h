@@ -1,9 +1,11 @@
 #pragma once
 #include "network/NetworkGameObject.h"
 #include "Engine/Macros.h"
+#include "Engine/Types.h"
 
 namespace mog
 {
+
 	class Pawn :
 		public network::NetworkGameObject
 	{
@@ -14,7 +16,7 @@ namespace mog
 		AUTOID(Pawn, getNetworkID);
 
 	private:
-		int health = 0;
+		Integer health = 100;
 	};
 
 }

@@ -2,20 +2,23 @@
 
 #include "Component.h"
 #include <unordered_map>
+#include "Engine/Serializable.h"
 
 namespace mog
 {
+
 	class NetworkComponent : public Component
 	{
 	public:
 		NetworkComponent(ID id, const GameObject *owner);
 		~NetworkComponent();
 
-		void addRepVar(const std::string &name, int *address);
+
+		void addVariable(const std::string &name, Serializable *var);
 
 		void addSelfToGame(Game *g){};
 
 	private:
-		std::unordered_map<std::string, int*> replicationVars;
+		std::unordered_map<std::string, Serializable*> replicationVars;
 	};
 }

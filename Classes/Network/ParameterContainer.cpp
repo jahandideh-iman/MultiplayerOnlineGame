@@ -21,7 +21,7 @@ void mog::network::ParameterContainer::put(std::string name, std::string value)
 	parameters.emplace(name, value);
 }
 
-mog::network::Buffer *mog::network::ParameterContainer::serialize() const
+mog::Buffer *mog::network::ParameterContainer::serialize() const
 {
 	auto buffer = new Buffer();
 	for (auto it = parameters.begin(); it != parameters.end(); ++it)

@@ -6,6 +6,10 @@ mog::Pawn::Pawn()
 {
 	addComponent(new SpriteComponent("sprite",this,"pawn.png"));
 	addComponent(new NetworkComponent("net",this));
+
+	NetworkComponent *c = dynamic_cast<NetworkComponent*> (findComponent("net"));
+
+	c->addVariable("health",&health);
 }
 
 

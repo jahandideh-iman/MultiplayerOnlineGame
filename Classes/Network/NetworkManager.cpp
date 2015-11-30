@@ -8,31 +8,29 @@
 
 #include "cocos2d.h" //For CCLOG 
 #include "Message.h"
-#include "Buffer.h"
 
 
-using namespace mog::network;
 
-NetworkManager *NetworkManager::manager = nullptr;
+mog::network::NetworkManager *mog::network::NetworkManager::manager = nullptr;
 
-NetworkManager::NetworkManager()
+mog::network::NetworkManager::NetworkManager()
 {
 }
 
 
-NetworkManager::~NetworkManager()
+mog::network::NetworkManager::~NetworkManager()
 {
 	delete socket;
 }
 
-NetworkManager * NetworkManager::get()
+mog::network::NetworkManager * mog::network::NetworkManager::get()
 {
 	if (manager == nullptr)
 		manager = new NetworkManager();
 	return manager;
 }
 
-bool NetworkManager::setup()
+bool mog::network::NetworkManager::setup()
 {
 	WSADATA wsaData;
 
@@ -46,20 +44,20 @@ bool NetworkManager::setup()
 	return true;
 }
 
-bool NetworkManager::teardown()
+bool mog::network::NetworkManager::teardown()
 {
 	delete manager;
 	::WSACleanup();
 	return true;
 }
 
-void NetworkManager::setPort(unsigned port)
+void mog::network::NetworkManager::setPort(unsigned port)
 {
 	socket = new network::GameSocket();
 	socket->open(port);
 }
 
-void NetworkManager::update(float dt)
+void mog::network::NetworkManager::update(float dt)
 {
 	InternetAddress senderAddress;
 	char data[256];
@@ -73,13 +71,12 @@ void NetworkManager::update(float dt)
 		CCLOG("Message ID is : %s", messageId.c_str());
 		CCLOG("data is : %s", messageData.getData());
 		MessageDatabase::get()->find(messageId)->execute(parameters, senderAddress);
-	}
-		
+	}	
 }
 
-void NetworkManager::sendMessage(const Message &m, const InternetAddress &dest)
+void mog::network::NetworkManager::sendMessage(const Message &m, const InternetAddress &dest)
 {
-	auto buffer = new Buffer();
+	auto buffer = new mog::Buffer();
 	buffer->write(m.getID());
 	buffer->write(":");
 	buffer->write(*m.serialize());
@@ -88,7 +85,7 @@ void NetworkManager::sendMessage(const Message &m, const InternetAddress &dest)
 	delete buffer;
 }
 
-mog::ID NetworkManager::extractMessageId(char* message, unsigned size)
+mog::ID mog::network::NetworkManager::extractMessageId(char* message, unsigned size)
 {
 	char buffer[21];
 	int i;
@@ -104,7 +101,7 @@ mog::ID NetworkManager::extractMessageId(char* message, unsigned size)
 	//return atoi(buffer);
 }
 
-mog::network::Buffer mog::network::NetworkManager::extractMessageData(char* message, unsigned size)
+mog::Buffer mog::network::NetworkManager::extractMessageData(char* message, unsigned size)
 {
 	int i;
 	for (i = 0; i < 20; i++)
