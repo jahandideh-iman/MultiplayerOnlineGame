@@ -5,7 +5,7 @@
 #include "Engine/Types.h"
 #include "Engine/Macros.h"
 
-#include "Network/ParameterContainer.h"
+#include "Engine/ParameterContainer.h"
 
 namespace mog
 {
@@ -19,11 +19,13 @@ namespace mog
 			virtual ~Message();
 
 			virtual void execute(const ParameterContainer &parameters, const network::InternetAddress &address) const = 0;
-			Buffer *serialize() const ;
+		
+			void write(Buffer *buffer) const;
+
 			virtual ID getID() const = 0;
 
 		protected:
-			virtual void fillData(ParameterContainer *parameters) const = 0;
+			virtual void fillData(ParameterContainer &parameters) const = 0;
 
 		protected:
 			static unsigned int code;

@@ -19,7 +19,7 @@ namespace mog
 		
 		AUTOID(EmptyMessage, getID)
 	protected:
-		virtual void fillData(ParameterContainer *parameters) const override{};
+		virtual void fillData(ParameterContainer &parameters) const override{};
 	};
 
 }

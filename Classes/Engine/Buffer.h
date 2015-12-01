@@ -22,12 +22,14 @@ namespace mog
 		void readLine(char *line, int length);
 		bool eof() const;
 
+		bool isEmpty() const;
+		void clear();
+
 		char *getData() const;
 		unsigned getSize() const;
 
 	private:
 		//std::string data;
 		std::stringstream stream;
-
 	};
 }

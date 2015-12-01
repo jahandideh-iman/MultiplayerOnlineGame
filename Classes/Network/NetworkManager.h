@@ -25,6 +25,8 @@ namespace mog
 
 			void sendMessage(const Message &m, const InternetAddress &address);
 
+			void addClient(const InternetAddress *address);
+
 			bool setup();
 			bool teardown();
 
@@ -38,11 +40,18 @@ namespace mog
 			ID extractMessageId(char* message, unsigned size);
 			Buffer extractMessageData(char* message, unsigned size);
 
+			void processMessages();
+			void processReplications();
+
 		private:
 			GameSocket *socket = nullptr;
 
-			unsigned id = 0;
-			std::map<unsigned, NetworkGameObject*> networkGameObjects;
+			unsigned lastNetworkGameObjectId = 0;
+			unsigned lastNetworkComponentId = 0;
+			std::map<unsigned, NetworkGameObject *> networkGameObjects;
+			std::map<unsigned, NetworkComponent *> networkComponents;
+
+			std::vector<const InternetAddress *> clientAddresses;
 
 		private:
 			static NetworkManager *manager;

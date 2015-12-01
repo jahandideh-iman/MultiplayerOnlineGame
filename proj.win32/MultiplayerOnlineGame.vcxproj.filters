@@ -111,11 +111,14 @@
     <ClCompile Include="..\Classes\Network\NetworkGameObject.cpp">
       <Filter>src\Network</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Network\ParameterContainer.cpp">
-      <Filter>src\Network</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Engine\Buffer.cpp">
       <Filter>src\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Engine\ParameterContainer.cpp">
+      <Filter>src\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Network\ReplicateState.cpp">
+      <Filter>src\Network\Messages</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -212,9 +215,6 @@
     <ClInclude Include="..\Classes\Network\NetworkGameObject.h">
       <Filter>src\Network</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Network\ParameterContainer.h">
-      <Filter>src\Network</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Engine\Serializable.h">
       <Filter>src\Engine</Filter>
     </ClInclude>
@@ -223,6 +223,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Engine\SerializablePrimitive.h">
       <Filter>src\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Engine\ParameterContainer.h">
+      <Filter>src\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Network\ReplicateState.h">
+      <Filter>src\Network\Messages</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

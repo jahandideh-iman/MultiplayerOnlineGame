@@ -17,9 +17,9 @@ Join::~Join()
 {
 }
 
-void mog::network::Join::fillData(ParameterContainer *parameters) const
+void mog::network::Join::fillData(ParameterContainer &parameters) const
 {
-	parameters->put("message", "hello");
+	parameters.put("message", "hello");
 }
 
 void mog::network::Join::execute(const ParameterContainer &parameters, const InternetAddress& address) const

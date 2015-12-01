@@ -5,6 +5,8 @@
 #include "InternetAddress.h"
 #include <iostream>
 #include "MessageDatabase.h"
+#include "Engine/GlobalData.h"
+#include "Network/ReplicateState.h"
 
 #include "cocos2d.h" //For CCLOG 
 #include "Message.h"
@@ -59,19 +61,10 @@ void mog::network::NetworkManager::setPort(unsigned port)
 
 void mog::network::NetworkManager::update(float dt)
 {
-	InternetAddress senderAddress;
-	char data[256];
-	auto size = socket->receive(senderAddress, data, 256);
+	if (GlobalData::gameType == T_Server)
+		processReplications();
 
-	if (size != 0)
-	{
-		ID messageId = extractMessageId(data, size);
-		Buffer messageData = extractMessageData(data, size);
-		ParameterContainer parameters(messageData);
-		CCLOG("Message ID is : %s", messageId.c_str());
-		CCLOG("data is : %s", messageData.getData());
-		MessageDatabase::get()->find(messageId)->execute(parameters, senderAddress);
-	}	
+	processMessages();
 }
 
 void mog::network::NetworkManager::sendMessage(const Message &m, const InternetAddress &dest)
@@ -79,7 +72,8 @@ void mog::network::NetworkManager::sendMessage(const Message &m, const InternetA
 	auto buffer = new mog::Buffer();
 	buffer->write(m.getID());
 	buffer->write(":");
-	buffer->write(*m.serialize());
+	m.write(buffer);
+	//buffer->write(*m.serialize());
 	socket->send(dest, buffer->getData(), buffer->getSize());
 
 	delete buffer;
@@ -115,7 +109,57 @@ mog::Buffer mog::network::NetworkManager::extractMessageData(char* message, unsi
 
 void mog::network::NetworkManager::addNetworkGameObject(NetworkGameObject *o)
 {
-	networkGameObjects.emplace(id, o);
-	o->setIndex(id);
-	id++;
+	networkGameObjects.emplace(lastNetworkGameObjectId, o);
+	o->setIndex(lastNetworkGameObjectId);
+	lastNetworkGameObjectId++;
+}
+
+void mog::network::NetworkManager::addNetworkComponent(NetworkComponent *c)
+{
+	networkComponents.emplace(lastNetworkComponentId, c);
+	//c->setIndex(lastNetworkComponentId);
+	lastNetworkComponentId++;
+}
+
+void mog::network::NetworkManager::processMessages()
+{
+	InternetAddress senderAddress;
+	char data[256];
+	auto size = socket->receive(senderAddress, data, 256);
+
+	if (size != 0)
+	{
+		ID messageId = extractMessageId(data, size);
+		Buffer messageData = extractMessageData(data, size);
+		ParameterContainer parameters(messageData);
+		CCLOG("Message ID is : %s", messageId.c_str());
+		CCLOG("data is : %s", messageData.getData());
+		MessageDatabase::get()->find(messageId)->execute(parameters, senderAddress);
+	}
+}
+
+void mog::network::NetworkManager::processReplications()
+{
+	
+	for (auto elem : networkComponents)
+	{
+		unsigned index = elem.first;
+		auto component = elem.second;
+		Buffer buffer;
+		component->writeReplications(&buffer);
+		if (!buffer.isEmpty())
+		{
+			for (auto client : clientAddresses)
+			{
+				sendMessage(ReplicateState(index,&buffer), *client);
+			}
+		}
+	}
+
+	//sendMessage(
+}
+
+void mog::network::NetworkManager::addClient(const InternetAddress *address)
+{
+	clientAddresses.emplace_back(address);
 }

@@ -24,7 +24,7 @@ void mog::network::LoadLevel::execute(const ParameterContainer &parameters, cons
 		GlobalData::game->loadLevel(new GameLevel());
 }
 
-void mog::network::LoadLevel::fillData(ParameterContainer *parameters) const
+void mog::network::LoadLevel::fillData(ParameterContainer &parameters) const
 {
-	parameters->put("levelName", levelName);
+	parameters.put("levelName", levelName);
 }

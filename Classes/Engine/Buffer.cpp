@@ -61,3 +61,13 @@ void mog::Buffer::readLine(char *line, int length)
 {
 	stream.getline(line, length);
 }
+
+bool mog::Buffer::isEmpty() const
+{
+	return stream.str().empty();
+}
+
+void mog::Buffer::clear()
+{
+	stream.clear();
+}

@@ -18,7 +18,7 @@ namespace mog
 			AUTOID(LoadLevel, getID)
 
 		protected:
-			virtual void fillData(ParameterContainer *parameters) const override;
+			virtual void fillData(ParameterContainer &parameters) const override;
 
 		private:
 			char *levelName = nullptr;

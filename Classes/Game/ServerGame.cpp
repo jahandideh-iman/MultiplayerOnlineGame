@@ -81,6 +81,8 @@ void ServerGame::joinNewPlayer(PlayerInfo *info)
 	p->setPosition(Point(200, 200));
 	addGameObject(p);
 	
+	mog::network::NetworkManager::get()->addClient(info->address);
+
 	mog::network::NetworkManager::get()->sendMessage(mog::network::LoadLevel(currentLevel->getName()), *info->address);
 	mog::network::NetworkManager::get()->sendMessage(mog::network::ReplicateInstance(p), *info->address);
 

@@ -32,8 +32,8 @@ void mog::network::ReplicateInstance::execute(const ParameterContainer &paramete
 	}
 }
 
-void mog::network::ReplicateInstance::fillData(ParameterContainer *parameters) const
+void mog::network::ReplicateInstance::fillData(ParameterContainer &parameters) const
 {
-	parameters->put("typeId", object->getNetworkID());
-	parameters->put("instanceId", std::to_string(object->getIndex()));
+	parameters.put("typeId", object->getNetworkID());
+	parameters.put("instanceId", std::to_string(object->getIndex()));
 }

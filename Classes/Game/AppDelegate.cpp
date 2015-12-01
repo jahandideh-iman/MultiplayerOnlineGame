@@ -7,6 +7,7 @@
 #include "Network/LoadLevel.h"
 #include "Game/Join.h"
 #include "Network/ReplicateInstance.h"
+#include "Network/ReplicateState.h"
 
 USING_NS_CC;
 
@@ -78,6 +79,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	mog::network::MessageDatabase::get()->registerMessage(new mog::network::LoadLevel());
 	mog::network::MessageDatabase::get()->registerMessage(new mog::network::Join());
 	mog::network::MessageDatabase::get()->registerMessage(new mog::network::ReplicateInstance());
+	mog::network::MessageDatabase::get()->registerMessage(new mog::network::ReplicateState());
     return true;
 }
 

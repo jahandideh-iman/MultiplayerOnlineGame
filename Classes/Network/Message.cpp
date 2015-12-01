@@ -11,9 +11,9 @@ Message::~Message()
 {
 }
 
-mog::Buffer * mog::network::Message::serialize() const
+void mog::network::Message::write(Buffer *buffer) const
 {
-	auto parameters = new ParameterContainer();
+	ParameterContainer parameters;
 	fillData(parameters);
-	return parameters->serialize();
+	parameters.write(buffer);
 }

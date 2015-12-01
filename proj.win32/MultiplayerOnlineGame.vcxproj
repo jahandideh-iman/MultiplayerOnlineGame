@@ -146,6 +146,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\Engine\GlobalData.cpp" />
     <ClCompile Include="..\Classes\Engine\Level.cpp" />
     <ClCompile Include="..\Classes\Engine\NetworkComponent.cpp" />
+    <ClCompile Include="..\Classes\Engine\ParameterContainer.cpp" />
     <ClCompile Include="..\Classes\Engine\SpriteComponent.cpp" />
     <ClCompile Include="..\Classes\Engine\Utilities.cpp" />
     <ClCompile Include="..\Classes\Game\AppDelegate.cpp" />
@@ -167,8 +168,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\Network\NetworkObject.cpp" />
     <ClCompile Include="..\Classes\Network\NetworkManager.cpp" />
     <ClCompile Include="..\Classes\Network\ConstructorDatabase.cpp" />
-    <ClCompile Include="..\Classes\Network\ParameterContainer.cpp" />
     <ClCompile Include="..\Classes\Network\ReplicateInstance.cpp" />
+    <ClCompile Include="..\Classes\Network\ReplicateState.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -180,6 +181,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\Engine\Level.h" />
     <ClInclude Include="..\Classes\Engine\Macros.h" />
     <ClInclude Include="..\Classes\Engine\NetworkComponent.h" />
+    <ClInclude Include="..\Classes\Engine\ParameterContainer.h" />
     <ClInclude Include="..\Classes\Engine\SerializablePrimitive.h" />
     <ClInclude Include="..\Classes\Engine\Serializable.h" />
     <ClInclude Include="..\Classes\Engine\SpriteComponent.h" />
@@ -204,8 +206,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\Network\NetworkObject.h" />
     <ClInclude Include="..\Classes\Network\NetworkManager.h" />
     <ClInclude Include="..\Classes\Network\ConstructorDatabase.h" />
-    <ClInclude Include="..\Classes\Network\ParameterContainer.h" />
     <ClInclude Include="..\Classes\Network\ReplicateInstance.h" />
+    <ClInclude Include="..\Classes\Network\ReplicateState.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

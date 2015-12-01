@@ -19,7 +19,7 @@ namespace mog
 			AUTOID(ReplicateInstance,getID)
 
 		protected:
-			virtual void fillData(ParameterContainer *parameters) const override;
+			virtual void fillData(ParameterContainer &parameters) const override;
 
 		private:
 			NetworkGameObject *object = nullptr;
