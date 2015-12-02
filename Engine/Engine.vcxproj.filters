@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{56a48767-9d24-4ad5-a36e-3d8337239bb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network">
+      <UniqueIdentifier>{4bd0ad4e-5d30-496e-86e7-a9154c287ee1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Network\Command.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\ConstructorDatabase.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\GameSocket.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\InternetAddress.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\LoadLevel.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Message.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\MessageDatabase.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\NetworkGameObject.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\NetworkManager.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\NetworkObject.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\NetworkObjectConstructor.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\ReplicateInstance.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\ReplicateState.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Buffer.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Component.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Game.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\GameObject.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\GlobalData.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Level.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\NetworkComponent.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ParameterContainer.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\SpriteComponent.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Utilities.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Network\Command.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\ConstructorDatabase.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\GameSocket.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\InternetAddress.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\LoadLevel.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Message.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\MessageDatabase.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\NetworkGameObject.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\NetworkManager.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\NetworkObject.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\NetworkObjectConstructor.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\ReplicateInstance.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\ReplicateState.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Buffer.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Component.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Game.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\GameObject.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\GlobalData.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Level.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Macros.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\NetworkComponent.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\ParameterContainer.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Serializable.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SerializablePrimitive.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SpriteComponent.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Types.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Utilities.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

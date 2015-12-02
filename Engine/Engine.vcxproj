@@ -11,9 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{76A39BB2-9B84-4C65-98A5-654D86B86F2A}</ProjectGuid>
+    <ProjectGuid>{A37921F2-278A-4B8B-8798-97B0D01FB771}</ProjectGuid>
     <RootNamespace>test_win32</RootNamespace>
     <Keyword>Win32Proj</Keyword>
+    <ProjectName>Engine</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -27,7 +28,7 @@
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v120_xp</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '10.0'">v100</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '11.0'">v110</PlatformToolset>
@@ -73,7 +74,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;..\Classes;..;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END);$(ProjectDir)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -139,78 +140,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Classes\Engine\Buffer.cpp" />
-    <ClCompile Include="..\Classes\Engine\Component.cpp" />
-    <ClCompile Include="..\Classes\Engine\Game.cpp" />
-    <ClCompile Include="..\Classes\Engine\GameObject.cpp" />
-    <ClCompile Include="..\Classes\Engine\GlobalData.cpp" />
-    <ClCompile Include="..\Classes\Engine\Level.cpp" />
-    <ClCompile Include="..\Classes\Engine\NetworkComponent.cpp" />
-    <ClCompile Include="..\Classes\Engine\ParameterContainer.cpp" />
-    <ClCompile Include="..\Classes\Engine\SpriteComponent.cpp" />
-    <ClCompile Include="..\Classes\Engine\Utilities.cpp" />
-    <ClCompile Include="..\Classes\Game\AppDelegate.cpp" />
-    <ClCompile Include="..\Classes\Game\ClientGame.cpp" />
-    <ClCompile Include="..\Classes\Game\GameLevel.cpp" />
-    <ClCompile Include="..\Classes\Game\GameMainMenu.cpp" />
-    <ClCompile Include="..\Classes\Game\Join.cpp" />
-    <ClCompile Include="..\Classes\Game\Pawn.cpp" />
-    <ClCompile Include="..\Classes\Game\PlayerInfo.cpp" />
-    <ClCompile Include="..\Classes\Game\ServerGame.cpp" />
-    <ClCompile Include="..\Classes\Network\Command.cpp" />
-    <ClCompile Include="..\Classes\Network\NetworkGameObject.cpp" />
-    <ClCompile Include="..\Classes\Network\NetworkObjectConstructor.cpp" />
-    <ClCompile Include="..\Classes\Network\GameSocket.cpp" />
-    <ClCompile Include="..\Classes\Network\InternetAddress.cpp" />
-    <ClCompile Include="..\Classes\Network\LoadLevel.cpp" />
-    <ClCompile Include="..\Classes\Network\Message.cpp" />
-    <ClCompile Include="..\Classes\Network\MessageDatabase.cpp" />
-    <ClCompile Include="..\Classes\Network\NetworkObject.cpp" />
-    <ClCompile Include="..\Classes\Network\NetworkManager.cpp" />
-    <ClCompile Include="..\Classes\Network\ConstructorDatabase.cpp" />
-    <ClCompile Include="..\Classes\Network\ReplicateInstance.cpp" />
-    <ClCompile Include="..\Classes\Network\ReplicateState.cpp" />
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\Classes\Engine\Buffer.h" />
-    <ClInclude Include="..\Classes\Engine\Component.h" />
-    <ClInclude Include="..\Classes\Engine\Game.h" />
-    <ClInclude Include="..\Classes\Engine\GameObject.h" />
-    <ClInclude Include="..\Classes\Engine\GlobalData.h" />
-    <ClInclude Include="..\Classes\Engine\Level.h" />
-    <ClInclude Include="..\Classes\Engine\Macros.h" />
-    <ClInclude Include="..\Classes\Engine\NetworkComponent.h" />
-    <ClInclude Include="..\Classes\Engine\ParameterContainer.h" />
-    <ClInclude Include="..\Classes\Engine\SerializablePrimitive.h" />
-    <ClInclude Include="..\Classes\Engine\Serializable.h" />
-    <ClInclude Include="..\Classes\Engine\SpriteComponent.h" />
-    <ClInclude Include="..\Classes\Engine\Types.h" />
-    <ClInclude Include="..\Classes\Engine\Utilities.h" />
-    <ClInclude Include="..\Classes\Game\AppDelegate.h" />
-    <ClInclude Include="..\Classes\Game\ClientGame.h" />
-    <ClInclude Include="..\Classes\Game\GameLevel.h" />
-    <ClInclude Include="..\Classes\Game\GameMainMenu.h" />
-    <ClInclude Include="..\Classes\Game\Join.h" />
-    <ClInclude Include="..\Classes\Game\Pawn.h" />
-    <ClInclude Include="..\Classes\Game\PlayerInfo.h" />
-    <ClInclude Include="..\Classes\Game\ServerGame.h" />
-    <ClInclude Include="..\Classes\Network\Command.h" />
-    <ClInclude Include="..\Classes\Network\NetworkGameObject.h" />
-    <ClInclude Include="..\Classes\Network\NetworkObjectConstructor.h" />
-    <ClInclude Include="..\Classes\Network\GameSocket.h" />
-    <ClInclude Include="..\Classes\Network\InternetAddress.h" />
-    <ClInclude Include="..\Classes\Network\LoadLevel.h" />
-    <ClInclude Include="..\Classes\Network\Message.h" />
-    <ClInclude Include="..\Classes\Network\MessageDatabase.h" />
-    <ClInclude Include="..\Classes\Network\NetworkObject.h" />
-    <ClInclude Include="..\Classes\Network\NetworkManager.h" />
-    <ClInclude Include="..\Classes\Network\ConstructorDatabase.h" />
-    <ClInclude Include="..\Classes\Network\ReplicateInstance.h" />
-    <ClInclude Include="..\Classes\Network\ReplicateState.h" />
-    <ClInclude Include="main.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\cocos2d\cocos\2d\libcocos2d.vcxproj">
       <Project>{98a51ba8-fc3a-415b-ac8f-8c7bd464e93e}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -223,7 +152,58 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="game.rc" />
+    <ClCompile Include="Engine\Buffer.cpp" />
+    <ClCompile Include="Engine\Component.cpp" />
+    <ClCompile Include="Engine\Game.cpp" />
+    <ClCompile Include="Engine\GameObject.cpp" />
+    <ClCompile Include="Engine\GlobalData.cpp" />
+    <ClCompile Include="Engine\Level.cpp" />
+    <ClCompile Include="Engine\NetworkComponent.cpp" />
+    <ClCompile Include="Engine\ParameterContainer.cpp" />
+    <ClCompile Include="Engine\SpriteComponent.cpp" />
+    <ClCompile Include="Engine\Utilities.cpp" />
+    <ClCompile Include="Network\Command.cpp" />
+    <ClCompile Include="Network\ConstructorDatabase.cpp" />
+    <ClCompile Include="Network\GameSocket.cpp" />
+    <ClCompile Include="Network\InternetAddress.cpp" />
+    <ClCompile Include="Network\LoadLevel.cpp" />
+    <ClCompile Include="Network\Message.cpp" />
+    <ClCompile Include="Network\MessageDatabase.cpp" />
+    <ClCompile Include="Network\NetworkGameObject.cpp" />
+    <ClCompile Include="Network\NetworkManager.cpp" />
+    <ClCompile Include="Network\NetworkObject.cpp" />
+    <ClCompile Include="Network\NetworkObjectConstructor.cpp" />
+    <ClCompile Include="Network\ReplicateInstance.cpp" />
+    <ClCompile Include="Network\ReplicateState.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine\Buffer.h" />
+    <ClInclude Include="Engine\Component.h" />
+    <ClInclude Include="Engine\Game.h" />
+    <ClInclude Include="Engine\GameObject.h" />
+    <ClInclude Include="Engine\GlobalData.h" />
+    <ClInclude Include="Engine\Level.h" />
+    <ClInclude Include="Engine\Macros.h" />
+    <ClInclude Include="Engine\NetworkComponent.h" />
+    <ClInclude Include="Engine\ParameterContainer.h" />
+    <ClInclude Include="Engine\Serializable.h" />
+    <ClInclude Include="Engine\SerializablePrimitive.h" />
+    <ClInclude Include="Engine\SpriteComponent.h" />
+    <ClInclude Include="Engine\Types.h" />
+    <ClInclude Include="Engine\Utilities.h" />
+    <ClInclude Include="Network\Command.h" />
+    <ClInclude Include="Network\ConstructorDatabase.h" />
+    <ClInclude Include="Network\GameSocket.h" />
+    <ClInclude Include="Network\InternetAddress.h" />
+    <ClInclude Include="Network\LoadLevel.h" />
+    <ClInclude Include="Network\Message.h" />
+    <ClInclude Include="Network\MessageDatabase.h" />
+    <ClInclude Include="Network\NetworkGameObject.h" />
+    <ClInclude Include="Network\NetworkManager.h" />
+    <ClInclude Include="Network\NetworkObject.h" />
+    <ClInclude Include="Network\NetworkObjectConstructor.h" />
+    <ClInclude Include="Network\ReplicateInstance.h" />
+    <ClInclude Include="Network\ReplicateState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

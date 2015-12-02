@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Component.h"
+#include "Engine/Component.h"
 #include <unordered_map>
 #include "Engine/Serializable.h"
 #include "Engine/ParameterContainer.h"
