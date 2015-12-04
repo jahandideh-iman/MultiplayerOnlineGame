@@ -1,12 +1,13 @@
 #pragma once
 
 #include "Engine/Game.h"
+#include "cocos2d.h"
 
 class GameSocket;
 
 namespace mog
 {
-	class ClientGame : public Game
+	class ClientGame : public Game , public cocos2d::Layer
 	{
 	public:
 		static cocos2d::Scene* createScene();

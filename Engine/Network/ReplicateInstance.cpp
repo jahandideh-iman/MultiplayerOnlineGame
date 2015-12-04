@@ -22,13 +22,13 @@ mog::network::ReplicateInstance::~ReplicateInstance()
 
 void mog::network::ReplicateInstance::execute(const ParameterContainer &parameters, const network::InternetAddress &address) const
 {
-	if (GlobalData::gameType == GameType::T_Client)
+	if (GLOBAL_DATA()->getGameType() == GameType::T_Client)
 	{
 		std::string type = parameters.get("typeId");
 		std::string index = parameters.get("instanceId");
 		NetworkGameObject* o =  dynamic_cast<NetworkGameObject*> (ConstructorDatabase::get()->create(type));
 		o->setIndex(std::stoi(index));
-		GlobalData::game->addGameObject(o);
+		GLOBAL_DATA()->getGame()->addGameObject(o);
 	}
 }
 

@@ -10,6 +10,7 @@
 
 #include "cocos2d.h" //For CCLOG 
 #include "Message.h"
+#include "Engine/Buffer.h"
 
 
 
@@ -61,7 +62,7 @@ void mog::network::NetworkManager::setPort(unsigned port)
 
 void mog::network::NetworkManager::update(float dt)
 {
-	if (GlobalData::gameType == T_Server)
+	if (GLOBAL_DATA()->getGameType() == T_Server)
 		processReplications();
 
 	processMessages();

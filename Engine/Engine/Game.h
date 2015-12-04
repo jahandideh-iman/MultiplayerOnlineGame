@@ -1,23 +1,25 @@
 #pragma once
 
-#include "cocos2d.h"
 #include "Level.h"
+
 
 namespace mog
 {
 	class GameObject;
-	class Game :
-		public cocos2d::Layer
+	class Game
 	{
 	public:
 		Game();
-		~Game();
+		virtual ~Game();
 
 		void loadLevel(Level *level);
 
 		void addGameObject(GameObject *o);
 
-		virtual void update(float dt) override;
+		virtual void update(float dt);
+
+		//NOTE: For testing 
+		bool has(const GameObject *object) const;
 
 	protected:
 		Level *currentLevel = nullptr;

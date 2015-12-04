@@ -41,10 +41,10 @@ void mog::Buffer::write(const char* c)
 
 char * mog::Buffer::getData() const
 {
-	char * data = new char[getSize()];
+	char *data = new char[getSize()+1];
 	strcpy(data, stream.str().c_str());
+	data[getSize()] = '\0';
 	return data;
-	//return stream.str().c_str();
 }
 
 unsigned mog::Buffer::getSize() const
@@ -69,5 +69,5 @@ bool mog::Buffer::isEmpty() const
 
 void mog::Buffer::clear()
 {
-	stream.clear();
+	stream.str("");
 }

@@ -24,7 +24,7 @@ void mog::network::Join::fillData(ParameterContainer &parameters) const
 
 void mog::network::Join::execute(const ParameterContainer &parameters, const InternetAddress& address) const
 {
-	auto server = dynamic_cast<ServerGame*> (GlobalData::game);
+	auto server = dynamic_cast<ServerGame*> (GlobalData::get()->getGame());
 	std::string name = "name";
 
 	if (server != nullptr)

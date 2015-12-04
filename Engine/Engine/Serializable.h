@@ -1,8 +1,8 @@
 #pragma once
-#include "Engine/Buffer.h"
 
 namespace mog
 {
+	class Buffer;
 	class Serializable
 	{
 	public:

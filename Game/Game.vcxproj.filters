@@ -44,6 +44,9 @@
     <ClCompile Include="Game\ServerGame.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="Game\SpriteComponent.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\proj.win32\main.h">
@@ -71,6 +74,9 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\ServerGame.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\SpriteComponent.h">
       <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>

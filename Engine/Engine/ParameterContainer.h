@@ -1,9 +1,10 @@
 #pragma once
 
-#include "Buffer.h"
 #include <map>
+
 namespace mog
 {
+	class Buffer;
 	class ParameterContainer
 	{
 	public:

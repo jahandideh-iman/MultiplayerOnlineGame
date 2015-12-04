@@ -1,6 +1,6 @@
 #include "SpriteComponent.h"
-#include "Game.h"
-#include "GameObject.h"
+#include "Engine/Game.h"
+#include "Engine/GameObject.h"
 
 
 
@@ -16,7 +16,7 @@ mog::SpriteComponent::~SpriteComponent()
 
 void mog::SpriteComponent::addSelfToGame(Game *g)
 {
-	g->addChild(sprite, sprite->getLocalZOrder());
+	//g->addChild(sprite, sprite->getLocalZOrder());
 }
 
 void mog::SpriteComponent::update(float dt)

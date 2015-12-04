@@ -4,13 +4,16 @@
 
 mog::Game::Game()
 {
-	GlobalData::game = this;
+	GlobalData::get()->setGame(this);
 }
 
 
 mog::Game::~Game()
 {
-	GlobalData::game = nullptr;
+	GlobalData::get()->clear();
+
+	for (auto o : gameObjects)
+		delete o;
 }
 
 void mog::Game::loadLevel(Level *level)
@@ -32,6 +35,16 @@ void mog::Game::update(float dt)
 {
 	for (GameObject * o : gameObjects)
 		o->update(dt);
+}
+
+bool mog::Game::has(const GameObject *object) const
+{
+	for (auto o : gameObjects)
+	{
+		if (o == object)
+			return true;
+	}
+	return false;
 }
 
 

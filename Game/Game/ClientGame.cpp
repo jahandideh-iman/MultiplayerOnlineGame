@@ -61,7 +61,7 @@ bool ClientGame::init()
 
 	NetworkManager::get()->setPort(0);
 
-	mog::GlobalData::gameType = T_Client;
+	mog::GlobalData::get()->setGameType(T_Client);
 
 	return true;
 }

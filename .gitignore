@@ -197,4 +197,8 @@ FakesAssemblies/
 
 cocos2d/
 proj.win32/Debug.win32
-
+Test/Debug
+Engine/Debug
+Engine/Debug.win32/*
+Game/Debug
+Game/Debug.win32

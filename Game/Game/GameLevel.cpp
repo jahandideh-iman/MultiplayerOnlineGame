@@ -1,5 +1,5 @@
 #include "GameLevel.h"
-#include "Engine/SpriteComponent.h"
+#include "SpriteComponent.h"
 
 using mog::GameLevel;
 

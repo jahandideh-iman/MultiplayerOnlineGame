@@ -3,10 +3,11 @@
 #include "PlayerInfo.h"
 #include "Engine/Game.h"
 #include "Engine/Level.h"
+#include "cocos2d.h"
 
 namespace mog
 {
-	class ServerGame : public Game
+	class ServerGame : public Game , public cocos2d::Layer 
 	{
 	public:
 

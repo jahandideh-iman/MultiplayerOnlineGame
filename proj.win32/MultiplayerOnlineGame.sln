@@ -10,10 +10,15 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libSpine", "..\cocos2d\cocos\editor-support\spine\proj.win32\libSpine.vcxproj", "{B7C2A162-DEC9-4418-972E-240AB3CBFCAE}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Dummy", "..\Dummy\Dummy.vcxproj", "{AEDF13A3-DE95-4C73-8526-10616205EF82}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FFE46EFE-C359-406A-88A2-81F20BC98592} = {FFE46EFE-C359-406A-88A2-81F20BC98592}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tests", "..\Tests\Tests.vcxproj", "{14FCC5C2-A0F6-4270-9975-E791B4E8432E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F468F539-27BD-468E-BE64-DDE641400B51} = {F468F539-27BD-468E-BE64-DDE641400B51}
+		{A37921F2-278A-4B8B-8798-97B0D01FB771} = {A37921F2-278A-4B8B-8798-97B0D01FB771}
+		{FFE46EFE-C359-406A-88A2-81F20BC98592} = {FFE46EFE-C359-406A-88A2-81F20BC98592}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CppUTest", "C:\cpputest\CppUTest.vcxproj", "{F468F539-27BD-468E-BE64-DDE641400B51}"
@@ -21,6 +26,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "..\Engine\Engine.vcxproj", "{A37921F2-278A-4B8B-8798-97B0D01FB771}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "..\Game\Game.vcxproj", "{FFE46EFE-C359-406A-88A2-81F20BC98592}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A37921F2-278A-4B8B-8798-97B0D01FB771} = {A37921F2-278A-4B8B-8798-97B0D01FB771}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

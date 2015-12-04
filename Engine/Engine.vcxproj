@@ -160,7 +160,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="Engine\Level.cpp" />
     <ClCompile Include="Engine\NetworkComponent.cpp" />
     <ClCompile Include="Engine\ParameterContainer.cpp" />
-    <ClCompile Include="Engine\SpriteComponent.cpp" />
     <ClCompile Include="Engine\Utilities.cpp" />
     <ClCompile Include="Network\Command.cpp" />
     <ClCompile Include="Network\ConstructorDatabase.cpp" />
@@ -188,7 +187,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="Engine\ParameterContainer.h" />
     <ClInclude Include="Engine\Serializable.h" />
     <ClInclude Include="Engine\SerializablePrimitive.h" />
-    <ClInclude Include="Engine\SpriteComponent.h" />
     <ClInclude Include="Engine\Types.h" />
     <ClInclude Include="Engine\Utilities.h" />
     <ClInclude Include="Network\Command.h" />

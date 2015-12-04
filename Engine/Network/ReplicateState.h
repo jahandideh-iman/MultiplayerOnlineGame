@@ -1,10 +1,10 @@
 #pragma once
 
 #include "Network/Message.h"
-#include "Engine/Buffer.h"
 
 namespace mog
 {
+	class Buffer;
 	namespace network
 	{
 		class ReplicateState : public Message

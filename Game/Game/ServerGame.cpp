@@ -51,7 +51,7 @@ bool ServerGame::init()
 	
 	network::NetworkManager::get()->setPort(8082);
 
-	mog::GlobalData::gameType = mog::GameType::T_Server;
+	mog::GlobalData::get()->setGameType(T_Server);
 
 	loadLevel(new GameLevel());
 	return true;

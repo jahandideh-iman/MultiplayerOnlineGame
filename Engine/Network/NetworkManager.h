@@ -4,7 +4,6 @@
 #include "Network/NetworkGameObject.h"
 #include "Engine/NetworkComponent.h"
 #include <map>
-#include "Engine/Buffer.h"
 
 namespace mog
 {

@@ -76,9 +76,6 @@
     <ClCompile Include="Engine\ParameterContainer.cpp">
       <Filter>Base</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\SpriteComponent.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Utilities.cpp">
       <Filter>Base</Filter>
     </ClCompile>
@@ -154,9 +151,6 @@
       <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="Engine\SerializablePrimitive.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\SpriteComponent.h">
       <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Types.h">

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Component.h"
+#include "Engine/Component.h"
 #include "cocos2d.h"
 
 namespace mog
