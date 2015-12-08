@@ -172,6 +172,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="Game\GameLevel.h" />
     <ClInclude Include="Game\GameMainMenu.h" />
     <ClInclude Include="Game\Join.h" />
+    <ClInclude Include="Game\Macros.h" />
     <ClInclude Include="Game\Pawn.h" />
     <ClInclude Include="Game\PlayerInfo.h" />
     <ClInclude Include="Game\ServerGame.h" />

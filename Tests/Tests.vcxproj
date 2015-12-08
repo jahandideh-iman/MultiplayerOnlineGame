@@ -75,6 +75,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TestBuffer.cpp" />
     <ClCompile Include="TestGame.cpp" />
+    <ClCompile Include="TestNetworkManager.cpp" />
     <ClCompile Include="TestParameterContainer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

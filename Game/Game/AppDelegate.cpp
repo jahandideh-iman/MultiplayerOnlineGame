@@ -8,6 +8,7 @@
 #include "Game/Join.h"
 #include "Network/ReplicateInstance.h"
 #include "Network/ReplicateState.h"
+#include "network/UDPGameSocket.h"
 
 USING_NS_CC;
 
@@ -19,7 +20,7 @@ AppDelegate::AppDelegate() {
 
 AppDelegate::~AppDelegate() 
 {
-	NetworkManager::get()->teardown();
+	
 }
 
 //if you want a different context,just modify the value of glContextAttrs
@@ -42,7 +43,7 @@ static int register_all_packages()
 
 bool AppDelegate::applicationDidFinishLaunching() {
 
-	auto r = NetworkManager::get()->setup();
+	auto r = NetworkManager::get()->initialSocket<mog::network::UDPGameSocket>();
 	if (r == false)
 		return false;
 

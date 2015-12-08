@@ -1,38 +1,29 @@
 #pragma once
 
-#include <winsock2.h>
-#include <ws2tcpip.h>
-
+#include "InternetAddress.h"
 
 namespace mog
 {
 	namespace network
 	{
-
-		class InternetAddress;
+		typedef mog::network::InternetAddress Address;
 
 		class GameSocket
 		{
-			typedef InternetAddress Address;
-
 		public:
 
 			GameSocket();
-			~GameSocket();
+			virtual ~GameSocket();
 
-			bool open(unsigned short port);
-			void close();
-			bool isOpen() const;
-			bool send(const Address &destination,
+			virtual void open(unsigned short port) = 0;
+			virtual void close() {};
+			virtual bool isOpen() const { return true; };
+			virtual bool send(const Address &destination,
 				const char * data,
-				int size);
-			int receive(Address &sender,
+				int size) = 0;
+			virtual int receive(Address &sender,
 				void * data,
-				int size);
-
-		private:
-			SOCKET socket = 0;
-
+				int size) = 0;
 		};
 	}
 }

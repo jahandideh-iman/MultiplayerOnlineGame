@@ -1,14 +1,11 @@
 #include "NetworkManager.h"
-#include <winsock2.h>
-#include <ws2tcpip.h>
-#include "GameSocket.h"
 #include "InternetAddress.h"
 #include <iostream>
 #include "MessageDatabase.h"
 #include "Engine/GlobalData.h"
 #include "Network/ReplicateState.h"
+#include "Network/GameSocket.h"
 
-#include "cocos2d.h" //For CCLOG 
 #include "Message.h"
 #include "Engine/Buffer.h"
 
@@ -16,8 +13,9 @@
 
 mog::network::NetworkManager *mog::network::NetworkManager::manager = nullptr;
 
-mog::network::NetworkManager::NetworkManager()
+mog::network::NetworkManager::NetworkManager(NetworkGame *game)
 {
+	this->game = game;
 }
 
 
@@ -33,30 +31,15 @@ mog::network::NetworkManager * mog::network::NetworkManager::get()
 	return manager;
 }
 
-bool mog::network::NetworkManager::setup()
+
+void mog::network::NetworkManager::setSocket(GameSocket *socket)
 {
-	WSADATA wsaData;
-
-	// Initialize Winsock
-	auto iResult = ::WSAStartup(MAKEWORD(2, 2), &wsaData);
-	if (iResult != 0) {
-		printf("WSAStartup failed: %d\n", iResult);
-		return false;
-	}
-
-	return true;
+	this->socket = socket;
 }
 
-bool mog::network::NetworkManager::teardown()
-{
-	delete manager;
-	::WSACleanup();
-	return true;
-}
 
 void mog::network::NetworkManager::setPort(unsigned port)
 {
-	socket = new network::GameSocket();
 	socket->open(port);
 }
 
@@ -75,8 +58,10 @@ void mog::network::NetworkManager::sendMessage(const Message &m, const InternetA
 	buffer->write(":");
 	m.write(buffer);
 	//buffer->write(*m.serialize());
-	socket->send(dest, buffer->getData(), buffer->getSize());
+	char *data = buffer->getData();
+	socket->send(dest, data, buffer->getSize());
 
+	delete []data;
 	delete buffer;
 }
 
@@ -133,8 +118,8 @@ void mog::network::NetworkManager::processMessages()
 		ID messageId = extractMessageId(data, size);
 		Buffer messageData = extractMessageData(data, size);
 		ParameterContainer parameters(messageData);
-		CCLOG("Message ID is : %s", messageId.c_str());
-		CCLOG("data is : %s", messageData.getData());
+		//CCLOG("Message ID is : %s", messageId.c_str());
+		//CCLOG("data is : %s", messageData.getData());
 		MessageDatabase::get()->find(messageId)->execute(parameters, senderAddress);
 	}
 }
@@ -164,3 +149,10 @@ void mog::network::NetworkManager::addClient(const InternetAddress *address)
 {
 	clientAddresses.emplace_back(address);
 }
+
+void mog::network::NetworkManager::clear()
+{
+	delete manager;
+	manager = nullptr;
+}
+

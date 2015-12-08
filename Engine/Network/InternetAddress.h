@@ -8,6 +8,7 @@ namespace mog
 		public:
 
 			InternetAddress();
+			InternetAddress(unsigned short port);
 			InternetAddress(unsigned char a,
 				unsigned char b,
 				unsigned char c,
@@ -15,7 +16,7 @@ namespace mog
 				unsigned short port);
 			InternetAddress(unsigned int address,
 				unsigned short port);
-			InternetAddress(char *address, unsigned short port);
+			//InternetAddress(char *address, unsigned short port);
 
 			unsigned int getAddress() const;
 			unsigned char getA() const;

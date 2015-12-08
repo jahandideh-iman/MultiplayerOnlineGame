@@ -3,6 +3,9 @@
 #include "Engine/Types.h"
 #include <unordered_map>
 
+#define REGISTER_MESSAGE(T) \
+	mog::network::Message* m = new T(); \
+	mog::network::MessageDatabase::get()->registerMessage(m); \
 
 namespace mog
 {
@@ -15,6 +18,7 @@ namespace mog
 		public:
 
 			static MessageDatabase *get();
+			static void clear();
 
 			const Message *find(ID messageId);
 

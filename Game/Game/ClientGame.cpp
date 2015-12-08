@@ -85,7 +85,7 @@ void ClientGame::update(float dt)
 void ClientGame::joinServer(Ref* pSender)
 {
 	
-	InternetAddress address("127.0.0.1",8082);
+	InternetAddress address(127, 0, 0, 1, 8082);
 	NetworkManager::get()->sendMessage(Join(), address);
 	//char* message = "hello";
 	//socket->Send(address, message, sizeof(message) );

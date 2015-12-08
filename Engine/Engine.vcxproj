@@ -67,6 +67,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\lib;$(LibraryPath)</LibraryPath>
+    <PostBuildEventUseInBuild>false</PostBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LibraryPath>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\lib;$(LibraryPath)</LibraryPath>
@@ -164,6 +165,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="Network\Command.cpp" />
     <ClCompile Include="Network\ConstructorDatabase.cpp" />
     <ClCompile Include="Network\GameSocket.cpp" />
+    <ClCompile Include="Network\UDPGameSocket.cpp" />
     <ClCompile Include="Network\InternetAddress.cpp" />
     <ClCompile Include="Network\LoadLevel.cpp" />
     <ClCompile Include="Network\Message.cpp" />
@@ -192,6 +194,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="Network\Command.h" />
     <ClInclude Include="Network\ConstructorDatabase.h" />
     <ClInclude Include="Network\GameSocket.h" />
+    <ClInclude Include="Network\UDPGameSocket.h" />
     <ClInclude Include="Network\InternetAddress.h" />
     <ClInclude Include="Network\LoadLevel.h" />
     <ClInclude Include="Network\Message.h" />

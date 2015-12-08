@@ -28,6 +28,8 @@ MessageDatabase::MessageDatabase()
 
 MessageDatabase::~MessageDatabase()
 {
+	for (auto m : map)
+		delete m.second;
 }
 
 MessageDatabase * MessageDatabase::get()
@@ -48,4 +50,11 @@ const mog::network::Message *MessageDatabase::find(mog::ID messageId)
 void mog::network::MessageDatabase::registerMessage(Message *m)
 {
 	map.emplace(m->getID(), m);
+}
+
+void mog::network::MessageDatabase::clear()
+{
+
+	delete db;
+	db = nullptr;
 }

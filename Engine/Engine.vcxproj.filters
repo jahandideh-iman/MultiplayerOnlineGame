@@ -19,9 +19,6 @@
     <ClCompile Include="Network\ConstructorDatabase.cpp">
       <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="Network\GameSocket.cpp">
-      <Filter>Network</Filter>
-    </ClCompile>
     <ClCompile Include="Network\InternetAddress.cpp">
       <Filter>Network</Filter>
     </ClCompile>
@@ -79,15 +76,18 @@
     <ClCompile Include="Engine\Utilities.cpp">
       <Filter>Base</Filter>
     </ClCompile>
+    <ClCompile Include="Network\UDPGameSocket.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\GameSocket.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Network\Command.h">
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="Network\ConstructorDatabase.h">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="Network\GameSocket.h">
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="Network\InternetAddress.h">
@@ -158,6 +158,12 @@
     </ClInclude>
     <ClInclude Include="Engine\Utilities.h">
       <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\UDPGameSocket.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\GameSocket.h">
+      <Filter>Network</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

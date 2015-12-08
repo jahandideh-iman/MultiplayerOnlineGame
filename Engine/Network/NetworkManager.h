@@ -12,13 +12,20 @@ namespace mog
 		class GameSocket;
 		class Message;
 		class InternetAddress;
-
+		class NetworkGame;
 		class NetworkManager
 		{
+
 		public:
+			NetworkManager(NetworkGame *game = nullptr);
+			~NetworkManager();
+
 			static NetworkManager *get();
+			static void clear();
 
 			void update(float dt);
+
+			void setSocket(GameSocket *socket);
 
 			void setPort(unsigned port);
 
@@ -26,15 +33,16 @@ namespace mog
 
 			void addClient(const InternetAddress *address);
 
-			bool setup();
-			bool teardown();
+			template<typename T>
+			bool initialSocket() { socket = new T(); return true; }
+
 
 			void addNetworkGameObject(NetworkGameObject *o);
 			void addNetworkComponent(NetworkComponent *c);
 
+
 		private:
-			NetworkManager();
-			~NetworkManager();
+
 
 			ID extractMessageId(char* message, unsigned size);
 			Buffer extractMessageData(char* message, unsigned size);
@@ -43,6 +51,7 @@ namespace mog
 			void processReplications();
 
 		private:
+			NetworkGame *game = nullptr;
 			GameSocket *socket = nullptr;
 
 			unsigned lastNetworkGameObjectId = 0;

@@ -79,5 +79,6 @@
     <ClInclude Include="Game\SpriteComponent.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Macros.h" />
   </ItemGroup>
 </Project>

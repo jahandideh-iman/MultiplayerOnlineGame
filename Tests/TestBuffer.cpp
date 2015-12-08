@@ -54,4 +54,5 @@ namespace mog
 		STRCMP_EQUAL("word1 word2", data);
 		delete[]data;
 	}
+
 }

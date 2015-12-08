@@ -25,5 +25,5 @@ void mog::network::ReplicateState::fillData(ParameterContainer &parameters) cons
 
 void mog::network::ReplicateState::execute(const ParameterContainer &parameters, const network::InternetAddress &address) const
 {
-	MOGLOG("Replicate Instance Message \n %s", parameters.write(&Buffer())->getData());
+	//MOGLOG("Replicate Instance Message \n %s", parameters.write(&Buffer())->getData());
 }

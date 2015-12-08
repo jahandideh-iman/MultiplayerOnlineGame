@@ -18,14 +18,14 @@ namespace mog
 			Message();
 			virtual ~Message();
 
-			virtual void execute(const ParameterContainer &parameters, const network::InternetAddress &address) const = 0;
+			virtual void execute(const ParameterContainer &parameters, const network::InternetAddress &address) const {}
 		
 			void write(Buffer *buffer) const;
 
 			virtual ID getID() const = 0;
 
 		protected:
-			virtual void fillData(ParameterContainer &parameters) const = 0;
+			virtual void fillData(ParameterContainer &parameters) const {}
 
 		protected:
 			static unsigned int code;
