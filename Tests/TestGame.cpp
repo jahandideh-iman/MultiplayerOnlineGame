@@ -18,10 +18,6 @@ namespace mog
 	TEST_GROUP(Game)
 	{
 
-		void teardown()
-		{
-			GlobalData::get()->clear();
-		}
 	};
 
 	TEST(Game, hasTheAddedGameObject)
@@ -52,10 +48,4 @@ namespace mog
 		CHECK_TRUE(o2->isUpdateCalled);
 	}
 
-	TEST(Game, IsSetInGlobalDataAfterCreation)
-	{
-		Game game;
-
-		CHECK_EQUAL(&game, GLOBAL_DATA()->getGame());
-	}
 }

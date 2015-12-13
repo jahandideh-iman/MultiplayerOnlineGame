@@ -161,7 +161,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="Game\GameMainMenu.cpp" />
     <ClCompile Include="Game\Join.cpp" />
     <ClCompile Include="Game\Pawn.cpp" />
-    <ClCompile Include="Game\PlayerInfo.cpp" />
     <ClCompile Include="Game\ServerGame.cpp" />
     <ClCompile Include="Game\SpriteComponent.cpp" />
   </ItemGroup>
@@ -174,7 +173,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="Game\Join.h" />
     <ClInclude Include="Game\Macros.h" />
     <ClInclude Include="Game\Pawn.h" />
-    <ClInclude Include="Game\PlayerInfo.h" />
     <ClInclude Include="Game\ServerGame.h" />
     <ClInclude Include="Game\SpriteComponent.h" />
   </ItemGroup>

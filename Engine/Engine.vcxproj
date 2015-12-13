@@ -162,9 +162,13 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="Engine\NetworkComponent.cpp" />
     <ClCompile Include="Engine\ParameterContainer.cpp" />
     <ClCompile Include="Engine\Utilities.cpp" />
+    <ClCompile Include="Network\ClientGame.cpp" />
     <ClCompile Include="Network\Command.cpp" />
     <ClCompile Include="Network\ConstructorDatabase.cpp" />
     <ClCompile Include="Network\GameSocket.cpp" />
+    <ClCompile Include="Network\NetworkGame.cpp" />
+    <ClCompile Include="Network\PlayerInfo.cpp" />
+    <ClCompile Include="Network\ServerGame.cpp" />
     <ClCompile Include="Network\UDPGameSocket.cpp" />
     <ClCompile Include="Network\InternetAddress.cpp" />
     <ClCompile Include="Network\LoadLevel.cpp" />
@@ -191,9 +195,13 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="Engine\SerializablePrimitive.h" />
     <ClInclude Include="Engine\Types.h" />
     <ClInclude Include="Engine\Utilities.h" />
+    <ClInclude Include="Network\ClientGame.h" />
     <ClInclude Include="Network\Command.h" />
     <ClInclude Include="Network\ConstructorDatabase.h" />
     <ClInclude Include="Network\GameSocket.h" />
+    <ClInclude Include="Network\NetworkGame.h" />
+    <ClInclude Include="Network\PlayerInfo.h" />
+    <ClInclude Include="Network\ServerGame.h" />
     <ClInclude Include="Network\UDPGameSocket.h" />
     <ClInclude Include="Network\InternetAddress.h" />
     <ClInclude Include="Network\LoadLevel.h" />

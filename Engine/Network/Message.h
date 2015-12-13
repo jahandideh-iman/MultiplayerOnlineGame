@@ -11,6 +11,9 @@ namespace mog
 {
 	namespace network
 	{
+		class ClientGame;
+		class ServerGame;
+
 		class Message
 		{
 
@@ -19,6 +22,9 @@ namespace mog
 			virtual ~Message();
 
 			virtual void execute(const ParameterContainer &parameters, const network::InternetAddress &address) const {}
+
+			virtual void executeOnServer(ServerGame *game, const ParameterContainer &parameters, const network::InternetAddress &address) const {}
+			virtual void executeOnClient(ClientGame *game, const ParameterContainer &parameters, const network::InternetAddress &address) const {}
 		
 			void write(Buffer *buffer) const;
 

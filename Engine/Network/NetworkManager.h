@@ -17,7 +17,7 @@ namespace mog
 		{
 
 		public:
-			NetworkManager(NetworkGame *game = nullptr);
+			NetworkManager(NetworkGame *game);
 			~NetworkManager();
 
 			static NetworkManager *get();

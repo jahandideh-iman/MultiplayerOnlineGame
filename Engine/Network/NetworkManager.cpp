@@ -2,9 +2,9 @@
 #include "InternetAddress.h"
 #include <iostream>
 #include "MessageDatabase.h"
-#include "Engine/GlobalData.h"
 #include "Network/ReplicateState.h"
 #include "Network/GameSocket.h"
+#include "Network/NetworkGame.h"
 
 #include "Message.h"
 #include "Engine/Buffer.h"
@@ -27,7 +27,7 @@ mog::network::NetworkManager::~NetworkManager()
 mog::network::NetworkManager * mog::network::NetworkManager::get()
 {
 	if (manager == nullptr)
-		manager = new NetworkManager();
+		manager = new NetworkManager(nullptr);
 	return manager;
 }
 
@@ -45,7 +45,7 @@ void mog::network::NetworkManager::setPort(unsigned port)
 
 void mog::network::NetworkManager::update(float dt)
 {
-	if (GLOBAL_DATA()->getGameType() == T_Server)
+	if (game->getType() == T_Server)
 		processReplications();
 
 	processMessages();

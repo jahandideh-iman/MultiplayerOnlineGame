@@ -51,7 +51,6 @@ bool ServerGame::init()
 	
 	network::NetworkManager::get()->setPort(8082);
 
-	mog::GlobalData::get()->setGameType(T_Server);
 
 	loadLevel(new GameLevel());
 	return true;
@@ -72,19 +71,4 @@ void ServerGame::update(float dt)
 {
 	Game::update(dt);
 	network::NetworkManager::get()->update(dt);
-}
-
-void ServerGame::joinNewPlayer(PlayerInfo *info)
-{
-	playersInfo.push_back(info);
-	network::NetworkGameObject *p = new Pawn();
-	p->setPosition(Point(200, 200));
-	addGameObject(p);
-	
-	mog::network::NetworkManager::get()->addClient(info->address);
-
-	mog::network::NetworkManager::get()->sendMessage(mog::network::LoadLevel(currentLevel->getName()), *info->address);
-	mog::network::NetworkManager::get()->sendMessage(mog::network::ReplicateInstance(p), *info->address);
-
-	//NetworkManager::sendMessage();
 }

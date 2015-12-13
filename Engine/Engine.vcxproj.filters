@@ -82,6 +82,18 @@
     <ClCompile Include="Network\GameSocket.cpp">
       <Filter>Network</Filter>
     </ClCompile>
+    <ClCompile Include="Network\NetworkGame.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\ClientGame.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\ServerGame.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\PlayerInfo.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Network\Command.h">
@@ -163,6 +175,18 @@
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="Network\GameSocket.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\NetworkGame.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\ClientGame.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\ServerGame.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\PlayerInfo.h">
       <Filter>Network</Filter>
     </ClInclude>
   </ItemGroup>

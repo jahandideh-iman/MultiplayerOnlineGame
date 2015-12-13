@@ -1,16 +1,13 @@
 #include "Game.h"
-#include "GlobalData.h"
 
 
 mog::Game::Game()
 {
-	GlobalData::get()->setGame(this);
 }
 
 
 mog::Game::~Game()
 {
-	GlobalData::get()->clear();
 
 	for (auto o : gameObjects)
 		delete o;

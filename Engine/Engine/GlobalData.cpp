@@ -3,12 +3,7 @@
 
 mog::GlobalData *mog::GlobalData::gd = nullptr;
 
-mog::GlobalData * mog::GlobalData::get()
-{
-	if (gd == nullptr)
-		gd = new GlobalData();
-	return gd;
-}
+
 
 void mog::GlobalData::clear()
 {

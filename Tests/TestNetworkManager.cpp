@@ -8,7 +8,10 @@
 #include <map>
 #include <string>
 #include "Engine/GlobalData.h"
+#include "Network/NetworkGame.h"
 
+#include "Network/ClientGame.h"
+#include "Network/ServerGame.h"
 
 namespace mog
 {
@@ -117,8 +120,12 @@ namespace mog
 
 		TEST(NetworkManager, ExecutesMessageOnRecieve)
 		{
-			auto serverManager = new NetworkManager();
-			auto clientManager = new NetworkManager();
+
+			ServerGame serverGame;
+			ClientGame clientGame;
+
+			auto serverManager = serverGame.getNetworkManager();
+			auto clientManager = clientGame.getNetworkManager();;
 
 			serverManager->initialSocket<MockSocket>();
 			clientManager->initialSocket<MockSocket>();
@@ -134,10 +141,6 @@ namespace mog
 			CHECK_TRUE(MockMessage::isExecuted);
 			network::MessageDatabase::clear();
 			mog::GlobalData::clear();
-
-			delete clientManager;
-			delete serverManager; 
-
 		}
 	}
 }

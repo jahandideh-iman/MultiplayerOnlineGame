@@ -11,7 +11,7 @@ namespace mog
 			Join();
 			~Join();
 
-			virtual void execute(const ParameterContainer &parameters, const InternetAddress& address) const override;
+			virtual void executeOnServer(ServerGame *game, const ParameterContainer &parameters, const InternetAddress &address) const override;
 
 			AUTOID(Join,getID)
 

@@ -10,7 +10,7 @@ namespace mog
 	class GlobalData
 	{
 	public:
-		static GlobalData *get();
+		//static GlobalData *get();
 		static void clear();
 
 		void setGame(Game *g);

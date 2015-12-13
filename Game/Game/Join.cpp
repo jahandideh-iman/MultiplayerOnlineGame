@@ -22,11 +22,9 @@ void mog::network::Join::fillData(ParameterContainer &parameters) const
 	parameters.put("message", "hello");
 }
 
-void mog::network::Join::execute(const ParameterContainer &parameters, const InternetAddress& address) const
+void mog::network::Join::executeOnServer(ServerGame *game, const ParameterContainer &parameters, const InternetAddress &address) const
 {
-	auto server = dynamic_cast<ServerGame*> (GlobalData::get()->getGame());
 	std::string name = "name";
 
-	if (server != nullptr)
-		server->joinNewPlayer(new PlayerInfo(name, &address));
+	game->joinNewPlayer(new PlayerInfo(name, &address));
 }

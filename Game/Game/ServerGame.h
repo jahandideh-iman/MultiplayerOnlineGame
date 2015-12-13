@@ -1,13 +1,12 @@
 #pragma once
 
-#include "PlayerInfo.h"
-#include "Engine/Game.h"
 #include "Engine/Level.h"
 #include "cocos2d.h"
+#include "Network/ServerGame.h"
 
 namespace mog
 {
-	class ServerGame : public Game , public cocos2d::Layer 
+	class ServerGame : public network::ServerGame , public cocos2d::Layer 
 	{
 	public:
 
@@ -23,11 +22,5 @@ namespace mog
 
 		CREATE_FUNC(ServerGame);
 
-		void joinNewPlayer(PlayerInfo *info);
-
-
-	private:
-
-		std::vector<PlayerInfo*> playersInfo;
 	};
 }

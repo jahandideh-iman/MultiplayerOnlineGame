@@ -38,9 +38,6 @@
     <ClCompile Include="Game\Pawn.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="Game\PlayerInfo.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="Game\ServerGame.cpp">
       <Filter>Game</Filter>
     </ClCompile>
@@ -68,9 +65,6 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\Pawn.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\PlayerInfo.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\ServerGame.h">
