@@ -14,6 +14,8 @@ namespace mog
 			~ServerGame();
 
 			void joinNewPlayer(PlayerInfo *info);
+
+			NetworkGameType getType() const final override{ return T_Server; }
 		private:
 
 			std::vector<PlayerInfo*> playersInfo;

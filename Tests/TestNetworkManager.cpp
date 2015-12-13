@@ -28,7 +28,7 @@ namespace mog
 
 			bool isMessageExecuted = false;
 
-			MockMessage::setExecuteCommand([&](){isMessageExecuted = true; });
+			MockMessage::setExecuteOnClientCommand([&](){isMessageExecuted = true; });
 
 			auto serverManager = serverGame.getNetworkManager();
 			auto clientManager = clientGame.getNetworkManager();;

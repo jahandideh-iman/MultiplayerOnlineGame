@@ -15,12 +15,11 @@ namespace mog
 			NetworkGame();
 			virtual ~NetworkGame();
 
-			NetworkGameType getType();
+			virtual NetworkGameType getType() const{ return T_None; }
 
 			NetworkManager *getNetworkManager();
 
 		private:
-			NetworkGameType type = T_None;
 			NetworkManager *networkManager = nullptr;
 		};
 	}

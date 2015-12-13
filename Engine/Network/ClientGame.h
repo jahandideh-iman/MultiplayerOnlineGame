@@ -11,6 +11,8 @@ namespace mog
 		public:
 			ClientGame();
 			~ClientGame();
+
+			NetworkGameType getType() const final override { return T_Client; }
 		};
 	}
 }

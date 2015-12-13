@@ -13,10 +13,6 @@ mog::network::NetworkGame::~NetworkGame()
 	delete networkManager;
 }
 
-mog::network::NetworkGameType mog::network::NetworkGame::getType()
-{
-	return type;
-}
 
 mog::network::NetworkManager * mog::network::NetworkGame::getNetworkManager()
 {

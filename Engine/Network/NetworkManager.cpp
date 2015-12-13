@@ -7,6 +7,8 @@
 #include "Network/NetworkGame.h"
 #include "Message.h"
 #include "Engine/Buffer.h"
+#include "Network/ClientGame.h"
+#include "Network/ServerGame.h"
 
 
 mog::network::NetworkManager::NetworkManager(NetworkGame *game)
@@ -109,7 +111,10 @@ void mog::network::NetworkManager::processMessages()
 		ParameterContainer parameters(messageData);
 		//CCLOG("Message ID is : %s", messageId.c_str());
 		//CCLOG("data is : %s", messageData.getData());
-		MessageDatabase::get()->find(messageId)->execute(parameters, senderAddress);
+		if (game->getType() == T_Client)
+			MessageDatabase::get()->find(messageId)->executeOnClient(dynamic_cast<ClientGame*>(game), parameters, senderAddress);
+		else if (game->getType() == T_Server)
+			MessageDatabase::get()->find(messageId)->executeOnServer(dynamic_cast<ServerGame*>(game), parameters, senderAddress);
 	}
 }
 

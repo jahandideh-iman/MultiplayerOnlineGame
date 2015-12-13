@@ -21,8 +21,6 @@ namespace mog
 			Message();
 			virtual ~Message();
 
-			virtual void execute(const ParameterContainer &parameters, const network::InternetAddress &address) const {}
-
 			virtual void executeOnServer(ServerGame *game, const ParameterContainer &parameters, const network::InternetAddress &address) const {}
 			virtual void executeOnClient(ClientGame *game, const ParameterContainer &parameters, const network::InternetAddress &address) const {}
 		

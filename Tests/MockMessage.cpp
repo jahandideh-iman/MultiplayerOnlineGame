@@ -1,16 +1,29 @@
 #include "MockMessage.h"
 
-std::function<void()> mog::network::MockMessage::executeFunction = nullptr;
+std::function<void()> mog::network::MockMessage::executeOnServerFunction = nullptr;
+std::function<void()> mog::network::MockMessage::executeOnClientFunction = nullptr;
 
 
 
-void mog::network::MockMessage::setExecuteCommand(std::function<void()> f)
+void mog::network::MockMessage::setExecuteOnServerCommand(std::function<void()> f)
 {
-	executeFunction = f;
+	executeOnServerFunction = f;
 }
 
-void mog::network::MockMessage::execute(const ParameterContainer &parameters, const network::InternetAddress &address) const
+void mog::network::MockMessage::setExecuteOnClientCommand(std::function<void()> f)
 {
-	if (executeFunction != nullptr)
-		executeFunction();
+	executeOnClientFunction = f;
 }
+
+void mog::network::MockMessage::executeOnServer(ServerGame *game, const ParameterContainer &parameters, const network::InternetAddress &address) const
+{
+	if (executeOnServerFunction != nullptr)
+		executeOnServerFunction();
+}
+
+void mog::network::MockMessage::executeOnClient(ClientGame *game, const ParameterContainer &parameters, const network::InternetAddress &address) const
+{
+	if (executeOnClientFunction != nullptr)
+		executeOnClientFunction();
+}
+

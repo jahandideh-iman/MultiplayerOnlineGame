@@ -13,7 +13,8 @@ namespace mog
 	class EmptyMessage : public Message
 	{
 	public:
-		virtual void execute(const ParameterContainer &parameters, const InternetAddress &address)const override{}
+		virtual void executeOnClient(ClientGame *game, const ParameterContainer &parameters, const network::InternetAddress &address) const override {}
+		virtual void executeOnServer(ServerGame *game, const ParameterContainer &parameters, const network::InternetAddress &address) const override {}
 		
 		AUTOID(EmptyMessage, getID)
 	protected:

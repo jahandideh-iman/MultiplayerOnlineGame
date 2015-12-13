@@ -7,18 +7,21 @@ namespace mog
 {
 	namespace network
 	{
-		class MockMessage : public network::Message
+		class MockMessage : public Message
 		{
 		public:
-
-			void execute(const ParameterContainer &parameters, const network::InternetAddress &address) const override;
+			virtual void executeOnServer(ServerGame *game, const ParameterContainer &parameters, const network::InternetAddress &address) const override;
+			virtual void executeOnClient(ClientGame *game, const ParameterContainer &parameters, const network::InternetAddress &address) const override;
+		
 
 			AUTOID(MockMessage, getID);
 
-			static void setExecuteCommand(std::function<void()> f);
+			static void setExecuteOnClientCommand(std::function<void()> f);
+			static void setExecuteOnServerCommand(std::function<void()> f);
 
 		private:
-			static std::function<void()> executeFunction;
+			static std::function<void()> executeOnClientFunction;
+			static std::function<void()> executeOnServerFunction;
 
 		};
 	}
