@@ -43,9 +43,6 @@ static int register_all_packages()
 
 bool AppDelegate::applicationDidFinishLaunching() {
 
-	auto r = NetworkManager::get()->initialSocket<mog::network::UDPGameSocket>();
-	if (r == false)
-		return false;
 
     // initialize director
     auto director = Director::getInstance();

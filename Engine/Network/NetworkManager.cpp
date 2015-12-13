@@ -5,13 +5,9 @@
 #include "Network/ReplicateState.h"
 #include "Network/GameSocket.h"
 #include "Network/NetworkGame.h"
-
 #include "Message.h"
 #include "Engine/Buffer.h"
 
-
-
-mog::network::NetworkManager *mog::network::NetworkManager::manager = nullptr;
 
 mog::network::NetworkManager::NetworkManager(NetworkGame *game)
 {
@@ -22,13 +18,6 @@ mog::network::NetworkManager::NetworkManager(NetworkGame *game)
 mog::network::NetworkManager::~NetworkManager()
 {
 	delete socket;
-}
-
-mog::network::NetworkManager * mog::network::NetworkManager::get()
-{
-	if (manager == nullptr)
-		manager = new NetworkManager(nullptr);
-	return manager;
 }
 
 
@@ -149,10 +138,3 @@ void mog::network::NetworkManager::addClient(const InternetAddress *address)
 {
 	clientAddresses.emplace_back(address);
 }
-
-void mog::network::NetworkManager::clear()
-{
-	delete manager;
-	manager = nullptr;
-}
-

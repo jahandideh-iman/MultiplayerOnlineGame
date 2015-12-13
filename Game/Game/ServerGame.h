@@ -21,6 +21,5 @@ namespace mog
 		void menuCloseCallback(cocos2d::Ref* pSender);
 
 		CREATE_FUNC(ServerGame);
-
 	};
 }

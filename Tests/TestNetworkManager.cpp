@@ -107,13 +107,11 @@ namespace mog
 
 			void setup() override
 			{
-				manager = NetworkManager::get();
 				MockSocketDataBase::db = new MockSocketDataBase();
 			}
 
 			void teardown() override
 			{
-				NetworkManager::clear();
 				delete MockSocketDataBase::db;
 			}
 		};

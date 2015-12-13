@@ -9,8 +9,7 @@ namespace mog
 
 		class NetworkManager;
 
-		class NetworkGame :
-			public Game
+		class NetworkGame : public Game
 		{
 		public:
 			NetworkGame();

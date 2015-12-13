@@ -22,7 +22,7 @@ void mog::NetworkComponent::networkUpdate(float dt)
 
 void mog::NetworkComponent::addSelfToGame(Game *g)
 {
-	network::NetworkManager::get()->addNetworkComponent(this);
+	//network::NetworkManager::get()->addNetworkComponent(this);
 }
 
 void mog::NetworkComponent::writeReplications(Buffer *buffer) const

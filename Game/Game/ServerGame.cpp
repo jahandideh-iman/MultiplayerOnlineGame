@@ -49,7 +49,7 @@ bool ServerGame::init()
 	this->scheduleUpdate();
 
 	
-	network::NetworkManager::get()->setPort(8082);
+	getNetworkManager()->setPort(8082);
 
 
 	loadLevel(new GameLevel());
@@ -69,6 +69,5 @@ void ServerGame::menuCloseCallback(Ref* pSender)
 
 void ServerGame::update(float dt)
 {
-	Game::update(dt);
-	network::NetworkManager::get()->update(dt);
+	network::ServerGame::update(dt);
 }

@@ -13,15 +13,12 @@ namespace mog
 		class Message;
 		class InternetAddress;
 		class NetworkGame;
+
 		class NetworkManager
 		{
-
 		public:
 			NetworkManager(NetworkGame *game);
 			~NetworkManager();
-
-			static NetworkManager *get();
-			static void clear();
 
 			void update(float dt);
 
@@ -61,8 +58,6 @@ namespace mog
 
 			std::vector<const InternetAddress *> clientAddresses;
 
-		private:
-			static NetworkManager *manager;
 		};
 	}
 }

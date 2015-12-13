@@ -59,7 +59,7 @@ bool ClientGame::init()
 	this->scheduleUpdate();
 
 
-	NetworkManager::get()->setPort(0);
+	getNetworkManager()->setPort(0);
 
 	return true;
 }
@@ -77,14 +77,15 @@ void ClientGame::menuCloseCallback(Ref* pSender)
 
 void ClientGame::update(float dt)
 {
-	NetworkManager::get()->update(dt);
+	network::ClientGame::update(dt);
 }
 
 void ClientGame::joinServer(Ref* pSender)
 {
 	
 	InternetAddress address(127, 0, 0, 1, 8082);
-	NetworkManager::get()->sendMessage(Join(), address);
+
+	getNetworkManager()->sendMessage(Join(), address);
 	//char* message = "hello";
 	//socket->Send(address, message, sizeof(message) );
 }
