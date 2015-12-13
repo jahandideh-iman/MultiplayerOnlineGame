@@ -2,7 +2,6 @@
 #include "Network/NetworkManager.h"
 #include "Network/InternetAddress.h"
 #include "Join.h"
-#include "Engine/GlobalData.h"
 
 USING_NS_CC;
 

@@ -1,6 +1,5 @@
 #include "Join.h"
 #include "cocos2d.h"
-#include "Engine/GlobalData.h"
 #include "ServerGame.h"
 #include "Network/InternetAddress.h"
 

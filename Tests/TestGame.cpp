@@ -1,7 +1,7 @@
 #include "CppUTest/TestHarness.h"
 #include "Engine/Game.h"
 #include "Engine/GameObject.h"
-#include "Engine/GlobalData.h"
+
 
 namespace mog
 {

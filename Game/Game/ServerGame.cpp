@@ -1,7 +1,6 @@
 #include "ServerGame.h"
 #include "Network/NetworkManager.h"
 #include "GameLevel.h"
-#include "Engine/GlobalData.h"
 #include "Network/LoadLevel.h"
 #include "Network/ReplicateInstance.h"
 #include "Game/Pawn.h"

@@ -61,9 +61,6 @@
     <ClCompile Include="Engine\GameObject.cpp">
       <Filter>Base</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\GlobalData.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Level.cpp">
       <Filter>Base</Filter>
     </ClCompile>
@@ -142,9 +139,6 @@
       <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="Engine\GameObject.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\GlobalData.h">
       <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Level.h">

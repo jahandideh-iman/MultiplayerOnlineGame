@@ -1,132 +1,40 @@
 #include "CppUTest/TestHarness.h"
 #include "Network/NetworkManager.h"
-#include "Network/Message.h"
-#include "Network/MessageDatabase.h"
-#include "Network/GameSocket.h"
-#include "Network/InternetAddress.h"
-#include "Engine/Buffer.h"
-#include <map>
-#include <string>
-#include "Engine/GlobalData.h"
-#include "Network/NetworkGame.h"
 
 #include "Network/ClientGame.h"
 #include "Network/ServerGame.h"
+#include "Network/MessageDatabase.h"
+
+#include "MockSocketDataBase.h"
+#include "MockSocket.h"
+#include "MockMessage.h"
 
 namespace mog
 {
 	namespace network
 	{
 
-		class MockSocket;
-
-		class MockSocketDataBase
-		{
-		public:
-
-			void add(unsigned short port, MockSocket *socket)
-			{
-				sockets.emplace(port, socket);
-			}
-
-			MockSocket *find(unsigned short port)
-			{
-				return sockets.find(port)->second;
-			}
-
-			~MockSocketDataBase()
-			{
-				sockets.clear();
-			}
-
-			static MockSocketDataBase *db;
-
-		private:
-			std::map<unsigned short, MockSocket*> sockets;
-		};
-
-
-		MockSocketDataBase *MockSocketDataBase::db = nullptr;
-
-		class MockSocket : public network::GameSocket
-		{
-		public:
-			virtual void open(unsigned short port) override 
-			{ 
-				this->port = port; 
-				MockSocketDataBase::db->add(port, this);
-			}
-
-			virtual bool send(const Address &destination,
-				const char * data,
-				int size)
-			{
-				MockSocketDataBase::db->find(destination.getPort())->buffer.write(data);
-				return true;
-			}
-
-			virtual int receive(Address &sender,
-				void * data,
-				int size)
-			{
-				char *newData = buffer.getData();
-				strcpy_s((char*)data, size, newData);
-
-				delete []newData;
-				return buffer.getSize();
-				buffer.clear();
-			}
-
-			unsigned short port;
-			Buffer buffer;
-		};
-
-		class MockMessage : public network::Message
-		{
-		public:
-
-			~MockMessage()
-			{
-				int a=2;
-			}
-			void execute(const ParameterContainer &parameters, const network::InternetAddress &address) const
-			{
-				const_cast<MockMessage*>(this)->isExecuted = true;
-			}
-
-			AUTOID(MockMessage, getID);
-
-			static bool isExecuted;;
-		};
-
-		bool MockMessage::isExecuted = false;
-
 		TEST_GROUP(NetworkManager)
 		{
-			NetworkManager *manager = nullptr;
 
-			void setup() override
-			{
-				MockSocketDataBase::db = new MockSocketDataBase();
-			}
-
-			void teardown() override
-			{
-				delete MockSocketDataBase::db;
-			}
 		};
 
 		TEST(NetworkManager, ExecutesMessageOnRecieve)
 		{
 
+			MockSocketDataBase db;
 			ServerGame serverGame;
 			ClientGame clientGame;
+
+			bool isMessageExecuted = false;
+
+			MockMessage::setExecuteCommand([&](){isMessageExecuted = true; });
 
 			auto serverManager = serverGame.getNetworkManager();
 			auto clientManager = clientGame.getNetworkManager();;
 
-			serverManager->initialSocket<MockSocket>();
-			clientManager->initialSocket<MockSocket>();
+			serverManager->setSocket(new MockSocket(&db));
+			clientManager->setSocket(new MockSocket(&db));
 
 			serverManager->setPort(8081);
 			clientManager->setPort(8082);
@@ -136,9 +44,9 @@ namespace mog
 			serverManager->sendMessage(MockMessage(), network::InternetAddress(8082));
 			clientManager->update(0.5);
 
-			CHECK_TRUE(MockMessage::isExecuted);
-			network::MessageDatabase::clear();
-			mog::GlobalData::clear();
+			CHECK_TRUE(isMessageExecuted);
+
+			MessageDatabase::clear();
 		}
 	}
 }

@@ -22,6 +22,8 @@ namespace mog
 
 			void update(float dt);
 
+
+			//Note: For testing
 			void setSocket(GameSocket *socket);
 
 			void setPort(unsigned port);

@@ -73,10 +73,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MockMessage.cpp" />
+    <ClCompile Include="MockSocketDataBase.cpp" />
+    <ClCompile Include="MockSocket.cpp" />
     <ClCompile Include="TestBuffer.cpp" />
     <ClCompile Include="TestGame.cpp" />
     <ClCompile Include="TestNetworkManager.cpp" />
     <ClCompile Include="TestParameterContainer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MockMessage.h" />
+    <ClInclude Include="MockSocketDataBase.h" />
+    <ClInclude Include="MockSocket.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

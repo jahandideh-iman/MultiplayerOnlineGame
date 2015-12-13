@@ -1,6 +1,5 @@
 #include "LoadLevel.h"
 #include <iostream>
-#include "Engine/GlobalData.h"
 
 
 mog::network::LoadLevel::LoadLevel(char *name)

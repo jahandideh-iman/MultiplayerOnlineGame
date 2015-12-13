@@ -157,7 +157,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="Engine\Component.cpp" />
     <ClCompile Include="Engine\Game.cpp" />
     <ClCompile Include="Engine\GameObject.cpp" />
-    <ClCompile Include="Engine\GlobalData.cpp" />
     <ClCompile Include="Engine\Level.cpp" />
     <ClCompile Include="Engine\NetworkComponent.cpp" />
     <ClCompile Include="Engine\ParameterContainer.cpp" />
@@ -186,7 +185,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="Engine\Component.h" />
     <ClInclude Include="Engine\Game.h" />
     <ClInclude Include="Engine\GameObject.h" />
-    <ClInclude Include="Engine\GlobalData.h" />
     <ClInclude Include="Engine\Level.h" />
     <ClInclude Include="Engine\Macros.h" />
     <ClInclude Include="Engine\NetworkComponent.h" />
