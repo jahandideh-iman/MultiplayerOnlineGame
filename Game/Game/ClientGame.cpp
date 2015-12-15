@@ -1,11 +1,11 @@
 #include "ClientGame.h"
 #include "Network/NetworkManager.h"
 #include "Network/InternetAddress.h"
-#include "Network/Messages/Join.h"
+#include "Network/Messages/JoinMessage.h"
 
 USING_NS_CC;
 
-using mog::network::Join;
+using mog::network::JoinMessage;
 using mog::network::NetworkManager;
 using mog::network::InternetAddress;
 using mog::ClientGame;
@@ -84,7 +84,7 @@ void ClientGame::joinServer(Ref* pSender)
 	
 	InternetAddress address(127, 0, 0, 1, 8082);
 
-	getNetworkManager()->sendMessage(Join(), address);
+	getNetworkManager()->sendMessage(JoinMessage(), address);
 	//char* message = "hello";
 	//socket->Send(address, message, sizeof(message) );
 }

@@ -20,10 +20,9 @@ namespace mog
 			NetworkManager(NetworkGame *game);
 			~NetworkManager();
 
-			void update(float dt);
+			void update(float dt = 0);
 
-
-			//Note: For testing
+			//NOTE: For testing
 			void setSocket(GameSocket *socket);
 
 			void setPort(unsigned port);
@@ -31,6 +30,8 @@ namespace mog
 			void sendMessage(const Message &m, const InternetAddress &address);
 
 			void addClient(const InternetAddress *address);
+			//NOTE: For testing
+			const std::vector<const InternetAddress *> &getClients() const;
 
 			template<typename T>
 			bool initialSocket() { socket = new T(); return true; }
@@ -39,10 +40,7 @@ namespace mog
 			void addNetworkGameObject(NetworkGameObject *o);
 			void addNetworkComponent(NetworkComponent *c);
 
-
 		private:
-
-
 			ID extractMessageId(char* message, unsigned size);
 			Buffer extractMessageData(char* message, unsigned size);
 

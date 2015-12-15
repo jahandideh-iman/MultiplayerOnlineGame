@@ -16,6 +16,7 @@ namespace mog
 	{
 		class NetworkBase : public Utest
 		{
+		protected:
 			MockSocketDataBase db;
 
 			ServerGame *serverGame;

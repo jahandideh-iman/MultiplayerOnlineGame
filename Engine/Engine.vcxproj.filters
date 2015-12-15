@@ -88,13 +88,13 @@
     <ClCompile Include="Network\PlayerInfo.cpp">
       <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="Network\Messages\Join.cpp">
-      <Filter>Network\Messages</Filter>
-    </ClCompile>
     <ClCompile Include="Network\Messages\Message.cpp">
       <Filter>Network\Messages</Filter>
     </ClCompile>
     <ClCompile Include="Network\Messages\MessageDatabase.cpp">
+      <Filter>Network\Messages</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Messages\JoinMessage.cpp">
       <Filter>Network\Messages</Filter>
     </ClCompile>
   </ItemGroup>
@@ -183,13 +183,13 @@
     <ClInclude Include="Network\PlayerInfo.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="Network\Messages\Join.h">
-      <Filter>Network\Messages</Filter>
-    </ClInclude>
     <ClInclude Include="Network\Messages\Message.h">
       <Filter>Network\Messages</Filter>
     </ClInclude>
     <ClInclude Include="Network\Messages\MessageDatabase.h">
+      <Filter>Network\Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Messages\JoinMessage.h">
       <Filter>Network\Messages</Filter>
     </ClInclude>
   </ItemGroup>

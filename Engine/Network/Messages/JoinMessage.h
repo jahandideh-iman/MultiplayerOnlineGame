@@ -4,19 +4,23 @@ namespace mog
 {
 	namespace network
 	{
-		class Join :
+		class JoinMessage :
 			public Command
 		{
 		public:
-			Join();
-			~Join();
+			JoinMessage(std::string playerName);
+			JoinMessage();
+			~JoinMessage();
 
 			virtual void executeOnServer(ServerGame *game, const ParameterContainer &parameters, const InternetAddress &address) const override;
 
-			AUTOID(Join,getID)
+			AUTOID(JoinMessage,getID)
 
 		protected:
 			virtual void fillData(ParameterContainer &parameters) const override;
+
+		private:
+			std::string playerName;
 		};
 	}
 }

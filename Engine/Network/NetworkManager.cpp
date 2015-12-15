@@ -143,3 +143,8 @@ void mog::network::NetworkManager::addClient(const InternetAddress *address)
 {
 	clientAddresses.emplace_back(address);
 }
+
+const std::vector<const mog::network::InternetAddress *> & mog::network::NetworkManager::getClients() const
+{
+	return clientAddresses;
+}

@@ -165,7 +165,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="Network\Command.cpp" />
     <ClCompile Include="Network\ConstructorDatabase.cpp" />
     <ClCompile Include="Network\GameSocket.cpp" />
-    <ClCompile Include="Network\Messages\Join.cpp" />
+    <ClCompile Include="Network\Messages\JoinMessage.cpp" />
     <ClCompile Include="Network\Messages\Message.cpp" />
     <ClCompile Include="Network\Messages\MessageDatabase.cpp" />
     <ClCompile Include="Network\NetworkGame.cpp" />
@@ -198,7 +198,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="Network\Command.h" />
     <ClInclude Include="Network\ConstructorDatabase.h" />
     <ClInclude Include="Network\GameSocket.h" />
-    <ClInclude Include="Network\Messages\Join.h" />
+    <ClInclude Include="Network\Messages\JoinMessage.h" />
     <ClInclude Include="Network\Messages\Message.h" />
     <ClInclude Include="Network\Messages\MessageDatabase.h" />
     <ClInclude Include="Network\NetworkGame.h" />
