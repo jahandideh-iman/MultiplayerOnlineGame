@@ -11,6 +11,9 @@
     <Filter Include="Network">
       <UniqueIdentifier>{4bd0ad4e-5d30-496e-86e7-a9154c287ee1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Network\Messages">
+      <UniqueIdentifier>{37ee6b17-e943-40ea-8d31-2208a4cd25b3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Network\Command.cpp">
@@ -23,12 +26,6 @@
       <Filter>Network</Filter>
     </ClCompile>
     <ClCompile Include="Network\LoadLevel.cpp">
-      <Filter>Network</Filter>
-    </ClCompile>
-    <ClCompile Include="Network\Message.cpp">
-      <Filter>Network</Filter>
-    </ClCompile>
-    <ClCompile Include="Network\MessageDatabase.cpp">
       <Filter>Network</Filter>
     </ClCompile>
     <ClCompile Include="Network\NetworkGameObject.cpp">
@@ -91,6 +88,15 @@
     <ClCompile Include="Network\PlayerInfo.cpp">
       <Filter>Network</Filter>
     </ClCompile>
+    <ClCompile Include="Network\Messages\Join.cpp">
+      <Filter>Network\Messages</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Messages\Message.cpp">
+      <Filter>Network\Messages</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Messages\MessageDatabase.cpp">
+      <Filter>Network\Messages</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Network\Command.h">
@@ -103,12 +109,6 @@
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="Network\LoadLevel.h">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="Network\Message.h">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="Network\MessageDatabase.h">
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="Network\NetworkGameObject.h">
@@ -182,6 +182,15 @@
     </ClInclude>
     <ClInclude Include="Network\PlayerInfo.h">
       <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Messages\Join.h">
+      <Filter>Network\Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Messages\Message.h">
+      <Filter>Network\Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Messages\MessageDatabase.h">
+      <Filter>Network\Messages</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

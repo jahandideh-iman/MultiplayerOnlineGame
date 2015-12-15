@@ -76,8 +76,10 @@
     <ClCompile Include="MockMessage.cpp" />
     <ClCompile Include="MockSocketDataBase.cpp" />
     <ClCompile Include="MockSocket.cpp" />
+    <ClCompile Include="NetworkBase.h" />
     <ClCompile Include="TestBuffer.cpp" />
     <ClCompile Include="TestGame.cpp" />
+    <ClCompile Include="TestJoin.cpp" />
     <ClCompile Include="TestNetworkManager.cpp" />
     <ClCompile Include="TestParameterContainer.cpp" />
   </ItemGroup>

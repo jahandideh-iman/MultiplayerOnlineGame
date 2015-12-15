@@ -1,6 +1,5 @@
 #include "Join.h"
-#include "cocos2d.h"
-#include "ServerGame.h"
+#include "Network/ServerGame.h"
 #include "Network/InternetAddress.h"
 
 using mog::network::Join;

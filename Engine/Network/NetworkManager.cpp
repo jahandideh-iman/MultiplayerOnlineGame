@@ -1,11 +1,11 @@
 #include "NetworkManager.h"
 #include "InternetAddress.h"
 #include <iostream>
-#include "MessageDatabase.h"
+#include "Network/Messages/MessageDatabase.h"
 #include "Network/ReplicateState.h"
 #include "Network/GameSocket.h"
 #include "Network/NetworkGame.h"
-#include "Message.h"
+#include "Network/Messages/Message.h"
 #include "Engine/Buffer.h"
 #include "Network/ClientGame.h"
 #include "Network/ServerGame.h"

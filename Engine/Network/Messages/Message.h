@@ -1,6 +1,6 @@
 #pragma once
 
-#include "InternetAddress.h"
+#include "Network/InternetAddress.h"
 
 #include "Engine/Types.h"
 #include "Engine/Macros.h"

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Network/Message.h"
+#include "Network/Messages/Message.h"
 
 namespace mog
 {

@@ -32,9 +32,6 @@
     <ClCompile Include="Game\GameMainMenu.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Join.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Pawn.cpp">
       <Filter>Game</Filter>
     </ClCompile>
@@ -59,9 +56,6 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\GameMainMenu.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Join.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\Pawn.h">

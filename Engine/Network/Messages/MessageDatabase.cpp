@@ -1,5 +1,5 @@
 #include "MessageDatabase.h"
-#include "Message.h"
+#include "Network/Messages/Message.h"
 #include "Engine/Types.h"
 
 

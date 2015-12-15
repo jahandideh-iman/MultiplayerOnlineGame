@@ -3,7 +3,7 @@
 
 #include "Network/ClientGame.h"
 #include "Network/ServerGame.h"
-#include "Network/MessageDatabase.h"
+#include "Network/Messages/MessageDatabase.h"
 
 #include "MockSocketDataBase.h"
 #include "MockSocket.h"
