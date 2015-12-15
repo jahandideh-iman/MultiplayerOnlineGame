@@ -16,37 +16,96 @@ namespace mog
 
 		TEST_GROUP(NetworkManager)
 		{
+			MockSocketDataBase db;
 
+			ServerGame *serverGame;
+			ClientGame *clientGame;
+
+			NetworkManager *serverManager;
+			NetworkManager *clientManager;
+
+			unsigned clientPort = 8082;
+			unsigned serverPort = 8081;
+
+			void setup() override
+			{
+				
+				serverGame = new ServerGame();
+				clientGame = new ClientGame();
+
+				serverManager = serverGame->getNetworkManager();
+				clientManager = clientGame->getNetworkManager();
+
+				serverManager->setSocket(new MockSocket(&db));
+				clientManager->setSocket(new MockSocket(&db));
+
+				serverManager->setPort(serverPort);
+				clientManager->setPort(clientPort);
+
+
+
+				
+			}
+
+			void teardown() override
+			{
+				delete serverGame;
+				delete clientGame;
+
+				MessageDatabase::clear();
+			}
 		};
 
-		TEST(NetworkManager, ExecutesMessageOnRecieve)
+		TEST(NetworkManager, CallsExecuteOnClientMethodInClient)
 		{
-
-			MockSocketDataBase db;
-			ServerGame serverGame;
-			ClientGame clientGame;
-
 			bool isMessageExecuted = false;
 
+			REGISTER_MESSAGE(MockMessage);
 			MockMessage::setExecuteOnClientCommand([&](){isMessageExecuted = true; });
 
-			auto serverManager = serverGame.getNetworkManager();
-			auto clientManager = clientGame.getNetworkManager();;
-
-			serverManager->setSocket(new MockSocket(&db));
-			clientManager->setSocket(new MockSocket(&db));
-
-			serverManager->setPort(8081);
-			clientManager->setPort(8082);
-
-
-			REGISTER_MESSAGE(MockMessage);
-			serverManager->sendMessage(MockMessage(), network::InternetAddress(8082));
+			serverManager->sendMessage(MockMessage(), network::InternetAddress(clientPort));
 			clientManager->update(0.5);
 
 			CHECK_TRUE(isMessageExecuted);
+		}
 
-			MessageDatabase::clear();
+		TEST(NetworkManager, CallsExecuteOnServerMethodInServer)
+		{
+			bool isMessageExecuted = false;
+
+			REGISTER_MESSAGE(MockMessage);
+			MockMessage::setExecuteOnServerCommand([&](){isMessageExecuted = true; });
+
+			clientManager->sendMessage(MockMessage(), network::InternetAddress(serverPort));
+			serverManager->update(0.5);
+
+			CHECK_TRUE(isMessageExecuted);
+		}
+
+		TEST(NetworkManager, DoesNotCallsExecuteOnServerMethodInClient)
+		{
+			bool isMessageExecuted = false;
+
+			REGISTER_MESSAGE(MockMessage);
+			MockMessage::setExecuteOnServerCommand([&](){isMessageExecuted = true; });
+
+			clientManager->sendMessage(MockMessage(), network::InternetAddress(clientPort));
+			serverManager->update(0.5);
+
+			CHECK_FALSE(isMessageExecuted);
+		}
+
+		TEST(NetworkManager, DoesNotCallsExecuteOnClientMethodInServer)
+		{
+			bool isMessageExecuted = false;
+
+			REGISTER_MESSAGE(MockMessage);
+			MockMessage::setExecuteOnClientCommand([&](){isMessageExecuted = true; });
+
+			clientManager->sendMessage(MockMessage(), network::InternetAddress(serverPort));
+			serverManager->update(0.5);
+
+			CHECK_FALSE(isMessageExecuted);
 		}
 	}
 }
