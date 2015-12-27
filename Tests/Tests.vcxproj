@@ -80,6 +80,7 @@
     <ClCompile Include="NetworkBase.h" />
     <ClCompile Include="TestBuffer.cpp" />
     <ClCompile Include="TestGame.cpp" />
+    <ClCompile Include="TESTGameObject.cpp" />
     <ClCompile Include="TestJoinMessage.cpp" />
     <ClCompile Include="TestLoadLevelMessage.cpp" />
     <ClCompile Include="TestNetworkManager.cpp" />

@@ -2,7 +2,7 @@
 
 #include "Engine/Types.h"
 #include "Network/NetworkGameObject.h"
-#include "Engine/NetworkComponent.h"
+#include "Network/NetworkComponent.h"
 #include <map>
 
 namespace mog
@@ -39,6 +39,11 @@ namespace mog
 
 			void addNetworkGameObject(NetworkGameObject *o);
 			void addNetworkComponent(NetworkComponent *c);
+
+			//NOTE: For testing
+			bool hasNetworkGameObject(const NetworkGameObject *gameObj) const;
+			//NOTE: For testing
+			bool hasNetworkComponent(const NetworkComponent *comp) const;
 
 		private:
 			ID extractMessageId(char* message, unsigned size);

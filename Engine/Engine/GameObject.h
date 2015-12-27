@@ -36,6 +36,7 @@ namespace mog
 		Component *findComponent(ID id);
 
 	protected:
+		//TODO: Find out why this method is virtual
 		virtual void addComponentsToGame(Game *game);
 
 	private:

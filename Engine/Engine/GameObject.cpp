@@ -11,6 +11,7 @@ GameObject::~GameObject()
 {
 	for (Component *c : components)
 		delete c;
+	components.clear();
 }
 
 std::vector<mog::Component *> GameObject::getComponents()

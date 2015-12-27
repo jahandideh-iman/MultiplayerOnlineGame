@@ -1,5 +1,6 @@
 #include "NetworkGameObject.h"
 #include "Network/NetworkManager.h"
+#include "Network/NetworkGame.h"
 
 
 mog::network::NetworkGameObject::NetworkGameObject()
@@ -14,7 +15,9 @@ mog::network::NetworkGameObject::~NetworkGameObject()
 void mog::network::NetworkGameObject::onAddedToGame(Game *game)
 {
 	GameObject::onAddedToGame(game);
-	//NetworkManager::get()->addNetworkGameObject(this);
+	NetworkGame *netGame = dynamic_cast<NetworkGame*>(game);
+	if (netGame != nullptr)
+		netGame->getNetworkManager()->addNetworkGameObject(this);
 }
 
 void mog::network::NetworkGameObject::setIndex(unsigned i)

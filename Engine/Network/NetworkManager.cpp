@@ -148,3 +148,25 @@ const std::vector<const mog::network::InternetAddress *> & mog::network::Network
 {
 	return clientAddresses;
 }
+
+bool mog::network::NetworkManager::hasNetworkGameObject(const NetworkGameObject *gameObj) const
+{
+	for (auto obj : networkGameObjects)
+	{
+		if (obj.second == gameObj)
+			return true;
+	}
+
+	return false;
+}
+
+bool mog::network::NetworkManager::hasNetworkComponent(const NetworkComponent *comp) const
+{
+	for (auto c : networkComponents)
+	{
+		if (c.second == comp)
+			return true;
+	}
+
+	return false;
+}

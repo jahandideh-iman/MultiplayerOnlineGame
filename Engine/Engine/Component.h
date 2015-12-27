@@ -11,9 +11,9 @@ namespace mog
 	{
 	public:
 		Component(ID id, const GameObject *owner);
-		~Component();
+		virtual ~Component();
 
-		virtual void addSelfToGame(Game *g) = 0;
+		virtual void addSelfToGame(Game *g) {};
 
 		virtual void update(float dt) {};
 
