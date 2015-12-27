@@ -4,7 +4,7 @@
 #include "Game/Pawn.h"
 #include "Network/ConstructorDatabase.h"
 #include "Network/Messages/MessageDatabase.h"
-#include "Network/LoadLevel.h"
+#include "Network/Messages/LoadLevelMessage.h"
 #include "Network/Messages/JoinMessage.h"
 #include "Network/ReplicateInstance.h"
 #include "Network/ReplicateState.h"
@@ -74,7 +74,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
 	REGISTER_CONSTRUCTOR(Pawn);
 
-	mog::network::MessageDatabase::get()->registerMessage(new mog::network::LoadLevel());
+	mog::network::MessageDatabase::get()->registerMessage(new mog::network::LoadLevelMessage());
 	mog::network::MessageDatabase::get()->registerMessage(new mog::network::JoinMessage());
 	mog::network::MessageDatabase::get()->registerMessage(new mog::network::ReplicateInstance());
 	mog::network::MessageDatabase::get()->registerMessage(new mog::network::ReplicateState());

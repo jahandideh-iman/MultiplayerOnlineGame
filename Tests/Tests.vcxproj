@@ -73,17 +73,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MockGameObject.cpp" />
     <ClCompile Include="MockMessage.cpp" />
     <ClCompile Include="MockSocketDataBase.cpp" />
     <ClCompile Include="MockSocket.cpp" />
     <ClCompile Include="NetworkBase.h" />
     <ClCompile Include="TestBuffer.cpp" />
     <ClCompile Include="TestGame.cpp" />
-    <ClCompile Include="TestJoin.cpp" />
+    <ClCompile Include="TestJoinMessage.cpp" />
+    <ClCompile Include="TestLoadLevelMessage.cpp" />
     <ClCompile Include="TestNetworkManager.cpp" />
     <ClCompile Include="TestParameterContainer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MockGameObject.h" />
     <ClInclude Include="MockMessage.h" />
     <ClInclude Include="MockSocketDataBase.h" />
     <ClInclude Include="MockSocket.h" />

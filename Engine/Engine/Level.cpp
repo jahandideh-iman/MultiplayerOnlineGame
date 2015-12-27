@@ -10,8 +10,11 @@ Level::Level()
 
 Level::~Level()
 {
-	for (GameObject *o : objects)
-		delete o;
+	if (isLoaded == false)
+	{
+		for (GameObject *o : objects)
+			delete o;
+	}
 }
 
 void mog::Level::addGameObject(GameObject *object)
@@ -22,4 +25,14 @@ void mog::Level::addGameObject(GameObject *object)
 std::vector<GameObject *> mog::Level::getGameObjects()
 {
 	return objects;
+}
+
+void mog::Level::setIsloaded(bool isLoaded)
+{
+	if (this->isLoaded == true)
+	{
+		//TODO: Raise and exception
+	}
+	else
+		this->isLoaded = isLoaded;
 }

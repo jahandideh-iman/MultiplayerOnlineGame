@@ -15,7 +15,3 @@ GameLevel::~GameLevel()
 {
 }
 
-char * mog::GameLevel::getName() const
-{
-	return "level1";
-}

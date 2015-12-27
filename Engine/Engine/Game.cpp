@@ -20,6 +20,7 @@ void mog::Game::loadLevel(Level *level)
 	{
 		addGameObject(o);
 	}
+	level->setIsloaded(true);
 }
 
 void mog::Game::addGameObject(GameObject *o)
@@ -42,6 +43,11 @@ bool mog::Game::has(const GameObject *object) const
 			return true;
 	}
 	return false;
+}
+
+const std::vector<mog::GameObject *> &mog::Game::getGameObjects()
+{
+	return gameObjects;
 }
 
 

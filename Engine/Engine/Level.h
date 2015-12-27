@@ -1,20 +1,30 @@
 #pragma once
 
 #include "GameObject.h"
+#include "Types.h"
+
 namespace mog
 {
 	class Level
 	{
 	public:
 		Level();
-		~Level();
+		virtual ~Level();
 
-		void addGameObject(GameObject *object);
 		std::vector<GameObject *> getGameObjects();
 
-		virtual char *getName() const = 0;
+		virtual ID getID() const { return "EmptyLevel"; }
+
+		virtual void initialGameObjects() {}
+		void setIsloaded(bool isLoaded);
+
+	protected:
+		void addGameObject(GameObject *object);
 
 	private:
+
+		bool isLoaded = false;
+
 		std::vector<GameObject *> objects;
 	};
 }

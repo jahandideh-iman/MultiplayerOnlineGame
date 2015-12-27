@@ -42,11 +42,17 @@
     <ClCompile Include="MockMessage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TestJoin.cpp">
-      <Filter>Source Files\Messages</Filter>
-    </ClCompile>
     <ClCompile Include="NetworkBase.h">
       <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestJoinMessage.cpp">
+      <Filter>Source Files\Messages</Filter>
+    </ClCompile>
+    <ClCompile Include="TestLoadLevelMessage.cpp">
+      <Filter>Source Files\Messages</Filter>
+    </ClCompile>
+    <ClCompile Include="MockGameObject.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MockMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MockGameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

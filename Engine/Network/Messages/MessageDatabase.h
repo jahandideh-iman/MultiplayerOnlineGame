@@ -4,8 +4,8 @@
 #include <unordered_map>
 
 #define REGISTER_MESSAGE(T) \
-	mog::network::Message* m = new T(); \
-	mog::network::MessageDatabase::get()->registerMessage(m); \
+	mog::network::Message* message_##T = new T(); \
+	mog::network::MessageDatabase::get()->registerMessage(message_##T); \
 
 namespace mog
 {
@@ -34,5 +34,4 @@ namespace mog
 
 		};
 	}
-
 }

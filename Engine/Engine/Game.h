@@ -20,6 +20,8 @@ namespace mog
 
 		//NOTE: For testing 
 		bool has(const GameObject *object) const;
+		//NOTE: For testing 
+		const std::vector<GameObject *> &getGameObjects();
 
 	protected:
 		Level *currentLevel = nullptr;

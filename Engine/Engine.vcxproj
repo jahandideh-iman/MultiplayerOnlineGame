@@ -34,7 +34,7 @@
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '11.0'">v110</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '11.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v110_xp</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0'">v120</PlatformToolset>
-    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v120_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -158,6 +158,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="Engine\Game.cpp" />
     <ClCompile Include="Engine\GameObject.cpp" />
     <ClCompile Include="Engine\Level.cpp" />
+    <ClCompile Include="Engine\LevelDatabase.cpp" />
     <ClCompile Include="Engine\NetworkComponent.cpp" />
     <ClCompile Include="Engine\ParameterContainer.cpp" />
     <ClCompile Include="Engine\Utilities.cpp" />
@@ -166,6 +167,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="Network\ConstructorDatabase.cpp" />
     <ClCompile Include="Network\GameSocket.cpp" />
     <ClCompile Include="Network\Messages\JoinMessage.cpp" />
+    <ClCompile Include="Network\Messages\LoadLevelMessage.cpp" />
     <ClCompile Include="Network\Messages\Message.cpp" />
     <ClCompile Include="Network\Messages\MessageDatabase.cpp" />
     <ClCompile Include="Network\NetworkGame.cpp" />
@@ -173,7 +175,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="Network\ServerGame.cpp" />
     <ClCompile Include="Network\UDPGameSocket.cpp" />
     <ClCompile Include="Network\InternetAddress.cpp" />
-    <ClCompile Include="Network\LoadLevel.cpp" />
     <ClCompile Include="Network\NetworkGameObject.cpp" />
     <ClCompile Include="Network\NetworkManager.cpp" />
     <ClCompile Include="Network\NetworkObject.cpp" />
@@ -187,6 +188,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="Engine\Game.h" />
     <ClInclude Include="Engine\GameObject.h" />
     <ClInclude Include="Engine\Level.h" />
+    <ClInclude Include="Engine\LevelDatabase.h" />
     <ClInclude Include="Engine\Macros.h" />
     <ClInclude Include="Engine\NetworkComponent.h" />
     <ClInclude Include="Engine\ParameterContainer.h" />
@@ -199,6 +201,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="Network\ConstructorDatabase.h" />
     <ClInclude Include="Network\GameSocket.h" />
     <ClInclude Include="Network\Messages\JoinMessage.h" />
+    <ClInclude Include="Network\Messages\LoadLevelMessage.h" />
     <ClInclude Include="Network\Messages\Message.h" />
     <ClInclude Include="Network\Messages\MessageDatabase.h" />
     <ClInclude Include="Network\NetworkGame.h" />
@@ -206,7 +209,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="Network\ServerGame.h" />
     <ClInclude Include="Network\UDPGameSocket.h" />
     <ClInclude Include="Network\InternetAddress.h" />
-    <ClInclude Include="Network\LoadLevel.h" />
     <ClInclude Include="Network\NetworkGameObject.h" />
     <ClInclude Include="Network\NetworkManager.h" />
     <ClInclude Include="Network\NetworkObject.h" />

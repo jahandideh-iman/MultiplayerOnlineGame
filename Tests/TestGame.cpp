@@ -1,18 +1,20 @@
 #include "CppUTest/TestHarness.h"
 #include "Engine/Game.h"
 #include "Engine/GameObject.h"
+#include "Engine/Level.h"
+#include "MockGameObject.h"
 
 
 namespace mog
 {
-	class MockGameObject : public GameObject
+
+	class MockLevel : public Level
 	{
 	public:
-		virtual void update(float dt) override {
-			isUpdateCalled = true;
+		void addGameObject(GameObject *object)
+		{
+			Level::addGameObject(object);
 		}
-
-		bool isUpdateCalled = false;
 	};
 
 	TEST_GROUP(Game)
@@ -48,4 +50,19 @@ namespace mog
 		CHECK_TRUE(o2->isUpdateCalled);
 	}
 
+	TEST(Game, loadsLevelsComponents)
+	{
+		MockLevel level;
+		Game game;
+		auto o1 = new MockGameObject();
+		auto o2 = new MockGameObject();
+
+		level.addGameObject(o1);
+		level.addGameObject(o2);
+
+		game.loadLevel(&level);
+
+		CHECK_TRUE(game.has(o1));
+		CHECK_TRUE(game.has(o2));
+	}
 }

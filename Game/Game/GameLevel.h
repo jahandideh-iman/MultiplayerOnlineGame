@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Engine/Level.h"
+#include "Engine/Macros.h"
 
 namespace mog
 {
@@ -11,6 +12,6 @@ namespace mog
 		GameLevel();
 		~GameLevel();
 
-		char *getName() const override;
+		AUTOID(GameLevel, getID)
 	};
 }

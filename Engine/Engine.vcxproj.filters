@@ -25,9 +25,6 @@
     <ClCompile Include="Network\InternetAddress.cpp">
       <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="Network\LoadLevel.cpp">
-      <Filter>Network</Filter>
-    </ClCompile>
     <ClCompile Include="Network\NetworkGameObject.cpp">
       <Filter>Network</Filter>
     </ClCompile>
@@ -97,6 +94,12 @@
     <ClCompile Include="Network\Messages\JoinMessage.cpp">
       <Filter>Network\Messages</Filter>
     </ClCompile>
+    <ClCompile Include="Network\Messages\LoadLevelMessage.cpp">
+      <Filter>Network\Messages</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\LevelDatabase.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Network\Command.h">
@@ -106,9 +109,6 @@
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="Network\InternetAddress.h">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="Network\LoadLevel.h">
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="Network\NetworkGameObject.h">
@@ -191,6 +191,12 @@
     </ClInclude>
     <ClInclude Include="Network\Messages\JoinMessage.h">
       <Filter>Network\Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Messages\LoadLevelMessage.h">
+      <Filter>Network\Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\LevelDatabase.h">
+      <Filter>Base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
