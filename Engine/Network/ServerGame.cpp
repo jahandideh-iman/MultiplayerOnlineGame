@@ -1,7 +1,7 @@
 #include "ServerGame.h"
 #include "Engine/Network/NetworkManager.h"
 #include "Engine/Network/Messages/LoadLevelMessage.h"
-#include "Engine/Network/ReplicateInstance.h"
+#include "Engine/Network/Messages/ReplicateInstanceMessage.h"
 
 mog::network::ServerGame::ServerGame()
 {

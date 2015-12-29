@@ -57,6 +57,9 @@
     <ClCompile Include="TESTGameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TestReplicateInstance.cpp">
+      <Filter>Source Files\Messages</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MockSocket.h">

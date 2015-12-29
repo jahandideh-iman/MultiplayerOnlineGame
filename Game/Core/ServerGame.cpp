@@ -2,7 +2,7 @@
 #include "Engine/Network/NetworkManager.h"
 #include "GameLevel.h"
 #include "Engine/Network/Messages/LoadLevelMessage.h"
-#include "Engine/Network/ReplicateInstance.h"
+#include "Engine/Network/Messages/ReplicateInstanceMessage.h"
 #include "Core/Pawn.h"
 
 USING_NS_CC;

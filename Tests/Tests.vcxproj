@@ -85,6 +85,7 @@
     <ClCompile Include="TestLoadLevelMessage.cpp" />
     <ClCompile Include="TestNetworkManager.cpp" />
     <ClCompile Include="TestParameterContainer.cpp" />
+    <ClCompile Include="TestReplicateInstance.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MockGameObject.h" />

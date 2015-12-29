@@ -21,6 +21,8 @@ namespace mog
 		{
 		public:
 			static ConstructorDatabase *get();
+			static void clear();
+
 			bool registerConstrcutor(NetworkObjectConstructor *c);
 
 			NetworkObject *create(ID typeId) const;

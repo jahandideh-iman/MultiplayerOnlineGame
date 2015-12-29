@@ -7,22 +7,22 @@ namespace mog
 	namespace network
 	{
 		class NetworkGameObject;
-		class ReplicateInstance : public Message
+		class ReplicateInstanceMessage : public Message
 		{
 		public:
-			ReplicateInstance(NetworkGameObject *object);
-			ReplicateInstance();
-			~ReplicateInstance();
+			ReplicateInstanceMessage(const NetworkGameObject *object);
+			ReplicateInstanceMessage();
+			~ReplicateInstanceMessage();
 
 			virtual void executeOnClient(ClientGame *game, const ParameterContainer &parameters, const network::InternetAddress &address) const override;
 
-			AUTOID(ReplicateInstance,getID)
+			AUTOID(ReplicateInstanceMessage,getID)
 
 		protected:
 			virtual void fillData(ParameterContainer &parameters) const override;
 
 		private:
-			NetworkGameObject *object = nullptr;
+			const NetworkGameObject *object = nullptr;
 
 		};
 	}

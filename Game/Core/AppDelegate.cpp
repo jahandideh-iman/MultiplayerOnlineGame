@@ -6,7 +6,7 @@
 #include "Engine/Network/Messages/MessageDatabase.h"
 #include "Engine/Network/Messages/LoadLevelMessage.h"
 #include "Engine/Network/Messages/JoinMessage.h"
-#include "Engine/Network/ReplicateInstance.h"
+#include "Engine/Network/Messages/ReplicateInstanceMessage.h"
 #include "Engine/Network/ReplicateState.h"
 #include "Engine/Network/UDPGameSocket.h"
 
@@ -78,7 +78,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
 	mog::network::MessageDatabase::get()->registerMessage(new mog::network::LoadLevelMessage());
 	mog::network::MessageDatabase::get()->registerMessage(new mog::network::JoinMessage());
-	mog::network::MessageDatabase::get()->registerMessage(new mog::network::ReplicateInstance());
+	mog::network::MessageDatabase::get()->registerMessage(new mog::network::ReplicateInstanceMessage());
 	mog::network::MessageDatabase::get()->registerMessage(new mog::network::ReplicateState());
     return true;
 }

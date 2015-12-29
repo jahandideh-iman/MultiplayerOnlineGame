@@ -58,9 +58,9 @@ void mog::network::NetworkManager::sendMessage(const Message &m, const InternetA
 
 mog::ID mog::network::NetworkManager::extractMessageId(char* message, unsigned size)
 {
-	char buffer[21];
-	int i;
-	for (i = 0; i < 20; i++)
+	char *buffer = new char[size];
+	unsigned i;
+	for (i = 0; i < size; i++)
 	{
 		if (message[i] == ':')
 			break;
@@ -68,14 +68,16 @@ mog::ID mog::network::NetworkManager::extractMessageId(char* message, unsigned s
 	}
 	buffer[i] = '\0';
 
-	return ID(buffer);
+	ID id(buffer);
+	delete []buffer;
+	return id;
 	//return atoi(buffer);
 }
 
 mog::Buffer mog::network::NetworkManager::extractMessageData(char* message, unsigned size)
 {
-	int i;
-	for (i = 0; i < 20; i++)
+	unsigned i;
+	for (i = 0; i < size; i++)
 	{
 		if (message[i] == ':')
 			break;
@@ -87,8 +89,11 @@ mog::Buffer mog::network::NetworkManager::extractMessageData(char* message, unsi
 void mog::network::NetworkManager::addNetworkGameObject(NetworkGameObject *o)
 {
 	networkGameObjects.emplace(lastNetworkGameObjectId, o);
-	o->setIndex(lastNetworkGameObjectId);
-	lastNetworkGameObjectId++;
+	if (o->isReplica() == false)
+	{
+		o->setInstanceId(lastNetworkGameObjectId);
+		lastNetworkGameObjectId++;
+	}
 }
 
 void mog::network::NetworkManager::addNetworkComponent(NetworkComponent *c)

@@ -10,6 +10,8 @@ mog::network::ConstructorDatabase::ConstructorDatabase()
 
 mog::network::ConstructorDatabase::~ConstructorDatabase()
 {
+	for (auto c : reps)
+		delete c.second;
 }
 
 bool mog::network::ConstructorDatabase::registerConstrcutor(NetworkObjectConstructor *c)
@@ -30,6 +32,12 @@ mog::network::ConstructorDatabase * mog::network::ConstructorDatabase::get()
 mog::network::NetworkObject * mog::network::ConstructorDatabase::create(ID typeId) const
 {
 	return reps.find(typeId)->second->create();
+}
+
+void mog::network::ConstructorDatabase::clear()
+{
+	delete database;
+	database = nullptr;
 }
 
 

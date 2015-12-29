@@ -11,15 +11,21 @@ namespace mog
 		{
 		public:
 			NetworkGameObject();
+
 			virtual ~NetworkGameObject();
 
 			virtual void onAddedToGame(Game *game) override;
 
-			unsigned getIndex();
-			void setIndex(unsigned i);
+			unsigned getInstanceId() const;
+			void setInstanceId(unsigned i);
 
+			//TODO: Find a way to reject more that one call to this function
+			void setIsReplica(bool isReplical);
+			bool isReplica() const;
 		private:
-			unsigned index;
+			unsigned instanceId;
+
+			bool bIsReplica = false;
 		};
 	}
 }

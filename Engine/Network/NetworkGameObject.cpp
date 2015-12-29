@@ -20,12 +20,22 @@ void mog::network::NetworkGameObject::onAddedToGame(Game *game)
 		netGame->getNetworkManager()->addNetworkGameObject(this);
 }
 
-void mog::network::NetworkGameObject::setIndex(unsigned i)
+void mog::network::NetworkGameObject::setInstanceId(unsigned i)
 {
-	this->index = i;
+	this->instanceId = i;
 }
 
-unsigned mog::network::NetworkGameObject::getIndex()
+unsigned mog::network::NetworkGameObject::getInstanceId() const
 {
-	return index;
+	return instanceId;
+}
+
+void mog::network::NetworkGameObject::setIsReplica(bool isReplical)
+{
+	bIsReplica = isReplical;
+}
+
+bool mog::network::NetworkGameObject::isReplica() const
+{
+	return bIsReplica;
 }
