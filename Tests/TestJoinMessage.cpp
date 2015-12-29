@@ -23,13 +23,12 @@ namespace mog
 
 		TEST(JoinMessage, ClientAddressIsAddedToNetworkManager)
 		{
-			//NOTE: This test is not complete because MockSocket has no mechanism for determining sender's address
 			REGISTER_MESSAGE(JoinMessage);
 
 			clientManager->sendMessage(JoinMessage("playerName"), network::InternetAddress(serverPort));
 			serverManager->update();
 
-			CHECK_TRUE(serverManager->getClients().size() == 1);
+			CHECK_EQUAL(clientPort,serverManager->getClients()[0]->getPort());
 		}
 	}
 	

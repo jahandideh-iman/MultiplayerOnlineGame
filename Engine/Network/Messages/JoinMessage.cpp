@@ -29,5 +29,5 @@ void mog::network::JoinMessage::executeOnServer(ServerGame *game, const Paramete
 {
 	std::string name = parameters.get("name");
 
-	game->joinNewPlayer(new PlayerInfo(name, &address));
+	game->joinNewPlayer(new PlayerInfo(name, new InternetAddress(address)));
 }

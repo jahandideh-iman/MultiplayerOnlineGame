@@ -57,3 +57,9 @@ mog::network::InternetAddress::InternetAddress(unsigned char a, unsigned char b,
 	this->port = port;
 }
 
+mog::network::InternetAddress::InternetAddress(const InternetAddress&other)
+{
+	this->address = other.getAddress();
+	this->port = other.getPort();
+}
+

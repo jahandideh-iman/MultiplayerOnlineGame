@@ -11,4 +11,5 @@ mog::network::PlayerInfo::PlayerInfo(std::string &name, const network::InternetA
 
 mog::network::PlayerInfo::~PlayerInfo()
 {
+	delete address;
 }

@@ -19,16 +19,31 @@ void mog::network::MockSocket::open(unsigned short port)
 
 bool mog::network::MockSocket::send(const Address &destination, const char * data, int size)
 {
-	db->find(destination.getPort())->buffer.write(data);
+	db->find(destination.getPort())->storeMessage(this->port, data);
 	return true;
 }
 
 int mog::network::MockSocket::receive(Address &sender, void * data, int size)
 {
-	char *newData = buffer.getData();
+
+	if (messages.empty())
+		return 0;
+
+	char *newData = messages.begin()->second.getData();
 	strcpy_s((char*)data, size, newData);
 
+	int bufferSize = messages.begin()->second.getSize();
+	sender.setPort(messages.begin()->first);
+
 	delete[]newData;
-	return buffer.getSize();
-	buffer.clear();
+	messages.begin()->second.clear();
+
+	messages.erase(messages.begin());
+
+	return bufferSize;
+}
+
+void mog::network::MockSocket::storeMessage(unsigned senderPort, const char * data)
+{
+	messages[senderPort].write(data);
 }

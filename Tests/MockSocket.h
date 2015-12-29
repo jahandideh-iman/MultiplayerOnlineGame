@@ -3,6 +3,8 @@
 #include "Engine/Network/GameSocket.h"
 #include "Engine/Core/Buffer.h"
 
+#include <map>
+
 namespace mog
 {
 	namespace network
@@ -20,9 +22,12 @@ namespace mog
 			virtual bool send(const Address &destination, const char * data, int size);
 			virtual int receive(Address &sender, void * data, int size);
 
+			void storeMessage(unsigned senderPort, const char * data);
+
 		private:
-			unsigned short port;
-			Buffer buffer;
+			unsigned port;
+
+			std::map<unsigned, Buffer> messages;
 			MockSocketDataBase *db;
 
 		};

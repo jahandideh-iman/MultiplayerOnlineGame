@@ -8,6 +8,8 @@ namespace mog
 		public:
 
 			InternetAddress();
+			InternetAddress(const InternetAddress&other);
+
 			InternetAddress(unsigned short port);
 			InternetAddress(unsigned char a,
 				unsigned char b,
