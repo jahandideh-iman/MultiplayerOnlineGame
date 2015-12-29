@@ -1,11 +1,11 @@
 #pragma once
 
 #include "CppUTest/TestHarness.h"
-#include "Network/NetworkManager.h"
+#include "Engine/Network/NetworkManager.h"
 
-#include "Network/ClientGame.h"
-#include "Network/ServerGame.h"
-#include "Network/Messages/MessageDatabase.h"
+#include "Engine/Network/ClientGame.h"
+#include "Engine/Network/ServerGame.h"
+#include "Engine/Network/Messages/MessageDatabase.h"
 
 #include "MockSocketDataBase.h"
 #include "MockSocket.h"

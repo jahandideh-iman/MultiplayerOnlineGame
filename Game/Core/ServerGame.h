@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Engine/Level.h"
+#include "Engine/Core/Level.h"
 #include "cocos2d.h"
-#include "Network/ServerGame.h"
+#include "Engine/Network/ServerGame.h"
 
 namespace mog
 {

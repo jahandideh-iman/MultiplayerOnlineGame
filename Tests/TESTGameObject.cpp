@@ -1,6 +1,6 @@
 #include "CppUTest/TestHarness.h"
-#include "Engine/GameObject.h"
-#include "Engine/Component.h"
+#include "Engine/Core/GameObject.h"
+#include "Engine/Core/Component.h"
 
 
 

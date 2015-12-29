@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Engine/GameObject.h"
+#include "Engine/Core/GameObject.h"
 
 namespace mog
 {

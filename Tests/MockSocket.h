@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Network/GameSocket.h"
-#include "Engine/Buffer.h"
+#include "Engine/Network/GameSocket.h"
+#include "Engine/Core/Buffer.h"
 
 namespace mog
 {

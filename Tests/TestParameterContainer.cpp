@@ -1,6 +1,6 @@
 #include "CppUTest/TestHarness.h"
-#include "Engine/ParameterContainer.h"
-#include "Engine/Buffer.h"
+#include "Engine/Core/ParameterContainer.h"
+#include "Engine/Core/Buffer.h"
 
 namespace mog
 {

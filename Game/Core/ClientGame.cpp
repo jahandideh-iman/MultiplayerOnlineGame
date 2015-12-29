@@ -1,7 +1,7 @@
 #include "ClientGame.h"
-#include "Network/NetworkManager.h"
-#include "Network/InternetAddress.h"
-#include "Network/Messages/JoinMessage.h"
+#include "Engine/Network/NetworkManager.h"
+#include "Engine/Network/InternetAddress.h"
+#include "Engine/Network/Messages/JoinMessage.h"
 
 USING_NS_CC;
 

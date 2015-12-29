@@ -5,14 +5,14 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Base">
-      <UniqueIdentifier>{56a48767-9d24-4ad5-a36e-3d8337239bb8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Network">
       <UniqueIdentifier>{4bd0ad4e-5d30-496e-86e7-a9154c287ee1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Network\Messages">
       <UniqueIdentifier>{37ee6b17-e943-40ea-8d31-2208a4cd25b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{56a48767-9d24-4ad5-a36e-3d8337239bb8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -42,27 +42,6 @@
     </ClCompile>
     <ClCompile Include="Network\ReplicateState.cpp">
       <Filter>Network</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Buffer.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Component.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Game.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\GameObject.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Level.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\ParameterContainer.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Utilities.cpp">
-      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="Network\UDPGameSocket.cpp">
       <Filter>Network</Filter>
@@ -94,11 +73,32 @@
     <ClCompile Include="Network\Messages\LoadLevelMessage.cpp">
       <Filter>Network\Messages</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\LevelDatabase.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
     <ClCompile Include="Network\NetworkComponent.cpp">
       <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Buffer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Component.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Game.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\GameObject.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Level.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\LevelDatabase.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\ParameterContainer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Utilities.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -128,39 +128,6 @@
     </ClInclude>
     <ClInclude Include="Network\ReplicateState.h">
       <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Buffer.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Component.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Game.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\GameObject.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Level.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Macros.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\ParameterContainer.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Serializable.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\SerializablePrimitive.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Types.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Utilities.h">
-      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="Network\UDPGameSocket.h">
       <Filter>Network</Filter>
@@ -192,11 +159,44 @@
     <ClInclude Include="Network\Messages\LoadLevelMessage.h">
       <Filter>Network\Messages</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\LevelDatabase.h">
-      <Filter>Base</Filter>
-    </ClInclude>
     <ClInclude Include="Network\NetworkComponent.h">
       <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Buffer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Component.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Game.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\GameObject.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Level.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\LevelDatabase.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Macros.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ParameterContainer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Serializable.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\SerializablePrimitive.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Types.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Utilities.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

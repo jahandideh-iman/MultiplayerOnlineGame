@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Engine/Game.h"
-#include "Network/ClientGame.h"
+#include "Engine/Core/Game.h"
+#include "Engine/Network/ClientGame.h"
 #include "cocos2d.h"
 
 class GameSocket;

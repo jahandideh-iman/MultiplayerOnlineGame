@@ -1,8 +1,8 @@
 #include "CppUTest/TestHarness.h"
-#include "Engine/Buffer.h"
+#include "Engine/Core/Buffer.h"
 #include "NetworkBase.h"
-#include "Network/Messages/LoadLevelMessage.h"
-#include "Engine/LevelDatabase.h"
+#include "Engine/Network/Messages/LoadLevelMessage.h"
+#include "Engine/Core/LevelDatabase.h"
 #include "MockGameObject.h"
 
 namespace mog

@@ -1,14 +1,16 @@
 #include "AppDelegate.h"
 #include "GameMainMenu.h"
-#include "Network/NetworkManager.h"
-#include "Game/Pawn.h"
-#include "Network/ConstructorDatabase.h"
-#include "Network/Messages/MessageDatabase.h"
-#include "Network/Messages/LoadLevelMessage.h"
-#include "Network/Messages/JoinMessage.h"
-#include "Network/ReplicateInstance.h"
-#include "Network/ReplicateState.h"
-#include "network/UDPGameSocket.h"
+#include "Engine/Network/NetworkManager.h"
+
+#include "Engine/Network/ConstructorDatabase.h"
+#include "Engine/Network/Messages/MessageDatabase.h"
+#include "Engine/Network/Messages/LoadLevelMessage.h"
+#include "Engine/Network/Messages/JoinMessage.h"
+#include "Engine/Network/ReplicateInstance.h"
+#include "Engine/Network/ReplicateState.h"
+#include "Engine/Network/UDPGameSocket.h"
+
+#include "Core/Pawn.h"
 
 USING_NS_CC;
 

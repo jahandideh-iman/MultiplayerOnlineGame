@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Engine/Types.h"
-#include "Network/NetworkGameObject.h"
-#include "Network/NetworkComponent.h"
+#include "Engine/Core/Types.h"
+#include "Engine/Network/NetworkGameObject.h"
+#include "Engine/Network/NetworkComponent.h"
 #include <map>
 
 namespace mog

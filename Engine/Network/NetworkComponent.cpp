@@ -1,6 +1,6 @@
 #include "NetworkComponent.h"
-#include "Network/NetworkManager.h"
-#include "Network/NetworkGame.h"
+#include "Engine/Network/NetworkManager.h"
+#include "Engine/Network/NetworkGame.h"
 
 mog::network::NetworkComponent::NetworkComponent(ID id, const GameObject *owner) : Component(id, owner)
 {

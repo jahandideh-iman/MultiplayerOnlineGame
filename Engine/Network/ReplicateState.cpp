@@ -1,6 +1,6 @@
 #include "ReplicateState.h"
-#include "Engine/Macros.h"
-#include "Engine/Buffer.h"
+#include "Engine/Core/Macros.h"
+#include "Engine/Core/Buffer.h"
 
 mog::network::ReplicateState::ReplicateState()
 {

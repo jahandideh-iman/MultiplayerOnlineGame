@@ -1,9 +1,10 @@
 #pragma once
 
-#include "Engine/Component.h"
+#include "Engine/Core/Component.h"
+#include "Engine/Core/Serializable.h"
+#include "Engine/Core/ParameterContainer.h"
+
 #include <unordered_map>
-#include "Engine/Serializable.h"
-#include "Engine/ParameterContainer.h"
 
 namespace mog
 {

@@ -1,6 +1,6 @@
 #include "NetworkGameObject.h"
-#include "Network/NetworkManager.h"
-#include "Network/NetworkGame.h"
+#include "Engine/Network/NetworkManager.h"
+#include "Engine/Network/NetworkGame.h"
 
 
 mog::network::NetworkGameObject::NetworkGameObject()

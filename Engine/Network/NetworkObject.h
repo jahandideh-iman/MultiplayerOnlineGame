@@ -1,10 +1,7 @@
 #pragma once
 
-#include "Engine/Types.h"
-#include "Engine/Macros.h"
-
-
-
+#include "Engine/Core/Types.h"
+#include "Engine/Core/Macros.h"
 
 namespace mog
 {

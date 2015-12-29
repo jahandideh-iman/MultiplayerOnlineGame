@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Engine/GameObject.h"
-#include "Network/NetworkObject.h"
+#include "Engine/Core/GameObject.h"
+#include "Engine/Network/NetworkObject.h"
 
 namespace mog
 {

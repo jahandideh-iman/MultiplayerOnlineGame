@@ -75,7 +75,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END);$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END);$(ProjectDir)/../</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -153,14 +153,14 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Engine\Buffer.cpp" />
-    <ClCompile Include="Engine\Component.cpp" />
-    <ClCompile Include="Engine\Game.cpp" />
-    <ClCompile Include="Engine\GameObject.cpp" />
-    <ClCompile Include="Engine\Level.cpp" />
-    <ClCompile Include="Engine\LevelDatabase.cpp" />
-    <ClCompile Include="Engine\ParameterContainer.cpp" />
-    <ClCompile Include="Engine\Utilities.cpp" />
+    <ClCompile Include="Core\Buffer.cpp" />
+    <ClCompile Include="Core\Component.cpp" />
+    <ClCompile Include="Core\Game.cpp" />
+    <ClCompile Include="Core\GameObject.cpp" />
+    <ClCompile Include="Core\Level.cpp" />
+    <ClCompile Include="Core\LevelDatabase.cpp" />
+    <ClCompile Include="Core\ParameterContainer.cpp" />
+    <ClCompile Include="Core\Utilities.cpp" />
     <ClCompile Include="Network\ClientGame.cpp" />
     <ClCompile Include="Network\Command.cpp" />
     <ClCompile Include="Network\ConstructorDatabase.cpp" />
@@ -183,18 +183,18 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="Network\ReplicateState.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Buffer.h" />
-    <ClInclude Include="Engine\Component.h" />
-    <ClInclude Include="Engine\Game.h" />
-    <ClInclude Include="Engine\GameObject.h" />
-    <ClInclude Include="Engine\Level.h" />
-    <ClInclude Include="Engine\LevelDatabase.h" />
-    <ClInclude Include="Engine\Macros.h" />
-    <ClInclude Include="Engine\ParameterContainer.h" />
-    <ClInclude Include="Engine\Serializable.h" />
-    <ClInclude Include="Engine\SerializablePrimitive.h" />
-    <ClInclude Include="Engine\Types.h" />
-    <ClInclude Include="Engine\Utilities.h" />
+    <ClInclude Include="Core\Buffer.h" />
+    <ClInclude Include="Core\Component.h" />
+    <ClInclude Include="Core\Game.h" />
+    <ClInclude Include="Core\GameObject.h" />
+    <ClInclude Include="Core\Level.h" />
+    <ClInclude Include="Core\LevelDatabase.h" />
+    <ClInclude Include="Core\Macros.h" />
+    <ClInclude Include="Core\ParameterContainer.h" />
+    <ClInclude Include="Core\Serializable.h" />
+    <ClInclude Include="Core\SerializablePrimitive.h" />
+    <ClInclude Include="Core\Types.h" />
+    <ClInclude Include="Core\Utilities.h" />
     <ClInclude Include="Network\ClientGame.h" />
     <ClInclude Include="Network\Command.h" />
     <ClInclude Include="Network\ConstructorDatabase.h" />

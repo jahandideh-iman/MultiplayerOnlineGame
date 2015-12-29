@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Engine/Serializable.h"
-#include "Engine/Buffer.h"
+#include "Engine/Core/Serializable.h"
+#include "Engine/Core/Buffer.h"
 
 namespace mog
 {

@@ -1,7 +1,7 @@
 #include "ReplicateInstance.h"
 #include "NetworkGameObject.h"
 #include "ConstructorDatabase.h"
-#include "Network/ClientGame.h"
+#include "Engine/Network/ClientGame.h"
 
 #include <sstream>
 

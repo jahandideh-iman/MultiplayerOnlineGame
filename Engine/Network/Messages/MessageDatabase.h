@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Engine/Types.h"
+#include "Engine/Core/Types.h"
 #include <unordered_map>
 
 #define REGISTER_MESSAGE(T) \

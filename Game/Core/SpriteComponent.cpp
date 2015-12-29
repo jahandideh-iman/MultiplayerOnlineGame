@@ -1,6 +1,6 @@
 #include "SpriteComponent.h"
-#include "Engine/Game.h"
-#include "Engine/GameObject.h"
+#include "Engine/Core/Game.h"
+#include "Engine/Core/GameObject.h"
 
 
 

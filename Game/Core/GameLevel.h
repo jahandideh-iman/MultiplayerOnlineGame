@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Engine/Level.h"
-#include "Engine/Macros.h"
+#include "Engine/Core/Level.h"
+#include "Engine/Core/Macros.h"
 
 namespace mog
 {

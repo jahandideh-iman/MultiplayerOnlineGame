@@ -1,14 +1,14 @@
 #include "NetworkManager.h"
 #include "InternetAddress.h"
 #include <iostream>
-#include "Network/Messages/MessageDatabase.h"
-#include "Network/ReplicateState.h"
-#include "Network/GameSocket.h"
-#include "Network/NetworkGame.h"
-#include "Network/Messages/Message.h"
-#include "Engine/Buffer.h"
-#include "Network/ClientGame.h"
-#include "Network/ServerGame.h"
+#include "Engine/Network/Messages/MessageDatabase.h"
+#include "Engine/Network/ReplicateState.h"
+#include "Engine/Network/GameSocket.h"
+#include "Engine/Network/NetworkGame.h"
+#include "Engine/Network/Messages/Message.h"
+#include "Engine/Core/Buffer.h"
+#include "Engine/Network/ClientGame.h"
+#include "Engine/Network/ServerGame.h"
 
 
 mog::network::NetworkManager::NetworkManager(NetworkGame *game)

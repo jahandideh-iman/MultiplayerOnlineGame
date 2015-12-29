@@ -1,7 +1,8 @@
 #pragma once
 
 #include "NetworkObjectConstructor.h"
-#include "Engine/Types.h"
+#include "Engine/Core/Types.h"
+
 #include <unordered_map>
 
 #define RegisterConstructor(ClassName, Constructor) \

@@ -1,5 +1,5 @@
 #pragma once
-#include "Engine/Game.h"
+#include "Engine/Core/Game.h"
 
 namespace mog
 {

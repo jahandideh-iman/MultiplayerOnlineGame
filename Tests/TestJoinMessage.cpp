@@ -1,7 +1,7 @@
 #include "CppUTest/TestHarness.h"
-#include "Engine/Buffer.h"
+#include "Engine/Core/Buffer.h"
 #include "NetworkBase.h"
-#include "Network/Messages/JoinMessage.h"
+#include "Engine/Network/Messages/JoinMessage.h"
 
 namespace mog
 {

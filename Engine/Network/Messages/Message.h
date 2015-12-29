@@ -1,11 +1,9 @@
 #pragma once
 
-#include "Network/InternetAddress.h"
-
-#include "Engine/Types.h"
-#include "Engine/Macros.h"
-
-#include "Engine/ParameterContainer.h"
+#include "Engine/Network/InternetAddress.h"
+#include "Engine/Core/Types.h"
+#include "Engine/Core/Macros.h"
+#include "Engine/Core/ParameterContainer.h"
 
 namespace mog
 {

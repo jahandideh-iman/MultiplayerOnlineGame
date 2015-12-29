@@ -1,8 +1,8 @@
 #include "CppUTest/TestHarness.h"
 #include "NetworkBase.h"
 #include "MockMessage.h"
-#include "Network/NetworkGameObject.h"
-#include "Network/NetworkComponent.h"
+#include "Engine/Network/NetworkGameObject.h"
+#include "Engine/Network/NetworkComponent.h"
 
 namespace mog
 {

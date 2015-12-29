@@ -1,6 +1,6 @@
 #include "LoadLevelMessage.h"
-#include "Engine/LevelDatabase.h"
-#include "Network/ClientGame.h"
+#include "Engine/Core/LevelDatabase.h"
+#include "Engine/Network/ClientGame.h"
 
 mog::network::LoadLevelMessage::LoadLevelMessage(ID name)
 {

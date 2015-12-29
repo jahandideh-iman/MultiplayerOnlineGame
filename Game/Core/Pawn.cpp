@@ -1,6 +1,6 @@
 #include "Pawn.h"
 #include "SpriteComponent.h"
-#include "Network/NetworkComponent.h"
+#include "Engine/Network/NetworkComponent.h"
 
 mog::Pawn::Pawn()
 {

@@ -1,5 +1,5 @@
 #include "main.h"
-#include "Game/AppDelegate.h"
+#include "Core/AppDelegate.h"
 #include "cocos2d.h"
 
 

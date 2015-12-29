@@ -1,5 +1,5 @@
 #include "NetworkGame.h"
-#include "Network/NetworkManager.h"
+#include "Engine/Network/NetworkManager.h"
 
 
 mog::network::NetworkGame::NetworkGame()

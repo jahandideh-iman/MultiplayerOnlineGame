@@ -1,6 +1,6 @@
 #include "JoinMessage.h"
-#include "Network/ServerGame.h"
-#include "Network/InternetAddress.h"
+#include "Engine/Network/ServerGame.h"
+#include "Engine/Network/InternetAddress.h"
 
 using mog::network::JoinMessage;
 using namespace mog;

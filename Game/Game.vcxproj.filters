@@ -7,7 +7,7 @@
     <Filter Include="resource">
       <UniqueIdentifier>{079df24b-fc8d-4060-b2b1-a31287b417dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game">
+    <Filter Include="Core">
       <UniqueIdentifier>{ee1abe04-2b89-4967-9b23-3a7f9c51fd05}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -20,53 +20,56 @@
     <ClCompile Include="..\proj.win32\main.cpp">
       <Filter>win32</Filter>
     </ClCompile>
-    <ClCompile Include="Game\AppDelegate.cpp">
-      <Filter>Game</Filter>
+    <ClCompile Include="Core\AppDelegate.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Game\ClientGame.cpp">
-      <Filter>Game</Filter>
+    <ClCompile Include="Core\ClientGame.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Game\GameLevel.cpp">
-      <Filter>Game</Filter>
+    <ClCompile Include="Core\GameLevel.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Game\GameMainMenu.cpp">
-      <Filter>Game</Filter>
+    <ClCompile Include="Core\GameMainMenu.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Pawn.cpp">
-      <Filter>Game</Filter>
+    <ClCompile Include="Core\Pawn.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Game\ServerGame.cpp">
-      <Filter>Game</Filter>
+    <ClCompile Include="Core\ServerGame.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Game\SpriteComponent.cpp">
-      <Filter>Game</Filter>
+    <ClCompile Include="Core\SpriteComponent.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\proj.win32\main.h">
       <Filter>win32</Filter>
     </ClInclude>
-    <ClInclude Include="Game\AppDelegate.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\ClientGame.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\GameLevel.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\GameMainMenu.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Pawn.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\ServerGame.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\SpriteComponent.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Macros.h" />
+    <ClInclude Include="Core\AppDelegate.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ClientGame.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\GameLevel.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\GameMainMenu.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Macros.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Pawn.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ServerGame.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\SpriteComponent.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

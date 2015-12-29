@@ -75,7 +75,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END);$(ProjectDir)/../Engine;$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END);$(ProjectDir)/../;$(ProjectDir)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -156,24 +156,25 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\proj.win32\main.cpp" />
-    <ClCompile Include="Game\AppDelegate.cpp" />
-    <ClCompile Include="Game\ClientGame.cpp" />
-    <ClCompile Include="Game\GameLevel.cpp" />
-    <ClCompile Include="Game\GameMainMenu.cpp" />
-    <ClCompile Include="Game\Pawn.cpp" />
-    <ClCompile Include="Game\ServerGame.cpp" />
-    <ClCompile Include="Game\SpriteComponent.cpp" />
+    <ClCompile Include="Core\AppDelegate.cpp" />
+    <ClCompile Include="Core\ClientGame.cpp" />
+    <ClCompile Include="Core\GameLevel.cpp" />
+    <ClCompile Include="Core\GameMainMenu.cpp" />
+    <ClCompile Include="Core\Pawn.cpp" />
+    <ClCompile Include="Core\ServerGame.cpp" />
+    <ClCompile Include="Core\SpriteComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\proj.win32\main.h" />
-    <ClInclude Include="Game\AppDelegate.h" />
-    <ClInclude Include="Game\ClientGame.h" />
-    <ClInclude Include="Game\GameLevel.h" />
-    <ClInclude Include="Game\GameMainMenu.h" />
+    <ClInclude Include="Core\AppDelegate.h" />
+    <ClInclude Include="Core\ClientGame.h" />
+    <ClInclude Include="Core\GameLevel.h" />
+    <ClInclude Include="Core\GameMainMenu.h" />
+    <ClInclude Include="Core\Macros.h" />
+    <ClInclude Include="Core\Pawn.h" />
+    <ClInclude Include="Core\ServerGame.h" />
+    <ClInclude Include="Core\SpriteComponent.h" />
     <ClInclude Include="Game\Macros.h" />
-    <ClInclude Include="Game\Pawn.h" />
-    <ClInclude Include="Game\ServerGame.h" />
-    <ClInclude Include="Game\SpriteComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

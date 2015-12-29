@@ -1,6 +1,5 @@
 #include <string>
-#include "Engine/Serializable.h"
-#include "Engine/SerializablePrimitive.h"
+#include "Engine/Core/SerializablePrimitive.h"
 
 namespace mog
 {

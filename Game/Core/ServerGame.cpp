@@ -1,9 +1,9 @@
 #include "ServerGame.h"
-#include "Network/NetworkManager.h"
+#include "Engine/Network/NetworkManager.h"
 #include "GameLevel.h"
-#include "Network/Messages/LoadLevelMessage.h"
-#include "Network/ReplicateInstance.h"
-#include "Game/Pawn.h"
+#include "Engine/Network/Messages/LoadLevelMessage.h"
+#include "Engine/Network/ReplicateInstance.h"
+#include "Core/Pawn.h"
 
 USING_NS_CC;
 

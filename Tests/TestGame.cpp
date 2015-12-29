@@ -1,7 +1,7 @@
 #include "CppUTest/TestHarness.h"
-#include "Engine/Game.h"
-#include "Engine/GameObject.h"
-#include "Engine/Level.h"
+#include "Engine/Core/Game.h"
+#include "Engine/Core/GameObject.h"
+#include "Engine/Core/Level.h"
 #include "MockGameObject.h"
 
 
