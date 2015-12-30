@@ -24,8 +24,9 @@ namespace mog
 	{
 		Buffer buffer;
 		buffer.write("sample");
-		//TODO: Check whether null terminator must be added to size or not
-		CHECK_EQUAL(std::string("sample").size(), buffer.getSize());
+
+		//NOTE: Null Terminator is counted
+		CHECK_EQUAL(std::string("sample").size() +1, buffer.getSize());
 	}
 
 	TEST(Buffer, dataIsTheWrittenString)

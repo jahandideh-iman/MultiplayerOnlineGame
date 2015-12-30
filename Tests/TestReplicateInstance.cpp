@@ -1,5 +1,7 @@
 #include "CppUTest/TestHarness.h"
 #include "NetworkBase.h"
+#include "MockNetworkGameObject.h"
+
 #include "Engine/Network/Messages/ReplicateInstanceMessage.h"
 #include "Engine/Network/NetworkGameObject.h"
 #include "Engine/Network/ConstructorDatabase.h"
@@ -9,15 +11,13 @@ namespace mog
 {
 	namespace network
 	{
-
-		class MockNetworkGameObject : public NetworkGameObject
-		{
-			AUTOID(MockNetworkGameObject, getNetworkID);
-		};
-
 		TEST_GROUP_BASE(ReplicateInstanceMessage, NetworkBase)
 		{
-
+			void teardown() override
+			{
+				NetworkBase::teardown();
+				ConstructorDatabase::clear();
+			}
 		};
 
 		TEST(ReplicateInstanceMessage, ReplicatesNetworkGameObject)
@@ -36,7 +36,6 @@ namespace mog
 
 			CHECK_EQUAL(networkObject.getInstanceId(), replicatedObject->getInstanceId());
 
-			ConstructorDatabase::clear();
 		}
 	}
 }

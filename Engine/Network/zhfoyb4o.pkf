@@ -101,7 +101,7 @@ void mog::network::NetworkManager::addNetworkGameObject(NetworkGameObject *o)
 void mog::network::NetworkManager::addNetworkComponent(NetworkComponent *c)
 {
 	networkComponents.emplace(lastNetworkComponentId, c);
-	c->setIndex(lastNetworkComponentId);
+	c->setIndex()
 	//c->setIndex(lastNetworkComponentId);
 	lastNetworkComponentId++;
 }
@@ -129,24 +129,20 @@ void mog::network::NetworkManager::processMessages()
 void mog::network::NetworkManager::processReplications()
 {
 	
-	for (auto netObject : networkGameObjects)
+	for (auto elem : networkComponents)
 	{
-
+		unsigned index = elem.first;
+		auto component = elem.second;
+		Buffer buffer;
+		component->writeReplications(&buffer);
+		if (!buffer.isEmpty())
+		{
+			for (auto client : clientAddresses)
+			{
+				sendMessage(ReplicateStateMessage(index,&buffer), *client);
+			}
+		}
 	}
-	//for (auto elem : networkComponents)
-	//{
-	//	unsigned index = elem.first;
-	//	auto component = elem.second;
-	//	Buffer buffer;
-	//	component->writeReplications(&buffer);
-	//	if (!buffer.isEmpty())
-	//	{
-	//		for (auto client : clientAddresses)
-	//		{
-	//			sendMessage(ReplicateStateMessage(index,&buffer), *client);
-	//		}
-	//	}
-	//}
 
 	//sendMessage(
 }

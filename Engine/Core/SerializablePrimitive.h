@@ -26,7 +26,7 @@ namespace mog
 
 		SerializablePrimitive<T>& operator=(T const & value)
 		{
-			m_value = value;
+			this->value = value;
 			return *this;
 		}
 

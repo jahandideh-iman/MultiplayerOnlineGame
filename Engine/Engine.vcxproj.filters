@@ -37,9 +37,6 @@
     <ClCompile Include="Network\NetworkObjectConstructor.cpp">
       <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="Network\ReplicateState.cpp">
-      <Filter>Network</Filter>
-    </ClCompile>
     <ClCompile Include="Network\UDPGameSocket.cpp">
       <Filter>Network</Filter>
     </ClCompile>
@@ -100,6 +97,9 @@
     <ClCompile Include="Network\Messages\ReplicateInstanceMessage.cpp">
       <Filter>Network\Messages</Filter>
     </ClCompile>
+    <ClCompile Include="Network\Messages\ReplicateStateMessage.cpp">
+      <Filter>Network\Messages</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Network\Command.h">
@@ -121,9 +121,6 @@
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="Network\NetworkObjectConstructor.h">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="Network\ReplicateState.h">
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="Network\UDPGameSocket.h">
@@ -196,6 +193,9 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Network\Messages\ReplicateInstanceMessage.h">
+      <Filter>Network\Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Messages\ReplicateStateMessage.h">
       <Filter>Network\Messages</Filter>
     </ClInclude>
   </ItemGroup>

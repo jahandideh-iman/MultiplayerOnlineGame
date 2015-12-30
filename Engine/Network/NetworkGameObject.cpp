@@ -1,12 +1,14 @@
 #include "NetworkGameObject.h"
 #include "Engine/Network/NetworkManager.h"
 #include "Engine/Network/NetworkGame.h"
+#include "Engine/Network/NetworkComponent.h"
 
 
 mog::network::NetworkGameObject::NetworkGameObject()
 {
+	networkComponent = new NetworkComponent("networkComponent", this);
+	this->addComponent(networkComponent);
 }
-
 
 mog::network::NetworkGameObject::~NetworkGameObject()
 {
@@ -38,4 +40,9 @@ void mog::network::NetworkGameObject::setIsReplica(bool isReplical)
 bool mog::network::NetworkGameObject::isReplica() const
 {
 	return bIsReplica;
+}
+
+void mog::network::NetworkGameObject::writeState(Buffer *buffer) const
+{
+	networkComponent->writeReplications(buffer);
 }

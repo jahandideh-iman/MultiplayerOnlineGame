@@ -170,6 +170,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="Network\Messages\Message.cpp" />
     <ClCompile Include="Network\Messages\MessageDatabase.cpp" />
     <ClCompile Include="Network\Messages\ReplicateInstanceMessage.cpp" />
+    <ClCompile Include="Network\Messages\ReplicateStateMessage.cpp" />
     <ClCompile Include="Network\NetworkComponent.cpp" />
     <ClCompile Include="Network\NetworkGame.cpp" />
     <ClCompile Include="Network\PlayerInfo.cpp" />
@@ -180,7 +181,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="Network\NetworkManager.cpp" />
     <ClCompile Include="Network\NetworkObject.cpp" />
     <ClCompile Include="Network\NetworkObjectConstructor.cpp" />
-    <ClCompile Include="Network\ReplicateState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Buffer.h" />
@@ -204,6 +204,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="Network\Messages\Message.h" />
     <ClInclude Include="Network\Messages\MessageDatabase.h" />
     <ClInclude Include="Network\Messages\ReplicateInstanceMessage.h" />
+    <ClInclude Include="Network\Messages\ReplicateStateMessage.h" />
     <ClInclude Include="Network\NetworkComponent.h" />
     <ClInclude Include="Network\NetworkGame.h" />
     <ClInclude Include="Network\PlayerInfo.h" />
@@ -214,7 +215,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="Network\NetworkManager.h" />
     <ClInclude Include="Network\NetworkObject.h" />
     <ClInclude Include="Network\NetworkObjectConstructor.h" />
-    <ClInclude Include="Network\ReplicateState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -56,6 +56,9 @@
       <AdditionalDependencies>CppUTestd.lib;Engine.lib;Game.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>$(TargetPath) </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -75,6 +78,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MockGameObject.cpp" />
     <ClCompile Include="MockMessage.cpp" />
+    <ClCompile Include="MockNetworkGameObject.cpp" />
     <ClCompile Include="MockSocketDataBase.cpp" />
     <ClCompile Include="MockSocket.cpp" />
     <ClCompile Include="NetworkBase.h" />
@@ -86,10 +90,12 @@
     <ClCompile Include="TestNetworkManager.cpp" />
     <ClCompile Include="TestParameterContainer.cpp" />
     <ClCompile Include="TestReplicateInstance.cpp" />
+    <ClCompile Include="TestReplicateStateMessage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MockGameObject.h" />
     <ClInclude Include="MockMessage.h" />
+    <ClInclude Include="MockNetworkGameObject.h" />
     <ClInclude Include="MockSocketDataBase.h" />
     <ClInclude Include="MockSocket.h" />
   </ItemGroup>

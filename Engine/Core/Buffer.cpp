@@ -49,7 +49,8 @@ char * mog::Buffer::getData() const
 
 unsigned mog::Buffer::getSize() const
 {
-	return stream.str().size();
+	//NOTE: Null Terminator is counted
+	return stream.str().size()+1;
 }
 
 bool mog::Buffer::eof() const

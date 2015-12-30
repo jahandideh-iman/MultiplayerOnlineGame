@@ -12,7 +12,6 @@ mog::Pawn::Pawn()
 	c->addVariable("health",&health);
 }
 
-
 mog::Pawn::~Pawn()
 {
 }

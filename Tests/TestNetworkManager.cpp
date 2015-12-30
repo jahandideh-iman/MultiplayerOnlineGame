@@ -1,22 +1,19 @@
 #include "CppUTest/TestHarness.h"
 #include "NetworkBase.h"
 #include "MockMessage.h"
+#include "MockNetworkGameObject.h"
+
 #include "Engine/Network/NetworkGameObject.h"
 #include "Engine/Network/NetworkComponent.h"
+
 
 namespace mog
 {
 	namespace network
 	{
 
-		class MockNetworkGameObject : public NetworkGameObject
-		{
-			AUTOID(MockNetworkGameObject, getNetworkID);
-		};
-
 		TEST_GROUP_BASE(NetworkManager, NetworkBase)
 		{
-
 		};
 
 		TEST(NetworkManager, CallsExecuteOnClientMethodInClient)
