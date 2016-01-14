@@ -6,6 +6,7 @@
 namespace mog
 {
 	class Buffer;
+
 	class ParameterContainer
 	{
 	public:
@@ -25,6 +26,9 @@ namespace mog
 
 	private:
 		std::vector<std::string> getTokens(std::string str, std::string delimiters);
+
+		std::string quote(const std::string &str) const;
+		std::string unquote(const std::string &str) const;
 
 	private:
 		std::map<std::string, std::string> parameters;

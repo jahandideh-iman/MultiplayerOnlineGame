@@ -2,6 +2,11 @@
 #include "Engine/Core/Buffer.h"
 #include <algorithm>
 #include <cctype>
+#include <assert.h>
+#include "rapidjson/document.h"
+#include "rapidjson/writer.h"
+#include "rapidjson/stringbuffer.h"
+
 
 mog::ParameterContainer::ParameterContainer()
 {
@@ -9,6 +14,7 @@ mog::ParameterContainer::ParameterContainer()
 
 mog::ParameterContainer::ParameterContainer(Buffer &buffer)
 {
+
 	initialWithBuffer(buffer);
 }
 
@@ -20,15 +26,20 @@ mog::ParameterContainer::~ParameterContainer()
 
 void mog::ParameterContainer::put(std::string name, std::string value)
 {
-	parameters.emplace(name, value);
+	if (value[0] != '{')
+		value = quote(value);
+	parameters.emplace(quote(name), value);
 }
 
 std::string mog::ParameterContainer::get(std::string name) const
 {
-	auto res = parameters.find(name);
+	auto res = parameters.find(quote(name));
 	if (res == parameters.end())
 		return "";
-	return parameters.find(name)->second;
+	if (res->second[0] != '{')
+		return unquote(res->second);
+	else
+		return res->second;
 }
 
 void mog::ParameterContainer::initialWithBuffer(Buffer &buffer)
@@ -41,22 +52,26 @@ void mog::ParameterContainer::initialWithBuffer(Buffer &buffer)
 		buffer.readLine(line, buffer.getSize());
 		data += line;
 	}
-	
-	data = data.substr(data.find_first_of("{")+1, data.find_last_of("}") - 1);
-
-	auto pairs = getTokens(data, ",");
-
-	for (auto p : pairs)
-	{
-		auto pair = getTokens(p, ":");
-
-		pair[0].erase(std::remove_if(pair[0].begin(), pair[0].end(), std::isspace), pair[0].end());
-		pair[1].erase(std::remove_if(pair[1].begin(), pair[1].end(), std::isspace), pair[1].end());
-
-		put(pair[0], pair[1]);
-	}
-
 	delete[]line;
+
+	rapidjson::Document jsonDoc;
+	jsonDoc.Parse<0>(data.c_str());
+	assert(jsonDoc.HasParseError() == false);
+
+	for (auto itr = jsonDoc.MemberBegin(); itr != jsonDoc.MemberEnd(); ++itr)
+	{
+		if (itr->value.IsString())
+			put(itr->name.GetString(), itr->value.GetString());
+		else
+		{
+			rapidjson::StringBuffer buffer;
+			rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+			itr->value.Accept(writer);
+
+			put(itr->name.GetString(), buffer.GetString());
+			buffer.Clear();
+		}
+	}
 }
 
 mog::Buffer *mog::ParameterContainer::write(Buffer *buffer) const
@@ -81,7 +96,7 @@ bool mog::ParameterContainer::operator==(const ParameterContainer &other) const
 
 	for (auto parameter : this->parameters)
 	{
-		if (parameter.second != other.get(parameter.first))
+		if (this->get(unquote(parameter.first)) != other.get(unquote(parameter.first)))
 			return false;
 	}
 
@@ -108,4 +123,14 @@ std::vector<std::string> mog::ParameterContainer::getTokens(std::string str, std
 	}
 	delete[]chars;
 	return res;
+}
+
+std::string mog::ParameterContainer::quote(const std::string &str) const
+{
+	return "\"" + str + "\"";
+}
+
+std::string mog::ParameterContainer::unquote(const std::string &str) const
+{
+	return str.substr(str.find_first_of("\"") + 1, str.find_last_of("\"") - 1);
 }
