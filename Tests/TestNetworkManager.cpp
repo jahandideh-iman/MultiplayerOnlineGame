@@ -80,6 +80,15 @@ namespace mog
 			CHECK_TRUE(clientManager->hasNetworkGameObject(gameObject2));
 		}
 
+		TEST(NetworkManager, NetworkInstanceIdIsCorrect)
+		{
+			auto gameObject = new MockNetworkGameObject();
+
+			clientGame->addGameObject(gameObject);
+
+			CHECK_EQUAL(gameObject, clientManager->findNetworkGameObjectByInstanceId(gameObject->getInstanceId()));
+		}
+
 		TEST(NetworkManager, hasTheAddedNetworkComponents)
 		{
 			auto gameObject = new MockNetworkGameObject();
@@ -94,5 +103,6 @@ namespace mog
 			CHECK_TRUE(clientManager->hasNetworkComponent(networkComponent1));
 			CHECK_TRUE(clientManager->hasNetworkComponent(networkComponent2));
 		}
+
 	}
 }

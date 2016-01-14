@@ -44,6 +44,8 @@ namespace mog
 			bool hasNetworkGameObject(const NetworkGameObject *gameObj) const;
 			//NOTE: For testing
 			bool hasNetworkComponent(const NetworkComponent *comp) const;
+			//NOTE: For testing
+			const NetworkGameObject * findNetworkGameObjectByInstanceId(unsigned instaceId) const;
 
 		private:
 			ID extractMessageId(char* message, unsigned size);

@@ -182,3 +182,9 @@ bool mog::network::NetworkManager::hasNetworkComponent(const NetworkComponent *c
 
 	return false;
 }
+
+const mog::network::NetworkGameObject * mog::network::NetworkManager::findNetworkGameObjectByInstanceId(unsigned instaceId) const
+{
+	return networkGameObjects.find(instaceId)->second;
+}
+

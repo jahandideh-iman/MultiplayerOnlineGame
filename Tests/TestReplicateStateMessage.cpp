@@ -26,27 +26,27 @@ namespace mog
 
 		TEST(ReplicateStateMessage, ReplicatesNetworkComponentStatesInServerUpdate)
 		{
-			/*REGISTER_MESSAGE(ReplicateInstanceMessage);
-			REGISTER_MESSAGE(ReplicateStateMessage);
-			REGISTER_CONSTRUCTOR(MockNetworkGameObject);
+			//REGISTER_MESSAGE(ReplicateInstanceMessage);
+			//REGISTER_MESSAGE(ReplicateStateMessage);
+			//REGISTER_CONSTRUCTOR(MockNetworkGameObject);
 
-			auto gameObject = new MockNetworkGameObject();
+			//auto gameObject = new MockNetworkGameObject();
 
-			gameObject->variable = 5;
+			//gameObject->variable = 5;
 
-			serverGame->addGameObject(gameObject);
+			//serverGame->addGameObject(gameObject);
 
 
-			serverManager->sendMessage(ReplicateInstanceMessage(gameObject), network::InternetAddress(clientPort));
-			clientManager->update();
+			//serverManager->sendMessage(ReplicateInstanceMessage(gameObject), network::InternetAddress(clientPort));
+			//clientManager->update();
 
-			serverManager->sendMessage(ReplicateStateMessage(gameObject), network::InternetAddress(clientPort));
-			clientManager->update();
+			//serverManager->sendMessage(ReplicateStateMessage(gameObject), network::InternetAddress(clientPort));
+			//clientManager->update();
 
-			auto replicatedObject = dynamic_cast<const MockNetworkGameObject *> (clientGame->getGameObjects()[0]);
+			//auto replicatedObject = dynamic_cast<const MockNetworkGameObject *> (clientManager->getGameObjects()[0]);
 
-			CHECK_EQUAL(gameObject->getVariable().getValue(), replicatedObject->getVariable().getValue());
-*/
+			//CHECK_EQUAL(gameObject->getVariable().getValue(), replicatedObject->getVariable().getValue());
+
 		}
 	}
 }
