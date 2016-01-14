@@ -90,12 +90,12 @@ mog::Buffer mog::network::NetworkManager::extractMessageData(char* message, unsi
 
 void mog::network::NetworkManager::addNetworkGameObject(NetworkGameObject *o)
 {
-	networkGameObjects.emplace(lastNetworkGameObjectId, o);
 	if (o->isReplica() == false)
 	{
 		o->setInstanceId(lastNetworkGameObjectId);
 		lastNetworkGameObjectId++;
 	}
+	networkGameObjects.emplace(o->getInstanceId(), o);
 }
 
 void mog::network::NetworkManager::addNetworkComponent(NetworkComponent *c)

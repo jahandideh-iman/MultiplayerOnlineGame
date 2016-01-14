@@ -84,9 +84,10 @@
     <ClCompile Include="NetworkBase.h" />
     <ClCompile Include="TestBuffer.cpp" />
     <ClCompile Include="TestGame.cpp" />
-    <ClCompile Include="TESTGameObject.cpp" />
+    <ClCompile Include="TestGameObject.cpp" />
     <ClCompile Include="TestJoinMessage.cpp" />
     <ClCompile Include="TestLoadLevelMessage.cpp" />
+    <ClCompile Include="TestNetworkGameObject.cpp" />
     <ClCompile Include="TestNetworkManager.cpp" />
     <ClCompile Include="TestParameterContainer.cpp" />
     <ClCompile Include="TestReplicateInstance.cpp" />
