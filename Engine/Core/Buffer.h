@@ -12,6 +12,7 @@ namespace mog
 		Buffer();
 		Buffer(char *data);
 		Buffer(char *data, unsigned size);
+		Buffer(std::string data);
 
 		~Buffer();
 

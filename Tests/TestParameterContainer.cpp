@@ -86,28 +86,29 @@ namespace mog
 		CHECK_EQUAL(container1, container2);
 	}
 
-	//TEST(ParameterContainer, IsCorrectlyInitializedByWithNestedBuffer)
-	//{
-	//	ParameterContainer container1;
-	//	ParameterContainer container2;
-	//	ParameterContainer container3;
-	//	Buffer buffer;
+	TEST(ParameterContainer, IsCorrectlyInitializedByWithNestedBuffer)
+	{
+		ParameterContainer container1;
+		ParameterContainer container2;
+		ParameterContainer container3;
+		Buffer buffer;
 
-	//	container1.put("key1", "value1");
-	//	container1.put("key2", "value2");
+		container1.put("key1", "value1");
+		container1.put("key2", "value2");
 
-	//	container1.write(&buffer);
-	//	container2.put("containerKey", buffer.getData());
-	//	container2.put("key4", "value3");
+		container1.write(&buffer);
+		container2.put("containerKey", buffer.getData());
+		container2.put("key4", "value3");
 
-	//	buffer.clear();
-	//	container2.write(&buffer);
+		buffer.clear();
+		container2.write(&buffer);
 
-	//	container3.initialWithBuffer(buffer);
+		container3.initialWithBuffer(buffer);
+		std::string s = container3.get("containerKey");
+		ParameterContainer c{ Buffer{ s.c_str() } };
 
-
-	//	CHECK_EQUAL("value3", container3.get("key4"));
-	//	CHECK_EQUAL("value2", container3.get("key2"));
-	//	CHECK_EQUAL(container1, container3.get("key2"));
-	//}
+		CHECK_EQUAL("value3", container3.get("key4"));
+		CHECK_EQUAL("value2", container3.get("key2"));
+		CHECK_EQUAL(container1, c);
+	}
 }

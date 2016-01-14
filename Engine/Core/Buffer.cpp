@@ -22,6 +22,11 @@ mog::Buffer::Buffer(char *data)
 	stream<<data;
 }
 
+mog::Buffer::Buffer(std::string data)
+{
+	stream << data;
+}
+
 void mog::Buffer::write(const std::string &s)
 {
 	stream << s;

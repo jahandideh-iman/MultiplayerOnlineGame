@@ -29,10 +29,12 @@ namespace mog
 		CHECK_EQUAL(std::string("sample").size() +1, buffer.getSize());
 	}
 
-	TEST(Buffer, dataIsTheWrittenString)
+	TEST(Buffer, DataIsTheWrittenString)
 	{
 		Buffer buffer;
+
 		buffer.write("sample");
+
 		char *data = buffer.getData();
 		STRCMP_EQUAL("sample",data);
 		delete []data;
@@ -42,17 +44,31 @@ namespace mog
 	{
 		Buffer buffer;
 		buffer.write("sample");
+
 		buffer.clear();
+
 		CHECK_TRUE(buffer.isEmpty());
 	}
 
-	TEST(Buffer, dataIsCorretAfterMoreThanOneWrite)
+	TEST(Buffer, DataIsCorretAfterMoreThanOneWrite)
 	{
 		Buffer buffer;
 		buffer.write("word1");
 		buffer.write(" word2");
+
 		char *data = buffer.getData();
 		STRCMP_EQUAL("word1 word2", data);
+		delete[]data;
+	}
+
+	TEST(Buffer, CanBeInitializedByString)
+	{
+		std::string input = "input";
+
+		Buffer buffer(input);
+
+		char *data = buffer.getData();
+		STRCMP_EQUAL(input.c_str(), data);
 		delete[]data;
 	}
 
