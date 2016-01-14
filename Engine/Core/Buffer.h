@@ -20,8 +20,7 @@ namespace mog
 		void write(const Buffer &other);
 		void write(const char* c);
 
-		void readLine(char *line, int length);
-		bool eof() const;
+		//void readLine(char *line, int length);
 
 		bool isEmpty() const;
 		void clear();

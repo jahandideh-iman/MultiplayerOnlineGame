@@ -90,7 +90,7 @@
     <ClCompile Include="TestNetworkGameObject.cpp" />
     <ClCompile Include="TestNetworkManager.cpp" />
     <ClCompile Include="TestParameterContainer.cpp" />
-    <ClCompile Include="TestReplicateInstance.cpp" />
+    <ClCompile Include="TestReplicateInstanceMessage.cpp" />
     <ClCompile Include="TestReplicateStateMessage.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -37,8 +37,12 @@ namespace mog
 
 
 	template<>
-	void SerializablePrimitive<int> ::read(const Buffer *buffer){ value = std::stoi(buffer->getData()); }
-
+	void SerializablePrimitive<int> ::read(const Buffer *buffer)
+	{ 
+		char *data = buffer->getData();
+		value = std::stoi(data);
+		delete []data;
+	}
 
 	template<typename T>
 	using Var = SerializablePrimitive<T>;

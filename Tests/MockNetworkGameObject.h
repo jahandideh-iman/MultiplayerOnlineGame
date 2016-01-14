@@ -6,7 +6,6 @@ namespace mog
 {
 	namespace network
 	{
-		class NetworkComponent;
 		class MockNetworkGameObject : public NetworkGameObject
 		{
 		public:
@@ -14,9 +13,9 @@ namespace mog
 
 			AUTOID(MockNetworkGameObject, getNetworkID);
 
-			Integer getVariable() const;
+			//Integer getVariable() const;
 
-			Integer variable;
+			//Integer variable;
 
 		private:
 

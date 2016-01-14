@@ -35,7 +35,9 @@ void mog::network::NetworkComponent::writeReplications(Buffer *buffer) const
 	for (auto var : replicationVars)
 	{
 		var.second->write(&varBuffer);
-		container.put(var.first, varBuffer.getData());
+		char *data = varBuffer.getData();
+		container.put(var.first, data);
+		delete[]data;
 		varBuffer.clear();
 	}
 	container.write(buffer);	
@@ -43,7 +45,14 @@ void mog::network::NetworkComponent::writeReplications(Buffer *buffer) const
 
 void mog::network::NetworkComponent::readReplications(const Buffer *buffer)
 {
-
+	ParameterContainer container(*buffer);
+	Buffer varBuffer;
+	for (auto var : replicationVars)
+	{
+		varBuffer.write(container.get(var.first));
+		var.second->read(&varBuffer);
+		varBuffer.clear();
+	}
 }
 
 unsigned mog::network::NetworkComponent::getIndex() const

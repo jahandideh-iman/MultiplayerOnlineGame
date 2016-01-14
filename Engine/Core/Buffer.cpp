@@ -58,15 +58,6 @@ unsigned mog::Buffer::getSize() const
 	return stream.str().size()+1;
 }
 
-bool mog::Buffer::eof() const
-{
-	return stream.eof();
-}
-
-void mog::Buffer::readLine(char *line, int length)
-{
-	stream.getline(line, length);
-}
 
 bool mog::Buffer::isEmpty() const
 {

@@ -21,6 +21,9 @@ namespace mog
 			void setInstanceId(unsigned i);
 
 			void writeState(Buffer *buffer) const;
+			void readState(const Buffer *buffer);
+
+			NetworkComponent *getNetworkComponent();
 
 			//TODO: Find a way to reject more that one call to this function
 			void setIsReplica(bool isReplical);

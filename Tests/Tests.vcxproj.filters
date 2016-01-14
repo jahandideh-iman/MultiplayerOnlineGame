@@ -54,9 +54,6 @@
     <ClCompile Include="MockGameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TestReplicateInstance.cpp">
-      <Filter>Source Files\Messages</Filter>
-    </ClCompile>
     <ClCompile Include="TestReplicateStateMessage.cpp">
       <Filter>Source Files\Messages</Filter>
     </ClCompile>
@@ -68,6 +65,9 @@
     </ClCompile>
     <ClCompile Include="TestNetworkGameObject.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestReplicateInstanceMessage.cpp">
+      <Filter>Source Files\Messages</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

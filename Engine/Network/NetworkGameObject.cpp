@@ -46,3 +46,13 @@ void mog::network::NetworkGameObject::writeState(Buffer *buffer) const
 {
 	networkComponent->writeReplications(buffer);
 }
+
+mog::network::NetworkComponent * mog::network::NetworkGameObject::getNetworkComponent()
+{
+	return networkComponent;
+}
+
+void mog::network::NetworkGameObject::readState(const Buffer *buffer)
+{
+	networkComponent->readReplications(buffer);
+}

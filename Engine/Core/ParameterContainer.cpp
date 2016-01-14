@@ -12,9 +12,8 @@ mog::ParameterContainer::ParameterContainer()
 {
 }
 
-mog::ParameterContainer::ParameterContainer(Buffer &buffer)
+mog::ParameterContainer::ParameterContainer(const Buffer &buffer)
 {
-
 	initialWithBuffer(buffer);
 }
 
@@ -42,20 +41,12 @@ std::string mog::ParameterContainer::get(std::string name) const
 		return res->second;
 }
 
-void mog::ParameterContainer::initialWithBuffer(Buffer &buffer)
+void mog::ParameterContainer::initialWithBuffer(const Buffer &buffer)
 {
-	char *line = new char[buffer.getSize()];
-
-	std::string data;
-	while (!buffer.eof())
-	{
-		buffer.readLine(line, buffer.getSize());
-		data += line;
-	}
-	delete[]line;
+	char *data = buffer.getData();
 
 	rapidjson::Document jsonDoc;
-	jsonDoc.Parse<0>(data.c_str());
+	jsonDoc.Parse<0>(data);
 	assert(jsonDoc.HasParseError() == false);
 
 	for (auto itr = jsonDoc.MemberBegin(); itr != jsonDoc.MemberEnd(); ++itr)
@@ -72,6 +63,8 @@ void mog::ParameterContainer::initialWithBuffer(Buffer &buffer)
 			buffer.Clear();
 		}
 	}
+
+	delete []data;
 }
 
 mog::Buffer *mog::ParameterContainer::write(Buffer *buffer) const
