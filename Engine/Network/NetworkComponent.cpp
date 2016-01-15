@@ -16,16 +16,11 @@ void mog::network::NetworkComponent::addVariable(const std::string &name, Serial
 	replicationVars.emplace(name, var);
 }
 
-void mog::network::NetworkComponent::networkUpdate(float dt)
-{
-
-}
-
 void mog::network::NetworkComponent::addSelfToGame(Game *g)
 {
-	NetworkGame *netGame = dynamic_cast<NetworkGame*>(g);
+	/*NetworkGame *netGame = dynamic_cast<NetworkGame*>(g);
 	if (netGame != nullptr)
-		netGame->getNetworkManager()->addNetworkComponent(this);
+		netGame->getNetworkManager()->addNetworkComponent(this);*/
 }
 
 void mog::network::NetworkComponent::writeReplications(Buffer *buffer) const
@@ -55,12 +50,3 @@ void mog::network::NetworkComponent::readReplications(const Buffer *buffer)
 	}
 }
 
-unsigned mog::network::NetworkComponent::getIndex() const
-{
-	return index;
-}
-
-void mog::network::NetworkComponent::setIndex(unsigned i)
-{
-	index = i;
-}

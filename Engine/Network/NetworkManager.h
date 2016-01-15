@@ -38,15 +38,12 @@ namespace mog
 
 
 			void addNetworkGameObject(NetworkGameObject *o);
-			void addNetworkComponent(NetworkComponent *c);
+			//void addNetworkComponent(NetworkComponent *c);
 
 			NetworkGameObject * findNetworkGameObjectByInstanceId(unsigned instaceId) const;
 
 			//NOTE: For testing
 			bool hasNetworkGameObject(const NetworkGameObject *gameObj) const;
-			//NOTE: For testing
-			bool hasNetworkComponent(const NetworkComponent *comp) const;
-
 
 		private:
 			ID extractMessageId(char* message, unsigned size);
@@ -60,9 +57,7 @@ namespace mog
 			GameSocket *socket = nullptr;
 
 			unsigned lastNetworkGameObjectId = 0;
-			unsigned lastNetworkComponentId = 0;
 			std::map<unsigned, NetworkGameObject *> networkGameObjects;
-			std::map<unsigned, NetworkComponent *> networkComponents;
 
 			std::vector<const InternetAddress *> clientAddresses;
 

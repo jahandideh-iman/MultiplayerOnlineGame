@@ -98,14 +98,6 @@ void mog::network::NetworkManager::addNetworkGameObject(NetworkGameObject *o)
 	networkGameObjects.emplace(o->getInstanceId(), o);
 }
 
-void mog::network::NetworkManager::addNetworkComponent(NetworkComponent *c)
-{
-	networkComponents.emplace(lastNetworkComponentId, c);
-	c->setIndex(lastNetworkComponentId);
-	//c->setIndex(lastNetworkComponentId);
-	lastNetworkComponentId++;
-}
-
 void mog::network::NetworkManager::processMessages()
 {
 	InternetAddress senderAddress;
@@ -172,19 +164,7 @@ bool mog::network::NetworkManager::hasNetworkGameObject(const NetworkGameObject 
 	return false;
 }
 
-bool mog::network::NetworkManager::hasNetworkComponent(const NetworkComponent *comp) const
-{
-	for (auto c : networkComponents)
-	{
-		if (c.second == comp)
-			return true;
-	}
-
-	return false;
-}
-
 mog::network::NetworkGameObject * mog::network::NetworkManager::findNetworkGameObjectByInstanceId(unsigned instaceId) const
 {
 	return networkGameObjects.find(instaceId)->second;
 }
-
