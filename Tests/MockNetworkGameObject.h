@@ -12,13 +12,6 @@ namespace mog
 			MockNetworkGameObject();
 
 			AUTOID(MockNetworkGameObject, getNetworkID);
-
-			//Integer getVariable() const;
-
-			//Integer variable;
-
-		private:
-
 		};
 
 	}

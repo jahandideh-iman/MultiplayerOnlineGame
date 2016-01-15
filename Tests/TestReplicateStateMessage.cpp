@@ -14,6 +14,18 @@ namespace mog
 {
 	namespace network
 	{
+		class MockNonEmptyNetworkGameObject : public NetworkGameObject
+		{
+		public:
+			MockNonEmptyNetworkGameObject()
+			{
+				networkComponent->addVariable("var", &variable);
+			}
+
+			AUTOID(MockNonEmptyNetworkGameObject, getNetworkID);
+
+			Integer variable;
+		};
 
 		TEST_GROUP_BASE(ReplicateStateMessage, NetworkBase)
 		{
@@ -26,27 +38,26 @@ namespace mog
 
 		TEST(ReplicateStateMessage, ReplicatesNetworkComponentStatesInServerUpdate)
 		{
-			//REGISTER_MESSAGE(ReplicateInstanceMessage);
-			//REGISTER_MESSAGE(ReplicateStateMessage);
-			//REGISTER_CONSTRUCTOR(MockNetworkGameObject);
+			REGISTER_MESSAGE(ReplicateInstanceMessage);
+			REGISTER_MESSAGE(ReplicateStateMessage);
+			REGISTER_CONSTRUCTOR(MockNonEmptyNetworkGameObject);
 
-			//auto gameObject = new MockNetworkGameObject();
+			auto gameObject = new MockNonEmptyNetworkGameObject();
 
-			//gameObject->variable = 5;
+			gameObject->variable = 5;
 
-			//serverGame->addGameObject(gameObject);
+			serverGame->addGameObject(gameObject);
 
 
-			//serverManager->sendMessage(ReplicateInstanceMessage(gameObject), network::InternetAddress(clientPort));
-			//clientManager->update();
+			serverManager->sendMessage(ReplicateInstanceMessage(gameObject), network::InternetAddress(clientPort));
+			clientManager->update();
 
-			//serverManager->sendMessage(ReplicateStateMessage(gameObject), network::InternetAddress(clientPort));
-			//clientManager->update();
+			serverManager->sendMessage(ReplicateStateMessage(gameObject), network::InternetAddress(clientPort));
+			clientManager->update();
 
-			//auto replicatedObject = dynamic_cast<const MockNetworkGameObject *> (clientManager->findNetworkGameObjectByInstanceId(gameObject->getInstanceId()));
+			auto replicatedObject = dynamic_cast<MockNonEmptyNetworkGameObject *> (clientManager->findNetworkGameObjectByInstanceId(gameObject->getInstanceId()));
 
-			//CHECK_EQUAL(gameObject->getVariable().getValue(), replicatedObject->getVariable().getValue());
-
+			CHECK_EQUAL(gameObject->variable.getValue(), replicatedObject->variable.getValue());
 		}
 	}
 }

@@ -25,8 +25,12 @@ void mog::network::ReplicateStateMessage::fillData(ParameterContainer &parameter
 
 	networkGameObject->writeState(&buffer);
 
+	char *data = buffer.getData();
+
 	parameters.put("instanceId", std::to_string(networkGameObject->getInstanceId()));
-	parameters.put("states", buffer.getData());
+	parameters.put("states", data);
+
+	delete []data;
 }
 
 void mog::network::ReplicateStateMessage::executeOnClient(ClientGame *game, const ParameterContainer &parameters, const network::InternetAddress &address) const
@@ -35,6 +39,5 @@ void mog::network::ReplicateStateMessage::executeOnClient(ClientGame *game, cons
 	std::string states = parameters.get("states");
 
 	auto networkObject = game->getNetworkManager()->findNetworkGameObjectByInstanceId(std::stoi(instanceId));
-	int a = 5;
-	//MOGLOG("Replicate Instance Message \n %s", parameters.write(&Buffer())->getData());
+	networkObject->readState(&Buffer(states));
 }
