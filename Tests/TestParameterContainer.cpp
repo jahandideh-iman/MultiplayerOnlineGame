@@ -81,7 +81,7 @@ namespace mog
 		container1.put("key2", "value2");
 		container1.write(&buffer);
 
-		container2.initialWithBuffer(buffer);
+		container2.initialWithBuffer(&buffer);
 
 		CHECK_EQUAL(container1, container2);
 	}
@@ -106,10 +106,10 @@ namespace mog
 		buffer.clear();
 		parentContainer.write(&buffer);
 
-		resultContainer.initialWithBuffer(buffer);
+		resultContainer.initialWithBuffer(&buffer);
 
 		CHECK_EQUAL("value3", resultContainer.get("key3"));
-		CHECK_EQUAL(childContainer, ParameterContainer{ Buffer{ resultContainer.get("child") } });
+		CHECK_EQUAL(childContainer, ParameterContainer{ &Buffer{ resultContainer.get("child") } });
 
 		delete []data;
 	}

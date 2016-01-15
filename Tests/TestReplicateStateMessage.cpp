@@ -19,12 +19,14 @@ namespace mog
 		public:
 			MockNonEmptyNetworkGameObject()
 			{
-				networkComponent->addVariable("var", &variable);
+				networkComponent->addVariable("var1", &variable1);
+				networkComponent->addVariable("var2", &variable2);
 			}
 
 			AUTOID(MockNonEmptyNetworkGameObject, getNetworkID);
 
-			Integer variable;
+			Integer variable1;
+			Integer variable2;
 		};
 
 		TEST_GROUP_BASE(ReplicateStateMessage, NetworkBase)
@@ -44,7 +46,8 @@ namespace mog
 
 			auto gameObject = new MockNonEmptyNetworkGameObject();
 
-			gameObject->variable = 5;
+			gameObject->variable1 = 1;
+			gameObject->variable2 = 2;
 
 			serverGame->addGameObject(gameObject);
 
@@ -57,7 +60,8 @@ namespace mog
 
 			auto replicatedObject = dynamic_cast<MockNonEmptyNetworkGameObject *> (clientManager->findNetworkGameObjectByInstanceId(gameObject->getInstanceId()));
 
-			CHECK_EQUAL(gameObject->variable.getValue(), replicatedObject->variable.getValue());
+			CHECK_EQUAL(gameObject->variable1.getValue(), replicatedObject->variable1.getValue());
+			CHECK_EQUAL(gameObject->variable2.getValue(), replicatedObject->variable2.getValue());
 		}
 	}
 }

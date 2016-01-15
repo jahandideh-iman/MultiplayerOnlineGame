@@ -12,7 +12,7 @@ mog::ParameterContainer::ParameterContainer()
 {
 }
 
-mog::ParameterContainer::ParameterContainer(const Buffer &buffer)
+mog::ParameterContainer::ParameterContainer(const Buffer *buffer)
 {
 	initialWithBuffer(buffer);
 }
@@ -41,9 +41,9 @@ std::string mog::ParameterContainer::get(std::string name) const
 		return res->second;
 }
 
-void mog::ParameterContainer::initialWithBuffer(const Buffer &buffer)
+void mog::ParameterContainer::initialWithBuffer(const Buffer *buffer)
 {
-	char *data = buffer.getData();
+	char *data = buffer->getData();
 
 	rapidjson::Document jsonDoc;
 	jsonDoc.Parse<0>(data);

@@ -108,7 +108,7 @@ void mog::network::NetworkManager::processMessages()
 	{
 		ID messageId = extractMessageId(data, size);
 		Buffer messageData = extractMessageData(data, size);
-		ParameterContainer parameters(messageData);
+		ParameterContainer parameters(&messageData);
 		//CCLOG("Message ID is : %s", messageId.c_str());
 		//CCLOG("data is : %s", messageData.getData());
 		if (game->getType() == T_Client)

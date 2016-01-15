@@ -40,7 +40,7 @@ void mog::network::NetworkComponent::writeReplications(Buffer *buffer) const
 
 void mog::network::NetworkComponent::readReplications(const Buffer *buffer)
 {
-	ParameterContainer container(*buffer);
+	ParameterContainer container(buffer);
 	Buffer varBuffer;
 	for (auto var : replicationVars)
 	{

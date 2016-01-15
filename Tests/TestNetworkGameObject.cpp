@@ -38,7 +38,7 @@ namespace mog
 			Buffer buffer;
 
 			networkObject.writeState(&buffer);
-			ParameterContainer params(buffer);
+			ParameterContainer params(&buffer);
 
 			CHECK_EQUAL("1", params.get("var1"));
 			CHECK_EQUAL("2", params.get("var2"));

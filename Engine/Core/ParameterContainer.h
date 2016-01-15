@@ -11,7 +11,7 @@ namespace mog
 	{
 	public:
 		ParameterContainer();
-		ParameterContainer(const Buffer &buffer);
+		ParameterContainer(const Buffer *buffer);
 		~ParameterContainer();
 
 		void put(std::string name, std::string value);
@@ -19,7 +19,7 @@ namespace mog
 
 		Buffer *write(Buffer *buffer) const;
 
-		void initialWithBuffer(const Buffer &buffer);
+		void initialWithBuffer(const Buffer *buffer);
 
 		bool operator== (const ParameterContainer &other) const;
 		bool operator!= (const ParameterContainer &other) const;
