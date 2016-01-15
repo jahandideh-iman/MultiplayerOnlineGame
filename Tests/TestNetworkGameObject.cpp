@@ -8,6 +8,28 @@ namespace mog
 	namespace network
 	{
 
+		class MockNetworkGameObjectWithMethod : public NetworkGameObject
+		{
+		public:
+			MockNetworkGameObjectWithMethod()
+			{
+			}
+
+			void initialRegisteredMethods() override
+			{
+				registerMethod("method", std::bind(&mog::network::MockNetworkGameObjectWithMethod::method, this));
+			}
+
+			AUTOID(MockNetworkGameObjectWithMethod, getNetworkID);
+
+			void method()
+			{
+				isMethodCalled = true;
+			}
+
+			bool isMethodCalled = false;
+		};
+
 		TEST_GROUP(NetworkGameObject)
 		{
 
@@ -27,7 +49,7 @@ namespace mog
 			delete[]data;
 		}
 
-		TEST(NetworkGameObject, WrittenStateIsCorrectForNoneEmptyNetowrkGameObject)
+		TEST(NetworkGameObject, WrittenStateIsCorrectForNonEmptyNetowrkGameObject)
 		{
 			MockNetworkGameObject networkObject;
 			Integer var1 = 1;
@@ -64,6 +86,17 @@ namespace mog
 
 			CHECK_EQUAL(1, var1.getValue());
 			CHECK_EQUAL(2, var2.getValue());
+		}
+
+		TEST(NetworkGameObject, callsRegisteredMethodsByName)
+		{
+			MockNetworkGameObjectWithMethod networkObject;
+
+			networkObject.initialRegisteredMethods();
+
+			networkObject.callMethod("method");
+
+			CHECK_TRUE(networkObject.isMethodCalled)
 		}
 	}
 }

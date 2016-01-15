@@ -3,6 +3,9 @@
 #include "Engine/Core/GameObject.h"
 #include "Engine/Network/NetworkObject.h"
 
+#include <functional>
+#include <map>
+
 namespace mog
 {
 	namespace network
@@ -10,12 +13,17 @@ namespace mog
 		class NetworkComponent;
 		class NetworkGameObject : public GameObject, public NetworkObject
 		{
+			typedef std::function<void()> Method;
 		public:
 			NetworkGameObject();
 
 			virtual ~NetworkGameObject();
 
 			virtual void onAddedToGame(Game *game) override;
+
+			virtual void initialRegisteredMethods();
+
+			void callMethod(std::string name);
 
 			unsigned getInstanceId() const;
 			void setInstanceId(unsigned i);
@@ -30,6 +38,9 @@ namespace mog
 			bool isReplica() const;
 
 		protected:
+			void registerMethod(std::string name,Method method);
+
+		protected:
 			NetworkComponent *networkComponent = nullptr;
 
 		private:
@@ -37,7 +48,7 @@ namespace mog
 
 			bool bIsReplica = false;
 
-			
+			std::map<std::string, Method> registeredMethods;
 		};
 	}
 }
