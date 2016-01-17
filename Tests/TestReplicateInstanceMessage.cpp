@@ -29,10 +29,10 @@ namespace mog
 			MockNetworkGameObject networkObject;
 			networkObject.setInstanceId(arbitraryID);
 
-			serverManager->sendMessage(ReplicateInstanceMessage(&networkObject), network::InternetAddress(clientPort));
-			clientManager->update();
+			serverManager->sendMessage(ReplicateInstanceMessage(&networkObject), network::InternetAddress(clientPort1));
+			clientManager1->update();
 
-			auto replicatedObject = dynamic_cast<const MockNetworkGameObject *> (clientManager->findNetworkGameObjectByInstanceId(networkObject.getInstanceId()));
+			auto replicatedObject = dynamic_cast<const MockNetworkGameObject *> (clientManager1->findNetworkGameObjectByInstanceId(networkObject.getInstanceId()));
 
 			CHECK_EQUAL(networkObject.getInstanceId(), replicatedObject->getInstanceId());
 		}

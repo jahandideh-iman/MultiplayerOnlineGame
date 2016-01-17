@@ -155,21 +155,28 @@ void mog::network::NetworkManager::addNetworkGameObject(NetworkGameObject *o)
 void mog::network::NetworkManager::processMessages()
 {
 	InternetAddress senderAddress;
-	char data[256];
-	auto size = socket->receive(senderAddress, data, 256);
-
-	if (size != 0)
+	
+	while (true)
 	{
-		ID messageId = extractMessageId(data, size);
-		Buffer messageData = extractMessageData(data, size);
-		ParameterContainer parameters(&messageData);
-		//CCLOG("Message ID is : %s", messageId.c_str());
-		//CCLOG("data is : %s", messageData.getData());
-		if (game->getType() == T_Client)
-			MessageDatabase::get()->find(messageId)->executeOnClient(dynamic_cast<ClientGame*>(game), parameters, senderAddress);
-		else if (game->getType() == T_Server)
-			MessageDatabase::get()->find(messageId)->executeOnServer(dynamic_cast<ServerGame*>(game), parameters, senderAddress);
+		char data[256];
+		auto size = socket->receive(senderAddress, data, 256);
+
+		if (size != 0)
+		{
+			ID messageId = extractMessageId(data, size);
+			Buffer messageData = extractMessageData(data, size);
+			ParameterContainer parameters(&messageData);
+			//CCLOG("Message ID is : %s", messageId.c_str());
+			//CCLOG("data is : %s", messageData.getData());
+			if (game->getType() == T_Client)
+				MessageDatabase::get()->find(messageId)->executeOnClient(dynamic_cast<ClientGame*>(game), parameters, senderAddress);
+			else if (game->getType() == T_Server)
+				MessageDatabase::get()->find(messageId)->executeOnServer(dynamic_cast<ServerGame*>(game), parameters, senderAddress);
+		}
+		else
+			break;
 	}
+
 }
 
 void mog::network::NetworkManager::processReplications()
@@ -184,28 +191,15 @@ void mog::network::NetworkManager::processReplications()
 			clientRep->removeToBeReplicatedInstance(instanceId);
 		}	
 	}
-
-	//for (auto elem : networkComponents)
-	//{
-	//	unsigned index = elem.first;
-	//	auto component = elem.second;
-	//	Buffer buffer;
-	//	component->writeReplications(&buffer);
-	//	if (!buffer.isEmpty())
-	//	{
-	//		for (auto client : clientAddresses)
-	//		{
-	//			sendMessage(ReplicateStateMessage(index,&buffer), *client);
-	//		}
-	//	}
-	//}
-
-	//sendMessage(
 }
 
 void mog::network::NetworkManager::addClient(const InternetAddress *address)
 {
-	clientReplicationInfos.emplace_back(new ClientReplicationInfo(address));
+	auto clientRep = new ClientReplicationInfo(address);
+	for (auto networkObj : networkGameObjects)
+		clientRep->addToBeReplicatedInstance(networkObj.first);
+
+	clientReplicationInfos.push_back(clientRep);
 }
 
 std::vector<const mog::network::InternetAddress *>  mog::network::NetworkManager::getClients() const

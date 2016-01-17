@@ -27,7 +27,7 @@ namespace mog
 		{
 			bool gameHasLevelObjects(Game *game, Level *level)
 			{
-				for (auto gameO : clientGame->getGameObjects())
+				for (auto gameO : clientGame1->getGameObjects())
 				{
 					bool has = false;
 					for (auto levelO : level->getGameObjects())
@@ -51,10 +51,10 @@ namespace mog
 			MockLevel level;
 			level.initialGameObjects();
 
-			serverManager->sendMessage(LoadLevelMessage(level.getID()), network::InternetAddress(clientPort));
-			clientManager->update();
+			serverManager->sendMessage(LoadLevelMessage(level.getID()), network::InternetAddress(clientPort1));
+			clientManager1->update();
 
-			CHECK_TRUE(gameHasLevelObjects(clientGame, &level));
+			CHECK_TRUE(gameHasLevelObjects(clientGame1, &level));
 
 			LevelDatabase::clear();
 		}

@@ -29,21 +29,23 @@ int mog::network::MockSocket::receive(Address &sender, void * data, int size)
 	if (messages.empty())
 		return 0;
 
-	char *newData = messages.begin()->second.getData();
-	strcpy_s((char*)data, size, newData);
+	auto &firstClientMessages = messages.begin()->second;
 
-	int bufferSize = messages.begin()->second.getSize();
+	std::string firstMessage = *(firstClientMessages.begin());
+
+	strcpy_s((char*)data, size, firstMessage.c_str());
+
 	sender.setPort(messages.begin()->first);
 
-	delete[]newData;
-	messages.begin()->second.clear();
+	firstClientMessages.erase(firstClientMessages.begin());
 
-	messages.erase(messages.begin());
+	if (firstClientMessages.empty())
+		messages.erase(messages.begin());
 
-	return bufferSize;
+	return firstMessage.size() + 1;
 }
 
 void mog::network::MockSocket::storeMessage(unsigned senderPort, const char * data)
 {
-	messages[senderPort].write(data);
+	messages[senderPort].push_back(data);
 }

@@ -4,6 +4,8 @@
 #include "Engine/Core/Buffer.h"
 
 #include <map>
+#include <vector>
+#include <string>
 
 namespace mog
 {
@@ -27,7 +29,7 @@ namespace mog
 		private:
 			unsigned port;
 
-			std::map<unsigned, Buffer> messages;
+			std::map<unsigned, std::vector<std::string> > messages;
 			MockSocketDataBase *db;
 
 		};

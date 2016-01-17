@@ -20,33 +20,42 @@ namespace mog
 			MockSocketDataBase db;
 
 			ServerGame *serverGame;
-			ClientGame *clientGame;
+			ClientGame *clientGame1;
+			ClientGame *clientGame2;
 
 			NetworkManager *serverManager;
-			NetworkManager *clientManager;
+			NetworkManager *clientManager1;
+			NetworkManager *clientManager2;
 
-			unsigned clientPort = 8082;
 			unsigned serverPort = 8081;
+			unsigned clientPort1 = 8082;
+			unsigned clientPort2 = 8083;
+
 
 			void setup() override
 			{
 				serverGame = new ServerGame();
-				clientGame = new ClientGame();
+				clientGame1 = new ClientGame();
+				clientGame2 = new ClientGame();
 
 				serverManager = serverGame->getNetworkManager();
-				clientManager = clientGame->getNetworkManager();
+				clientManager1 = clientGame1->getNetworkManager();
+				clientManager2 = clientGame2->getNetworkManager();
 
 				serverManager->setSocket(new MockSocket(&db));
-				clientManager->setSocket(new MockSocket(&db));
+				clientManager1->setSocket(new MockSocket(&db));
+				clientManager2->setSocket(new MockSocket(&db));
 
 				serverManager->setPort(serverPort);
-				clientManager->setPort(clientPort);
+				clientManager1->setPort(clientPort1);
+				clientManager2->setPort(clientPort2);
 			}
 
 			void teardown() override
 			{
 				delete serverGame;
-				delete clientGame;
+				delete clientGame1;
+				delete clientGame2;
 
 				MessageDatabase::clear();
 			}
