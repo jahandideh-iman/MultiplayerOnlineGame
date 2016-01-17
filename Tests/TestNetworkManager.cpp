@@ -103,7 +103,7 @@ namespace mog
 
 			clientGame1->addGameObject(gameObject);
 
-			CHECK_EQUAL(gameObject, clientManager1->findNetworkGameObjectByInstanceId(gameObject->getInstanceId()));
+			CHECK_EQUAL(gameObject, clientManager1->findNetworkGameObject(gameObject->getInstanceId()));
 		}
 
 		TEST(NetworkManager, InstantiateNetworkGameObjectToClientWhenAddedToGame)
@@ -173,8 +173,8 @@ namespace mog
 			clientManager1->update();
 			clientManager2->update();
 
-			auto client1InstantiatedObject = clientManager1->findNetworkGameObjectByInstanceId(gameObject->getInstanceId());
-			auto client2InstantiatedObject = clientManager2->findNetworkGameObjectByInstanceId(gameObject->getInstanceId());
+			auto client1InstantiatedObject = clientManager1->findNetworkGameObject(gameObject->getInstanceId());
+			auto client2InstantiatedObject = clientManager2->findNetworkGameObject(gameObject->getInstanceId());
 
 			serverManager->update();
 			clientManager1->update();
@@ -183,8 +183,8 @@ namespace mog
 			CHECK_TRUE(clientManager1->hasNetworkGameObject(gameObject->getInstanceId()));
 			CHECK_TRUE(clientManager2->hasNetworkGameObject(gameObject->getInstanceId()));
 
-			CHECK_EQUAL(client1InstantiatedObject, clientManager1->findNetworkGameObjectByInstanceId(gameObject->getInstanceId()));
-			CHECK_EQUAL(client2InstantiatedObject, clientManager2->findNetworkGameObjectByInstanceId(gameObject->getInstanceId()));
+			CHECK_EQUAL(client1InstantiatedObject, clientManager1->findNetworkGameObject(gameObject->getInstanceId()));
+			CHECK_EQUAL(client2InstantiatedObject, clientManager2->findNetworkGameObject(gameObject->getInstanceId()));
 
 			CHECK_EQUAL(clientGame1ObjectSize + 1, clientGame1->getGameObjects().size());
 			CHECK_EQUAL(clientGame2ObjectSize + 1, clientGame2->getGameObjects().size());

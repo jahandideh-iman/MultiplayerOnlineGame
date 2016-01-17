@@ -57,7 +57,7 @@ namespace mog
 			serverManager->sendMessage(ReplicateStateMessage(gameObject), network::InternetAddress(clientPort1));
 			clientManager1->update();
 
-			auto replicatedObject = dynamic_cast<MockNonEmptyNetworkGameObject *> (clientManager1->findNetworkGameObjectByInstanceId(gameObject->getInstanceId()));
+			auto replicatedObject = dynamic_cast<MockNonEmptyNetworkGameObject *> (clientManager1->findNetworkGameObject(gameObject->getInstanceId()));
 
 			CHECK_EQUAL(gameObject->variable1.getValue(), replicatedObject->variable1.getValue());
 			CHECK_EQUAL(gameObject->variable2.getValue(), replicatedObject->variable2.getValue());

@@ -42,7 +42,7 @@ namespace mog
 			void addNetworkGameObject(NetworkGameObject *o);
 			//void addNetworkComponent(NetworkComponent *c);
 
-			NetworkGameObject * findNetworkGameObjectByInstanceId(unsigned instaceId) const;
+			NetworkGameObject * findNetworkGameObject(unsigned instaceId) const;
 
 			//NOTE: For testing
 			bool hasNetworkGameObject(const NetworkGameObject *gameObj) const;

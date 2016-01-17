@@ -32,7 +32,7 @@ namespace mog
 			serverManager->sendMessage(ReplicateInstanceMessage(&networkObject), network::InternetAddress(clientPort1));
 			clientManager1->update();
 
-			auto replicatedObject = dynamic_cast<const MockNetworkGameObject *> (clientManager1->findNetworkGameObjectByInstanceId(networkObject.getInstanceId()));
+			auto replicatedObject = dynamic_cast<const MockNetworkGameObject *> (clientManager1->findNetworkGameObject(networkObject.getInstanceId()));
 
 			CHECK_EQUAL(networkObject.getInstanceId(), replicatedObject->getInstanceId());
 		}

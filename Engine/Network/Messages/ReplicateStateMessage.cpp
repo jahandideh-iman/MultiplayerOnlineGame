@@ -38,6 +38,6 @@ void mog::network::ReplicateStateMessage::executeOnClient(ClientGame *game, cons
 	std::string instanceId = parameters.get("instanceId");
 	std::string states = parameters.get("states");
 
-	auto networkObject = game->getNetworkManager()->findNetworkGameObjectByInstanceId(std::stoi(instanceId));
+	auto networkObject = game->getNetworkManager()->findNetworkGameObject(std::stoi(instanceId));
 	networkObject->readState(&Buffer(states));
 }

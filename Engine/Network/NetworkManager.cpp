@@ -187,7 +187,7 @@ void mog::network::NetworkManager::processReplications()
 		while (!clientRep->isEmpty())
 		{
 			auto instanceId = clientRep->getToBeReplicatedInstance();
-			sendMessage(ReplicateInstanceMessage(findNetworkGameObjectByInstanceId(instanceId)), *(clientRep->getAddress()));
+			sendMessage(ReplicateInstanceMessage(findNetworkGameObject(instanceId)), *(clientRep->getAddress()));
 			clientRep->removeToBeReplicatedInstance(instanceId);
 		}	
 	}
@@ -225,10 +225,10 @@ bool mog::network::NetworkManager::hasNetworkGameObject(const NetworkGameObject 
 
 bool mog::network::NetworkManager::hasNetworkGameObject(unsigned instanceId) const
 {
-	return findNetworkGameObjectByInstanceId(instanceId) != nullptr;
+	return findNetworkGameObject(instanceId) != nullptr;
 }
 
-mog::network::NetworkGameObject * mog::network::NetworkManager::findNetworkGameObjectByInstanceId(unsigned instaceId) const
+mog::network::NetworkGameObject * mog::network::NetworkManager::findNetworkGameObject(unsigned instaceId) const
 {
 	auto p = networkGameObjects.find(instaceId);
 

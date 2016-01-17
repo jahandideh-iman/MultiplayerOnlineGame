@@ -24,7 +24,7 @@ void mog::network::RemoteMethodCallMessage::executeOnServer(ServerGame *game, co
 	std::string instanceId = parameters.get("instanceId");
 	std::string method = parameters.get("method");
 
-	auto networkObject = game->getNetworkManager()->findNetworkGameObjectByInstanceId(std::stoi(instanceId));
+	auto networkObject = game->getNetworkManager()->findNetworkGameObject(std::stoi(instanceId));
 	networkObject->callMethod(method);
 }
 
