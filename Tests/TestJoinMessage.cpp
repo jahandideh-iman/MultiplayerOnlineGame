@@ -15,7 +15,7 @@ namespace mog
 		{
 			REGISTER_MESSAGE(JoinMessage);
 
-			clientManager->sendMessage(JoinMessage("playerName"), network::InternetAddress(serverPort));
+			clientManager->sendMessage(JoinMessage("playerName"), InternetAddress(serverPort));
 			serverManager->update();
 
 			CHECK_TRUE(serverGame->getPlayerInfoByName("playerName") != nullptr);
@@ -25,7 +25,7 @@ namespace mog
 		{
 			REGISTER_MESSAGE(JoinMessage);
 
-			clientManager->sendMessage(JoinMessage("playerName"), network::InternetAddress(serverPort));
+			clientManager->sendMessage(JoinMessage("playerName"), InternetAddress(serverPort));
 			serverManager->update();
 
 			CHECK_EQUAL(clientPort,serverManager->getClients()[0]->getPort());

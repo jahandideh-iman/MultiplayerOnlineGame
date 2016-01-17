@@ -14,6 +14,8 @@ namespace mog
 		class InternetAddress;
 		class NetworkGame;
 
+		class ClientReplicationInfo;
+
 		class NetworkManager
 		{
 		public:
@@ -31,7 +33,7 @@ namespace mog
 
 			void addClient(const InternetAddress *address);
 			//NOTE: For testing
-			const std::vector<const InternetAddress *> &getClients() const;
+			std::vector<const InternetAddress *> getClients() const;
 
 			template<typename T>
 			bool initialSocket() { socket = new T(); return true; }
@@ -44,6 +46,8 @@ namespace mog
 
 			//NOTE: For testing
 			bool hasNetworkGameObject(const NetworkGameObject *gameObj) const;
+			//NOTE: For testing
+			bool hasNetworkGameObject(unsigned instanceId) const;
 
 		private:
 			ID extractMessageId(char* message, unsigned size);
@@ -59,7 +63,7 @@ namespace mog
 			unsigned lastNetworkGameObjectId = 0;
 			std::map<unsigned, NetworkGameObject *> networkGameObjects;
 
-			std::vector<const InternetAddress *> clientAddresses;
+			std::vector<ClientReplicationInfo *> clientReplicationInfos;
 
 		};
 	}

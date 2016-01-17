@@ -5,6 +5,10 @@
 
 #include "Engine/Network/NetworkGameObject.h"
 #include "Engine/Network/NetworkComponent.h"
+#include "Engine/Network/InternetAddress.h"
+#include "Engine/Network/ConstructorDatabase.h"
+
+#include "Engine/Network/Messages/ReplicateInstanceMessage.h"
 
 
 namespace mog
@@ -14,6 +18,19 @@ namespace mog
 
 		TEST_GROUP_BASE(NetworkManager, NetworkBase)
 		{
+		public:
+			void setup() override
+			{
+				NetworkBase::setup();
+
+			}
+
+			void teardown() override
+			{
+				NetworkBase::teardown();
+				MessageDatabase::clear();
+				ConstructorDatabase::clear();
+			}
 		};
 
 		TEST(NetworkManager, CallsExecuteOnClientMethodInClient)
@@ -87,6 +104,47 @@ namespace mog
 			clientGame->addGameObject(gameObject);
 
 			CHECK_EQUAL(gameObject, clientManager->findNetworkGameObjectByInstanceId(gameObject->getInstanceId()));
+		}
+
+		TEST(NetworkManager, InstantiateNetworkGameObjectToClientWhenAddedToGame)
+		{
+			REGISTER_MESSAGE(ReplicateInstanceMessage);
+			REGISTER_CONSTRUCTOR(MockNetworkGameObject);
+
+			auto clientGameObjectSize = clientGame->getGameObjects().size();
+			auto gameObject = new MockNetworkGameObject();
+
+			//NOTE: Client must be added first
+			serverManager->addClient(&InternetAddress(clientPort));
+
+			serverGame->addGameObject(gameObject);
+
+			serverManager->update();
+			clientManager->update();
+
+			CHECK_TRUE(clientManager->hasNetworkGameObject(gameObject->getInstanceId()));
+			CHECK_EQUAL(clientGameObjectSize + 1, clientGame->getGameObjects().size());
+		}
+
+		TEST(NetworkManager, DoesNotInstantiateAlreadyInstantiatedNetworkGameObject)
+		{
+			REGISTER_MESSAGE(ReplicateInstanceMessage);
+			REGISTER_CONSTRUCTOR(MockNetworkGameObject);
+
+			auto gameObject = new MockNetworkGameObject();
+
+			serverGame->addGameObject(gameObject);
+			serverManager->addClient(&InternetAddress(clientPort));
+
+			serverManager->update();
+			clientManager->update();
+
+			auto clinetInstantiatedObject = clientManager->findNetworkGameObjectByInstanceId(gameObject->getInstanceId());
+
+			serverManager->update();
+			clientManager->update();
+
+			CHECK_EQUAL(clinetInstantiatedObject, clientManager->findNetworkGameObjectByInstanceId(gameObject->getInstanceId()));
 		}
 	}
 }

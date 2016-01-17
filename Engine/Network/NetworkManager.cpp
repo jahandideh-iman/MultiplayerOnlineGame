@@ -4,6 +4,7 @@
 #include "Engine/Network/Messages/Message.h"
 #include "Engine/Network/Messages/MessageDatabase.h"
 #include "Engine/Network/Messages/ReplicateStateMessage.h"
+#include "Engine/Network/Messages/ReplicateInstanceMessage.h"
 
 #include "Engine/Network/GameSocket.h"
 #include "Engine/Network/NetworkGame.h"
@@ -12,6 +13,51 @@
 #include "Engine/Network/ClientGame.h"
 #include "Engine/Network/ServerGame.h"
 
+#include <set>
+
+namespace mog
+{
+	namespace network
+	{
+		class ClientReplicationInfo
+		{
+		public:
+			ClientReplicationInfo(const InternetAddress * address)
+			{
+				this->address = address;
+			}
+
+			const InternetAddress *getAddress()
+			{
+				return address;
+			}
+
+			void addToBeReplicatedInstance(unsigned  instanceId)
+			{
+				toBeReplicatedInstances.insert(instanceId);
+			}
+
+			void removeToBeReplicatedInstance(unsigned  instanceId)
+			{
+				toBeReplicatedInstances.erase(instanceId);
+			}
+
+			unsigned getToBeReplicatedInstance()
+			{
+				return *(toBeReplicatedInstances.begin());
+			}
+
+			bool isEmpty()
+			{
+				return toBeReplicatedInstances.empty();
+			}
+
+		private:
+			const InternetAddress *address = nullptr;
+			std::set<unsigned > toBeReplicatedInstances;
+		};
+	}
+}
 
 mog::network::NetworkManager::NetworkManager(NetworkGame *game)
 {
@@ -22,6 +68,8 @@ mog::network::NetworkManager::NetworkManager(NetworkGame *game)
 mog::network::NetworkManager::~NetworkManager()
 {
 	delete socket;
+	for (auto client : clientReplicationInfos)
+		delete client;
 }
 
 
@@ -94,8 +142,14 @@ void mog::network::NetworkManager::addNetworkGameObject(NetworkGameObject *o)
 	{
 		o->setInstanceId(lastNetworkGameObjectId);
 		lastNetworkGameObjectId++;
+
+		for (auto client : clientReplicationInfos)
+		{
+			client->addToBeReplicatedInstance(o->getInstanceId());
+		}
 	}
-	networkGameObjects.emplace(o->getInstanceId(), o);
+
+	networkGameObjects[o->getInstanceId()] = o;
 }
 
 void mog::network::NetworkManager::processMessages()
@@ -119,12 +173,18 @@ void mog::network::NetworkManager::processMessages()
 }
 
 void mog::network::NetworkManager::processReplications()
-{
-	
-	for (auto netObject : networkGameObjects)
-	{
+{	
 
+	for (auto clientRep : clientReplicationInfos)
+	{
+		while (!clientRep->isEmpty())
+		{
+			auto instanceId = clientRep->getToBeReplicatedInstance();
+			sendMessage(ReplicateInstanceMessage(findNetworkGameObjectByInstanceId(instanceId)), *(clientRep->getAddress()));
+			clientRep->removeToBeReplicatedInstance(instanceId);
+		}	
 	}
+
 	//for (auto elem : networkComponents)
 	//{
 	//	unsigned index = elem.first;
@@ -145,12 +205,17 @@ void mog::network::NetworkManager::processReplications()
 
 void mog::network::NetworkManager::addClient(const InternetAddress *address)
 {
-	clientAddresses.emplace_back(address);
+	clientReplicationInfos.emplace_back(new ClientReplicationInfo(address));
 }
 
-const std::vector<const mog::network::InternetAddress *> & mog::network::NetworkManager::getClients() const
+std::vector<const mog::network::InternetAddress *>  mog::network::NetworkManager::getClients() const
 {
-	return clientAddresses;
+	std::vector<const InternetAddress *> addresses;
+
+	for (auto client : clientReplicationInfos)
+		addresses.push_back(client->getAddress());
+
+	return addresses;
 }
 
 bool mog::network::NetworkManager::hasNetworkGameObject(const NetworkGameObject *gameObj) const
@@ -164,7 +229,16 @@ bool mog::network::NetworkManager::hasNetworkGameObject(const NetworkGameObject 
 	return false;
 }
 
+bool mog::network::NetworkManager::hasNetworkGameObject(unsigned instanceId) const
+{
+	return findNetworkGameObjectByInstanceId(instanceId) != nullptr;
+}
+
 mog::network::NetworkGameObject * mog::network::NetworkManager::findNetworkGameObjectByInstanceId(unsigned instaceId) const
 {
-	return networkGameObjects.find(instaceId)->second;
+	auto p = networkGameObjects.find(instaceId);
+
+	if (p == networkGameObjects.end())
+		return nullptr;
+	return p->second;
 }

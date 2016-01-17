@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Engine/Network/NetworkGameObject.h"
+#include <string>
 
 namespace mog
 {
@@ -12,6 +13,7 @@ namespace mog
 			MockNetworkGameObject();
 
 			AUTOID(MockNetworkGameObject, getNetworkID);
+
 		};
 
 	}
