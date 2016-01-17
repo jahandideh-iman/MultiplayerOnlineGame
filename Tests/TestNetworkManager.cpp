@@ -131,10 +131,11 @@ namespace mog
 			REGISTER_MESSAGE(ReplicateInstanceMessage);
 			REGISTER_CONSTRUCTOR(MockNetworkGameObject);
 
+			auto clientGameObjectSize = clientGame->getGameObjects().size();
 			auto gameObject = new MockNetworkGameObject();
 
-			serverGame->addGameObject(gameObject);
 			serverManager->addClient(&InternetAddress(clientPort));
+			serverGame->addGameObject(gameObject);
 
 			serverManager->update();
 			clientManager->update();
@@ -145,6 +146,8 @@ namespace mog
 			clientManager->update();
 
 			CHECK_EQUAL(clinetInstantiatedObject, clientManager->findNetworkGameObjectByInstanceId(gameObject->getInstanceId()));
+			CHECK_TRUE(clientManager->hasNetworkGameObject(gameObject->getInstanceId()));
+			CHECK_EQUAL(clientGameObjectSize + 1, clientGame->getGameObjects().size());
 		}
 	}
 }
