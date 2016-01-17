@@ -14,56 +14,45 @@ namespace mog
 		class InternetAddress;
 		class NetworkGame;
 
-		class ClientReplicationInfo;
-
 		class NetworkManager
 		{
 		public:
 			NetworkManager(NetworkGame *game);
-			~NetworkManager();
+			virtual ~NetworkManager();
 
-			void update(float dt = 0);
-
-			//NOTE: For testing
-			void setSocket(GameSocket *socket);
-
-			void setPort(unsigned port);
+			virtual void update(float dt = 0);
 
 			void sendMessage(const Message &m, const InternetAddress &address);
 
-			void addClient(const InternetAddress *address);
-			//NOTE: For testing
-			std::vector<const InternetAddress *> getClients() const;
-
+			void setPort(unsigned port);
 			template<typename T>
 			bool initialSocket() { socket = new T(); return true; }
 
-
-			void addNetworkGameObject(NetworkGameObject *o);
-			//void addNetworkComponent(NetworkComponent *c);
-
-			NetworkGameObject * findNetworkGameObject(unsigned instaceId) const;
+			virtual void addNetworkGameObject(NetworkGameObject *o) = 0;
+			NetworkGameObject *findNetworkGameObject(unsigned instaceId) const;
+		
+			virtual void executeMessage(const Message &meesage, const ParameterContainer &parameters, const InternetAddress &senderAddress) = 0;
 
 			//NOTE: For testing
 			bool hasNetworkGameObject(const NetworkGameObject *gameObj) const;
 			//NOTE: For testing
 			bool hasNetworkGameObject(unsigned instanceId) const;
 
+			//NOTE: For testing
+			void setSocket(GameSocket *socket);
+
 		private:
 			ID extractMessageId(char* message, unsigned size);
 			Buffer extractMessageData(char* message, unsigned size);
 
 			void processMessages();
-			void processReplications();
+		protected:
+			std::map<unsigned, NetworkGameObject *> networkGameObjects;
+			NetworkGame *game = nullptr;
 
 		private:
-			NetworkGame *game = nullptr;
+
 			GameSocket *socket = nullptr;
-
-			unsigned lastNetworkGameObjectId = 0;
-			std::map<unsigned, NetworkGameObject *> networkGameObjects;
-
-			std::vector<ClientReplicationInfo *> clientReplicationInfos;
 
 		};
 	}

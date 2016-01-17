@@ -2,9 +2,11 @@
 #include "Engine/Network/NetworkManager.h"
 #include "Engine/Network/Messages/LoadLevelMessage.h"
 #include "Engine/Network/Messages/ReplicateInstanceMessage.h"
+#include "Engine/Network/ServerNetworkManager.h"
 
 mog::network::ServerGame::ServerGame()
 {
+	networkManager = new ServerNetworkManager(this);
 }
 
 
@@ -17,7 +19,7 @@ mog::network::ServerGame::~ServerGame()
 void mog::network::ServerGame::joinNewPlayer(PlayerInfo *info)
 {
 	playersInfo.push_back(info);
-	getNetworkManager()->addClient(info->address);
+	dynamic_cast<ServerNetworkManager* > (getNetworkManager())->addClient(info->address);
 
 	/*network::NetworkGameObject *p = new Pawn();
 	p->setPosition(Point(200, 200));

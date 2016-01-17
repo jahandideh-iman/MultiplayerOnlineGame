@@ -42,8 +42,10 @@ namespace mog
 			REGISTER_CONSTRUCTOR(MockNetworkGameObjectWithMethod);
 
 			auto networkObject = new MockNetworkGameObjectWithMethod();
+			initialClientNetworkGameObject(networkObject);
 
 			clientGame1->addGameObject(networkObject);
+			
 
 			serverManager->sendMessage(RemoteMethodCallMessage(networkObject, "method"), network::InternetAddress(clientPort1));
 			clientManager1->update();

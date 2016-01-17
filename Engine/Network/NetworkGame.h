@@ -19,7 +19,7 @@ namespace mog
 
 			NetworkManager *getNetworkManager();
 
-		private:
+		protected:
 			NetworkManager *networkManager = nullptr;
 		};
 	}

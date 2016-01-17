@@ -7,6 +7,8 @@
 #include "Engine/Network/ServerGame.h"
 #include "Engine/Network/Messages/MessageDatabase.h"
 
+#include "Engine/Network/ServerNetworkManager.h"
+
 #include "MockSocketDataBase.h"
 #include "MockSocket.h"
 
@@ -23,13 +25,15 @@ namespace mog
 			ClientGame *clientGame1;
 			ClientGame *clientGame2;
 
-			NetworkManager *serverManager;
+			ServerNetworkManager *serverManager;
 			NetworkManager *clientManager1;
 			NetworkManager *clientManager2;
 
 			unsigned serverPort = 8081;
 			unsigned clientPort1 = 8082;
 			unsigned clientPort2 = 8083;
+
+			unsigned lastClientInstanceId = 0;
 
 
 			void setup() override
@@ -38,7 +42,7 @@ namespace mog
 				clientGame1 = new ClientGame();
 				clientGame2 = new ClientGame();
 
-				serverManager = serverGame->getNetworkManager();
+				serverManager = dynamic_cast<ServerNetworkManager *> (serverGame->getNetworkManager());
 				clientManager1 = clientGame1->getNetworkManager();
 				clientManager2 = clientGame2->getNetworkManager();
 
@@ -58,6 +62,15 @@ namespace mog
 				delete clientGame2;
 
 				MessageDatabase::clear();
+			}
+
+			//NOTE: These parameters are normaly set in server
+			void initialClientNetworkGameObject(NetworkGameObject *obj)
+			{
+				obj->setInstanceId(lastClientInstanceId);
+				obj->setIsReplica(true);
+
+				lastClientInstanceId++;
 			}
 		};
 	}

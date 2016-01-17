@@ -90,6 +90,9 @@ namespace mog
 			auto gameObject1 = new MockNetworkGameObject();
 			auto gameObject2 = new MockNetworkGameObject();
 
+			initialClientNetworkGameObject(gameObject1);
+			initialClientNetworkGameObject(gameObject2);
+
 			clientGame1->addGameObject(gameObject1);
 			clientGame1->addGameObject(gameObject2);
 
@@ -100,6 +103,7 @@ namespace mog
 		TEST(NetworkManager, NetworkInstanceIdIsCorrect)
 		{
 			auto gameObject = new MockNetworkGameObject();
+			initialClientNetworkGameObject(gameObject);
 
 			clientGame1->addGameObject(gameObject);
 

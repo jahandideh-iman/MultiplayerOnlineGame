@@ -4,7 +4,6 @@
 
 mog::network::NetworkGame::NetworkGame()
 {
-	networkManager = new NetworkManager(this);
 }
 
 
