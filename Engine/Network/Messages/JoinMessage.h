@@ -1,11 +1,11 @@
 #pragma once
-#include "Engine/Network/Command.h"
+#include "Engine/Network/Messages/Message.h"
 namespace mog
 {
 	namespace network
 	{
 		class JoinMessage :
-			public Command
+			public Message
 		{
 		public:
 			JoinMessage(std::string playerName);

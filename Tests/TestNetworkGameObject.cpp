@@ -1,35 +1,15 @@
 #include "CppUTest/TestHarness.h"
 #include "Engine/Network/NetworkGameObject.h"
 #include "Engine/Network/NetworkComponent.h"
+#include "Engine/Core/Game.h"
+
 #include "MockNetworkGameObject.h"
+#include "MockNetworkGameObjectWithMethod.h"
 
 namespace mog
 {
 	namespace network
 	{
-
-		class MockNetworkGameObjectWithMethod : public NetworkGameObject
-		{
-		public:
-			MockNetworkGameObjectWithMethod()
-			{
-			}
-
-			void initialRegisteredMethods() override
-			{
-				registerMethod("method", std::bind(&mog::network::MockNetworkGameObjectWithMethod::method, this));
-			}
-
-			AUTOID(MockNetworkGameObjectWithMethod, getNetworkID);
-
-			void method()
-			{
-				isMethodCalled = true;
-			}
-
-			bool isMethodCalled = false;
-		};
-
 		TEST_GROUP(NetworkGameObject)
 		{
 
@@ -97,6 +77,16 @@ namespace mog
 			networkObject.callMethod("method");
 
 			CHECK_TRUE(networkObject.isMethodCalled)
+		}
+
+		TEST(NetworkGameObject, InitialRegisteredMethodsIsCalledWhenAddedToGame)
+		{
+			auto networkObject = new MockNetworkGameObjectWithMethod();
+			Game game;
+
+			game.addGameObject(networkObject);
+
+			CHECK_TRUE(networkObject->isInitialRegisteredMethodsCalled);
 		}
 	}
 }

@@ -69,6 +69,9 @@
     <ClCompile Include="TestReplicateInstanceMessage.cpp">
       <Filter>Source Files\Messages</Filter>
     </ClCompile>
+    <ClCompile Include="TestRemoteMethodCallMessage.cpp">
+      <Filter>Source Files\Messages</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MockSocket.h">
@@ -84,6 +87,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MockNetworkGameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MockNetworkGameObjectWithMethod.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

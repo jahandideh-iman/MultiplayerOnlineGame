@@ -90,6 +90,7 @@
     <ClCompile Include="TestNetworkGameObject.cpp" />
     <ClCompile Include="TestNetworkManager.cpp" />
     <ClCompile Include="TestParameterContainer.cpp" />
+    <ClCompile Include="TestRemoteMethodCallMessage.cpp" />
     <ClCompile Include="TestReplicateInstanceMessage.cpp" />
     <ClCompile Include="TestReplicateStateMessage.cpp" />
   </ItemGroup>
@@ -97,6 +98,7 @@
     <ClInclude Include="MockGameObject.h" />
     <ClInclude Include="MockMessage.h" />
     <ClInclude Include="MockNetworkGameObject.h" />
+    <ClInclude Include="MockNetworkGameObjectWithMethod.h" />
     <ClInclude Include="MockSocketDataBase.h" />
     <ClInclude Include="MockSocket.h" />
   </ItemGroup>

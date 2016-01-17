@@ -35,7 +35,6 @@ namespace mog
 			auto replicatedObject = dynamic_cast<const MockNetworkGameObject *> (clientManager->findNetworkGameObjectByInstanceId(networkObject.getInstanceId()));
 
 			CHECK_EQUAL(networkObject.getInstanceId(), replicatedObject->getInstanceId());
-
 		}
 	}
 }

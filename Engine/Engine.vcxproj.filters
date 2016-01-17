@@ -16,9 +16,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Network\Command.cpp">
-      <Filter>Network</Filter>
-    </ClCompile>
     <ClCompile Include="Network\ConstructorDatabase.cpp">
       <Filter>Network</Filter>
     </ClCompile>
@@ -100,11 +97,11 @@
     <ClCompile Include="Network\Messages\ReplicateStateMessage.cpp">
       <Filter>Network\Messages</Filter>
     </ClCompile>
+    <ClCompile Include="Network\Messages\RemoteMethodCallMessage.cpp">
+      <Filter>Network\Messages</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Network\Command.h">
-      <Filter>Network</Filter>
-    </ClInclude>
     <ClInclude Include="Network\ConstructorDatabase.h">
       <Filter>Network</Filter>
     </ClInclude>
@@ -196,6 +193,9 @@
       <Filter>Network\Messages</Filter>
     </ClInclude>
     <ClInclude Include="Network\Messages\ReplicateStateMessage.h">
+      <Filter>Network\Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Messages\RemoteMethodCallMessage.h">
       <Filter>Network\Messages</Filter>
     </ClInclude>
   </ItemGroup>

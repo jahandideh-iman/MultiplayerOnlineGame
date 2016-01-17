@@ -20,6 +20,9 @@ mog::network::NetworkGameObject::~NetworkGameObject()
 void mog::network::NetworkGameObject::onAddedToGame(Game *game)
 {
 	GameObject::onAddedToGame(game);
+
+	initialRegisteredMethods();
+
 	NetworkGame *netGame = dynamic_cast<NetworkGame*>(game);
 	if (netGame != nullptr)
 		netGame->getNetworkManager()->addNetworkGameObject(this);

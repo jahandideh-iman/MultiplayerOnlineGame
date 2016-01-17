@@ -51,7 +51,6 @@ namespace mog
 
 			serverGame->addGameObject(gameObject);
 
-
 			serverManager->sendMessage(ReplicateInstanceMessage(gameObject), network::InternetAddress(clientPort));
 			clientManager->update();
 
