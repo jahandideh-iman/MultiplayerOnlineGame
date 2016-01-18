@@ -16,7 +16,7 @@ mog::Pawn::Pawn()
 	input->addAction(cocos2d::EventKeyboard::KeyCode::KEY_W, [this](){
 		auto clientGame = dynamic_cast<mog::network::ClientGame *> (this->getOwner());
 		if (clientGame != nullptr)
-			clientGame->remoteMethodCall("moveUp", this);
+			clientGame->callRemoteMethod("moveUp", this);
 	});
 
 	addComponent(input);

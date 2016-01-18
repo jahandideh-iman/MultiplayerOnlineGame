@@ -3,6 +3,7 @@
 #include "MockMessage.h"
 #include "MockNetworkGameObject.h"
 #include "MockNetworkGameObjectWithState.h"
+#include "MockNetworkGameObjectWithMethod.h"
 
 #include "Engine/Network/NetworkGameObject.h"
 #include "Engine/Network/NetworkComponent.h"
@@ -11,6 +12,7 @@
 
 #include "Engine/Network/Messages/ReplicateInstanceMessage.h"
 #include "Engine/Network/Messages/ReplicateStateMessage.h"
+#include "Engine/Network/Messages/RemoteMethodCallMessage.h"
 
 
 namespace mog

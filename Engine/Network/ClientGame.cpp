@@ -13,7 +13,7 @@ mog::network::ClientGame::~ClientGame()
 {
 }
 
-void mog::network::ClientGame::remoteMethodCall(std::string method, const NetworkGameObject *obj)
+void mog::network::ClientGame::callRemoteMethod(std::string method, const NetworkGameObject *obj)
 {
 	getNetworkManager()->sendMessage(RemoteMethodCallMessage(obj, method), getServerAddress());
 }

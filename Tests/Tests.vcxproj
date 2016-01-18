@@ -42,7 +42,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)$(Configuration).win32\</OutDir>
-    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
+    <PostBuildEventUseInBuild>false</PostBuildEventUseInBuild>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -83,6 +83,7 @@
     <ClCompile Include="MockSocket.cpp" />
     <ClCompile Include="NetworkBase.h" />
     <ClCompile Include="TestBuffer.cpp" />
+    <ClCompile Include="TestClientGame.cpp" />
     <ClCompile Include="TestGame.cpp" />
     <ClCompile Include="TestGameObject.cpp" />
     <ClCompile Include="TestJoinMessage.cpp" />

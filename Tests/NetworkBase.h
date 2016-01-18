@@ -33,6 +33,10 @@ namespace mog
 			unsigned clientPort1 = 8082;
 			unsigned clientPort2 = 8083;
 
+			InternetAddress serverAddress;
+			InternetAddress clientAddress1;
+			InternetAddress clientAddress2;
+
 			unsigned lastClientInstanceId = 0;
 
 
@@ -53,6 +57,9 @@ namespace mog
 				serverManager->setPort(serverPort);
 				clientManager1->setPort(clientPort1);
 				clientManager2->setPort(clientPort2);
+
+				clientGame1->setServerAddress(InternetAddress(serverPort));
+				clientGame2->setServerAddress(InternetAddress(serverPort));
 			}
 
 			void teardown() override
