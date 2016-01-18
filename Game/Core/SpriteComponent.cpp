@@ -1,6 +1,7 @@
 #include "SpriteComponent.h"
 #include "Engine/Core/Game.h"
 #include "Engine/Core/GameObject.h"
+#include <assert.h>
 
 
 
@@ -16,7 +17,9 @@ mog::SpriteComponent::~SpriteComponent()
 
 void mog::SpriteComponent::addSelfToGame(Game *g)
 {
-	//g->addChild(sprite, sprite->getLocalZOrder());
+	auto cocosGame = dynamic_cast<cocos2d::Layer*> (g);
+	assert(cocosGame != nullptr);
+	cocosGame->addChild(sprite, sprite->getLocalZOrder());
 }
 
 void mog::SpriteComponent::update(float dt)

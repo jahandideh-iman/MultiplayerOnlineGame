@@ -15,6 +15,8 @@ namespace mog
 			NetworkGame();
 			virtual ~NetworkGame();
 
+			void update(float dt = 0) override;
+
 			virtual NetworkGameType getType() const{ return T_None; }
 
 			NetworkManager *getNetworkManager();

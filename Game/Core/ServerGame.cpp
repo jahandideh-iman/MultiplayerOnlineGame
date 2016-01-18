@@ -4,6 +4,7 @@
 #include "Engine/Network/Messages/LoadLevelMessage.h"
 #include "Engine/Network/Messages/ReplicateInstanceMessage.h"
 #include "Core/Pawn.h"
+#include "Engine/Network/UDPGameSocket.h"
 
 USING_NS_CC;
 
@@ -48,6 +49,7 @@ bool ServerGame::init()
 	this->scheduleUpdate();
 
 	
+	getNetworkManager()->setSocket(new network::UDPGameSocket());
 	getNetworkManager()->setPort(8082);
 
 
@@ -69,4 +71,9 @@ void ServerGame::menuCloseCallback(Ref* pSender)
 void ServerGame::update(float dt)
 {
 	network::ServerGame::update(dt);
+}
+
+void mog::ServerGame::onPawnCreated(network::NetworkPawn *p)
+{
+	p->setPosition(Point(50,50));
 }

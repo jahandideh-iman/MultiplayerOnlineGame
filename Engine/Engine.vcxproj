@@ -160,6 +160,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="Core\Level.cpp" />
     <ClCompile Include="Core\LevelDatabase.cpp" />
     <ClCompile Include="Core\ParameterContainer.cpp" />
+    <ClCompile Include="Core\SerializablePoint.cpp" />
     <ClCompile Include="Core\Utilities.cpp" />
     <ClCompile Include="Network\ClientGame.cpp" />
     <ClCompile Include="Network\ClientNetworkManager.cpp" />
@@ -196,6 +197,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="Core\Macros.h" />
     <ClInclude Include="Core\ParameterContainer.h" />
     <ClInclude Include="Core\Serializable.h" />
+    <ClInclude Include="Core\SerializablePoint.h" />
     <ClInclude Include="Core\SerializablePrimitive.h" />
     <ClInclude Include="Core\Types.h" />
     <ClInclude Include="Core\Utilities.h" />

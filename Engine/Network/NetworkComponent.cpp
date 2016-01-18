@@ -16,6 +16,11 @@ void mog::network::NetworkComponent::addVariable(const std::string &name, Serial
 	replicationVars.emplace(name, var);
 }
 
+void mog::network::NetworkComponent::removeVariable(const std::string &name)
+{
+	replicationVars.erase(name);
+}
+
 void mog::network::NetworkComponent::addSelfToGame(Game *g)
 {
 	/*NetworkGame *netGame = dynamic_cast<NetworkGame*>(g);
@@ -44,9 +49,12 @@ void mog::network::NetworkComponent::readReplications(const Buffer *buffer)
 	Buffer varBuffer;
 	for (auto var : replicationVars)
 	{
-		varBuffer.write(container.get(var.first));
-		var.second->read(&varBuffer);
-		varBuffer.clear();
+		if (container.get(var.first) != "")
+		{
+			varBuffer.write(container.get(var.first));
+			var.second->read(&varBuffer);
+			varBuffer.clear();
+		}
+
 	}
 }
-

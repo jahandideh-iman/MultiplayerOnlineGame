@@ -17,6 +17,7 @@ namespace mog
 			~NetworkComponent();
 
 			void addVariable(const std::string &name, Serializable *var);
+			void removeVariable(const std::string &name);
 
 			void addSelfToGame(Game *g);
 

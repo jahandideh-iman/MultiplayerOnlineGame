@@ -8,7 +8,9 @@
 #include "Engine/Network/Messages/JoinMessage.h"
 #include "Engine/Network/Messages/ReplicateInstanceMessage.h"
 #include "Engine/Network/Messages/ReplicateStateMessage.h"
+#include "Engine/Network/Messages/RemoteMethodCallMessage.h"
 #include "Engine/Network/UDPGameSocket.h"
+#include "Engine/Network/NetworkPawnFactory.h"
 
 #include "Core/Pawn.h"
 
@@ -16,6 +18,12 @@ USING_NS_CC;
 
 using mog::network::NetworkManager;
 using mog::Pawn;
+
+using mog::network::LoadLevelMessage;
+using mog::network::JoinMessage;
+using mog::network::ReplicateStateMessage;
+using mog::network::ReplicateInstanceMessage;
+using mog::network::RemoteMethodCallMessage;
 
 AppDelegate::AppDelegate() {
 }
@@ -76,10 +84,17 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
 	REGISTER_CONSTRUCTOR(Pawn);
 
-	mog::network::MessageDatabase::get()->registerMessage(new mog::network::LoadLevelMessage());
-	mog::network::MessageDatabase::get()->registerMessage(new mog::network::JoinMessage());
-	mog::network::MessageDatabase::get()->registerMessage(new mog::network::ReplicateInstanceMessage());
-	mog::network::MessageDatabase::get()->registerMessage(new mog::network::ReplicateStateMessage());
+
+	REGISTER_MESSAGE(LoadLevelMessage);
+	REGISTER_MESSAGE(JoinMessage);
+	REGISTER_MESSAGE(ReplicateInstanceMessage);
+	REGISTER_MESSAGE(ReplicateStateMessage);
+	REGISTER_MESSAGE(RemoteMethodCallMessage);
+
+	mog::network::NetworkPawnFactory::get()->setNetworkPawn<Pawn>();
+	mog::network::UDPGameSocket::setup();
+	//TODO: mog::network::UDPGameSocket::teardown()
+
     return true;
 }
 

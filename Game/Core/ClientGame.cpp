@@ -2,6 +2,7 @@
 #include "Engine/Network/NetworkManager.h"
 #include "Engine/Network/InternetAddress.h"
 #include "Engine/Network/Messages/JoinMessage.h"
+#include "Engine/Network/UDPGameSocket.h"
 
 USING_NS_CC;
 
@@ -58,7 +59,10 @@ bool ClientGame::init()
 	this->scheduleUpdate();
 
 
+	getNetworkManager()->setSocket(new network::UDPGameSocket());
 	getNetworkManager()->setPort(0);
+
+	setServerAddress(InternetAddress(127, 0, 0, 1, 8082));
 
 	return true;
 }
@@ -82,9 +86,5 @@ void ClientGame::update(float dt)
 void ClientGame::joinServer(Ref* pSender)
 {
 	
-	InternetAddress address(127, 0, 0, 1, 8082);
-
-	getNetworkManager()->sendMessage(JoinMessage(), address);
-	//char* message = "hello";
-	//socket->Send(address, message, sizeof(message) );
+	getNetworkManager()->sendMessage(JoinMessage("player"), getServerAddress());
 }

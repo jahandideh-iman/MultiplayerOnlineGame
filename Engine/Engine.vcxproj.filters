@@ -112,6 +112,9 @@
     <ClCompile Include="Network\NetworkPawnFactory.cpp">
       <Filter>Network</Filter>
     </ClCompile>
+    <ClCompile Include="Core\SerializablePoint.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Network\ConstructorDatabase.h">
@@ -221,6 +224,9 @@
     </ClInclude>
     <ClInclude Include="Network\NetworkPawnFactory.h">
       <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\SerializablePoint.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

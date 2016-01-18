@@ -41,6 +41,9 @@
     <ClCompile Include="Core\SpriteComponent.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Core\InputComponent.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\proj.win32\main.h">
@@ -69,6 +72,9 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\SpriteComponent.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\InputComponent.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>

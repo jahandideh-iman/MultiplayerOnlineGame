@@ -1,22 +1,13 @@
 #pragma once
 
-#include "Component.h"
+#include "Engine/Core/Component.h"
+#include "Engine/Core/SerializablePoint.h"
 #include <vector>
 
 namespace mog
 {
 	class Game;
 
-	struct Point
-	{
-		Point(int x, int y)
-		{
-			this->x = x; this->y = y;
-		}
-		Point(){}
-		int x = 0;
-		int y = 0;
-	};
 	class GameObject
 	{
 	public:
@@ -35,14 +26,17 @@ namespace mog
 
 		Component *findComponent(ID id);
 
+		Game *getOwner();
+
 	protected:
 		//TODO: Find out why this method is virtual
 		virtual void addComponentsToGame(Game *game);
 
+		SerializablePoint position;
+
 	private:
 		std::vector<mog::Component *> components;
-
-		Point position;
+		Game *owner = nullptr;
 
 	};
 }

@@ -7,6 +7,8 @@ namespace mog
 {
 	namespace network
 	{
+		class NetworkPawn;
+
 		class ServerGame : public NetworkGame
 		{
 		public:
@@ -19,6 +21,9 @@ namespace mog
 
 			//Note: For testing.
 			const PlayerInfo *getPlayerInfoByName(std::string name) const;
+
+		protected:
+			virtual void  onPawnCreated(NetworkPawn *p){}
 
 		private:
 

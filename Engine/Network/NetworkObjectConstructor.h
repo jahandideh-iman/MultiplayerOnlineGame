@@ -20,7 +20,7 @@ namespace mog
 
 		template<class T> class NetworkObjectConstructorT : public NetworkObjectConstructor {
 
-			mog::network::NetworkObject * create() override { return new T(); }
+			mog::network::NetworkObject *create() override { return new T(); }
 		};
 
 	}

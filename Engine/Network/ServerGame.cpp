@@ -31,6 +31,7 @@ void mog::network::ServerGame::joinNewPlayer(PlayerInfo *info)
 		pawn = new NetworkPawn();
 
 	addGameObject(pawn);
+	onPawnCreated(pawn);
 }
 
 const mog::network::PlayerInfo * mog::network::ServerGame::getPlayerInfoByName(std::string name) const

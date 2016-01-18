@@ -10,6 +10,7 @@
 mog::network::NetworkGameObject::NetworkGameObject()
 {
 	networkComponent = new NetworkComponent("networkComponent", this);
+	networkComponent->addVariable("position", &position);
 	this->addComponent(networkComponent);
 }
 

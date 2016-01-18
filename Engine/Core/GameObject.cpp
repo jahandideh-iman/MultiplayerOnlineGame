@@ -55,6 +55,7 @@ mog::Point mog::GameObject::getPosition() const
 
 void mog::GameObject::onAddedToGame(Game *game)
 {
+	this->owner = game;
 	addComponentsToGame(game);
 }
 
@@ -62,4 +63,9 @@ void mog::GameObject::update(float dt)
 {
 	for (auto c : components)
 		c->update(dt);
+}
+
+mog::Game *mog::GameObject::getOwner()
+{
+	return owner;
 }

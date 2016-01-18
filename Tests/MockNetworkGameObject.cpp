@@ -5,6 +5,6 @@
 
 mog::network::MockNetworkGameObject::MockNetworkGameObject()
 {
-	
+	networkComponent->removeVariable("position");
 }
 

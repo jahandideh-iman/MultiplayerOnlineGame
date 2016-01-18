@@ -18,8 +18,12 @@ namespace mog
 
 		virtual bool init();
 
+
 		void menuCloseCallback(cocos2d::Ref* pSender);
 
 		CREATE_FUNC(ServerGame);
+
+	protected:
+		void onPawnCreated(network::NetworkPawn *p) override;
 	};
 }
