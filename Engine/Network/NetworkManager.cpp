@@ -38,16 +38,15 @@ void mog::network::NetworkManager::update(float dt)
 
 void mog::network::NetworkManager::sendMessage(const Message &m, const InternetAddress &dest)
 {
-	auto buffer = new mog::Buffer();
-	buffer->write(m.getID());
-	buffer->write(":");
-	m.write(buffer);
+	Buffer buffer;
+	buffer.write(m.getID());
+	buffer.write(":");
+	m.write(&buffer);
 	//buffer->write(*m.serialize());
-	char *data = buffer->getData();
-	socket->send(dest, data, buffer->getSize());
+	char *data = buffer.getData();
+	socket->send(dest, data, buffer.getSize());
 
 	delete []data;
-	delete buffer;
 }
 
 mog::ID mog::network::NetworkManager::extractMessageId(char* message, unsigned size)
