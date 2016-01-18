@@ -1,6 +1,7 @@
 #include "CppUTest/TestHarness.h"
 #include "NetworkBase.h"
 #include "MockNetworkGameObject.h"
+#include "MockNetworkGameObjectWithState.h"
 
 #include "Engine/Network/Messages/ReplicateStateMessage.h"
 #include "Engine/Network/Messages/ReplicateInstanceMessage.h"
@@ -14,20 +15,6 @@ namespace mog
 {
 	namespace network
 	{
-		class MockNonEmptyNetworkGameObject : public NetworkGameObject
-		{
-		public:
-			MockNonEmptyNetworkGameObject()
-			{
-				networkComponent->addVariable("var1", &variable1);
-				networkComponent->addVariable("var2", &variable2);
-			}
-
-			AUTOID(MockNonEmptyNetworkGameObject, getNetworkID);
-
-			Integer variable1;
-			Integer variable2;
-		};
 
 		TEST_GROUP_BASE(ReplicateStateMessage, NetworkBase)
 		{
@@ -42,9 +29,9 @@ namespace mog
 		{
 			REGISTER_MESSAGE(ReplicateInstanceMessage);
 			REGISTER_MESSAGE(ReplicateStateMessage);
-			REGISTER_CONSTRUCTOR(MockNonEmptyNetworkGameObject);
+			REGISTER_CONSTRUCTOR(MockNetworkGameObjectWithState);
 
-			auto gameObject = new MockNonEmptyNetworkGameObject();
+			auto gameObject = new MockNetworkGameObjectWithState();
 
 			gameObject->variable1 = 1;
 			gameObject->variable2 = 2;
@@ -57,7 +44,7 @@ namespace mog
 			serverManager->sendMessage(ReplicateStateMessage(gameObject), network::InternetAddress(clientPort1));
 			clientManager1->update();
 
-			auto replicatedObject = dynamic_cast<MockNonEmptyNetworkGameObject *> (clientManager1->findNetworkGameObject(gameObject->getInstanceId()));
+			auto replicatedObject = dynamic_cast<MockNetworkGameObjectWithState *> (clientManager1->findNetworkGameObject(gameObject->getInstanceId()));
 
 			CHECK_EQUAL(gameObject->variable1.getValue(), replicatedObject->variable1.getValue());
 			CHECK_EQUAL(gameObject->variable2.getValue(), replicatedObject->variable2.getValue());

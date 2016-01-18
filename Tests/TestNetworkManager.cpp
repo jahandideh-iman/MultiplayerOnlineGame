@@ -2,6 +2,7 @@
 #include "NetworkBase.h"
 #include "MockMessage.h"
 #include "MockNetworkGameObject.h"
+#include "MockNetworkGameObjectWithState.h"
 
 #include "Engine/Network/NetworkGameObject.h"
 #include "Engine/Network/NetworkComponent.h"
@@ -9,6 +10,7 @@
 #include "Engine/Network/ConstructorDatabase.h"
 
 #include "Engine/Network/Messages/ReplicateInstanceMessage.h"
+#include "Engine/Network/Messages/ReplicateStateMessage.h"
 
 
 namespace mog
@@ -81,6 +83,20 @@ namespace mog
 
 			clientManager1->sendMessage(MockMessage(), network::InternetAddress(serverPort));
 			serverManager->update();
+
+			CHECK_FALSE(isMessageExecuted);
+		}
+
+		TEST(NetworkManager, DoesNotCallUnRegisteredMessage)
+		{
+			//REGISTER_MESSAGE(MockMessage);
+			bool isMessageExecuted = false;
+
+			MockMessage::setExecuteOnClientCommand([&](){isMessageExecuted = true; });
+
+			serverManager->sendMessage(MockMessage(), InternetAddress(clientPort1));
+
+			clientManager1->update();
 
 			CHECK_FALSE(isMessageExecuted);
 		}
@@ -239,6 +255,31 @@ namespace mog
 			clientManager1->update();
 
 			CHECK_EQUAL(2, numberOfExecutions);
+		}
+
+		TEST(NetworkManager, ReplicatesStateOfNetworkGameObjectToClientWhenAddedToGame)
+		{
+			//NOTE: ReplicateInstaceMessage is needed because first instaces must be replicated
+			REGISTER_MESSAGE(ReplicateInstanceMessage);
+			REGISTER_MESSAGE(ReplicateStateMessage);
+			REGISTER_CONSTRUCTOR(MockNetworkGameObjectWithState);
+
+			auto gameObject = new MockNetworkGameObjectWithState();
+			gameObject->variable1 = 5;
+
+			serverManager->addClient(&InternetAddress(clientPort1));
+			serverGame->addGameObject(gameObject);
+			serverManager->addClient(&InternetAddress(clientPort2));
+
+			serverManager->update();
+			clientManager1->update();
+			clientManager2->update();
+
+			auto client1Object = dynamic_cast<MockNetworkGameObjectWithState *> (clientManager1->findNetworkGameObject(gameObject->getInstanceId()));
+			auto client2Object = dynamic_cast<MockNetworkGameObjectWithState *> (clientManager2->findNetworkGameObject(gameObject->getInstanceId()));
+
+			CHECK_EQUAL(gameObject->variable1.getValue(), client1Object->variable1.getValue());
+			CHECK_EQUAL(gameObject->variable1.getValue(), client2Object->variable1.getValue());
 		}
 	}
 }

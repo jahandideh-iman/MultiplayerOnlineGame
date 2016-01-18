@@ -13,6 +13,8 @@ namespace mog
 	{
 		class Message;
 
+		class EmptyMessage;
+
 		class MessageDatabase
 		{
 		public:
@@ -31,6 +33,8 @@ namespace mog
 			static MessageDatabase *db;
 
 			std::unordered_map<ID, Message *> map;
+
+			EmptyMessage *emptyMessage;
 
 		};
 	}

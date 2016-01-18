@@ -1,6 +1,7 @@
 #include "ServerNetworkManager.h"
 
 #include "Engine/Network/Messages/ReplicateInstanceMessage.h"
+#include "Engine/Network/Messages/ReplicateStateMessage.h"
 #include "Engine/Network/ServerGame.h"
 
 #include <set>
@@ -110,6 +111,14 @@ void mog::network::ServerNetworkManager::processReplications()
 			auto instanceId = clientRep->getToBeReplicatedInstance();
 			sendMessage(ReplicateInstanceMessage(findNetworkGameObject(instanceId)), *(clientRep->getAddress()));
 			clientRep->removeToBeReplicatedInstance(instanceId);
+		}
+	}
+
+	for (auto clientRep : clientReplicationInfos)
+	{
+		for (auto netObjetPair : networkGameObjects)
+		{
+			sendMessage(ReplicateStateMessage(netObjetPair.second), *(clientRep->getAddress()));
 		}
 	}
 }

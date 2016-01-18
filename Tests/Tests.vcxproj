@@ -99,6 +99,7 @@
     <ClInclude Include="MockMessage.h" />
     <ClInclude Include="MockNetworkGameObject.h" />
     <ClInclude Include="MockNetworkGameObjectWithMethod.h" />
+    <ClInclude Include="MockNetworkGameObjectWithState.h" />
     <ClInclude Include="MockSocketDataBase.h" />
     <ClInclude Include="MockSocket.h" />
   </ItemGroup>
