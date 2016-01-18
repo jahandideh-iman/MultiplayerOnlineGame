@@ -38,10 +38,10 @@ namespace mog
 
 			serverGame->addGameObject(gameObject);
 
-			serverManager->sendMessage(ReplicateInstanceMessage(gameObject), network::InternetAddress(clientPort1));
+			serverManager->sendMessage(ReplicateInstanceMessage(gameObject), clientAddress1);
 			clientManager1->update();
 
-			serverManager->sendMessage(ReplicateStateMessage(gameObject), network::InternetAddress(clientPort1));
+			serverManager->sendMessage(ReplicateStateMessage(gameObject), clientAddress1);
 			clientManager1->update();
 
 			auto replicatedObject = dynamic_cast<MockNetworkGameObjectWithState *> (clientManager1->findNetworkGameObject(gameObject->getInstanceId()));

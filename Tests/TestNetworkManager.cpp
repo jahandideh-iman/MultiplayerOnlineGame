@@ -44,7 +44,7 @@ namespace mog
 			REGISTER_MESSAGE(MockMessage);
 			MockMessage::setExecuteOnClientCommand([&](){isMessageExecuted = true; });
 
-			serverManager->sendMessage(MockMessage(), network::InternetAddress(clientPort1));
+			serverManager->sendMessage(MockMessage(), clientAddress1);
 			clientManager1->update();
 
 			CHECK_TRUE(isMessageExecuted);
@@ -57,7 +57,7 @@ namespace mog
 			REGISTER_MESSAGE(MockMessage);
 			MockMessage::setExecuteOnServerCommand([&](){isMessageExecuted = true; });
 
-			clientManager1->sendMessage(MockMessage(), network::InternetAddress(serverPort));
+			clientManager1->sendMessage(MockMessage(), network::InternetAddress(serverAddress));
 			serverManager->update();
 
 			CHECK_TRUE(isMessageExecuted);
@@ -70,7 +70,7 @@ namespace mog
 			REGISTER_MESSAGE(MockMessage);
 			MockMessage::setExecuteOnServerCommand([&](){isMessageExecuted = true; });
 
-			clientManager1->sendMessage(MockMessage(), network::InternetAddress(clientPort1));
+			clientManager1->sendMessage(MockMessage(), network::InternetAddress(clientAddress1));
 			serverManager->update();
 
 			CHECK_FALSE(isMessageExecuted);
@@ -83,7 +83,7 @@ namespace mog
 			REGISTER_MESSAGE(MockMessage);
 			MockMessage::setExecuteOnClientCommand([&](){isMessageExecuted = true; });
 
-			clientManager1->sendMessage(MockMessage(), network::InternetAddress(serverPort));
+			clientManager1->sendMessage(MockMessage(), network::InternetAddress(serverAddress));
 			serverManager->update();
 
 			CHECK_FALSE(isMessageExecuted);
@@ -96,7 +96,7 @@ namespace mog
 
 			MockMessage::setExecuteOnClientCommand([&](){isMessageExecuted = true; });
 
-			serverManager->sendMessage(MockMessage(), InternetAddress(clientPort1));
+			serverManager->sendMessage(MockMessage(), clientAddress1);
 
 			clientManager1->update();
 
@@ -138,8 +138,8 @@ namespace mog
 			auto gameObject = new MockNetworkGameObject();
 
 			//NOTE: Clients are added first
-			serverManager->addClient(&InternetAddress(clientPort1));
-			serverManager->addClient(&InternetAddress(clientPort2));
+			serverManager->addClient(&clientAddress1);
+			serverManager->addClient(&clientAddress2);
 
 			serverGame->addGameObject(gameObject);
 
@@ -165,8 +165,8 @@ namespace mog
 			//NOTE: Network game object is added first
 			serverGame->addGameObject(gameObject);
 
-			serverManager->addClient(&InternetAddress(clientPort1));
-			serverManager->addClient(&InternetAddress(clientPort2));
+			serverManager->addClient(&clientAddress1);
+			serverManager->addClient(&clientAddress2);
 
 			serverManager->update();
 			clientManager1->update();
@@ -187,8 +187,8 @@ namespace mog
 			auto clientGame2ObjectSize = clientGame2->getGameObjects().size();
 			auto gameObject = new MockNetworkGameObject();
 
-			serverManager->addClient(&InternetAddress(clientPort1));
-			serverManager->addClient(&InternetAddress(clientPort2));
+			serverManager->addClient(&clientAddress1);
+			serverManager->addClient(&clientAddress2);
 			serverGame->addGameObject(gameObject);
 
 			serverManager->update();
@@ -223,10 +223,10 @@ namespace mog
 			auto gameObject1 = new MockNetworkGameObject();
 			auto gameObject2 = new MockNetworkGameObject();
 
-			serverManager->addClient(&InternetAddress(clientPort1));
+			serverManager->addClient(&clientAddress1);
 			serverGame->addGameObject(gameObject1);
 
-			serverManager->addClient(&InternetAddress(clientPort2));
+			serverManager->addClient(&clientAddress2);
 			serverGame->addGameObject(gameObject2);
 
 			serverManager->update();
@@ -251,8 +251,8 @@ namespace mog
 			unsigned numberOfExecutions = 0;
 			MockMessage::setExecuteOnClientCommand([&](){numberOfExecutions++; });
 
-			serverManager->sendMessage(MockMessage(), InternetAddress(clientPort1));
-			serverManager->sendMessage(MockMessage(), InternetAddress(clientPort1));
+			serverManager->sendMessage(MockMessage(), clientAddress1);
+			serverManager->sendMessage(MockMessage(), clientAddress1);
 
 			clientManager1->update();
 
@@ -261,7 +261,7 @@ namespace mog
 
 		TEST(NetworkManager, ReplicatesStateOfNetworkGameObjectToClientWhenAddedToGame)
 		{
-			//NOTE: ReplicateInstaceMessage is needed because first instaces must be replicated
+			//NOTE: ReplicateInstaceMessage is needed because first instances must be replicated
 			REGISTER_MESSAGE(ReplicateInstanceMessage);
 			REGISTER_MESSAGE(ReplicateStateMessage);
 			REGISTER_CONSTRUCTOR(MockNetworkGameObjectWithState);
@@ -269,9 +269,9 @@ namespace mog
 			auto gameObject = new MockNetworkGameObjectWithState();
 			gameObject->variable1 = 5;
 
-			serverManager->addClient(&InternetAddress(clientPort1));
+			serverManager->addClient(&clientAddress1);
 			serverGame->addGameObject(gameObject);
-			serverManager->addClient(&InternetAddress(clientPort2));
+			serverManager->addClient(&clientAddress2);
 
 			serverManager->update();
 			clientManager1->update();

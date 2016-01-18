@@ -29,9 +29,7 @@ namespace mog
 			NetworkManager *clientManager1;
 			NetworkManager *clientManager2;
 
-			unsigned serverPort = 8081;
-			unsigned clientPort1 = 8082;
-			unsigned clientPort2 = 8083;
+
 
 			InternetAddress serverAddress;
 			InternetAddress clientAddress1;
@@ -46,6 +44,10 @@ namespace mog
 				clientGame1 = new ClientGame();
 				clientGame2 = new ClientGame();
 
+				serverAddress.setPort(8081);
+				clientAddress1.setPort(8082);
+				clientAddress2.setPort(8083);
+
 				serverManager = dynamic_cast<ServerNetworkManager *> (serverGame->getNetworkManager());
 				clientManager1 = clientGame1->getNetworkManager();
 				clientManager2 = clientGame2->getNetworkManager();
@@ -58,8 +60,8 @@ namespace mog
 				clientManager1->setPort(clientPort1);
 				clientManager2->setPort(clientPort2);
 
-				clientGame1->setServerAddress(InternetAddress(serverPort));
-				clientGame2->setServerAddress(InternetAddress(serverPort));
+				clientGame1->setServerAddress(serverAddress);
+				clientGame2->setServerAddress(serverAddress);
 			}
 
 			void teardown() override
@@ -79,6 +81,11 @@ namespace mog
 
 				lastClientInstanceId++;
 			}
+
+		private:
+			unsigned serverPort = 8081;
+			unsigned clientPort1 = 8082;
+			unsigned clientPort2 = 8083;
 		};
 	}
 }

@@ -36,7 +36,7 @@ namespace mog
 		{
 			REGISTER_MESSAGE(JoinMessage);
 
-			clientManager1->sendMessage(JoinMessage("playerName"), InternetAddress(serverPort));
+			clientManager1->sendMessage(JoinMessage("playerName"), serverAddress);
 			serverManager->update();
 
 			CHECK_TRUE(serverGame->getPlayerInfoByName("playerName") != nullptr);
@@ -46,10 +46,10 @@ namespace mog
 		{
 			REGISTER_MESSAGE(JoinMessage);
 
-			clientManager1->sendMessage(JoinMessage("playerName"), InternetAddress(serverPort));
+			clientManager1->sendMessage(JoinMessage("playerName"), serverAddress);
 			serverManager->update();
 
-			CHECK_EQUAL(clientPort1,serverManager->getClients()[0]->getPort());
+			CHECK_EQUAL(clientAddress1.getPort(), serverManager->getClients()[0]->getPort());
 		}
 
 		TEST(JoinMessage, PawnIsAddedToClientAndServer)
@@ -59,7 +59,7 @@ namespace mog
 			REGISTER_MESSAGE(JoinMessage);
 			REGISTER_CONSTRUCTOR(NetworkPawn);
 
-			clientManager1->sendMessage(JoinMessage("playerName"), InternetAddress(serverPort));
+			clientManager1->sendMessage(JoinMessage("playerName"), serverAddress);
 			serverManager->update();
 			clientManager1->update();
 

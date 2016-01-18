@@ -51,7 +51,7 @@ namespace mog
 			MockLevel level;
 			level.initialGameObjects();
 
-			serverManager->sendMessage(LoadLevelMessage(level.getID()), network::InternetAddress(clientPort1));
+			serverManager->sendMessage(LoadLevelMessage(level.getID()), clientAddress1);
 			clientManager1->update();
 
 			CHECK_TRUE(gameHasLevelObjects(clientGame1, &level));

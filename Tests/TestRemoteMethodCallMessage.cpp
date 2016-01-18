@@ -30,7 +30,7 @@ namespace mog
 
 			serverGame->addGameObject(networkObject);
 
-			clientManager1->sendMessage(RemoteMethodCallMessage(networkObject, "method"), network::InternetAddress(serverPort));
+			clientManager1->sendMessage(RemoteMethodCallMessage(networkObject, "method"), serverAddress);
 			serverManager->update();
 
 			CHECK_TRUE(networkObject->isMethodCalled);
@@ -47,7 +47,7 @@ namespace mog
 			clientGame1->addGameObject(networkObject);
 			
 
-			serverManager->sendMessage(RemoteMethodCallMessage(networkObject, "method"), network::InternetAddress(clientPort1));
+			serverManager->sendMessage(RemoteMethodCallMessage(networkObject, "method"), clientAddress1);
 			clientManager1->update();
 
 			CHECK_FALSE(networkObject->isMethodCalled);
