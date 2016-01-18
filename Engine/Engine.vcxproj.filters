@@ -109,6 +109,9 @@
     <ClCompile Include="Network\NetworkPawn.cpp">
       <Filter>Network</Filter>
     </ClCompile>
+    <ClCompile Include="Network\NetworkPawnFactory.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Network\ConstructorDatabase.h">
@@ -214,6 +217,9 @@
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="Network\NetworkPawn.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\NetworkPawnFactory.h">
       <Filter>Network</Filter>
     </ClInclude>
   </ItemGroup>

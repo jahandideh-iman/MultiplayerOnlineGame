@@ -5,6 +5,7 @@
 #include "Engine/Network/ServerNetworkManager.h"
 
 #include "Engine/Network/NetworkPawn.h"
+#include "Engine/Network/NetworkPawnFactory.h"
 
 mog::network::ServerGame::ServerGame()
 {
@@ -23,18 +24,13 @@ void mog::network::ServerGame::joinNewPlayer(PlayerInfo *info)
 	playersInfo.push_back(info);
 	dynamic_cast<ServerNetworkManager* > (getNetworkManager())->addClient(info->address);
 
-	auto pawn = new NetworkPawn();
+	NetworkPawn *pawn;
+	if (NetworkPawnFactory::get()->isSet())
+		pawn = NetworkPawnFactory::get()->create();
+	else
+		pawn = new NetworkPawn();
 
 	addGameObject(pawn);
-	/*network::NetworkGameObject *p = new Pawn();
-	p->setPosition(Point(200, 200));
-	addGameObject(p);
-
-
-	getNetworkManager()->sendMessage(mog::network::LoadLevel(currentLevel->getName()), *info->address);
-	getNetworkManager()->sendMessage(mog::network::ReplicateInstance(p), *info->address);*/
-
-	//NetworkManager::sendMessage();
 }
 
 const mog::network::PlayerInfo * mog::network::ServerGame::getPlayerInfoByName(std::string name) const

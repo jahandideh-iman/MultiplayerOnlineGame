@@ -93,6 +93,7 @@
     <ClCompile Include="TestRemoteMethodCallMessage.cpp" />
     <ClCompile Include="TestReplicateInstanceMessage.cpp" />
     <ClCompile Include="TestReplicateStateMessage.cpp" />
+    <ClCompile Include="TestServerGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MockGameObject.h" />

@@ -3,6 +3,7 @@
 #include "NetworkBase.h"
 
 #include "Engine/Network/ConstructorDatabase.h"
+#include "Engine/Network/NetworkPawnFactory.h"
 
 #include "Engine/Network/Messages/JoinMessage.h"
 #include "Engine/Network/NetworkPawn.h"
@@ -14,6 +15,11 @@ namespace mog
 	{
 		TEST_GROUP_BASE(JoinMessage,NetworkBase)
 		{
+			void teardown() override
+			{
+				NetworkBase::teardown();
+				NetworkPawnFactory::clear();
+			}
 			bool hasPawn(NetworkManager *manager)
 			{
 				for (auto o : manager->getNetworkGameObjects())
@@ -63,5 +69,4 @@ namespace mog
 			ConstructorDatabase::clear();
 		}
 	}
-	
 }
