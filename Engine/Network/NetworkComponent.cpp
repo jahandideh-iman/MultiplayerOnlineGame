@@ -58,3 +58,8 @@ void mog::network::NetworkComponent::readReplications(const Buffer *buffer)
 
 	}
 }
+
+bool mog::network::NetworkComponent::hasVarialbe(const std::string &name)
+{
+	return replicationVars.find(name) != replicationVars.end();
+}

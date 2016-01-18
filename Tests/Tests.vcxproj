@@ -88,6 +88,7 @@
     <ClCompile Include="TestGameObject.cpp" />
     <ClCompile Include="TestJoinMessage.cpp" />
     <ClCompile Include="TestLoadLevelMessage.cpp" />
+    <ClCompile Include="TestNetworkComponent.cpp" />
     <ClCompile Include="TestNetworkGameObject.cpp" />
     <ClCompile Include="TestNetworkManager.cpp" />
     <ClCompile Include="TestParameterContainer.cpp" />

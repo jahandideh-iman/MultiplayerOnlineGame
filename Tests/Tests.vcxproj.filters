@@ -78,6 +78,9 @@
     <ClCompile Include="TestClientGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TestNetworkComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MockSocket.h">
