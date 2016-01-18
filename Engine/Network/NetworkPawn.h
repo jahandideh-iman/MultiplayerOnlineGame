@@ -18,6 +18,8 @@ namespace mog
 			AUTOID(NetworkPawn, getNetworkID);
 
 			void setVelocity(Vector velocity);
+			void setVelocityX(float x);
+			void setVelocityY(float y);
 			Vector getVelocity() const;
 
 		private:

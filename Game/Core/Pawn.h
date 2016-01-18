@@ -15,13 +15,24 @@ namespace mog
 
 		AUTOID(Pawn, getNetworkID);
 
-		void moveUp();
+		void moveUpPressed();
+		void moveUpReleased();
+
+		void moveDownPressed();
+		void moveDownReleased();
+
+		void moveLeftPressed();
+		void moveLeftReleased();
+
+		void moveRightPressed();
+		void moveRightReleased();
 
 		void initialRegisteredMethods() override;
 
-
 	private:
 		Integer health = 100;
+
+		Integer speed = 50;
 	};
 
 }

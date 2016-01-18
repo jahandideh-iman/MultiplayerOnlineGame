@@ -17,10 +17,12 @@ namespace mog
 
 		virtual void addSelfToGame(Game *g);
 
-		void addAction(cocos2d::EventKeyboard::KeyCode key, Action action);
+		void addOnPressAction(cocos2d::EventKeyboard::KeyCode key, Action action);
+		void addOnReleaseAction(cocos2d::EventKeyboard::KeyCode key, Action action);
 
 	private:
-		std::map<cocos2d::EventKeyboard::KeyCode, Action> actions;
+		std::map<cocos2d::EventKeyboard::KeyCode, Action> onPressActions;
+		std::map<cocos2d::EventKeyboard::KeyCode, Action> onReleaseActions;
 	};
 }
 
