@@ -125,3 +125,13 @@ mog::network::NetworkGameObject * mog::network::NetworkManager::findNetworkGameO
 		return nullptr;
 	return p->second;
 }
+
+std::vector<const mog::network::NetworkGameObject *> mog::network::NetworkManager::getNetworkGameObjects() const
+{
+	std::vector<const NetworkGameObject *> objects;
+
+	for (auto obj : networkGameObjects)
+		objects.push_back(obj.second);
+
+	return objects;
+}

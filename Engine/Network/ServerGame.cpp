@@ -4,6 +4,8 @@
 #include "Engine/Network/Messages/ReplicateInstanceMessage.h"
 #include "Engine/Network/ServerNetworkManager.h"
 
+#include "Engine/Network/NetworkPawn.h"
+
 mog::network::ServerGame::ServerGame()
 {
 	networkManager = new ServerNetworkManager(this);
@@ -21,6 +23,9 @@ void mog::network::ServerGame::joinNewPlayer(PlayerInfo *info)
 	playersInfo.push_back(info);
 	dynamic_cast<ServerNetworkManager* > (getNetworkManager())->addClient(info->address);
 
+	auto pawn = new NetworkPawn();
+
+	addGameObject(pawn);
 	/*network::NetworkGameObject *p = new Pawn();
 	p->setPosition(Point(200, 200));
 	addGameObject(p);

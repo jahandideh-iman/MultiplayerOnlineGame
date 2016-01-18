@@ -37,6 +37,8 @@ namespace mog
 			bool hasNetworkGameObject(const NetworkGameObject *gameObj) const;
 			//NOTE: For testing
 			bool hasNetworkGameObject(unsigned instanceId) const;
+			//NOTE: For testing
+			std::vector<const NetworkGameObject *> getNetworkGameObjects() const;
 
 			//NOTE: For testing
 			void setSocket(GameSocket *socket);

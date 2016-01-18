@@ -98,8 +98,8 @@ void mog::network::ServerNetworkManager::addNetworkGameObject(NetworkGameObject 
 
 void mog::network::ServerNetworkManager::update(float dt /* = 0 */)
 {
-	processReplications();
 	NetworkManager::update(dt);
+	processReplications();
 }
 
 void mog::network::ServerNetworkManager::processReplications()
