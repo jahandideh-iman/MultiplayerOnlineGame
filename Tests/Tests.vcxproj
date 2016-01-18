@@ -91,6 +91,7 @@
     <ClCompile Include="TestNetworkComponent.cpp" />
     <ClCompile Include="TestNetworkGameObject.cpp" />
     <ClCompile Include="TestNetworkManager.cpp" />
+    <ClCompile Include="TestNetworkPawn.cpp" />
     <ClCompile Include="TestParameterContainer.cpp" />
     <ClCompile Include="TestRemoteMethodCallMessage.cpp" />
     <ClCompile Include="TestReplicateInstanceMessage.cpp" />

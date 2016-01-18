@@ -1,7 +1,6 @@
 #include "CppUTest/TestHarness.h"
-
-
 #include "Engine/Core/SerializablePoint.h"
+#include "Engine/Core/Buffer.h"
 
 namespace mog
 {
@@ -29,6 +28,5 @@ namespace mog
 
 		CHECK_EQUAL(point1.x, point2.x);
 		CHECK_EQUAL(point1.y, point2.y);
-
 	}
 }

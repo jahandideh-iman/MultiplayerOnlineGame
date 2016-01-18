@@ -1,12 +1,13 @@
 #include "SerializablePoint.h"
 #include "Engine/Core/ParameterContainer.h"
+#include <string>
 
 
 mog::SerializablePoint::SerializablePoint()
 {
 }
 
-mog::SerializablePoint::SerializablePoint(int x, int y) : Point(x, y)
+mog::SerializablePoint::SerializablePoint(float x, float y) : Point(x, y)
 {
 
 }

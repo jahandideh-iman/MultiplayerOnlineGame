@@ -1,5 +1,5 @@
 #pragma once
-#include "Engine/Core/Types.h"
+#include "Engine/Core/Point.h"
 #include "Engine/Core/Serializable.h"
 
 namespace mog
@@ -9,7 +9,7 @@ namespace mog
 	{
 	public:
 		SerializablePoint();
-		SerializablePoint(int x, int y);
+		SerializablePoint(float x, float y);
 		~SerializablePoint();
 
 		SerializablePoint &SerializablePoint::operator= (const Point &);

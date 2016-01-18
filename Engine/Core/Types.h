@@ -2,26 +2,21 @@
 
 #include <string>
 #include "Engine/Core/SerializablePrimitive.h"
+#include "Engine/Core/SerializablePoint.h"
+#include "Engine/Core/Point.h"
 
 
 
 namespace mog
 {
-	class Point
-	{
-	public:
-		Point(int x, int y)
-		{
-			this->x = x; this->y = y;
-		}
-		Point(){}
-		int x = 0;
-		int y = 0;
-	};
+
 
 	typedef std::string ID;
 
 	typedef SerializablePrimitive<int> Integer;
+
+	typedef SerializablePoint Position;
+	typedef SerializablePoint Vector;
 	//typedef PrimiteSerilizable<float> Float;
 	//typedef PrimiteSerilizable<double> Double;
 }

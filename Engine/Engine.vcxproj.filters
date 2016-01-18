@@ -240,5 +240,8 @@
     <ClInclude Include="Core\Object.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Point.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
