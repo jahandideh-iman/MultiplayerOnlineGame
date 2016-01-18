@@ -95,6 +95,7 @@
     <ClCompile Include="TestRemoteMethodCallMessage.cpp" />
     <ClCompile Include="TestReplicateInstanceMessage.cpp" />
     <ClCompile Include="TestReplicateStateMessage.cpp" />
+    <ClCompile Include="TestSerializablePoint.cpp" />
     <ClCompile Include="TestServerGame.cpp" />
   </ItemGroup>
   <ItemGroup>
