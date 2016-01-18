@@ -11,6 +11,7 @@
 
 #include "MockSocketDataBase.h"
 #include "MockSocket.h"
+#include "MockGameObject.h"
 
 namespace mog
 {
@@ -28,8 +29,6 @@ namespace mog
 			ServerNetworkManager *serverManager;
 			NetworkManager *clientManager1;
 			NetworkManager *clientManager2;
-
-
 
 			InternetAddress serverAddress;
 			InternetAddress clientAddress1;
@@ -80,6 +79,25 @@ namespace mog
 				obj->setIsReplica(true);
 
 				lastClientInstanceId++;
+			}
+
+			bool gameHasLevelObjects(Game *game, Level *level)
+			{
+				if (game->getGameObjects().size() < level->getGameObjects().size())
+					return false;
+
+				for (auto gameO : game->getGameObjects())
+				{
+					bool has = false;
+					for (auto levelO : level->getGameObjects())
+					{
+						if (((MockGameObject*)levelO)->key == ((MockGameObject*)gameO)->key)
+							has = true;
+					}
+					if (has == false)
+						return false;
+				}
+				return true;
 			}
 
 		private:

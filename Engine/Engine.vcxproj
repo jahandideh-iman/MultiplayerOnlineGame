@@ -159,6 +159,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="Core\GameObject.cpp" />
     <ClCompile Include="Core\Level.cpp" />
     <ClCompile Include="Core\LevelDatabase.cpp" />
+    <ClCompile Include="Core\LevelFactory.cpp" />
     <ClCompile Include="Core\ParameterContainer.cpp" />
     <ClCompile Include="Core\SerializablePoint.cpp" />
     <ClCompile Include="Core\Utilities.cpp" />
@@ -190,11 +191,14 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
   <ItemGroup>
     <ClInclude Include="Core\Buffer.h" />
     <ClInclude Include="Core\Component.h" />
+    <ClInclude Include="Core\FactoryTemplate.h" />
     <ClInclude Include="Core\Game.h" />
     <ClInclude Include="Core\GameObject.h" />
     <ClInclude Include="Core\Level.h" />
     <ClInclude Include="Core\LevelDatabase.h" />
+    <ClInclude Include="Core\LevelFactory.h" />
     <ClInclude Include="Core\Macros.h" />
+    <ClInclude Include="Core\Object.h" />
     <ClInclude Include="Core\ParameterContainer.h" />
     <ClInclude Include="Core\Serializable.h" />
     <ClInclude Include="Core\SerializablePoint.h" />

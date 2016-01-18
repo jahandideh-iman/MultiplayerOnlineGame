@@ -115,6 +115,9 @@
     <ClCompile Include="Core\SerializablePoint.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Core\LevelFactory.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Network\ConstructorDatabase.h">
@@ -226,6 +229,15 @@
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="Core\SerializablePoint.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\FactoryTemplate.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\LevelFactory.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Object.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>

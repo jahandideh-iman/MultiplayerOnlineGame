@@ -52,8 +52,6 @@ bool ServerGame::init()
 	getNetworkManager()->setSocket(new network::UDPGameSocket());
 	getNetworkManager()->setPort(8082);
 
-
-	loadLevel(new GameLevel());
 	return true;
 }
 

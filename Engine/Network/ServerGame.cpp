@@ -6,6 +6,7 @@
 
 #include "Engine/Network/NetworkPawn.h"
 #include "Engine/Network/NetworkPawnFactory.h"
+#include "Engine/Core/LevelFactory.h"
 
 mog::network::ServerGame::ServerGame()
 {
@@ -32,6 +33,13 @@ void mog::network::ServerGame::joinNewPlayer(PlayerInfo *info)
 
 	addGameObject(pawn);
 	onPawnCreated(pawn);
+
+	if (LevelFactory::get()->isSet())
+	{
+		auto level = LevelFactory::get()->create();
+		getNetworkManager()->sendMessage(LoadLevelMessage(level),*info->address);
+		delete level;
+	}
 }
 
 const mog::network::PlayerInfo * mog::network::ServerGame::getPlayerInfoByName(std::string name) const

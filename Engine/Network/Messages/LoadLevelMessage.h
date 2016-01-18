@@ -5,12 +5,15 @@
 
 namespace mog
 {
+	class Level;
+
 	namespace network
 	{
+	
 		class LoadLevelMessage : public Message
 		{
 		public:
-			LoadLevelMessage(ID name);
+			LoadLevelMessage(const Level *level);
 			LoadLevelMessage();
 			~LoadLevelMessage();
 
@@ -23,7 +26,7 @@ namespace mog
 			virtual void fillData(ParameterContainer &parameters) const override;
 
 		private:
-			ID levelName;
+			const Level *level;
 		};
 	}
 }

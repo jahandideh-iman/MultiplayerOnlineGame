@@ -8,6 +8,7 @@
 #include "Engine/Network/Messages/JoinMessage.h"
 #include "Engine/Network/NetworkPawn.h"
 #include "Engine/Network/Messages/ReplicateInstanceMessage.h"
+#include "Engine/Core/LevelFactory.h"
 
 namespace mog
 {
@@ -19,6 +20,7 @@ namespace mog
 			{
 				NetworkBase::teardown();
 				NetworkPawnFactory::clear();
+				LevelFactory::clear();
 			}
 			bool hasPawn(NetworkManager *manager)
 			{

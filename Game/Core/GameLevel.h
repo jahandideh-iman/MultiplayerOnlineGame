@@ -12,6 +12,8 @@ namespace mog
 		GameLevel();
 		~GameLevel();
 
+		virtual void initialGameObjects() override;
+
 		AUTOID(GameLevel, getID)
 	};
 }

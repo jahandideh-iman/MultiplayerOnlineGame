@@ -107,5 +107,8 @@
     <ClInclude Include="MockNetworkGameObjectWithState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MockLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

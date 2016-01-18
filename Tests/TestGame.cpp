@@ -8,7 +8,7 @@
 namespace mog
 {
 
-	class MockLevel : public Level
+	class AddableMockLevel : public Level
 	{
 	public:
 		void addGameObject(GameObject *object)
@@ -52,7 +52,7 @@ namespace mog
 
 	TEST(Game, loadsLevelsComponents)
 	{
-		MockLevel level;
+		AddableMockLevel level;
 		Game game;
 		auto o1 = new MockGameObject();
 		auto o2 = new MockGameObject();

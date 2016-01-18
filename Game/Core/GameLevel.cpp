@@ -5,13 +5,18 @@ using mog::GameLevel;
 
 GameLevel::GameLevel()
 {
-	GameObject * o = new GameObject();
-	o->addComponent(new SpriteComponent("sprite",o,"background.png"));
-	addGameObject(o);
+	
 }
 
 
 GameLevel::~GameLevel()
 {
+}
+
+void mog::GameLevel::initialGameObjects()
+{
+	GameObject * o = new GameObject();
+	o->addComponent(new SpriteComponent("sprite", o, "background.png"));
+	addGameObject(o);
 }
 

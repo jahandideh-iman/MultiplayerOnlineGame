@@ -1,11 +1,12 @@
 #pragma once
 
+#include "Object.h"
 #include "GameObject.h"
 #include "Types.h"
 
 namespace mog
 {
-	class Level
+	class Level : public Object
 	{
 	public:
 		Level();

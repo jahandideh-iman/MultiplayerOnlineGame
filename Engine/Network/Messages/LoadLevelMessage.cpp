@@ -2,9 +2,9 @@
 #include "Engine/Core/LevelDatabase.h"
 #include "Engine/Network/ClientGame.h"
 
-mog::network::LoadLevelMessage::LoadLevelMessage(ID name)
+mog::network::LoadLevelMessage::LoadLevelMessage(const Level *level)
 {
-	this->levelName = name;
+	this->level = level;
 }
 
 mog::network::LoadLevelMessage::LoadLevelMessage()
@@ -18,7 +18,7 @@ mog::network::LoadLevelMessage::~LoadLevelMessage()
 
 void mog::network::LoadLevelMessage::fillData(ParameterContainer &parameters) const
 {
-	parameters.put("levelName", levelName);
+	parameters.put("levelName", level->getID());
 }
 
 void mog::network::LoadLevelMessage::executeOnClient(ClientGame *game, const ParameterContainer &parameters, const network::InternetAddress &address) const
@@ -27,8 +27,6 @@ void mog::network::LoadLevelMessage::executeOnClient(ClientGame *game, const Par
 	auto level = LevelDatabase::get()->find(name);
 	level->initialGameObjects();
 	game->loadLevel(level);
-	/*if (GlobalData::gameType == GameType::T_Client)
-	GlobalData::game->loadLevel(new GameLevel());*/
 }
 
 void mog::network::LoadLevelMessage::executeOnServer(ServerGame *game, const ParameterContainer &parameters, const network::InternetAddress &address) const

@@ -11,8 +11,11 @@
 #include "Engine/Network/Messages/RemoteMethodCallMessage.h"
 #include "Engine/Network/UDPGameSocket.h"
 #include "Engine/Network/NetworkPawnFactory.h"
+#include "Engine/Core/LevelFactory.h"
+#include "Engine/Core/LevelDatabase.h"
 
 #include "Core/Pawn.h"
+#include "Core/GameLevel.h"
 
 USING_NS_CC;
 
@@ -24,6 +27,9 @@ using mog::network::JoinMessage;
 using mog::network::ReplicateStateMessage;
 using mog::network::ReplicateInstanceMessage;
 using mog::network::RemoteMethodCallMessage;
+
+using mog::GameLevel;
+
 
 AppDelegate::AppDelegate() {
 }
@@ -91,9 +97,13 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	REGISTER_MESSAGE(ReplicateStateMessage);
 	REGISTER_MESSAGE(RemoteMethodCallMessage);
 
+	REGISTER_LEVEL(GameLevel);
+
 	mog::network::NetworkPawnFactory::get()->setNetworkPawn<Pawn>();
 	mog::network::UDPGameSocket::setup();
 	//TODO: mog::network::UDPGameSocket::teardown()
+
+	mog::LevelFactory::get()->setObject<mog::GameLevel>();
 
     return true;
 }
