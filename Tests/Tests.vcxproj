@@ -94,6 +94,7 @@
     <ClCompile Include="TestNetworkPawn.cpp" />
     <ClCompile Include="TestParameterContainer.cpp" />
     <ClCompile Include="TestRemoteMethodCallMessage.cpp" />
+    <ClCompile Include="TestRemoveInstanceMessage.cpp" />
     <ClCompile Include="TestReplicateInstanceMessage.cpp" />
     <ClCompile Include="TestReplicateStateMessage.cpp" />
     <ClCompile Include="TestSerializablePoint.cpp" />

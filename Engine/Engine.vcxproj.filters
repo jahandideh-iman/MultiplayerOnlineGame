@@ -118,6 +118,9 @@
     <ClCompile Include="Core\LevelFactory.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Network\Messages\RemoveInstanceMessage.cpp">
+      <Filter>Network\Messages</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Network\ConstructorDatabase.h">
@@ -242,6 +245,9 @@
     </ClInclude>
     <ClInclude Include="Core\Point.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Messages\RemoveInstanceMessage.h">
+      <Filter>Network\Messages</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

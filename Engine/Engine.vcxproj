@@ -172,6 +172,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="Network\Messages\Message.cpp" />
     <ClCompile Include="Network\Messages\MessageDatabase.cpp" />
     <ClCompile Include="Network\Messages\RemoteMethodCallMessage.cpp" />
+    <ClCompile Include="Network\Messages\RemoveInstanceMessage.cpp" />
     <ClCompile Include="Network\Messages\ReplicateInstanceMessage.cpp" />
     <ClCompile Include="Network\Messages\ReplicateStateMessage.cpp" />
     <ClCompile Include="Network\NetworkComponent.cpp" />
@@ -215,6 +216,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="Network\Messages\Message.h" />
     <ClInclude Include="Network\Messages\MessageDatabase.h" />
     <ClInclude Include="Network\Messages\RemoteMethodCallMessage.h" />
+    <ClInclude Include="Network\Messages\RemoveInstanceMessage.h" />
     <ClInclude Include="Network\Messages\ReplicateInstanceMessage.h" />
     <ClInclude Include="Network\Messages\ReplicateStateMessage.h" />
     <ClInclude Include="Network\NetworkComponent.h" />

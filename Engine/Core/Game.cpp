@@ -27,6 +27,8 @@ void mog::Game::loadLevel(Level *level)
 
 void mog::Game::addGameObject(GameObject *object)
 {
+	assert(object->getOwner() == nullptr);
+
 	gameObjects.push_back(object);
 	object->onAddedToGame(this);
 }
