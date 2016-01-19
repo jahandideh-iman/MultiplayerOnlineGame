@@ -21,6 +21,12 @@ void mog::network::NetworkComponent::removeVariable(const std::string &name)
 	replicationVars.erase(name);
 }
 
+void mog::network::NetworkComponent::removeAllVariables()
+{
+	replicationVars.clear();
+}
+
+
 void mog::network::NetworkComponent::addSelfToGame(Game *g)
 {
 	/*NetworkGame *netGame = dynamic_cast<NetworkGame*>(g);
@@ -63,3 +69,4 @@ bool mog::network::NetworkComponent::hasVarialbe(const std::string &name)
 {
 	return replicationVars.find(name) != replicationVars.end();
 }
+

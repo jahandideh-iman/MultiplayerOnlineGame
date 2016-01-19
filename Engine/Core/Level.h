@@ -6,6 +6,7 @@
 
 namespace mog
 {
+	class Game;
 	class Level : public Object
 	{
 	public:
@@ -16,7 +17,7 @@ namespace mog
 
 		virtual ID getID() const { return "EmptyLevel"; }
 
-		virtual void initialGameObjects() {}
+		virtual void initialGameObjects(Game* game) {}
 		void setIsloaded(bool isLoaded);
 
 	protected:

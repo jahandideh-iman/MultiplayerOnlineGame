@@ -25,6 +25,9 @@ namespace mog
 		void setPosition(Point pos);
 		Point getPosition() const;
 
+		void setRoation(Float r);
+		Float getRoation() const;
+
 		Component *findComponent(ID id);
 
 		Game *getOwner();
@@ -34,6 +37,7 @@ namespace mog
 		virtual void addComponentsToGame(Game *game);
 
 		SerializablePoint position;
+		Float rotation = 0;
 
 	private:
 		std::vector<mog::Component *> components;

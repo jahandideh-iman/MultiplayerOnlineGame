@@ -2,6 +2,8 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
+#include "ui/UIEditBox/UIEditBox.h"
+
 namespace mog
 {
 	class GameMainMenu : public cocos2d::Layer
@@ -18,6 +20,11 @@ namespace mog
 		void StartClient(Ref* pSender);
 
 		CREATE_FUNC(GameMainMenu);
+
+	private:
+		cocos2d::ui::EditBox *serverListenPortEditBox = nullptr;
+		cocos2d::ui::EditBox *serverAddressEditBox = nullptr;
+		cocos2d::ui::EditBox *serverPortEditBox = nullptr;
 	};
 }
 #endif // __HELLOWORLD_SCENE_H__

@@ -4,6 +4,8 @@
 #include "Engine/Network/ClientGame.h"
 #include "InputComponent.h"
 
+#include <math.h>
+
 #include "cocos2d.h"
 
 mog::Pawn::Pawn()
@@ -122,4 +124,11 @@ void mog::Pawn::initialRegisteredMethods()
 	registerMethod("moveRightPressed", std::bind(&mog::Pawn::moveRightPressed, this));
 	registerMethod("moveRightReleased", std::bind(&mog::Pawn::moveRightReleased, this));
 
+}
+
+void mog::Pawn::update(float dt)
+{
+	NetworkPawn::update(dt);
+	if (getVelocity().x != 0 || getVelocity().y != 0)
+		setRoation(atan2(getVelocity().x, getVelocity().y) * 180 / M_PI); //WARNING: Why the parameters are inverse
 }

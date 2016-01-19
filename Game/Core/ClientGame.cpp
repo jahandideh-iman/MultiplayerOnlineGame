@@ -3,41 +3,46 @@
 #include "Engine/Network/InternetAddress.h"
 #include "Engine/Network/Messages/JoinMessage.h"
 #include "Engine/Network/UDPGameSocket.h"
+#include "Engine/Network/Messages/LeaveMessage.h"
 
 USING_NS_CC;
 
 using mog::network::JoinMessage;
 using mog::network::NetworkManager;
 using mog::network::InternetAddress;
-using mog::ClientGame;
+using mog::network::LeaveMessage;
 
-Scene* ClientGame::createScene()
+using mog::CCClientGame;
+
+Scene* CCClientGame::createScene(std::string address, unsigned portNumber)
 {
 	auto scene = Scene::create();
 
-	auto layer = ClientGame::create();
+	auto layer = CCClientGame::create(address, portNumber);
 
 	scene->addChild(layer);
 
 	return scene;
 }
 
-bool ClientGame::init()
+bool CCClientGame::init(std::string address, unsigned portNumber)
 {
-
+	unsigned addressNumber = ntohl(inet_addr(address.c_str()));
 	
+	setServerAddress(InternetAddress(addressNumber, portNumber));
+
 	if (!Layer::init())
 	{
 		return false;
 	}
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	Size visibleSize = getVisibleSize();
+	Vec2 origin = getOrigin();
 
-	auto joinServerButton = MenuItemImage::create(
+	joinServerButton = MenuItemImage::create(
 		"JoinButton.png",
 		"JoinButton.png",
-		CC_CALLBACK_1(ClientGame::joinServer, this));
+		CC_CALLBACK_1(CCClientGame::joinServer, this));
 
 	joinServerButton->setPosition(Vec2(origin.x + visibleSize.width * 0.5 - joinServerButton->getContentSize().width / 2,
 		origin.y + visibleSize.height * 0.4 - joinServerButton->getContentSize().height / 2));
@@ -62,15 +67,16 @@ bool ClientGame::init()
 	getNetworkManager()->setSocket(new network::UDPGameSocket());
 	getNetworkManager()->setPort(0);
 
-	setServerAddress(InternetAddress(127, 0, 0, 1, 8082));
+
 
 	return true;
 }
 
 
-void ClientGame::menuCloseCallback(Ref* pSender)
+void CCClientGame::menuCloseCallback(Ref* pSender)
 {
 	Director::getInstance()->end();
+	getNetworkManager()->sendMessage(LeaveMessage(playerName), getServerAddress());
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	exit(0);
@@ -78,13 +84,39 @@ void ClientGame::menuCloseCallback(Ref* pSender)
 }
 
 
-void ClientGame::update(float dt)
+void CCClientGame::update(float dt)
 {
 	network::ClientGame::update(dt);
 }
 
-void ClientGame::joinServer(Ref* pSender)
+void CCClientGame::joinServer(Ref* pSender)
 {
-	
-	getNetworkManager()->sendMessage(JoinMessage("player"), getServerAddress());
+	getNetworkManager()->sendMessage(JoinMessage(playerName), getServerAddress());
+	joinServerButton->setVisible(false);
+}
+
+CCClientGame * mog::CCClientGame::create(std::string address, unsigned portNumber)
+{
+	CCClientGame *pRet = new(std::nothrow) CCClientGame();
+	if (pRet && pRet->init(address,portNumber))
+	{
+		pRet->autorelease();
+		return pRet;
+	}
+	else
+	{
+		delete pRet;
+		pRet = NULL;
+		return NULL;
+	}
+}
+
+cocos2d::Size mog::CCClientGame::getVisibleSize() const
+{
+	return Director::getInstance()->getVisibleSize();
+}
+
+cocos2d::Vec2 mog::CCClientGame::getOrigin() const
+{
+	return Director::getInstance()->getVisibleOrigin();
 }

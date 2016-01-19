@@ -74,3 +74,13 @@ void mog::GameObject::onRemovedFromGame(Game *game)
 {
 
 }
+
+void mog::GameObject::setRoation(Float r)
+{
+	rotation = r;
+}
+
+mog::Float mog::GameObject::getRoation() const
+{
+	return rotation;
+}

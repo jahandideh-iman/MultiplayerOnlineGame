@@ -95,7 +95,7 @@ namespace mog
 
 			LevelFactory::get()->setObject<MockLevel>();
 			MockLevel level;
-			level.initialGameObjects();
+			level.initialGameObjects(nullptr);
 
 			serverGame->joinNewPlayer(new PlayerInfo("player1", new InternetAddress(clientAddress1)));
 			clientManager1->update();

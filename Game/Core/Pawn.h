@@ -15,6 +15,8 @@ namespace mog
 
 		AUTOID(Pawn, getNetworkID);
 
+		void update(float dt) override;
+
 		void moveUpPressed();
 		void moveUpReleased();
 

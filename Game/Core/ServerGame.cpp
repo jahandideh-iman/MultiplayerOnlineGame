@@ -10,24 +10,41 @@ USING_NS_CC;
 
 using namespace mog;
 
-ServerGame::~ServerGame(){
+CCServerGame::~CCServerGame(){
 
 }
 
-Scene* ServerGame::createScene()
+Scene* CCServerGame::createScene(unsigned portNumber)
 {
 	auto scene = Scene::create();
 
-	auto layer = ServerGame::create();
+	auto layer = CCServerGame::create(portNumber);
 
 	scene->addChild(layer);
 
 	return scene;
 }
 
-bool ServerGame::init()
+CCServerGame * mog::CCServerGame::create(unsigned portNumber)
+{
+	CCServerGame *pRet = new(std::nothrow) CCServerGame();
+	if (pRet && pRet->init(portNumber))
+	{
+		pRet->autorelease();
+		return pRet;
+	}
+	else
+	{
+		delete pRet;
+		pRet = NULL;
+		return NULL;
+	}
+}
+
+bool CCServerGame::init(unsigned portNumber)
 {
 
+	setPortNumber(portNumber);
 	if (!Layer::init())
 	{
 		return false;
@@ -48,15 +65,14 @@ bool ServerGame::init()
 
 	this->scheduleUpdate();
 
-	
 	getNetworkManager()->setSocket(new network::UDPGameSocket());
-	getNetworkManager()->setPort(8082);
+	getNetworkManager()->setPort(portNumber);
 
 	return true;
 }
 
 
-void ServerGame::menuCloseCallback(Ref* pSender)
+void CCServerGame::menuCloseCallback(Ref* pSender)
 {
 	Director::getInstance()->end();
 
@@ -66,12 +82,20 @@ void ServerGame::menuCloseCallback(Ref* pSender)
 }
 
 
-void ServerGame::update(float dt)
+void CCServerGame::update(float dt)
 {
 	network::ServerGame::update(dt);
 }
 
-void mog::ServerGame::onPawnCreated(network::NetworkPawn *p)
+void mog::CCServerGame::onPawnCreated(network::NetworkPawn *p)
 {
 	p->setPosition(Point(50,50));
 }
+
+void mog::CCServerGame::setPortNumber(unsigned port)
+{
+	this->portNumber = port;
+}
+
+
+

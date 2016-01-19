@@ -9,6 +9,8 @@
 #include "Engine/Network/Messages/ReplicateInstanceMessage.h"
 #include "Engine/Network/Messages/ReplicateStateMessage.h"
 #include "Engine/Network/Messages/RemoteMethodCallMessage.h"
+#include "Engine/Network/Messages/RemoveInstanceMessage.h"
+#include "Engine/Network/Messages/LeaveMessage.h"
 #include "Engine/Network/UDPGameSocket.h"
 #include "Engine/Network/NetworkPawnFactory.h"
 #include "Engine/Core/LevelFactory.h"
@@ -27,6 +29,8 @@ using mog::network::JoinMessage;
 using mog::network::ReplicateStateMessage;
 using mog::network::ReplicateInstanceMessage;
 using mog::network::RemoteMethodCallMessage;
+using mog::network::RemoveInstanceMessage;
+using mog::network::LeaveMessage;
 
 using mog::GameLevel;
 
@@ -96,6 +100,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	REGISTER_MESSAGE(ReplicateInstanceMessage);
 	REGISTER_MESSAGE(ReplicateStateMessage);
 	REGISTER_MESSAGE(RemoteMethodCallMessage);
+	REGISTER_MESSAGE(RemoveInstanceMessage);
+	REGISTER_MESSAGE(LeaveMessage);
 
 	REGISTER_LEVEL(GameLevel);
 

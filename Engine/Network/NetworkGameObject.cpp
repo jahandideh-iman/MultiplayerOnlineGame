@@ -11,6 +11,7 @@ mog::network::NetworkGameObject::NetworkGameObject()
 {
 	networkComponent = new NetworkComponent("networkComponent", this);
 	networkComponent->addVariable("position", &position);
+	networkComponent->addVariable("rotation", &rotation);
 	this->addComponent(networkComponent);
 }
 

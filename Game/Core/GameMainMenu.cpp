@@ -3,6 +3,7 @@
 #include "ClientGame.h"
 
 
+
 USING_NS_CC;
 
 using mog::GameMainMenu;
@@ -33,11 +34,49 @@ bool GameMainMenu::init()
 		"ServerButton.png",
 		CC_CALLBACK_1(GameMainMenu::StartServer, this));
 
+	std::string pNormalSprite = "EditBox.png";
+	this->serverListenPortEditBox = ui::EditBox::create(Size(50, 100), ui::Scale9Sprite::create(pNormalSprite));
+	serverListenPortEditBox->setPosition(Vec2(origin.x + visibleSize.width *0.7, origin.y + visibleSize.height * 0.6));
+	serverListenPortEditBox->setFontName("Paint Boy");
+	serverListenPortEditBox->setFontSize(10);
+	serverListenPortEditBox->setFontColor(Color3B::BLACK);
+	serverListenPortEditBox->setPlaceHolder("Port");
+	serverListenPortEditBox->setPlaceholderFontColor(Color3B::WHITE);
+	serverListenPortEditBox->setMaxLength(8);
+	serverListenPortEditBox->setReturnType(ui::EditBox::KeyboardReturnType::DONE);
+	serverListenPortEditBox->setText("8082");
+	//portEditBox->setDelegate(this);
+	addChild(serverListenPortEditBox);
+
 	auto clientGameItem = MenuItemImage::create(
 		"clientButton.png",
 		"clientButton.png",
 		CC_CALLBACK_1(GameMainMenu::StartClient, this));
 
+	this->serverAddressEditBox = ui::EditBox::create(Size(50, 100), ui::Scale9Sprite::create(pNormalSprite));
+	serverAddressEditBox->setPosition(Vec2(origin.x + visibleSize.width *0.6, origin.y + visibleSize.height * 0.4));
+	serverAddressEditBox->setFontName("Paint Boy");
+	serverAddressEditBox->setFontSize(10);
+	serverAddressEditBox->setFontColor(Color3B::BLACK);
+	serverAddressEditBox->setPlaceHolder("IP");
+	serverAddressEditBox->setPlaceholderFontColor(Color3B::WHITE);
+	serverAddressEditBox->setMaxLength(15);
+	serverAddressEditBox->setReturnType(ui::EditBox::KeyboardReturnType::DONE);
+	serverAddressEditBox->setText("127.0.0.1");
+	addChild(serverAddressEditBox);
+
+	this->serverPortEditBox = ui::EditBox::create(Size(50, 100), ui::Scale9Sprite::create(pNormalSprite));
+	serverPortEditBox->setPosition(Vec2(origin.x + visibleSize.width *0.8, origin.y + visibleSize.height * 0.4));
+	serverPortEditBox->setFontName("Paint Boy");
+	serverPortEditBox->setFontSize(10);
+	serverPortEditBox->setFontColor(Color3B::BLACK);
+	serverPortEditBox->setPlaceHolder("Port");
+	serverPortEditBox->setPlaceholderFontColor(Color3B::WHITE);
+	serverPortEditBox->setMaxLength(8);
+	serverPortEditBox->setReturnType(ui::EditBox::KeyboardReturnType::DONE);
+	serverPortEditBox->setText("8082");
+	//portEditBox->setDelegate(this);
+	addChild(serverPortEditBox);
 
 
 	serverGameItem->setPosition(Vec2(origin.x + visibleSize.width * 0.5 - serverGameItem->getContentSize().width / 2,
@@ -79,11 +118,10 @@ void GameMainMenu::menuCloseCallback(Ref* pSender)
 
 void GameMainMenu::StartServer(Ref* pSender)
 {
-	CCDirector::getInstance()->replaceScene(ServerGame::createScene());
+	CCDirector::getInstance()->replaceScene(CCServerGame::createScene(atoi(serverListenPortEditBox->getText())));
 }
 
 void GameMainMenu::StartClient(Ref* pSender)
 {
-	CCDirector::getInstance()->replaceScene(ClientGame::createScene());
-
+	CCDirector::getInstance()->replaceScene(CCClientGame::createScene(serverAddressEditBox->getText(), atoi(serverPortEditBox->getText())));
 }

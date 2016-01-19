@@ -26,4 +26,6 @@ void mog::SpriteComponent::update(float dt)
 {
 	sprite->setPositionX(owner->getPosition().x);
 	sprite->setPositionY(owner->getPosition().y);
+
+	sprite->setRotation(owner->getRoation().getValue());
 }

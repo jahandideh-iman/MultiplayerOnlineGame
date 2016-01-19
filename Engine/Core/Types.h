@@ -14,6 +14,7 @@ namespace mog
 	typedef std::string ID;
 
 	typedef SerializablePrimitive<int> Integer;
+	typedef SerializablePrimitive<int> Float;
 
 	typedef SerializablePoint Position;
 	typedef SerializablePoint Vector;

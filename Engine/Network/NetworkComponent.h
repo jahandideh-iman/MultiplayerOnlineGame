@@ -18,6 +18,7 @@ namespace mog
 
 			void addVariable(const std::string &name, Serializable *var);
 			void removeVariable(const std::string &name);
+			void removeAllVariables();
 			bool hasVarialbe(const std::string &name);
 
 			void addSelfToGame(Game *g);

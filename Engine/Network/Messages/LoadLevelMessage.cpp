@@ -25,7 +25,7 @@ void mog::network::LoadLevelMessage::executeOnClient(ClientGame *game, const Par
 {
 	ID name = parameters.get("levelName");
 	auto level = LevelDatabase::get()->find(name);
-	level->initialGameObjects();
+	level->initialGameObjects(game);
 	game->loadLevel(level);
 }
 

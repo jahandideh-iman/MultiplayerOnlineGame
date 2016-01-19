@@ -21,7 +21,7 @@ namespace mog
 			REGISTER_MESSAGE(LoadLevelMessage);
 
 			MockLevel level;
-			level.initialGameObjects();
+			level.initialGameObjects(nullptr);
 
 			serverManager->sendMessage(LoadLevelMessage(&level), clientAddress1);
 			clientManager1->update();

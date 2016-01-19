@@ -6,24 +6,28 @@
 
 namespace mog
 {
-	class ServerGame : public network::ServerGame , public cocos2d::Layer 
+	class CCServerGame : public network::ServerGame , public cocos2d::Layer 
 	{
 	public:
 
-		~ServerGame();
+		~CCServerGame();
 
-		static cocos2d::Scene* createScene();
+		static cocos2d::Scene* createScene(unsigned portNumber);
 
 		virtual void update(float dt) override;
 
-		virtual bool init();
+		virtual bool init(unsigned portNumber);
 
+		void setPortNumber(unsigned port);
 
 		void menuCloseCallback(cocos2d::Ref* pSender);
 
-		CREATE_FUNC(ServerGame);
+		static CCServerGame *create(unsigned portNumber);
 
 	protected:
 		void onPawnCreated(network::NetworkPawn *p) override;
+
+	private:
+		unsigned portNumber = 1000;
 	};
 }
