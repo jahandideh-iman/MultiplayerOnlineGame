@@ -18,6 +18,7 @@ namespace mog
 		std::vector<mog::Component *> getComponents();
 
 		virtual void onAddedToGame(Game *game);
+		virtual void onRemovedFromGame(Game *game);
 
 		virtual void update(float dt);
 

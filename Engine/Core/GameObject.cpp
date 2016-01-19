@@ -69,3 +69,8 @@ mog::Game *mog::GameObject::getOwner()
 {
 	return owner;
 }
+
+void mog::GameObject::onRemovedFromGame(Game *game)
+{
+
+}

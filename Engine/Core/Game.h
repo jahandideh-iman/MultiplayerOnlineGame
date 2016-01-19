@@ -14,7 +14,8 @@ namespace mog
 
 		void loadLevel(Level *level);
 
-		void addGameObject(GameObject *o);
+		void addGameObject(GameObject *object);
+		void removeGameObject(GameObject *object);
 
 		virtual void update(float dt);
 

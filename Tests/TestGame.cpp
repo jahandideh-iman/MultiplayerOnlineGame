@@ -31,8 +31,47 @@ namespace mog
 		game.addGameObject(o1);
 		game.addGameObject(o2);
 
-		CHECK_TRUE(game.has(o1))
-		CHECK_TRUE(game.has(o2))
+		CHECK_TRUE(game.has(o1));
+		CHECK_TRUE(game.has(o2));
+	}
+
+	TEST(Game, callsOnAddedToGameWhenObjectIsAddedToGame)
+	{
+		Game game;
+		auto o1 = new MockGameObject();
+
+		game.addGameObject(o1);
+
+		CHECK_TRUE(o1->isOnAddedToGameCalled);
+	}
+
+	TEST(Game, DoesNotHaveTheRemoveObject)
+	{
+		Game game;
+		auto o1 = new GameObject();
+		auto o2 = new GameObject();
+
+		game.addGameObject(o1);
+		game.addGameObject(o2);
+
+		game.removeGameObject(o1);
+		game.removeGameObject(o2);
+
+		CHECK_FALSE(game.has(o1));
+		CHECK_FALSE(game.has(o2));
+	}
+
+	TEST(Game, callsOnRemoveFromGameWhenObjectIsRemovedFromGame)
+	{
+		Game game;
+		bool isOnRemovedFromGameCalled = false;
+		auto o1 = new MockGameObject();
+		o1->removeFromGameCallBack = [&](){isOnRemovedFromGameCalled = true; };
+		game.addGameObject(o1);
+
+		game.removeGameObject(o1);
+
+		CHECK_TRUE(isOnRemovedFromGameCalled);
 	}
 
 	TEST(Game, callsGameObjectUpdateInUpdate)
