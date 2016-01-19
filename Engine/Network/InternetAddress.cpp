@@ -63,3 +63,15 @@ mog::network::InternetAddress::InternetAddress(const InternetAddress&other)
 	this->port = other.getPort();
 }
 
+bool mog::network::InternetAddress::operator==(const InternetAddress &other) const
+{
+	if (address == other.address && port == other.port)
+		return true;
+	return false;
+}
+
+bool mog::network::InternetAddress::operator!=(const InternetAddress &other) const
+{
+	return !this->operator==(other);
+}
+

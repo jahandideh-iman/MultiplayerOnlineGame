@@ -42,6 +42,22 @@ void mog::network::ServerGame::joinNewPlayer(PlayerInfo *info)
 	}
 }
 
+
+void mog::network::ServerGame::removePlayer(const PlayerInfo *info)
+{
+	for (auto it = playersInfo.begin(); it != playersInfo.end(); it++)
+	{
+		auto pInfo = *it;
+		if (*pInfo == *info)
+		{
+			playersInfo.erase(it);
+			dynamic_cast<ServerNetworkManager* > (getNetworkManager())->removeClient(info->address);
+			delete pInfo;
+			break;
+		}
+	}
+}
+
 const mog::network::PlayerInfo * mog::network::ServerGame::getPlayerInfoByName(std::string name) const
 {
 	for (auto p : playersInfo)
@@ -51,4 +67,15 @@ const mog::network::PlayerInfo * mog::network::ServerGame::getPlayerInfoByName(s
 	}
 
 	return nullptr;
+}
+
+bool mog::network::ServerGame::hasPlayer(const PlayerInfo* info) const
+{
+	for (auto p : playersInfo)
+	{
+		if (*p == *info)
+			return true;
+	}
+
+	return false;
 }

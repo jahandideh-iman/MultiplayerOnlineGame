@@ -58,7 +58,7 @@ namespace mog
 		{
 			ServerGame serverGame;
 
-			auto info = new PlayerInfo(std::string("player"), new InternetAddress());
+			auto info = new PlayerInfo("player", new InternetAddress());
 			serverGame.joinNewPlayer(info);
 
 			CHECK_TRUE(hasPawn<NetworkPawn>(&serverGame));
@@ -72,7 +72,7 @@ namespace mog
 
 			NetworkPawnFactory::get()->setNetworkPawn<CustomNetworkPawn>();
 
-			auto info = new PlayerInfo(std::string("player"), new InternetAddress());
+			auto info = new PlayerInfo("player", new InternetAddress());
 			serverGame.joinNewPlayer(info);
 
 			CHECK_TRUE(hasPawn<CustomNetworkPawn>(&serverGame));
@@ -82,7 +82,7 @@ namespace mog
 		{
 			MockServerGame serverGame;
 
-			auto info = new PlayerInfo(std::string("player"), new InternetAddress());
+			auto info = new PlayerInfo("player", new InternetAddress());
 			serverGame.joinNewPlayer(info);
 
 			CHECK_TRUE(serverGame.isOnPawnCreatedCalled);
@@ -97,7 +97,7 @@ namespace mog
 			MockLevel level;
 			level.initialGameObjects();
 
-			serverGame->joinNewPlayer(new PlayerInfo(std::string("player1"), new InternetAddress(clientAddress1)));
+			serverGame->joinNewPlayer(new PlayerInfo("player1", new InternetAddress(clientAddress1)));
 			clientManager1->update();
 
 			CHECK_TRUE(gameHasLevelObjects(clientGame1, &level));

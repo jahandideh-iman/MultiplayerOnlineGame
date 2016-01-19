@@ -9,8 +9,11 @@ namespace mog
 		struct PlayerInfo
 		{
 		public:
-			PlayerInfo(std::string &name, const network::InternetAddress *address);
+			PlayerInfo(std::string name, const network::InternetAddress *address);
 			~PlayerInfo();
+
+			bool operator== (const PlayerInfo &other) const;
+			bool operator!= (const PlayerInfo &other) const;
 
 			std::string name;
 			const network::InternetAddress *address;

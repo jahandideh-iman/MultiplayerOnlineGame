@@ -30,6 +30,9 @@ namespace mog
 			void setAddress(unsigned address);
 			void setPort(unsigned short port);
 
+			bool operator== (const InternetAddress &other) const;
+			bool operator!= (const InternetAddress &other) const;
+
 		private:
 			unsigned int address;
 			unsigned short port;

@@ -16,11 +16,14 @@ namespace mog
 			~ServerGame();
 
 			void joinNewPlayer(PlayerInfo *info);
+			void removePlayer(const PlayerInfo *info);
 
 			NetworkGameType getType() const final override{ return T_Server; }
 
 			//Note: For testing.
 			const PlayerInfo *getPlayerInfoByName(std::string name) const;
+			//Note: For testing.
+			bool hasPlayer(const PlayerInfo* info) const;
 
 		protected:
 			virtual void  onPawnCreated(NetworkPawn *p){}

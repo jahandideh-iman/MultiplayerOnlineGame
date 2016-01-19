@@ -6,6 +6,8 @@
 #include "Engine/Network/ClientGame.h"
 #include "Engine/Network/ServerGame.h"
 #include "Engine/Network/Messages/MessageDatabase.h"
+#include "Engine/Network/ConstructorDatabase.h"
+#include "Engine/Network/NetworkPawnFactory.h"
 
 #include "Engine/Network/ServerNetworkManager.h"
 
@@ -70,6 +72,8 @@ namespace mog
 				delete clientGame2;
 
 				MessageDatabase::clear();
+				ConstructorDatabase::clear();
+				NetworkPawnFactory::clear();
 			}
 
 			//NOTE: These parameters are normaly set in server

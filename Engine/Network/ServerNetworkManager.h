@@ -23,8 +23,12 @@ namespace mog
 			void executeMessage(const Message &message, const ParameterContainer &parameters, const InternetAddress &senderAddress) override;
 
 			void addClient(const InternetAddress *address);
+			void removeClient(const InternetAddress *address);
+
 			//NOTE: For testing
 			std::vector<const InternetAddress *> getClients() const;
+			//NOTE: For testing
+			bool hasClient(const InternetAddress *address) const;
 
 		private:
 			void processInstanceReplications();

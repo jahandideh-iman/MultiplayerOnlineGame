@@ -95,14 +95,17 @@ void mog::network::ServerNetworkManager::addClient(const InternetAddress *addres
 	clientReplicationInfos.push_back(clientRep);
 }
 
-std::vector<const mog::network::InternetAddress *>  mog::network::ServerNetworkManager::getClients() const
+void mog::network::ServerNetworkManager::removeClient(const InternetAddress *address)
 {
-	std::vector<const InternetAddress *> addresses;
-
-	for (auto client : clientReplicationInfos)
-		addresses.push_back(client->getAddress());
-
-	return addresses;
+	for (auto it = clientReplicationInfos.begin(); it != clientReplicationInfos.end(); it++)
+	{
+		if (*(*it)->getAddress() == *address)
+		{
+			delete *it;
+			clientReplicationInfos.erase(it);
+			break;
+		}
+	}
 }
 
 void mog::network::ServerNetworkManager::addNetworkGameObject(NetworkGameObject *object)
@@ -177,4 +180,24 @@ void mog::network::ServerNetworkManager::processStateReplications()
 void mog::network::ServerNetworkManager::executeMessage(const Message &message, const ParameterContainer &parameters, const InternetAddress &senderAddress)
 {
 	message.executeOnServer(dynamic_cast<ServerGame*>(game), parameters, senderAddress);
+}
+
+std::vector<const mog::network::InternetAddress *>  mog::network::ServerNetworkManager::getClients() const
+{
+	std::vector<const InternetAddress *> addresses;
+
+	for (auto client : clientReplicationInfos)
+		addresses.push_back(client->getAddress());
+
+	return addresses;
+}
+
+bool mog::network::ServerNetworkManager::hasClient(const InternetAddress *address) const
+{
+	for (auto client : clientReplicationInfos)
+	{
+		if (*client->getAddress() == *address)
+			return true;
+	}
+	return false;
 }

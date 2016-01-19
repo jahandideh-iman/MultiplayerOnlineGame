@@ -41,7 +41,7 @@ namespace mog
 			clientManager1->sendMessage(JoinMessage("playerName"), serverAddress);
 			serverManager->update();
 
-			CHECK_TRUE(serverGame->getPlayerInfoByName("playerName") != nullptr);
+			CHECK_TRUE(serverGame->hasPlayer(&PlayerInfo("playerName",new InternetAddress(clientAddress1))));
 		}
 
 		TEST(JoinMessage, ClientAddressIsAddedToNetworkManager)
@@ -51,7 +51,7 @@ namespace mog
 			clientManager1->sendMessage(JoinMessage("playerName"), serverAddress);
 			serverManager->update();
 
-			CHECK_EQUAL(clientAddress1.getPort(), serverManager->getClients()[0]->getPort());
+			CHECK_TRUE(serverManager->hasClient(&clientAddress1));
 		}
 
 		TEST(JoinMessage, PawnIsAddedToClientAndServer)
