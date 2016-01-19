@@ -1,10 +1,12 @@
 #include "ServerNetworkManager.h"
 
 #include "Engine/Network/Messages/ReplicateInstanceMessage.h"
+#include "Engine/Network/Messages/RemoveInstanceMessage.h"
 #include "Engine/Network/Messages/ReplicateStateMessage.h"
 #include "Engine/Network/ServerGame.h"
 
 #include <set>
+#include <assert.h>
 
 namespace mog
 {
@@ -28,9 +30,21 @@ namespace mog
 				toBeReplicatedInstances.insert(instanceId);
 			}
 
-			void removeToBeReplicatedInstance(unsigned  instanceId)
+
+			void eraseToBeReplicatedInstance(unsigned  instanceId)
 			{
 				toBeReplicatedInstances.erase(instanceId);
+			}
+
+			void addToBeRemovedInstance(unsigned  instanceId)
+			{
+				toBeRemovedInstaces.insert(instanceId);
+			}
+
+
+			void eraseToBeRemovedInstance(unsigned  instanceId)
+			{
+				toBeRemovedInstaces.erase(instanceId);
 			}
 
 			unsigned getToBeReplicatedInstance()
@@ -38,14 +52,25 @@ namespace mog
 				return *(toBeReplicatedInstances.begin());
 			}
 
-			bool isEmpty()
+			unsigned getToBeRemovedInstance()
+			{
+				return *(toBeRemovedInstaces.begin());
+			}
+
+			bool isToBeReplicatedEmpty()
 			{
 				return toBeReplicatedInstances.empty();
+			}
+
+			bool isToBeRemovedEmpty()
+			{
+				return toBeRemovedInstaces.empty();
 			}
 
 		private:
 			const InternetAddress *address = nullptr;
 			std::set<unsigned > toBeReplicatedInstances;
+			std::set<unsigned > toBeRemovedInstaces;
 		};
 	}
 }
@@ -82,22 +107,24 @@ std::vector<const mog::network::InternetAddress *>  mog::network::ServerNetworkM
 
 void mog::network::ServerNetworkManager::addNetworkGameObject(NetworkGameObject *object)
 {
-	if (object->isReplica() == false)
-	{
-		object->setInstanceId(lastNetworkGameObjectId);
-		lastNetworkGameObjectId++;
+	assert(object->isReplica() == false);
 
-		for (auto client : clientReplicationInfos)
-		{
-			client->addToBeReplicatedInstance(object->getInstanceId());
-		}
-	}
+	object->setInstanceId(lastNetworkGameObjectId);
+	lastNetworkGameObjectId++;
+
+	for (auto client : clientReplicationInfos)
+		client->addToBeReplicatedInstance(object->getInstanceId());
 
 	NetworkManager::addNetworkGameObject(object);
 }
 
 void mog::network::ServerNetworkManager::removeNetworkGameObject(NetworkGameObject *object)
 {
+	assert(object->isReplica() == false);
+
+	for (auto client : clientReplicationInfos)
+		client->addToBeRemovedInstance(object->getInstanceId());
+
 	NetworkManager::removeNetworkGameObject(object);
 }
 
@@ -105,27 +132,45 @@ void mog::network::ServerNetworkManager::removeNetworkGameObject(NetworkGameObje
 void mog::network::ServerNetworkManager::update(float dt /* = 0 */)
 {
 	NetworkManager::update(dt);
-	processReplications();
+
+	//NOTE: The order may be important
+	processInstanceReplications();
+	processInstanceRemoval();
+	processStateReplications();
 }
 
-void mog::network::ServerNetworkManager::processReplications()
+void mog::network::ServerNetworkManager::processInstanceReplications()
 {
 	for (auto clientRep : clientReplicationInfos)
 	{
-		while (!clientRep->isEmpty())
+		while (!clientRep->isToBeReplicatedEmpty())
 		{
 			auto instanceId = clientRep->getToBeReplicatedInstance();
 			sendMessage(ReplicateInstanceMessage(findNetworkGameObject(instanceId)), *(clientRep->getAddress()));
-			clientRep->removeToBeReplicatedInstance(instanceId);
+			clientRep->eraseToBeReplicatedInstance(instanceId);
 		}
 	}
+}
 
+void mog::network::ServerNetworkManager::processInstanceRemoval()
+{
+	for (auto clientRep : clientReplicationInfos)
+	{
+		while (!clientRep->isToBeRemovedEmpty())
+		{
+			auto instanceId = clientRep->getToBeRemovedInstance();
+			sendMessage(RemoveInstanceMessage(instanceId), *(clientRep->getAddress()));
+			clientRep->eraseToBeRemovedInstance(instanceId);
+		}
+	}
+}
+
+void mog::network::ServerNetworkManager::processStateReplications()
+{
 	for (auto clientRep : clientReplicationInfos)
 	{
 		for (auto netObjetPair : networkGameObjects)
-		{
 			sendMessage(ReplicateStateMessage(netObjetPair.second), *(clientRep->getAddress()));
-		}
 	}
 }
 

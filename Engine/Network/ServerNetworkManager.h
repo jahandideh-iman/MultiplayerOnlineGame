@@ -27,7 +27,9 @@ namespace mog
 			std::vector<const InternetAddress *> getClients() const;
 
 		private:
-			void processReplications();
+			void processInstanceReplications();
+			void processInstanceRemoval();
+			void processStateReplications();
 
 		private:
 			std::vector<ClientReplicationInfo *> clientReplicationInfos;

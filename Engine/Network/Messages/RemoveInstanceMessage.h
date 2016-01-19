@@ -13,7 +13,7 @@ namespace mog
 		class RemoveInstanceMessage : public Message
 		{
 		public:
-			RemoveInstanceMessage(const NetworkGameObject *gameObject);
+			RemoveInstanceMessage(unsigned instanceId);
 			RemoveInstanceMessage();
 			~RemoveInstanceMessage();
 
@@ -25,7 +25,8 @@ namespace mog
 			void fillData(ParameterContainer &parameters) const override;
 
 		private:
-			const NetworkGameObject *gameObject;
+			//NOTE: Instance ID is store because object may be deleted with fillData is called
+			unsigned instanceId;
 		};
 	}
 }

@@ -3,9 +3,9 @@
 #include "Engine/Network/ClientGame.h"
 #include "Engine/Network/NetworkManager.h"
 
-mog::network::RemoveInstanceMessage::RemoveInstanceMessage(const NetworkGameObject *gameObject)
+mog::network::RemoveInstanceMessage::RemoveInstanceMessage(unsigned instanceId)
 {
-	this->gameObject = gameObject;
+	this->instanceId = instanceId;
 }
 
 mog::network::RemoveInstanceMessage::RemoveInstanceMessage()
@@ -20,7 +20,7 @@ mog::network::RemoveInstanceMessage::~RemoveInstanceMessage()
 
 void mog::network::RemoveInstanceMessage::fillData(ParameterContainer &parameters) const
 {
-	parameters.put("instanceId", std::to_string(gameObject->getInstanceId()));
+	parameters.put("instanceId", std::to_string(instanceId));
 }
 
 void mog::network::RemoveInstanceMessage::executeOnClient(ClientGame *game, const ParameterContainer &parameters, const InternetAddress &address) const

@@ -1,13 +1,17 @@
 #include "CppUTest/TestHarness.h"
 #include "NetworkBase.h"
 #include "MockLevel.h"
+#include "MockNetworkGameObject.h"
 
 #include "Engine/Network/ServerGame.h"
 #include "Engine/Network/NetworkPawn.h"
 #include "Engine/Network/NetworkPawnFactory.h"
+#include "Engine/Network/ConstructorDatabase.h"
 
 #include "Engine/Core/LevelFactory.h"
 #include "Engine/Network/Messages/LoadLevelMessage.h"
+#include "Engine/Network/Messages/ReplicateInstanceMessage.h"
+#include "Engine/Network/Messages/RemoveInstanceMessage.h"
 #include "Engine/Core/LevelDatabase.h"
 
 
@@ -34,6 +38,7 @@ namespace mog
 				NetworkPawnFactory::clear();
 				LevelDatabase::clear();
 				LevelFactory::clear();
+				ConstructorDatabase::clear();
 			}
 
 			template<class P>
@@ -99,6 +104,34 @@ namespace mog
 			CHECK_FALSE(gameHasLevelObjects(serverGame, &MockLevel()));
 
 			LevelFactory::clear();
+		}
+
+		TEST(ServerGame, RemovesGameObjectFromClientsWhenObjectIsRemovedInServer)
+		{
+			REGISTER_MESSAGE(ReplicateInstanceMessage);
+			REGISTER_MESSAGE(RemoveInstanceMessage);
+			REGISTER_CONSTRUCTOR(MockNetworkGameObject);
+
+			auto networkObject = new MockNetworkGameObject();
+			serverGame->addGameObject(networkObject);
+			unsigned assignedIndex = networkObject->getInstanceId();
+
+			//NOTE: Client are added to Manager instead of Game to prevent creating Pawn 
+			serverManager->addClient(&clientAddress1);
+			serverManager->addClient(&clientAddress2);
+
+			serverGame->update();
+			clientGame1->update();
+			clientGame2->update();
+
+			serverGame->removeGameObject(networkObject);
+
+			serverGame->update();
+			clientGame1->update();
+			clientGame2->update();
+			
+			CHECK_FALSE(clientManager1->hasNetworkGameObject(assignedIndex));
+			CHECK_FALSE(clientManager2->hasNetworkGameObject(assignedIndex));
 		}
 	}
 }

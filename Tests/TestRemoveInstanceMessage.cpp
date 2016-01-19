@@ -35,7 +35,7 @@ namespace mog
 			serverManager->sendMessage(ReplicateInstanceMessage(&networkObject), clientAddress1);
 			clientManager1->update();
 
-			serverManager->sendMessage(RemoveInstanceMessage(&networkObject), clientAddress1);
+			serverManager->sendMessage(RemoveInstanceMessage(networkObject.getInstanceId()), clientAddress1);
 			clientManager1->update();
 
 			CHECK_FALSE(clientManager1->hasNetworkGameObject(arbitraryID));
@@ -51,7 +51,7 @@ namespace mog
 
 			serverGame->addGameObject(networkObject);
 
-			clientManager1->sendMessage(RemoveInstanceMessage(networkObject), serverAddress);
+			clientManager1->sendMessage(RemoveInstanceMessage(networkObject->getInstanceId()), serverAddress);
 			serverManager->update();
 
 			CHECK_TRUE(serverManager->hasNetworkGameObject(networkObject));
