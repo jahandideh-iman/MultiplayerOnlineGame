@@ -10,8 +10,8 @@
 	 ConstructorDatabase::get()->registerRep()
 
 #define REGISTER_CONSTRUCTOR(T) \
-	mog::network::NetworkObjectConstructor* c = new mog::network::NetworkObjectConstructorT<T>(); \
-	bool isRegistered_##T = mog::network::ConstructorDatabase::get()->registerConstrcutor(c); \
+	mog::network::NetworkObjectConstructor* c_##T = new mog::network::NetworkObjectConstructorT<T>(); \
+	bool isRegistered_##T = mog::network::ConstructorDatabase::get()->registerConstrcutor(c_##T); \
 
 namespace mog
 {

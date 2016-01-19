@@ -202,3 +202,10 @@ Engine/Debug
 Engine/Debug.win32/*
 Game/Debug
 Game/Debug.win32
+
+proj.win32/Release.win32
+Test/Release
+Engine/Release
+Engine/Release.win32/*
+Game/Release
+Game/Release.win32

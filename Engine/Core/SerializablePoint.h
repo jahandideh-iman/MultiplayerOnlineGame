@@ -16,6 +16,11 @@ namespace mog
 
 		void read(const Buffer *buffer) override;
 		void write(Buffer *buffer) const override;
+
+		SerializablePoint operator*(float f)
+		{
+			return SerializablePoint(x *f, y*f);
+		}
 	};
 }
 

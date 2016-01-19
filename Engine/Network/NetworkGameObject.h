@@ -19,10 +19,12 @@ namespace mog
 
 			virtual ~NetworkGameObject();
 
-			virtual void onAddedToGame(Game *game) override;
-			virtual void onRemovedFromGame(Game *game) override;
+			void onAddedToGame(Game *game) override;
+			void onRemovedFromGame(Game *game) override;
 
 			virtual void initialRegisteredMethods();
+
+			void updatePosition(float dt) override;
 
 			void callMethod(std::string name);
 

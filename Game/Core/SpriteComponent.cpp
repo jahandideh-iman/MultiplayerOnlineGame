@@ -19,11 +19,13 @@ void mog::SpriteComponent::addSelfToGame(Game *g)
 {
 	auto cocosGame = dynamic_cast<cocos2d::Layer*> (g);
 	assert(cocosGame != nullptr);
+	this->cocosGame = cocosGame;
 	cocosGame->addChild(sprite, sprite->getLocalZOrder());
 }
 
 void mog::SpriteComponent::update(float dt)
 {
+	Component::update(dt);
 	sprite->setPositionX(owner->getPosition().x);
 	sprite->setPositionY(owner->getPosition().y);
 

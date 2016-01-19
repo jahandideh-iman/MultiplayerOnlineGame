@@ -18,6 +18,7 @@
 
 #include "Core/Pawn.h"
 #include "Core/GameLevel.h"
+#include "Core/Bullet.h"
 
 USING_NS_CC;
 
@@ -33,6 +34,7 @@ using mog::network::RemoveInstanceMessage;
 using mog::network::LeaveMessage;
 
 using mog::GameLevel;
+using mog::Bullet;
 
 
 AppDelegate::AppDelegate() {
@@ -93,6 +95,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->runWithScene(scene);
 
 	REGISTER_CONSTRUCTOR(Pawn);
+	REGISTER_CONSTRUCTOR(Bullet);
 
 
 	REGISTER_MESSAGE(LoadLevelMessage);

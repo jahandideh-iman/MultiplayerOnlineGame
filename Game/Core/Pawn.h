@@ -29,6 +29,8 @@ namespace mog
 		void moveRightPressed();
 		void moveRightReleased();
 
+		void shoot();
+
 		void initialRegisteredMethods() override;
 
 	private:

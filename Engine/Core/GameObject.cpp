@@ -63,6 +63,8 @@ void mog::GameObject::update(float dt)
 {
 	for (auto c : components)
 		c->update(dt);
+
+	updatePosition(dt);
 }
 
 mog::Game *mog::GameObject::getOwner()
@@ -83,4 +85,29 @@ void mog::GameObject::setRoation(Float r)
 mog::Float mog::GameObject::getRoation() const
 {
 	return rotation;
+}
+
+void mog::GameObject::setVelocity(Vector velocity)
+{
+	this->velocity = velocity;
+}
+
+mog::Vector mog::GameObject::getVelocity() const
+{
+	return velocity;
+}
+
+void mog::GameObject::setVelocityX(float x)
+{
+	velocity.x = x;
+}
+
+void mog::GameObject::setVelocityY(float y)
+{
+	velocity.y = y;
+}
+
+void mog::GameObject::updatePosition(float dt)
+{
+	setPosition(getPosition() + velocity*dt);
 }

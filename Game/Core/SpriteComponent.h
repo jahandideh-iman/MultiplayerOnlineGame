@@ -18,5 +18,7 @@ namespace mog
 
 	private:
 		cocos2d::Sprite *sprite = nullptr;
+
+		cocos2d::Layer *cocosGame;
 	};
 }

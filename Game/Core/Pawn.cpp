@@ -8,6 +8,8 @@
 
 #include "cocos2d.h"
 
+#include "Bullet.h"
+
 mog::Pawn::Pawn()
 {
 	addComponent(new SpriteComponent("sprite",this,"pawn.png"));
@@ -62,6 +64,12 @@ mog::Pawn::Pawn()
 		auto clientGame = dynamic_cast<mog::network::ClientGame *> (this->getOwner());
 		if (clientGame != nullptr)
 			clientGame->callRemoteMethod("moveRightReleased", this);
+	});
+
+	input->addOnPressAction(cocos2d::EventKeyboard::KeyCode::KEY_SPACE, [this](){
+		auto clientGame = dynamic_cast<mog::network::ClientGame *> (this->getOwner());
+		if (clientGame != nullptr)
+			clientGame->callRemoteMethod("shoot", this);
 	});
 
 	addComponent(input);
@@ -124,6 +132,7 @@ void mog::Pawn::initialRegisteredMethods()
 	registerMethod("moveRightPressed", std::bind(&mog::Pawn::moveRightPressed, this));
 	registerMethod("moveRightReleased", std::bind(&mog::Pawn::moveRightReleased, this));
 
+	registerMethod("shoot", std::bind(&mog::Pawn::shoot, this));
 }
 
 void mog::Pawn::update(float dt)
@@ -131,4 +140,9 @@ void mog::Pawn::update(float dt)
 	NetworkPawn::update(dt);
 	if (getVelocity().x != 0 || getVelocity().y != 0)
 		setRoation(atan2(getVelocity().x, getVelocity().y) * 180 / M_PI); //WARNING: Why the parameters are inverse
+}
+
+void mog::Pawn::shoot()
+{
+	getOwner()->addGameObject(new Bullet(this,getRoation(),getPosition()));
 }

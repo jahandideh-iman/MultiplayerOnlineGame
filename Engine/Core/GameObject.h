@@ -22,6 +22,8 @@ namespace mog
 
 		virtual void update(float dt);
 
+		virtual void updatePosition(float dt);
+
 		void setPosition(Point pos);
 		Point getPosition() const;
 
@@ -30,18 +32,25 @@ namespace mog
 
 		Component *findComponent(ID id);
 
+		void setVelocity(Vector velocity);
+		void setVelocityX(float x);
+		void setVelocityY(float y);
+		Vector getVelocity() const;
+
 		Game *getOwner();
 
 	protected:
 		//TODO: Find out why this method is virtual
 		virtual void addComponentsToGame(Game *game);
-
 		SerializablePoint position;
 		Float rotation = 0;
+		Vector velocity;
 
 	private:
 		std::vector<mog::Component *> components;
 		Game *owner = nullptr;
+
+
 
 	};
 }

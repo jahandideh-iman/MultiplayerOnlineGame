@@ -25,4 +25,16 @@ namespace mog
 		CHECK_EQUAL(component1, gameObject.findComponent("comp1"));
 		CHECK_EQUAL(component2, gameObject.findComponent("comp2"));
 	}
+
+	TEST(GameObject, PositionIsCorrectInRegardToVelocity)
+	{
+		GameObject gameObject;
+		gameObject.setPosition(Point(0, 0));
+		gameObject.setVelocity(Vector(1, 2));
+
+		gameObject.update(2);
+
+		CHECK_EQUAL(2, gameObject.getPosition().x);
+		CHECK_EQUAL(4, gameObject.getPosition().y);
+	}
 }

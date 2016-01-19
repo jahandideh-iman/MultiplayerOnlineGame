@@ -3,6 +3,8 @@
 #include "Engine/Network/NetworkGame.h"
 #include "Engine/Network/NetworkComponent.h"
 
+#include "Engine/Network/ServerGame.h"
+
 #include <assert.h>
 
 
@@ -93,4 +95,15 @@ void mog::network::NetworkGameObject::callMethod(std::string name)
 	assert(p != registeredMethods.end());
 
 	p->second();
+}
+
+void mog::network::NetworkGameObject::updatePosition(float dt)
+{
+	if (dynamic_cast<NetworkGame *> (getOwner()) == nullptr)
+		GameObject::updatePosition(dt);
+	else
+	{
+		if (dynamic_cast<ServerGame *> (getOwner()) != nullptr)
+			GameObject::updatePosition(dt);
+	}
 }

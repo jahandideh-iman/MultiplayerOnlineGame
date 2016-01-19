@@ -44,12 +44,14 @@
     <ClCompile Include="Core\InputComponent.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Core\Bullet.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\proj.win32\main.h">
       <Filter>win32</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Macros.h" />
     <ClInclude Include="Core\AppDelegate.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -75,6 +77,9 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\InputComponent.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Bullet.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
