@@ -135,3 +135,20 @@ std::vector<const mog::network::NetworkGameObject *> mog::network::NetworkManage
 
 	return objects;
 }
+
+void mog::network::NetworkManager::removeNetworkGameObject(NetworkGameObject *object)
+{
+	for (auto obj : networkGameObjects)
+	{
+		if (obj.second == object)
+		{
+			networkGameObjects.erase(obj.first);
+			break;
+		}
+	}
+}
+
+void mog::network::NetworkManager::addNetworkGameObject(NetworkGameObject *object)
+{
+	networkGameObjects[object->getInstanceId()] = object;
+}

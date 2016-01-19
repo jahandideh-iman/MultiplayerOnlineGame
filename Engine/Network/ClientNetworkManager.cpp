@@ -14,11 +14,16 @@ mog::network::ClientNetworkManager::~ClientNetworkManager()
 {
 }
 
-void mog::network::ClientNetworkManager::addNetworkGameObject(NetworkGameObject *o)
+void mog::network::ClientNetworkManager::addNetworkGameObject(NetworkGameObject *object)
 {
-	assert(o->isReplica());
+	assert(object->isReplica());
 
-	networkGameObjects[o->getInstanceId()] = o;
+	NetworkManager::addNetworkGameObject(object);
+}
+
+void mog::network::ClientNetworkManager::removeNetworkGameObject(NetworkGameObject *object)
+{
+	NetworkManager::removeNetworkGameObject(object);
 }
 
 void mog::network::ClientNetworkManager::executeMessage(const Message &mesaage, const ParameterContainer &parameters, const InternetAddress &senderAddress)

@@ -29,6 +29,17 @@ void mog::network::NetworkGameObject::onAddedToGame(Game *game)
 		netGame->getNetworkManager()->addNetworkGameObject(this);
 }
 
+
+void mog::network::NetworkGameObject::onRemovedFromGame(Game *game)
+{
+	GameObject::onRemovedFromGame(game);
+
+	NetworkGame *netGame = dynamic_cast<NetworkGame*>(game);
+	if (netGame != nullptr)
+		netGame->getNetworkManager()->removeNetworkGameObject(this);
+}
+
+
 void mog::network::NetworkGameObject::setInstanceId(unsigned i)
 {
 	this->instanceId = i;

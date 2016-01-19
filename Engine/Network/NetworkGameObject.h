@@ -20,6 +20,7 @@ namespace mog
 			virtual ~NetworkGameObject();
 
 			virtual void onAddedToGame(Game *game) override;
+			virtual void onRemovedFromGame(Game *game) override;
 
 			virtual void initialRegisteredMethods();
 

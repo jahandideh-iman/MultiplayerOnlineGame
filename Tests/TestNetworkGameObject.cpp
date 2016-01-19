@@ -5,15 +5,47 @@
 
 #include "MockNetworkGameObject.h"
 #include "MockNetworkGameObjectWithMethod.h"
+#include "NetworkBase.h"
 
 namespace mog
 {
 	namespace network
 	{
-		TEST_GROUP(NetworkGameObject)
+		TEST_GROUP_BASE(NetworkGameObject,NetworkBase)
 		{
 
 		};
+
+		TEST(NetworkGameObject, AddsItselfToNetworkManagerWhenAddedToGame)
+		{
+			auto networkObject1 = new MockNetworkGameObject();
+			auto networkObject2 = new MockNetworkGameObject();
+			initialClientNetworkGameObject(networkObject2);
+			
+			serverGame->addGameObject(networkObject1);
+			clientGame1->addGameObject(networkObject2);
+
+
+			CHECK_TRUE(serverManager->hasNetworkGameObject(networkObject1));
+			CHECK_TRUE(clientManager1->hasNetworkGameObject(networkObject2));
+		}
+
+		TEST(NetworkGameObject, RemovesItselfFromNetworkManagerWhenRemovedFromGame)
+		{
+			auto networkObject1 = new MockNetworkGameObject();
+			auto networkObject2 = new MockNetworkGameObject();
+			initialClientNetworkGameObject(networkObject2);
+
+			serverGame->addGameObject(networkObject1);
+			clientGame1->addGameObject(networkObject2);
+
+			serverGame->removeGameObject(networkObject1);
+			clientGame1->removeGameObject(networkObject2);
+
+
+			CHECK_FALSE(serverManager->hasNetworkGameObject(networkObject1));
+			CHECK_FALSE(clientManager1->hasNetworkGameObject(networkObject2));
+		}
 
 		TEST(NetworkGameObject, WrittenStateIsCorrectForEmptyNetworkGameObject)
 		{

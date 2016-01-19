@@ -80,21 +80,27 @@ std::vector<const mog::network::InternetAddress *>  mog::network::ServerNetworkM
 	return addresses;
 }
 
-void mog::network::ServerNetworkManager::addNetworkGameObject(NetworkGameObject *o)
+void mog::network::ServerNetworkManager::addNetworkGameObject(NetworkGameObject *object)
 {
-	if (o->isReplica() == false)
+	if (object->isReplica() == false)
 	{
-		o->setInstanceId(lastNetworkGameObjectId);
+		object->setInstanceId(lastNetworkGameObjectId);
 		lastNetworkGameObjectId++;
 
 		for (auto client : clientReplicationInfos)
 		{
-			client->addToBeReplicatedInstance(o->getInstanceId());
+			client->addToBeReplicatedInstance(object->getInstanceId());
 		}
 	}
 
-	networkGameObjects[o->getInstanceId()] = o;
+	NetworkManager::addNetworkGameObject(object);
 }
+
+void mog::network::ServerNetworkManager::removeNetworkGameObject(NetworkGameObject *object)
+{
+	NetworkManager::removeNetworkGameObject(object);
+}
+
 
 void mog::network::ServerNetworkManager::update(float dt /* = 0 */)
 {

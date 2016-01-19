@@ -15,11 +15,12 @@ namespace mog
 			ServerNetworkManager(ServerGame *game);
 			virtual ~ServerNetworkManager();
 
-			virtual void update(float dt  = 0) override;
+			void update(float dt  = 0) override;
 
-			virtual void addNetworkGameObject(NetworkGameObject *o) override;
+			void addNetworkGameObject(NetworkGameObject *object) override;
+			void removeNetworkGameObject(NetworkGameObject *object) override;
 
-			virtual void executeMessage(const Message &message, const ParameterContainer &parameters, const InternetAddress &senderAddress) override;
+			void executeMessage(const Message &message, const ParameterContainer &parameters, const InternetAddress &senderAddress) override;
 
 			void addClient(const InternetAddress *address);
 			//NOTE: For testing

@@ -28,7 +28,8 @@ namespace mog
 			template<typename T>
 			bool initialSocket() { socket = new T(); return true; }
 
-			virtual void addNetworkGameObject(NetworkGameObject *o) = 0;
+			virtual void addNetworkGameObject(NetworkGameObject *object);
+			virtual void removeNetworkGameObject(NetworkGameObject *object);
 			NetworkGameObject *findNetworkGameObject(unsigned instaceId) const;
 		
 			virtual void executeMessage(const Message &meesage, const ParameterContainer &parameters, const InternetAddress &senderAddress) = 0;
@@ -48,12 +49,12 @@ namespace mog
 			Buffer extractMessageData(char* message, unsigned size);
 
 			void processMessages();
+
 		protected:
-			std::map<unsigned, NetworkGameObject *> networkGameObjects;
 			NetworkGame *game = nullptr;
+			std::map<unsigned, NetworkGameObject *> networkGameObjects;
 
 		private:
-
 			GameSocket *socket = nullptr;
 
 		};
