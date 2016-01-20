@@ -23,6 +23,7 @@ namespace mog
 		virtual void update(float dt);
 
 		virtual void updatePosition(float dt);
+		virtual void updateRotation(float dt);
 
 		void setPosition(Point pos);
 		Point getPosition() const;

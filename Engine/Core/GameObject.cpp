@@ -65,7 +65,20 @@ void mog::GameObject::update(float dt)
 		c->update(dt);
 
 	updatePosition(dt);
+	updateRotation(dt);
 }
+
+void mog::GameObject::updatePosition(float dt)
+{
+	setPosition(getPosition() + velocity*dt);
+}
+
+void mog::GameObject::updateRotation(float dt)
+{
+	if (getVelocity().x != 0 || getVelocity().y != 0)
+		setRoation(atan2(getVelocity().y, getVelocity().x) * 180 / M_PI);
+}
+
 
 mog::Game *mog::GameObject::getOwner()
 {
@@ -107,7 +120,3 @@ void mog::GameObject::setVelocityY(float y)
 	velocity.y = y;
 }
 
-void mog::GameObject::updatePosition(float dt)
-{
-	setPosition(getPosition() + velocity*dt);
-}

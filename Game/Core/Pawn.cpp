@@ -135,13 +135,6 @@ void mog::Pawn::initialRegisteredMethods()
 	registerMethod("shoot", std::bind(&mog::Pawn::shoot, this));
 }
 
-void mog::Pawn::update(float dt)
-{
-	NetworkPawn::update(dt);
-	if (getVelocity().x != 0 || getVelocity().y != 0)
-		setRoation(atan2(getVelocity().x, getVelocity().y) * 180 / M_PI); //WARNING: Why the parameters are inverse
-}
-
 void mog::Pawn::shoot()
 {
 	getOwner()->addGameObject(new Bullet(this,getRoation(),getPosition()));

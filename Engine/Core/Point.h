@@ -22,5 +22,12 @@ namespace mog
 		{
 			return Point(x + other.x, y + other.y);
 		}
+
+		void normalize()
+		{
+			auto s = x * x + y *y;
+			x = x / s;
+			y = y / s;
+		}
 	};
 }

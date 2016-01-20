@@ -14,8 +14,6 @@ namespace mog
 		Bullet(Pawn *shooter,Float r, Point p);
 		~Bullet();
 
-		void update(float dt) override;
-
 		AUTOID(Bullet, getNetworkID);
 	private:
 		Pawn *shooter = nullptr;
