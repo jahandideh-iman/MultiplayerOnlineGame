@@ -1,6 +1,6 @@
 #include "InputComponent.h"
 #include "Engine/Network/ServerGame.h"
-
+#include "CCGame.h"
 
 
 mog::InputComponent::InputComponent(ID id, const GameObject *owner) : Component(id,owner)
@@ -10,7 +10,8 @@ mog::InputComponent::InputComponent(ID id, const GameObject *owner) : Component(
 
 mog::InputComponent::~InputComponent()
 {
-
+	//if (ccGame != nullptr)
+		//ccGame->getEventDispatcher()->removeEventListenersForTarget(this);
 }
 
 void mog::InputComponent::addOnPressAction(cocos2d::EventKeyboard::KeyCode key, Action action)
@@ -31,8 +32,8 @@ void mog::InputComponent::addSelfToGame(Game *g)
 	if (networkGame != nullptr)
 		return;
 
-	auto cocosGame = dynamic_cast<cocos2d::Layer*> (g);
-	assert(cocosGame != nullptr);
+	ccGame = dynamic_cast<CCGame*> (g);
+	assert(ccGame != nullptr);
 
 	auto eventListener = cocos2d::EventListenerKeyboard::create();
 
@@ -50,8 +51,8 @@ void mog::InputComponent::addSelfToGame(Game *g)
 			actionPair->second();
 	};
 
-	cocosGame->addChild(this);
-	cocosGame->getEventDispatcher()->addEventListenerWithSceneGraphPriority(eventListener,this);
+	ccGame->addChild(this);
+	ccGame->getEventDispatcher()->addEventListenerWithSceneGraphPriority(eventListener, this);
 }
 
 

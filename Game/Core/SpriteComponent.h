@@ -12,6 +12,7 @@ namespace mog
 	{
 		typedef std::function<void()> Callback;
 	public:
+
 		~SpriteComponent();
 
 		SpriteComponent(ID id, const GameObject *owner, const std::string &fileName);

@@ -10,9 +10,9 @@ mog::Game::Game()
 
 mog::Game::~Game()
 {
-
 	for (auto o : gameObjects)
 		delete o;
+	//gameObjects.clear();
 }
 
 void mog::Game::loadLevel(Level *level)
@@ -88,5 +88,3 @@ void mog::Game::removeGameObjectAtEndOfUpdate(GameObject *object)
 {
 	toBeRemovedAtEndOfUpdate.push_back(object);
 }
-
-

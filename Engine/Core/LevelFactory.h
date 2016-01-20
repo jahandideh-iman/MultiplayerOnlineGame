@@ -14,6 +14,5 @@ namespace mog
 		~LevelFactory();
 	};
 
-	LevelFactory * LevelFactory::factory = nullptr;
 }
 

@@ -201,11 +201,13 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="Core\LevelFactory.h" />
     <ClInclude Include="Core\Macros.h" />
     <ClInclude Include="Core\Object.h" />
+    <ClInclude Include="Core\ObjectPoolTemplate.h" />
     <ClInclude Include="Core\ParameterContainer.h" />
     <ClInclude Include="Core\Point.h" />
     <ClInclude Include="Core\Serializable.h" />
     <ClInclude Include="Core\SerializablePoint.h" />
     <ClInclude Include="Core\SerializablePrimitive.h" />
+    <ClInclude Include="Core\SingletonTemplate.h" />
     <ClInclude Include="Core\Types.h" />
     <ClInclude Include="Core\Utilities.h" />
     <ClInclude Include="Network\ClientGame.h" />

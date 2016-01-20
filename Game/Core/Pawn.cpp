@@ -14,65 +14,8 @@ mog::Pawn::Pawn()
 {
 	addComponent(new SpriteComponent("sprite",this,"pawn.png"));
 
-	getNetworkComponent()->addVariable("health",&health);
+	getNetworkComponent()->addVariable("health", &health);
 
-	auto input = new InputComponent("input", this);
-
-	input->addOnPressAction(cocos2d::EventKeyboard::KeyCode::KEY_W, [this](){
-		auto clientGame = dynamic_cast<mog::network::ClientGame *> (this->getOwner());
-		if (clientGame != nullptr)
-			clientGame->callRemoteMethod("moveUpPressed", this);
-	});
-
-	input->addOnPressAction(cocos2d::EventKeyboard::KeyCode::KEY_S, [this](){
-		auto clientGame = dynamic_cast<mog::network::ClientGame *> (this->getOwner());
-		if (clientGame != nullptr)
-			clientGame->callRemoteMethod("moveDownPressed", this);
-	});
-
-	input->addOnPressAction(cocos2d::EventKeyboard::KeyCode::KEY_A, [this](){
-		auto clientGame = dynamic_cast<mog::network::ClientGame *> (this->getOwner());
-		if (clientGame != nullptr)
-			clientGame->callRemoteMethod("moveLeftPressed", this);
-	});
-
-	input->addOnPressAction(cocos2d::EventKeyboard::KeyCode::KEY_D, [this](){
-		auto clientGame = dynamic_cast<mog::network::ClientGame *> (this->getOwner());
-		if (clientGame != nullptr)
-			clientGame->callRemoteMethod("moveRightPressed", this);
-	});
-
-	input->addOnReleaseAction(cocos2d::EventKeyboard::KeyCode::KEY_W, [this](){
-		auto clientGame = dynamic_cast<mog::network::ClientGame *> (this->getOwner());
-		if (clientGame != nullptr)
-			clientGame->callRemoteMethod("moveUpReleased", this);
-	});
-
-	input->addOnReleaseAction(cocos2d::EventKeyboard::KeyCode::KEY_S, [this](){
-		auto clientGame = dynamic_cast<mog::network::ClientGame *> (this->getOwner());
-		if (clientGame != nullptr)
-			clientGame->callRemoteMethod("moveDownReleased", this);
-	});
-
-	input->addOnReleaseAction(cocos2d::EventKeyboard::KeyCode::KEY_A, [this](){
-		auto clientGame = dynamic_cast<mog::network::ClientGame *> (this->getOwner());
-		if (clientGame != nullptr)
-			clientGame->callRemoteMethod("moveLeftReleased", this);
-	});
-
-	input->addOnReleaseAction(cocos2d::EventKeyboard::KeyCode::KEY_D, [this](){
-		auto clientGame = dynamic_cast<mog::network::ClientGame *> (this->getOwner());
-		if (clientGame != nullptr)
-			clientGame->callRemoteMethod("moveRightReleased", this);
-	});
-
-	input->addOnPressAction(cocos2d::EventKeyboard::KeyCode::KEY_SPACE, [this](){
-		auto clientGame = dynamic_cast<mog::network::ClientGame *> (this->getOwner());
-		if (clientGame != nullptr)
-			clientGame->callRemoteMethod("shoot", this);
-	});
-
-	addComponent(input);
 }
 
 mog::Pawn::~Pawn()
@@ -138,4 +81,72 @@ void mog::Pawn::initialRegisteredMethods()
 void mog::Pawn::shoot()
 {
 	getOwner()->addGameObject(new Bullet(this,getRoation(),getPosition()));
+}
+
+void mog::Pawn::addInputComponent()
+{
+	auto input = new InputComponent("input", this);
+
+	input->addOnPressAction(cocos2d::EventKeyboard::KeyCode::KEY_W, [this](){
+		auto clientGame = dynamic_cast<mog::network::ClientGame *> (this->getOwner());
+		if (clientGame != nullptr)
+			clientGame->callRemoteMethod("moveUpPressed", this);
+	});
+
+	input->addOnPressAction(cocos2d::EventKeyboard::KeyCode::KEY_S, [this](){
+		auto clientGame = dynamic_cast<mog::network::ClientGame *> (this->getOwner());
+		if (clientGame != nullptr)
+			clientGame->callRemoteMethod("moveDownPressed", this);
+	});
+
+	input->addOnPressAction(cocos2d::EventKeyboard::KeyCode::KEY_A, [this](){
+		auto clientGame = dynamic_cast<mog::network::ClientGame *> (this->getOwner());
+		if (clientGame != nullptr)
+			clientGame->callRemoteMethod("moveLeftPressed", this);
+	});
+
+	input->addOnPressAction(cocos2d::EventKeyboard::KeyCode::KEY_D, [this](){
+		auto clientGame = dynamic_cast<mog::network::ClientGame *> (this->getOwner());
+		if (clientGame != nullptr)
+			clientGame->callRemoteMethod("moveRightPressed", this);
+	});
+
+	input->addOnReleaseAction(cocos2d::EventKeyboard::KeyCode::KEY_W, [this](){
+		auto clientGame = dynamic_cast<mog::network::ClientGame *> (this->getOwner());
+		if (clientGame != nullptr)
+			clientGame->callRemoteMethod("moveUpReleased", this);
+	});
+
+	input->addOnReleaseAction(cocos2d::EventKeyboard::KeyCode::KEY_S, [this](){
+		auto clientGame = dynamic_cast<mog::network::ClientGame *> (this->getOwner());
+		if (clientGame != nullptr)
+			clientGame->callRemoteMethod("moveDownReleased", this);
+	});
+
+	input->addOnReleaseAction(cocos2d::EventKeyboard::KeyCode::KEY_A, [this](){
+		auto clientGame = dynamic_cast<mog::network::ClientGame *> (this->getOwner());
+		if (clientGame != nullptr)
+			clientGame->callRemoteMethod("moveLeftReleased", this);
+	});
+
+	input->addOnReleaseAction(cocos2d::EventKeyboard::KeyCode::KEY_D, [this](){
+		auto clientGame = dynamic_cast<mog::network::ClientGame *> (this->getOwner());
+		if (clientGame != nullptr)
+			clientGame->callRemoteMethod("moveRightReleased", this);
+	});
+
+	input->addOnPressAction(cocos2d::EventKeyboard::KeyCode::KEY_SPACE, [this](){
+		auto clientGame = dynamic_cast<mog::network::ClientGame *> (this->getOwner());
+		if (clientGame != nullptr)
+			clientGame->callRemoteMethod("shoot", this);
+	});
+
+	addComponent(input);
+}
+
+void mog::Pawn::onAddedToGame(Game *game)
+{
+	NetworkPawn::onAddedToGame(game);
+	if (this->isReplica() == false)
+		addInputComponent();
 }

@@ -14,23 +14,19 @@ using mog::network::LeaveMessage;
 
 using mog::CCClientGame;
 
-Scene* CCClientGame::createScene(std::string address, unsigned portNumber)
+Scene* CCClientGame::createScene()
 {
 	auto scene = Scene::create();
 
-	auto layer = CCClientGame::create(address, portNumber);
+	auto layer = CCClientGame::create();
 
 	scene->addChild(layer);
 
 	return scene;
 }
 
-bool CCClientGame::init(std::string address, unsigned portNumber)
+bool CCClientGame::init()
 {
-	unsigned addressNumber = ntohl(inet_addr(address.c_str()));
-	
-	setServerAddress(InternetAddress(addressNumber, portNumber));
-
 	if (!Layer::init())
 	{
 		return false;
@@ -38,18 +34,44 @@ bool CCClientGame::init(std::string address, unsigned portNumber)
 
 	Size visibleSize = getVisibleSize();
 	Vec2 origin = getVisibleOrigin();
+
+	std::string pNormalSprite = "EditBox.png";
+	this->serverAddressEditBox = ui::EditBox::create(Size(50, 100), ui::Scale9Sprite::create(pNormalSprite));
+	serverAddressEditBox->setPosition(Vec2(origin.x + visibleSize.width *0.3, origin.y + visibleSize.height * 0.6));
+	serverAddressEditBox->setFontName("Paint Boy");
+	serverAddressEditBox->setFontSize(20);
+	serverAddressEditBox->setFontColor(Color3B::WHITE);
+	serverAddressEditBox->setPlaceHolder("IP");
+	serverAddressEditBox->setPlaceholderFontColor(Color3B::WHITE);
+	serverAddressEditBox->setMaxLength(15);
+	serverAddressEditBox->setReturnType(ui::EditBox::KeyboardReturnType::DONE);
+	serverAddressEditBox->setText("127.0.0.1");
+	addChild(serverAddressEditBox);
+
+	this->serverPortEditBox = ui::EditBox::create(Size(50, 100), ui::Scale9Sprite::create(pNormalSprite));
+	serverPortEditBox->setPosition(Vec2(origin.x + visibleSize.width *0.7, origin.y + visibleSize.height * 0.6));
+	serverPortEditBox->setFontName("Paint Boy");
+	serverPortEditBox->setFontSize(20);
+	serverPortEditBox->setFontColor(Color3B::WHITE);
+	serverPortEditBox->setPlaceHolder("Port");
+	serverPortEditBox->setPlaceholderFontColor(Color3B::WHITE);
+	serverPortEditBox->setMaxLength(8);
+	serverPortEditBox->setReturnType(ui::EditBox::KeyboardReturnType::DONE);
+	serverPortEditBox->setText("8082");
+	//portEditBox->setDelegate(this);
+	addChild(serverPortEditBox);
+
 	joinServerButton = MenuItemImage::create(
 		"JoinButton.png",
-		"JoinButton.png",
+		"JoinButton_Pressed.png",
 		CC_CALLBACK_1(CCClientGame::joinServer, this));
 
-	joinServerButton->setPosition(Vec2(origin.x + visibleSize.width * 0.5 - joinServerButton->getContentSize().width / 2,
-		origin.y + visibleSize.height * 0.4 - joinServerButton->getContentSize().height / 2));
+	joinServerButton->setPosition(Vec2(origin.x + visibleSize.width * 0.5,
+		origin.y + visibleSize.height * 0.4 ));
 
 	auto menu = Menu::create(joinServerButton, NULL);
 	menu->setPosition(Vec2::ZERO);
 	this->addChild(menu, 1);
-
 
 	auto label = Label::createWithTTF("Client", "fonts/Marker Felt.ttf", 24);
 
@@ -62,26 +84,11 @@ bool CCClientGame::init(std::string address, unsigned portNumber)
 
 	this->scheduleUpdate();
 
-
 	getNetworkManager()->setSocket(new network::UDPGameSocket());
 	getNetworkManager()->setPort(0);
 
-
-
 	return true;
 }
-
-
-void CCClientGame::menuCloseCallback(Ref* pSender)
-{
-	Director::getInstance()->end();
-	getNetworkManager()->sendMessage(LeaveMessage(playerName), getServerAddress());
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	exit(0);
-#endif
-}
-
 
 void CCClientGame::update(float dt)
 {
@@ -90,23 +97,13 @@ void CCClientGame::update(float dt)
 
 void CCClientGame::joinServer(Ref* pSender)
 {
-	getNetworkManager()->sendMessage(JoinMessage(playerName), getServerAddress());
+	unsigned addressNumber = ntohl(inet_addr(serverAddressEditBox->getText()));
+	unsigned portNumber = atoi(serverPortEditBox->getText());
+
+	serverAddressEditBox->setVisible(false);
+	serverPortEditBox->setVisible(false);
 	joinServerButton->setVisible(false);
+	
+	setServerAddress(InternetAddress(addressNumber, portNumber));
+	getNetworkManager()->sendMessage(JoinMessage(playerName), getServerAddress());
 }
-
-CCClientGame * mog::CCClientGame::create(std::string address, unsigned portNumber)
-{
-	CCClientGame *pRet = new(std::nothrow) CCClientGame();
-	if (pRet && pRet->init(address,portNumber))
-	{
-		pRet->autorelease();
-		return pRet;
-	}
-	else
-	{
-		delete pRet;
-		pRet = NULL;
-		return NULL;
-	}
-}
-

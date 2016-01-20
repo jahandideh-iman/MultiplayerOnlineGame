@@ -255,5 +255,11 @@
     <ClInclude Include="Network\Messages\LeaveMessage.h">
       <Filter>Network\Messages</Filter>
     </ClInclude>
+    <ClInclude Include="Core\ObjectPoolTemplate.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\SingletonTemplate.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

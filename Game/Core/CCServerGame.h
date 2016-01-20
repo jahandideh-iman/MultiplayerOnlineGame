@@ -3,32 +3,33 @@
 #include "Engine/Core/Level.h"
 
 #include "Engine/Network/ServerGame.h"
+#include "ui/UIEditBox/UIEditBox.h"
+
 
 #include "CCGame.h"
 namespace mog
 {
-	class CCServerGame : public network::ServerGame , public CCGame
+	//WARNING: The order of inheritance is important due to order of destruction.
+	//TODO: Fix that.
+	class CCServerGame : public network::ServerGame, public CCGame
 	{
 	public:
-
-		~CCServerGame();
-
-		static cocos2d::Scene* createScene(unsigned portNumber);
+		static cocos2d::Scene* createScene();
 
 		virtual void update(float dt) override;
 
-		virtual bool init(unsigned portNumber);
+		virtual bool init();
 
-		void setPortNumber(unsigned port);
+		void startListening(cocos2d::Ref* pSender);
 
-		void menuCloseCallback(cocos2d::Ref* pSender);
-
-		static CCServerGame *create(unsigned portNumber);
+		CREATE_FUNC(CCServerGame);
 
 	protected:
 		void onPawnCreated(network::NetworkPawn *p) override;
 
 	private:
-		unsigned portNumber = 1000;
+		cocos2d::MenuItemImage *startListeningButton = nullptr;
+
+		cocos2d::ui::EditBox *serverListenPortEditBox = nullptr;
 	};
 }

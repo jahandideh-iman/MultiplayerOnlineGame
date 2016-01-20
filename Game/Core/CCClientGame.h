@@ -2,6 +2,7 @@
 
 #include "Engine/Core/Game.h"
 #include "Engine/Network/ClientGame.h"
+#include "ui/UIEditBox/UIEditBox.h"
 
 #include "CCGame.h"
 
@@ -9,20 +10,18 @@ class GameSocket;
 
 namespace mog
 {
-	class CCClientGame : public network::ClientGame , public CCGame
+	//WARNING: The order of inheritance is important due to order of destruction.
+	//TODO: Fix that.
+	class CCClientGame : public network::ClientGame, public CCGame
 	{
 	public:
-		static cocos2d::Scene* createScene(std::string address, unsigned portNumber);
+		static cocos2d::Scene* createScene();
 
 		virtual void update(float dt) override;
 
-		virtual bool init(std::string address, unsigned portNumber);
+		virtual bool init();
 
-		void menuCloseCallback(cocos2d::Ref* pSender);
-
-		static CCClientGame *create(std::string address, unsigned portNumber);
-
-
+		CREATE_FUNC(CCClientGame);
 
 	private:
 		void joinServer(Ref* pSender);
@@ -31,6 +30,9 @@ namespace mog
 		GameSocket *socket = nullptr;
 
 		cocos2d::MenuItemImage *joinServerButton = nullptr;
+
+		cocos2d::ui::EditBox *serverAddressEditBox = nullptr;
+		cocos2d::ui::EditBox *serverPortEditBox = nullptr;
 
 		std::string playerName = "player";
 	};

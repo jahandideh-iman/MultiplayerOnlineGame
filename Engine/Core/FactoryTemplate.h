@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Engine/Core/Object.h"
+#include "Engine/Core/SingletonTemplate.h"
 #include <assert.h>
 
 namespace mog
@@ -18,21 +19,12 @@ namespace mog
 		B *create() override { return new T(); }
 	};
 
+
+
 	template<class T, class B>
-	class FactoryTemplate
+	class FactoryTemplate : public SingletonTemplate<T>
 	{
 	public:
-		static T *get()
-		{
-			if (factory == nullptr)
-				factory = new T();
-			return factory;
-		}
-		static void clear()
-		{
-			delete factory;
-			factory = nullptr;
-		}
 
 		template<class O>
 		void setObject()
@@ -56,8 +48,6 @@ namespace mog
 		virtual ~FactoryTemplate(){ delete constructor; }
 
 	private:
-		static T * factory;
-
 		Constructor *constructor = nullptr;
 	};
 }

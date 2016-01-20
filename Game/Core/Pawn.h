@@ -31,6 +31,10 @@ namespace mog
 
 		void initialRegisteredMethods() override;
 
+		void addInputComponent();
+
+		void onAddedToGame(Game *game);
+
 	private:
 		Integer health = 100;
 

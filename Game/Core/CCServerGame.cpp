@@ -10,49 +10,41 @@ USING_NS_CC;
 
 using namespace mog;
 
-CCServerGame::~CCServerGame(){
-
-}
-
-Scene* CCServerGame::createScene(unsigned portNumber)
+Scene* CCServerGame::createScene()
 {
 	auto scene = Scene::create();
 
-	auto layer = CCServerGame::create(portNumber);
+	auto layer = CCServerGame::create();
 
 	scene->addChild(layer);
 
 	return scene;
 }
 
-CCServerGame * mog::CCServerGame::create(unsigned portNumber)
-{
-	CCServerGame *pRet = new(std::nothrow) CCServerGame();
-	if (pRet && pRet->init(portNumber))
-	{
-		pRet->autorelease();
-		return pRet;
-	}
-	else
-	{
-		delete pRet;
-		pRet = NULL;
-		return NULL;
-	}
-}
-
-bool CCServerGame::init(unsigned portNumber)
+bool CCServerGame::init()
 {
 
-	setPortNumber(portNumber);
+
 	if (!Layer::init())
 	{
 		return false;
 	}
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	Size visibleSize = getVisibleSize();
+	Vec2 origin = getVisibleOrigin();
 
+	startListeningButton = MenuItemImage::create(
+		"StartButton.png",
+		"StartButton_Pressed.png",
+		CC_CALLBACK_1(CCServerGame::startListening, this));
+
+
+	startListeningButton->setPosition(Vec2(origin.x + visibleSize.width * 0.5,
+		origin.y + visibleSize.height * 0.6));
+
+	auto menu = Menu::create(startListeningButton, NULL);
+	menu->setPosition(Vec2::ZERO);
+	this->addChild(menu, 1);
 
 	auto label = Label::createWithTTF("Server", "fonts/Marker Felt.ttf", 24);
 
@@ -63,24 +55,21 @@ bool CCServerGame::init(unsigned portNumber)
 	// add the label as a child to this layer
 	this->addChild(label, 1);
 
-	this->scheduleUpdate();
-
-	getNetworkManager()->setSocket(new network::UDPGameSocket());
-	getNetworkManager()->setPort(portNumber);
+	std::string pNormalSprite = "EditBox.png";
+	this->serverListenPortEditBox = ui::EditBox::create(Size(50, 100), ui::Scale9Sprite::create(pNormalSprite));
+	serverListenPortEditBox->setPosition(Vec2(origin.x + visibleSize.width *0.5, origin.y + visibleSize.height * 0.4));
+	serverListenPortEditBox->setFontName("Paint Boy");
+	serverListenPortEditBox->setFontSize(20);
+	serverListenPortEditBox->setFontColor(Color3B::WHITE);
+	serverListenPortEditBox->setPlaceHolder("Port");
+	serverListenPortEditBox->setPlaceholderFontColor(Color3B::WHITE);
+	serverListenPortEditBox->setMaxLength(80);
+	serverListenPortEditBox->setReturnType(ui::EditBox::KeyboardReturnType::DONE);
+	serverListenPortEditBox->setText("8082 ");
+	addChild(serverListenPortEditBox);
 
 	return true;
 }
-
-
-void CCServerGame::menuCloseCallback(Ref* pSender)
-{
-	Director::getInstance()->end();
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	exit(0);
-#endif
-}
-
 
 void CCServerGame::update(float dt)
 {
@@ -92,10 +81,14 @@ void mog::CCServerGame::onPawnCreated(network::NetworkPawn *p)
 	p->setPosition(Point(50,50));
 }
 
-void mog::CCServerGame::setPortNumber(unsigned port)
+
+void mog::CCServerGame::startListening(cocos2d::Ref* pSender)
 {
-	this->portNumber = port;
+	startListeningButton->setVisible(false);
+	serverListenPortEditBox->setVisible(false);
+
+	unsigned portNumber = atoi(serverListenPortEditBox->getText());
+	getNetworkManager()->setSocket(new network::UDPGameSocket());
+	getNetworkManager()->setPort(portNumber);
+	this->scheduleUpdate();
 }
-
-
-

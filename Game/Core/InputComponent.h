@@ -7,6 +7,7 @@
 
 namespace mog
 {
+	class CCGame;
 	class InputComponent : public Component, public cocos2d::Node
 	{
 		typedef std::function<void()> Action;
@@ -21,6 +22,7 @@ namespace mog
 		void addOnReleaseAction(cocos2d::EventKeyboard::KeyCode key, Action action);
 
 	private:
+		CCGame *ccGame = nullptr;
 		std::map<cocos2d::EventKeyboard::KeyCode, Action> onPressActions;
 		std::map<cocos2d::EventKeyboard::KeyCode, Action> onReleaseActions;
 	};

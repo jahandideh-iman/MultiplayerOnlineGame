@@ -5,7 +5,6 @@
 #include <assert.h>
 
 
-
 mog::SpriteComponent::SpriteComponent(ID id, const GameObject *owner, const std::string &fileName) : Component(id, owner)
 {
 	this->sprite = cocos2d::Sprite::create(fileName);
@@ -13,7 +12,8 @@ mog::SpriteComponent::SpriteComponent(ID id, const GameObject *owner, const std:
 
 mog::SpriteComponent::~SpriteComponent()
 {
-	
+	/*if (ccGame != nullptr)
+		ccGame->removeChild(sprite);*/	
 }
 
 void mog::SpriteComponent::addSelfToGame(Game *g)
@@ -45,8 +45,6 @@ void mog::SpriteComponent::update(float dt)
 		for (auto c : outOfViewCallbacks)
 			c();
 	}
-
-
 }
 
 void mog::SpriteComponent::addOutOfViewCallback(Callback callback)
