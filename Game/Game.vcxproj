@@ -158,25 +158,27 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\proj.win32\main.cpp" />
     <ClCompile Include="Core\AppDelegate.cpp" />
     <ClCompile Include="Core\Bullet.cpp" />
-    <ClCompile Include="Core\ClientGame.cpp" />
+    <ClCompile Include="Core\CCClientGame.cpp" />
+    <ClCompile Include="Core\CCGame.cpp" />
     <ClCompile Include="Core\GameLevel.cpp" />
     <ClCompile Include="Core\GameMainMenu.cpp" />
     <ClCompile Include="Core\InputComponent.cpp" />
     <ClCompile Include="Core\Pawn.cpp" />
-    <ClCompile Include="Core\ServerGame.cpp" />
+    <ClCompile Include="Core\CCServerGame.cpp" />
     <ClCompile Include="Core\SpriteComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\proj.win32\main.h" />
     <ClInclude Include="Core\AppDelegate.h" />
     <ClInclude Include="Core\Bullet.h" />
-    <ClInclude Include="Core\ClientGame.h" />
+    <ClInclude Include="Core\CCClientGame.h" />
+    <ClInclude Include="Core\CCGame.h" />
     <ClInclude Include="Core\GameLevel.h" />
     <ClInclude Include="Core\GameMainMenu.h" />
     <ClInclude Include="Core\InputComponent.h" />
     <ClInclude Include="Core\Macros.h" />
     <ClInclude Include="Core\Pawn.h" />
-    <ClInclude Include="Core\ServerGame.h" />
+    <ClInclude Include="Core\CCServerGame.h" />
     <ClInclude Include="Core\SpriteComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

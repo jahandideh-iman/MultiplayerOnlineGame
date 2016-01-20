@@ -1,4 +1,4 @@
-#include "ServerGame.h"
+#include "CCServerGame.h"
 #include "Engine/Network/NetworkManager.h"
 #include "GameLevel.h"
 #include "Engine/Network/Messages/LoadLevelMessage.h"

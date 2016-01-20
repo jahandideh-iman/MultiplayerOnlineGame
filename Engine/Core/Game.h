@@ -16,8 +16,9 @@ namespace mog
 
 		void addGameObject(GameObject *object);
 		void removeGameObject(GameObject *object);
+		void removeGameObjectAtEndOfUpdate(GameObject *object);
 
-		virtual void update(float dt);
+		void update(float dt = 0);
 
 		//NOTE: For testing 
 		bool has(const GameObject *object) const;
@@ -25,7 +26,12 @@ namespace mog
 		const std::vector<GameObject *> &getGameObjects();
 
 	protected:
+		virtual void internalUpdate(float dt);
+
 		Level *currentLevel = nullptr;
 		std::vector<GameObject *> gameObjects;
+
+		std::vector<GameObject *> toBeRemovedAtEndOfUpdate;
+
 	};
 }

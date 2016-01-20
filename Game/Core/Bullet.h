@@ -14,10 +14,16 @@ namespace mog
 		Bullet(Pawn *shooter,Float r, Point p);
 		~Bullet();
 
+		void onAddedToGame(Game *game);
+
+		void onOutOfView();
+
+		void initial();
+
 		AUTOID(Bullet, getNetworkID);
 	private:
 		Pawn *shooter = nullptr;
-		int speed = 50;
+		int speed = 200;
 	};
 }
 

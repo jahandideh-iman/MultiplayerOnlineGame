@@ -1,7 +1,7 @@
 #include "GameLevel.h"
 #include "SpriteComponent.h"
 
-#include "ClientGame.h"
+#include "CCClientGame.h"
 
 using mog::GameLevel;
 

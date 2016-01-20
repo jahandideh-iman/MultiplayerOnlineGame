@@ -1,12 +1,13 @@
 #pragma once
 
 #include "Engine/Core/Level.h"
-#include "cocos2d.h"
+
 #include "Engine/Network/ServerGame.h"
 
+#include "CCGame.h"
 namespace mog
 {
-	class CCServerGame : public network::ServerGame , public cocos2d::Layer 
+	class CCServerGame : public network::ServerGame , public CCGame
 	{
 	public:
 

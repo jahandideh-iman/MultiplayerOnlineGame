@@ -2,13 +2,14 @@
 
 #include "Engine/Core/Game.h"
 #include "Engine/Network/ClientGame.h"
-#include "cocos2d.h"
+
+#include "CCGame.h"
 
 class GameSocket;
 
 namespace mog
 {
-	class CCClientGame : public network::ClientGame , public cocos2d::Layer
+	class CCClientGame : public network::ClientGame , public CCGame
 	{
 	public:
 		static cocos2d::Scene* createScene(std::string address, unsigned portNumber);
@@ -21,9 +22,7 @@ namespace mog
 
 		static CCClientGame *create(std::string address, unsigned portNumber);
 
-		cocos2d::Size getVisibleSize() const;
 
-		cocos2d::Vec2 getOrigin() const;
 
 	private:
 		void joinServer(Ref* pSender);

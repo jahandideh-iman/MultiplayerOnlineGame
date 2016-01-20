@@ -23,9 +23,6 @@
     <ClCompile Include="Core\AppDelegate.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Core\ClientGame.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="Core\GameLevel.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -33,9 +30,6 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Core\Pawn.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\ServerGame.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Core\SpriteComponent.cpp">
@@ -47,15 +41,21 @@
     <ClCompile Include="Core\Bullet.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Core\CCServerGame.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\CCClientGame.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\CCGame.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\proj.win32\main.h">
       <Filter>win32</Filter>
     </ClInclude>
     <ClInclude Include="Core\AppDelegate.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\ClientGame.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\GameLevel.h">
@@ -70,9 +70,6 @@
     <ClInclude Include="Core\Pawn.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Core\ServerGame.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Core\SpriteComponent.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -80,6 +77,15 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\Bullet.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\CCServerGame.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\CCClientGame.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\CCGame.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>

@@ -18,8 +18,8 @@ mog::network::NetworkManager * mog::network::NetworkGame::getNetworkManager()
 	return networkManager;
 }
 
-void mog::network::NetworkGame::update(float dt /*= 0*/)
+void mog::network::NetworkGame::internalUpdate(float dt /*= 0*/)
 {
-	Game::update(dt);
+	Game::internalUpdate(dt);
 	getNetworkManager()->update(dt);
 }

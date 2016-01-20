@@ -1,6 +1,6 @@
 #include "GameMainMenu.h"
-#include "ServerGame.h"
-#include "ClientGame.h"
+#include "CCServerGame.h"
+#include "CCClientGame.h"
 
 
 

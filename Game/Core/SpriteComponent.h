@@ -2,11 +2,15 @@
 
 #include "Engine/Core/Component.h"
 #include "cocos2d.h"
+#include <functional>
+#include <vector>
 
 namespace mog
 {
+	class CCGame;
 	class SpriteComponent : public Component
 	{
+		typedef std::function<void()> Callback;
 	public:
 		~SpriteComponent();
 
@@ -16,9 +20,13 @@ namespace mog
 
 		virtual void update(float dt) override;
 
+		void addOutOfViewCallback(Callback callback);
+
 	private:
 		cocos2d::Sprite *sprite = nullptr;
 
-		cocos2d::Layer *cocosGame;
+		CCGame *ccGame = nullptr;
+
+		std::vector < Callback > outOfViewCallbacks;
 	};
 }

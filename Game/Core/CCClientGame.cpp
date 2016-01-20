@@ -1,4 +1,4 @@
-#include "ClientGame.h"
+#include "CCClientGame.h"
 #include "Engine/Network/NetworkManager.h"
 #include "Engine/Network/InternetAddress.h"
 #include "Engine/Network/Messages/JoinMessage.h"
@@ -37,8 +37,7 @@ bool CCClientGame::init(std::string address, unsigned portNumber)
 	}
 
 	Size visibleSize = getVisibleSize();
-	Vec2 origin = getOrigin();
-
+	Vec2 origin = getVisibleOrigin();
 	joinServerButton = MenuItemImage::create(
 		"JoinButton.png",
 		"JoinButton.png",
@@ -111,12 +110,3 @@ CCClientGame * mog::CCClientGame::create(std::string address, unsigned portNumbe
 	}
 }
 
-cocos2d::Size mog::CCClientGame::getVisibleSize() const
-{
-	return Director::getInstance()->getVisibleSize();
-}
-
-cocos2d::Vec2 mog::CCClientGame::getOrigin() const
-{
-	return Director::getInstance()->getVisibleOrigin();
-}

@@ -37,6 +37,20 @@ void mog::Game::update(float dt)
 {
 	for (GameObject * o : gameObjects)
 		o->update(dt);
+
+	internalUpdate(dt);
+
+	while (!toBeRemovedAtEndOfUpdate.empty())
+	{
+		auto obj = toBeRemovedAtEndOfUpdate.begin();
+		removeGameObject(*obj);
+		toBeRemovedAtEndOfUpdate.erase(obj);
+	}
+}
+
+void mog::Game::internalUpdate(float dt)
+{
+
 }
 
 bool mog::Game::has(const GameObject *object) const
@@ -70,5 +84,9 @@ void mog::Game::removeGameObject(GameObject *object)
 	}
 }
 
+void mog::Game::removeGameObjectAtEndOfUpdate(GameObject *object)
+{
+	toBeRemovedAtEndOfUpdate.push_back(object);
+}
 
 
