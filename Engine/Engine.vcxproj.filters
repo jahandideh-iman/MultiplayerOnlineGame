@@ -49,9 +49,6 @@
     <ClCompile Include="Network\ServerGame.cpp">
       <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="Network\PlayerInfo.cpp">
-      <Filter>Network</Filter>
-    </ClCompile>
     <ClCompile Include="Network\Messages\Message.cpp">
       <Filter>Network\Messages</Filter>
     </ClCompile>
@@ -124,6 +121,9 @@
     <ClCompile Include="Network\Messages\LeaveMessage.cpp">
       <Filter>Network\Messages</Filter>
     </ClCompile>
+    <ClCompile Include="Network\Client.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Network\ConstructorDatabase.h">
@@ -157,9 +157,6 @@
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="Network\ServerGame.h">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="Network\PlayerInfo.h">
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="Network\Messages\Message.h">
@@ -260,6 +257,9 @@
     </ClInclude>
     <ClInclude Include="Core\SingletonTemplate.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Client.h">
+      <Filter>Network</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

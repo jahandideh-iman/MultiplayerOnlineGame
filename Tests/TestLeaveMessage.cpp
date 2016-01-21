@@ -46,7 +46,7 @@ namespace mog
 			clientManager1->sendMessage(LeaveMessage("player"), serverAddress);
 			serverManager->update();
 
-			CHECK_FALSE(serverGame->hasPlayer(&PlayerInfo("player", new InternetAddress(clientAddress1))));
+			CHECK_FALSE(serverGame->hasClient(&Client("player", new InternetAddress(clientAddress1))));
 			CHECK_FALSE(serverManager->hasClient(&clientAddress1));
 		}
 	}

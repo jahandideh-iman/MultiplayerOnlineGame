@@ -48,7 +48,7 @@ bool CCClientGame::init()
 	serverAddressEditBox->setText("127.0.0.1");
 	addChild(serverAddressEditBox);
 
-	this->serverPortEditBox = ui::EditBox::create(Size(50, 100), ui::Scale9Sprite::create(pNormalSprite));
+	this->serverPortEditBox = ui::EditBox::create(Size(100, 50), ui::Scale9Sprite::create(pNormalSprite));
 	serverPortEditBox->setPosition(Vec2(origin.x + visibleSize.width *0.7, origin.y + visibleSize.height * 0.6));
 	serverPortEditBox->setFontName("Paint Boy");
 	serverPortEditBox->setFontSize(20);

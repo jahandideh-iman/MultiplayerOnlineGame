@@ -5,11 +5,14 @@
 
 #include <functional>
 #include <map>
+#include "Engine/Network/Client.h"
 
 namespace mog
 {
+
 	namespace network
 	{
+		class Client;
 		class NetworkComponent;
 		class NetworkGameObject : public GameObject, public NetworkObject
 		{
@@ -40,6 +43,9 @@ namespace mog
 			void setIsReplica(bool isReplical);
 			bool isReplica() const;
 
+			void setClinet(const Client *client);
+			const Client *getClient() const;
+
 		protected:
 			void registerMethod(std::string name,Method method);
 
@@ -51,7 +57,10 @@ namespace mog
 
 			bool bIsReplica = false;
 
+			const Client *client = nullptr;
+
 			std::map<std::string, Method> registeredMethods;
+
 		};
 	}
 }

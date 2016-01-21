@@ -20,10 +20,10 @@ mog::network::ServerGame::~ServerGame()
 		delete p;
 }
 
-void mog::network::ServerGame::joinNewPlayer(PlayerInfo *info)
+void mog::network::ServerGame::joinNewPlayer(Client *client)
 {
-	playersInfo.push_back(info);
-	dynamic_cast<ServerNetworkManager* > (getNetworkManager())->addClient(info->address);
+	playersInfo.push_back(client);
+	dynamic_cast<ServerNetworkManager* > (getNetworkManager())->addClient(client->address);
 
 	NetworkPawn *pawn;
 	if (NetworkPawnFactory::get()->isSet())
@@ -31,19 +31,20 @@ void mog::network::ServerGame::joinNewPlayer(PlayerInfo *info)
 	else
 		pawn = new NetworkPawn();
 
+	pawn->setClinet(client);
 	addGameObject(pawn);
 	onPawnCreated(pawn);
 
 	if (LevelFactory::get()->isSet())
 	{
 		auto level = LevelFactory::get()->create();
-		getNetworkManager()->sendMessage(LoadLevelMessage(level),*info->address);
+		getNetworkManager()->sendMessage(LoadLevelMessage(level), *client->address);
 		delete level;
 	}
 }
 
 
-void mog::network::ServerGame::removePlayer(const PlayerInfo *info)
+void mog::network::ServerGame::removePlayer(const Client *info)
 {
 	for (auto it = playersInfo.begin(); it != playersInfo.end(); it++)
 	{
@@ -58,7 +59,7 @@ void mog::network::ServerGame::removePlayer(const PlayerInfo *info)
 	}
 }
 
-const mog::network::PlayerInfo * mog::network::ServerGame::getPlayerInfoByName(std::string name) const
+const mog::network::Client * mog::network::ServerGame::getPlayerInfoByName(std::string name) const
 {
 	for (auto p : playersInfo)
 	{
@@ -69,7 +70,7 @@ const mog::network::PlayerInfo * mog::network::ServerGame::getPlayerInfoByName(s
 	return nullptr;
 }
 
-bool mog::network::ServerGame::hasPlayer(const PlayerInfo* info) const
+bool mog::network::ServerGame::hasClient(const Client* info) const
 {
 	for (auto p : playersInfo)
 	{

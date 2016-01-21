@@ -41,7 +41,7 @@ namespace mog
 			clientManager1->sendMessage(JoinMessage("playerName"), serverAddress);
 			serverManager->update();
 
-			CHECK_TRUE(serverGame->hasPlayer(&PlayerInfo("playerName",new InternetAddress(clientAddress1))));
+			CHECK_TRUE(serverGame->hasClient(&Client("playerName",new InternetAddress(clientAddress1))));
 		}
 
 		TEST(JoinMessage, ClientAddressIsAddedToNetworkManager)

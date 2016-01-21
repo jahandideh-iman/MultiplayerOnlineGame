@@ -107,3 +107,13 @@ void mog::network::NetworkGameObject::updatePosition(float dt)
 			GameObject::updatePosition(dt);
 	}
 }
+
+void mog::network::NetworkGameObject::setClinet(const Client *client)
+{
+	this->client = client;
+}
+
+const mog::network::Client * mog::network::NetworkGameObject::getClient() const
+{
+	return client;
+}

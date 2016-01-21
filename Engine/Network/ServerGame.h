@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Engine/Network/NetworkGame.h"
-#include "Engine/Network/PlayerInfo.h"
+#include "Engine/Network/Client.h"
 
 namespace mog
 {
@@ -15,22 +15,22 @@ namespace mog
 			ServerGame();
 			~ServerGame();
 
-			void joinNewPlayer(PlayerInfo *info);
-			void removePlayer(const PlayerInfo *info);
+			void joinNewPlayer(Client *info);
+			void removePlayer(const Client *info);
 
 			NetworkGameType getType() const final override{ return T_Server; }
 
 			//Note: For testing.
-			const PlayerInfo *getPlayerInfoByName(std::string name) const;
+			const Client *getPlayerInfoByName(std::string name) const;
 			//Note: For testing.
-			bool hasPlayer(const PlayerInfo* info) const;
+			bool hasClient(const Client* info) const;
 
 		protected:
 			virtual void  onPawnCreated(NetworkPawn *p){}
 
 		private:
 
-			std::vector<PlayerInfo*> playersInfo;
+			std::vector<Client*> playersInfo;
 		};
 	}
 }

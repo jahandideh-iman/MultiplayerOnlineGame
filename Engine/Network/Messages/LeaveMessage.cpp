@@ -21,7 +21,7 @@ void mog::network::LeaveMessage::executeOnServer(ServerGame *game, const Paramet
 {
 	std::string name = parameters.get("name");
 
-	game->removePlayer(&PlayerInfo(name, new InternetAddress(address)));
+	game->removePlayer(&Client(name, new InternetAddress(address)));
 }
 
 void mog::network::LeaveMessage::fillData(ParameterContainer &parameters) const
