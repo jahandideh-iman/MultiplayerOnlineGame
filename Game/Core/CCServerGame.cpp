@@ -58,7 +58,7 @@ bool CCServerGame::init()
 	this->addChild(label, 1);
 
 	std::string pNormalSprite = "EditBox.png";
-	this->serverListenPortEditBox = ui::EditBox::create(Size(100, 50), ui::Scale9Sprite::create(pNormalSprite));
+	this->serverListenPortEditBox = ui::EditBox::create(Size(60, 50), ui::Scale9Sprite::create(pNormalSprite));
 	serverListenPortEditBox->setPosition(Vec2(origin.x + visibleSize.width *0.5, origin.y + visibleSize.height * 0.4));
 	serverListenPortEditBox->setFontName("Paint Boy");
 	serverListenPortEditBox->setFontSize(20);
@@ -89,7 +89,7 @@ void mog::CCServerGame::startListening(cocos2d::Ref* pSender)
 	serverGame->getNetworkManager()->setSocket(new network::UDPGameSocket());
 	serverGame->getNetworkManager()->setPort(portNumber);
 
-	serverGame->getNetworkManager()->setUpdateRate(30);
+	serverGame->getNetworkManager()->setUpdateRate(UPDATE_RATE);
 
 	this->scheduleUpdate();
 }

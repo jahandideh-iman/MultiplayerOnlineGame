@@ -327,6 +327,38 @@ namespace mog
 			CHECK_EQUAL(1, client2Object->variable1.getValue());
 		}
 
+		TEST(ServerNetworkManager, ReplicateStateWhenObjectIsDirty)
+		{
+			//NOTE: ReplicateInstaceMessage is needed because first instances must be replicated
+			REGISTER_MESSAGE(ReplicateInstanceMessage);
+			REGISTER_MESSAGE(ReplicateStateMessage);
+			REGISTER_CONSTRUCTOR(MockNetworkGameObjectWithState);
+
+			auto gameObject = new MockNetworkGameObjectWithState();
+			gameObject->variable1 = 1;
+
+			serverManager->addClient(client1);
+			serverGame->addGameObject(gameObject);
+			serverManager->addClient(client2);
+
+			serverManager->update();
+			clientManager1->update();
+			clientManager2->update();
+
+			gameObject->variable1 = 2;
+			gameObject->setDirty(true);
+
+			serverManager->update();
+			clientManager1->update();
+			clientManager2->update();
+
+			auto client1Object = dynamic_cast<MockNetworkGameObjectWithState *> (clientManager1->findNetworkGameObject(gameObject->getInstanceId()));
+			auto client2Object = dynamic_cast<MockNetworkGameObjectWithState *> (clientManager2->findNetworkGameObject(gameObject->getInstanceId()));
+
+			CHECK_EQUAL(2, client1Object->variable1.getValue());
+			CHECK_EQUAL(2, client2Object->variable1.getValue());
+		}
+
 		TEST(ServerNetworkManager, ResetsNetworkObjectDirtyFlagAfterReplication)
 		{
 			//NOTE: ReplicateInstaceMessage is needed because first instances must be replicated

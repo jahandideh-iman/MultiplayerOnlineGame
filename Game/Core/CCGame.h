@@ -2,6 +2,7 @@
 
 #include "cocos2d.h"
 
+#define UPDATE_RATE 30
 namespace mog
 {
 
@@ -22,6 +23,7 @@ namespace mog
 	class CCNetworkGame
 	{
 	public:
+
 		CCNetworkGame(CCGame * game)
 		{
 			this->game = game;

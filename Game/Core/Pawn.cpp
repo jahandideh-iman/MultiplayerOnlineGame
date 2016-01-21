@@ -80,7 +80,7 @@ void mog::Pawn::initialRegisteredMethods()
 
 void mog::Pawn::shoot()
 {
-	getOwner()->addGameObject(new Bullet(this,getRoation(),getPosition()));
+	getOwner()->addGameObject(new Bullet(this,getRoation(),getPosition()+ Point(0,0)));
 }
 
 void mog::Pawn::addInputComponent()

@@ -38,8 +38,8 @@ bool CCClientGame::init()
 	Vec2 origin = getVisibleOrigin();
 
 	std::string pNormalSprite = "EditBox.png";
-	this->serverAddressEditBox = ui::EditBox::create(Size(50, 100), ui::Scale9Sprite::create(pNormalSprite));
-	serverAddressEditBox->setPosition(Vec2(origin.x + visibleSize.width *0.3, origin.y + visibleSize.height * 0.6));
+	this->serverAddressEditBox = ui::EditBox::create(Size(160, 50), ui::Scale9Sprite::create(pNormalSprite));
+	serverAddressEditBox->setPosition(Vec2(origin.x + visibleSize.width *0.47, origin.y + visibleSize.height * 0.6));
 	serverAddressEditBox->setFontName("Paint Boy");
 	serverAddressEditBox->setFontSize(20);
 	serverAddressEditBox->setFontColor(Color3B::WHITE);
@@ -50,8 +50,8 @@ bool CCClientGame::init()
 	serverAddressEditBox->setText("127.0.0.1");
 	addChild(serverAddressEditBox);
 
-	this->serverPortEditBox = ui::EditBox::create(Size(100, 50), ui::Scale9Sprite::create(pNormalSprite));
-	serverPortEditBox->setPosition(Vec2(origin.x + visibleSize.width *0.7, origin.y + visibleSize.height * 0.6));
+	this->serverPortEditBox = ui::EditBox::create(Size(60, 50), ui::Scale9Sprite::create(pNormalSprite));
+	serverPortEditBox->setPosition(Vec2(origin.x + serverAddressEditBox->getPosition().x + serverAddressEditBox->getContentSize().width/2 + visibleSize.width *0.05, origin.y + visibleSize.height * 0.6));
 	serverPortEditBox->setFontName("Paint Boy");
 	serverPortEditBox->setFontSize(20);
 	serverPortEditBox->setFontColor(Color3B::WHITE);
@@ -107,6 +107,6 @@ void CCClientGame::joinServer(Ref* pSender)
 	joinServerButton->setVisible(false);
 	
 	clientGame->setServerAddress(InternetAddress(addressNumber, portNumber));
-	clientGame->getNetworkManager()->setUpdateRate(30);
+	clientGame->getNetworkManager()->setUpdateRate(UPDATE_RATE);
 	clientGame->getNetworkManager()->sendMessage(JoinMessage(playerName), clientGame->getServerAddress());
 }

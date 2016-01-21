@@ -31,5 +31,7 @@ void mog::GameLevel::initialGameObjects(Game *game)
 	auto size = ccClientGame->getVisibleSize();
 	o->setPosition(Point(size.width * 0.5, size.height *0.5));
 
+	o->setRoation(0);
+
 }
 
