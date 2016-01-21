@@ -10,8 +10,8 @@ mog::InputComponent::InputComponent(ID id, const GameObject *owner) : Component(
 
 mog::InputComponent::~InputComponent()
 {
-	//if (ccGame != nullptr)
-		//ccGame->getEventDispatcher()->removeEventListenersForTarget(this);
+	if (ccGame != nullptr)
+		ccGame->getEventDispatcher()->removeEventListenersForTarget(this);
 }
 
 void mog::InputComponent::addOnPressAction(cocos2d::EventKeyboard::KeyCode key, Action action)
@@ -32,8 +32,10 @@ void mog::InputComponent::addSelfToGame(Game *g)
 	if (networkGame != nullptr)
 		return;
 
-	ccGame = dynamic_cast<CCGame*> (g);
-	assert(ccGame != nullptr);
+	auto ccNetGame = dynamic_cast<CCNetworkGame*> (g);
+	assert(ccNetGame != nullptr);
+
+	ccGame = ccNetGame->getGame();
 
 	auto eventListener = cocos2d::EventListenerKeyboard::create();
 

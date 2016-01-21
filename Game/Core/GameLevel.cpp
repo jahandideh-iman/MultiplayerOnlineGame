@@ -2,6 +2,7 @@
 #include "SpriteComponent.h"
 
 #include "CCClientGame.h"
+#include <assert.h>
 
 using mog::GameLevel;
 
@@ -21,12 +22,14 @@ void mog::GameLevel::initialGameObjects(Game *game)
 	o->addComponent(new SpriteComponent("sprite", o, "background.png"));
 	addGameObject(o);
 
-	auto cocosGame = dynamic_cast<CCClientGame*> (game);
-	if (cocosGame != nullptr)
-	{
-		auto size = cocosGame->getVisibleSize();
-		o->setPosition(Point(size.width * 0.5, size.height *0.5));
-	}
+	auto ccNetGame = dynamic_cast<CCNetworkGame*> (game);
+	assert(ccNetGame != nullptr);
+	auto ccClientGame = dynamic_cast<CCClientGame*> (ccNetGame->getGame());
+
+	assert(ccClientGame != nullptr);
+
+	auto size = ccClientGame->getVisibleSize();
+	o->setPosition(Point(size.width * 0.5, size.height *0.5));
 
 }
 

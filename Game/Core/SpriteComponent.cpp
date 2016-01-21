@@ -12,15 +12,15 @@ mog::SpriteComponent::SpriteComponent(ID id, const GameObject *owner, const std:
 
 mog::SpriteComponent::~SpriteComponent()
 {
-	/*if (ccGame != nullptr)
-		ccGame->removeChild(sprite);*/	
+	if (ccGame != nullptr)
+		ccGame->removeChild(sprite);
 }
 
 void mog::SpriteComponent::addSelfToGame(Game *g)
 {
-	auto ccGame = dynamic_cast<CCGame*> (g);
-	assert(ccGame != nullptr);
-	this->ccGame = ccGame;
+	auto ccNetGame = dynamic_cast<CCNetworkGame*> (g);
+	assert(ccNetGame != nullptr);
+	this->ccGame = ccNetGame->getGame();
 
 	ccGame->addChild(sprite, sprite->getLocalZOrder());
 }

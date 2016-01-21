@@ -30,6 +30,8 @@ bool CCServerGame::init()
 		return false;
 	}
 
+	serverGame = new CustomServerGame(this);
+
 	Size visibleSize = getVisibleSize();
 	Vec2 origin = getVisibleOrigin();
 
@@ -68,19 +70,15 @@ bool CCServerGame::init()
 	serverListenPortEditBox->setText("8082 ");
 	addChild(serverListenPortEditBox);
 
+
+
 	return true;
 }
 
 void CCServerGame::update(float dt)
 {
-	network::ServerGame::update(dt);
+	serverGame->update(dt);
 }
-
-void mog::CCServerGame::onPawnCreated(network::NetworkPawn *p)
-{
-	p->setPosition(Point(50,50));
-}
-
 
 void mog::CCServerGame::startListening(cocos2d::Ref* pSender)
 {
@@ -88,7 +86,15 @@ void mog::CCServerGame::startListening(cocos2d::Ref* pSender)
 	serverListenPortEditBox->setVisible(false);
 
 	unsigned portNumber = atoi(serverListenPortEditBox->getText());
-	getNetworkManager()->setSocket(new network::UDPGameSocket());
-	getNetworkManager()->setPort(portNumber);
+	serverGame->getNetworkManager()->setSocket(new network::UDPGameSocket());
+	serverGame->getNetworkManager()->setPort(portNumber);
+
+	serverGame->getNetworkManager()->setUpdateRate(30);
+
 	this->scheduleUpdate();
+}
+
+mog::CCServerGame::~CCServerGame()
+{
+	delete serverGame;
 }

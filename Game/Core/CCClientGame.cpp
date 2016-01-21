@@ -32,6 +32,8 @@ bool CCClientGame::init()
 		return false;
 	}
 
+	clientGame = new CustomClientGame(this);
+
 	Size visibleSize = getVisibleSize();
 	Vec2 origin = getVisibleOrigin();
 
@@ -84,15 +86,15 @@ bool CCClientGame::init()
 
 	this->scheduleUpdate();
 
-	getNetworkManager()->setSocket(new network::UDPGameSocket());
-	getNetworkManager()->setPort(0);
+	clientGame->getNetworkManager()->setSocket(new network::UDPGameSocket());
+	clientGame->getNetworkManager()->setPort(0);
 
 	return true;
 }
 
 void CCClientGame::update(float dt)
 {
-	network::ClientGame::update(dt);
+	clientGame->update(dt);
 }
 
 void CCClientGame::joinServer(Ref* pSender)
@@ -104,6 +106,7 @@ void CCClientGame::joinServer(Ref* pSender)
 	serverPortEditBox->setVisible(false);
 	joinServerButton->setVisible(false);
 	
-	setServerAddress(InternetAddress(addressNumber, portNumber));
-	getNetworkManager()->sendMessage(JoinMessage(playerName), getServerAddress());
+	clientGame->setServerAddress(InternetAddress(addressNumber, portNumber));
+	clientGame->getNetworkManager()->setUpdateRate(30);
+	clientGame->getNetworkManager()->sendMessage(JoinMessage(playerName), clientGame->getServerAddress());
 }

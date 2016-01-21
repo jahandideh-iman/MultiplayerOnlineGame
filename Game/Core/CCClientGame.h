@@ -10,10 +10,19 @@ class GameSocket;
 
 namespace mog
 {
-	//WARNING: The order of inheritance is important due to order of destruction.
-	//TODO: Fix that.
-	class CCClientGame : public network::ClientGame, public CCGame
+
+
+	class CCClientGame : public CCGame
 	{
+
+		class CustomClientGame : public network::ClientGame, public CCNetworkGame
+		{
+		public:
+			CustomClientGame(CCClientGame *game) : CCNetworkGame(game)
+			{
+			}
+		};
+
 	public:
 		static cocos2d::Scene* createScene();
 
@@ -35,6 +44,8 @@ namespace mog
 		cocos2d::ui::EditBox *serverPortEditBox = nullptr;
 
 		std::string playerName = "player";
+
+		CustomClientGame *clientGame;
 	};
 
 }

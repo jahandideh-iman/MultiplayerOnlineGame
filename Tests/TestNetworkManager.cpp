@@ -50,7 +50,7 @@ namespace mog
 			CHECK_EQUAL(1, manager.numberOfUpdatesCalled);
 		}
 
-		TEST(NetworkManager, Integrity)
+		TEST(NetworkManager, AddsToElapsedTimeByEachUpdate)
 		{
 			MockNetworkMaager manager;
 
@@ -61,7 +61,7 @@ namespace mog
 
 			CHECK_EQUAL(0, manager.numberOfUpdatesCalled);
 
-			manager.update(4 * EPSILON);
+			manager.update(3 * EPSILON);
 			CHECK_EQUAL(1, manager.numberOfUpdatesCalled);
 		}
 	}
