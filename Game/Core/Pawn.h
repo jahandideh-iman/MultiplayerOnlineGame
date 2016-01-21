@@ -33,7 +33,8 @@ namespace mog
 
 		void addInputComponent();
 
-		void onAddedToGame(Game *game);
+	protected:
+		void onAddedToGame(Game *game) override;
 
 	private:
 		Integer health = 100;

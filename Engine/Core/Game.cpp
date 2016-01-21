@@ -30,7 +30,7 @@ void mog::Game::addGameObject(GameObject *object)
 	assert(object->getOwner() == nullptr);
 
 	gameObjects.push_back(object);
-	object->onAddedToGame(this);
+	object->privateOnAddedToGame(this);
 }
 
 void mog::Game::update(float dt)

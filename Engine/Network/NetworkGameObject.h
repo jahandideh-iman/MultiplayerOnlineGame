@@ -32,7 +32,6 @@ namespace mog
 
 			virtual ~NetworkGameObject();
 
-			void onAddedToGame(Game *game) override;
 			void onRemovedFromGame(Game *game) override;
 
 			virtual void initialRegisteredMethods();
@@ -61,6 +60,7 @@ namespace mog
 			NetworkGame *getNetworkGame();
 
 		protected:
+			void onAddedToGame(Game *game) override;
 			void registerMethod(std::string name,Method method);
 
 		protected:

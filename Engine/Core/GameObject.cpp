@@ -53,9 +53,10 @@ mog::Point mog::GameObject::getPosition() const
 	return position;
 }
 
-void mog::GameObject::onAddedToGame(Game *game)
+void mog::GameObject::privateOnAddedToGame(Game *game)
 {
 	this->owner = game;
+	onAddedToGame(game);
 	addComponentsToGame(game);
 }
 
@@ -119,4 +120,5 @@ void mog::GameObject::setVelocityY(float y)
 {
 	velocity.y = y;
 }
+
 

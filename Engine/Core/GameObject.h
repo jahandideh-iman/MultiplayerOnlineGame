@@ -10,6 +10,7 @@ namespace mog
 
 	class GameObject
 	{
+		friend class Game;
 	public:
 		GameObject();
 		virtual ~GameObject();
@@ -17,7 +18,6 @@ namespace mog
 		void addComponent(Component *c);
 		std::vector<mog::Component *> getComponents();
 
-		virtual void onAddedToGame(Game *game);
 		virtual void onRemovedFromGame(Game *game);
 
 		virtual void update(float dt);
@@ -41,11 +41,18 @@ namespace mog
 		Game *getOwner();
 
 	protected:
-		//TODO: Find out why this method is virtual
-		virtual void addComponentsToGame(Game *game);
+		virtual void onAddedToGame(Game *game){};
+
+	protected:
 		SerializablePoint position;
 		Float rotation = 0;
 		Vector velocity;
+
+	private:
+		void addComponentsToGame(Game *game);
+		
+		//TODO: Find a better name
+		void privateOnAddedToGame(Game *game);
 
 	private:
 		std::vector<mog::Component *> components;
