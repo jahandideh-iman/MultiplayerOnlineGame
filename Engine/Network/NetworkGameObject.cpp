@@ -60,9 +60,9 @@ unsigned mog::network::NetworkGameObject::getInstanceId() const
 	return instanceId;
 }
 
-void mog::network::NetworkGameObject::writeState(Buffer *buffer) const
+void mog::network::NetworkGameObject::writeState(Buffer *buffer, bool dirtyOnly) const
 {
-	networkComponent->writeReplications(buffer);
+	networkComponent->writeReplications(buffer, dirtyOnly);
 }
 
 mog::network::NetworkComponent * mog::network::NetworkGameObject::getNetworkComponent()
@@ -128,4 +128,14 @@ mog::network::NetworkGame * mog::network::NetworkGameObject::getNetworkGame()
 void mog::network::NetworkGameObject::setRole(Role role)
 {
 	this->role = role;
+}
+
+bool mog::network::NetworkGameObject::isDirty() const
+{
+	return networkComponent->isDirty();
+}
+
+void mog::network::NetworkGameObject::setDirty(bool dirty)
+{
+	networkComponent->setDirty(dirty);
 }

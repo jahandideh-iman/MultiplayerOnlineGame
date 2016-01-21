@@ -24,41 +24,41 @@ mog::Pawn::~Pawn()
 
 void mog::Pawn::moveUpPressed()
 {
-	setVelocityY(getVelocity().y + speed.getValue());
+	setVelocityY(getVelocity().getY() + speed.getValue());
 }
 void mog::Pawn::moveUpReleased()
 {
-	setVelocityY(getVelocity().y - speed.getValue());
+	setVelocityY(getVelocity().getY() - speed.getValue());
 }
 
 void mog::Pawn::moveDownPressed()
 {
-	setVelocityY(getVelocity().y - speed.getValue());
+	setVelocityY(getVelocity().getY() - speed.getValue());
 }
 
 void mog::Pawn::moveDownReleased()
 {
-	setVelocityY(getVelocity().y + speed.getValue());
+	setVelocityY(getVelocity().getY() + speed.getValue());
 }
 
 void mog::Pawn::moveLeftPressed()
 {
-	setVelocityX(getVelocity().x - speed.getValue());
+	setVelocityX(getVelocity().getX() - speed.getValue());
 }
 
 void mog::Pawn::moveLeftReleased()
 {
-	setVelocityX(getVelocity().x + speed.getValue());
+	setVelocityX(getVelocity().getX() + speed.getValue());
 }
 
 void mog::Pawn::moveRightPressed()
 {
-	setVelocityX(getVelocity().x + speed.getValue());
+	setVelocityX(getVelocity().getX() + speed.getValue());
 }
 
 void mog::Pawn::moveRightReleased()
 {
-	setVelocityX(getVelocity().x - speed.getValue());
+	setVelocityX(getVelocity().getX() - speed.getValue());
 }
 
 void mog::Pawn::initialRegisteredMethods()

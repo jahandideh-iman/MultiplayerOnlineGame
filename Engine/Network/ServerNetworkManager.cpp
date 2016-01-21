@@ -162,6 +162,7 @@ void mog::network::ServerNetworkManager::processInstanceReplications()
 				role = Role_Simulated;
 
 			sendMessage(ReplicateInstanceMessage(obj, role), *(clientRep->getAddress()));
+			sendMessage(ReplicateStateMessage(obj), *(clientRep->getAddress()));
 			clientRep->eraseToBeReplicatedInstance(instanceId);
 		}
 	}
@@ -182,11 +183,19 @@ void mog::network::ServerNetworkManager::processInstanceRemoval()
 
 void mog::network::ServerNetworkManager::processStateReplications()
 {
-	for (auto clientRep : clientReplicationInfos)
+	for (auto netObjetPair : networkGameObjects)
 	{
-		for (auto netObjetPair : networkGameObjects)
-			sendMessage(ReplicateStateMessage(netObjetPair.second), *(clientRep->getAddress()));
+		for (auto clientRep : clientReplicationInfos)
+		{
+			if (netObjetPair.second->isDirty())
+			{
+				sendMessage(ReplicateStateMessage(netObjetPair.second), *(clientRep->getAddress()));
+				netObjetPair.second->setDirty(false);
+			}
+		}
+
 	}
+
 }
 
 void mog::network::ServerNetworkManager::executeMessage(const Message &message, const ParameterContainer &parameters, const InternetAddress &senderAddress)

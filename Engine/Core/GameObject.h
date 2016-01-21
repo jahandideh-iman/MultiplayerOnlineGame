@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Engine/Core/Component.h"
-#include "Engine/Core/SerializablePoint.h"
+#include "Engine/Core/ReplicablePoint.h"
 #include <vector>
 
 namespace mog
@@ -44,7 +44,7 @@ namespace mog
 		virtual void onAddedToGame(Game *game){};
 
 	protected:
-		SerializablePoint position;
+		ReplicablePoint position;
 		Float rotation = 0;
 		Vector velocity;
 
@@ -57,8 +57,5 @@ namespace mog
 	private:
 		std::vector<mog::Component *> components;
 		Game *owner = nullptr;
-
-
-
 	};
 }

@@ -41,6 +41,13 @@ std::string mog::ParameterContainer::get(std::string name) const
 		return res->second;
 }
 
+
+bool mog::ParameterContainer::has(std::string name) const
+{
+	return  parameters.find(quote(name)) != parameters.end();
+}
+
+
 void mog::ParameterContainer::initialWithBuffer(const Buffer *buffer)
 {
 	char *data = buffer->getData();

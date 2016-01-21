@@ -16,10 +16,18 @@ namespace mog
 				networkComponent->addVariable("var2", &variable2);
 			}
 
+			void setDirty(bool dirty) override { bMockDirty = dirty; }
+
+			bool isDirty() const override { return bMockDirty; }
+
 			AUTOID(MockNetworkGameObjectWithState, getNetworkID);
 
 			Integer variable1;
 			Integer variable2;
+
+		private:
+			bool bMockDirty = true;
 		};
+
 	}
 }

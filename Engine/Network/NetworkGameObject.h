@@ -1,11 +1,12 @@
 #pragma once
 
 #include "Engine/Core/GameObject.h"
+#include "Engine/Core/Dirtiable.h"
 #include "Engine/Network/NetworkObject.h"
-
+#include "Engine/Network/Client.h"
 #include <functional>
 #include <map>
-#include "Engine/Network/Client.h"
+
 
 namespace mog
 {
@@ -24,7 +25,7 @@ namespace mog
 			Role_Simulated,
 		};
 
-		class NetworkGameObject : public GameObject, public NetworkObject
+		class NetworkGameObject : public GameObject, public NetworkObject, public Dirtiable
 		{
 			typedef std::function<void()> Method;
 		public:
@@ -43,7 +44,7 @@ namespace mog
 			unsigned getInstanceId() const;
 			void setInstanceId(unsigned i);
 
-			void writeState(Buffer *buffer) const;
+			void writeState(Buffer *buffer, bool dirtyOnly = false) const;
 			void readState(const Buffer *buffer);
 
 			NetworkComponent *getNetworkComponent();
@@ -58,6 +59,9 @@ namespace mog
 
 
 			NetworkGame *getNetworkGame();
+
+			bool isDirty()  const override;
+			void setDirty(bool dirty) override;
 
 		protected:
 			void onAddedToGame(Game *game) override;

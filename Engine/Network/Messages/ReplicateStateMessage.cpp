@@ -9,9 +9,9 @@ mog::network::ReplicateStateMessage::ReplicateStateMessage()
 {
 }
 
-mog::network::ReplicateStateMessage::ReplicateStateMessage(const NetworkGameObject *object) : networkGameObject(object)
+mog::network::ReplicateStateMessage::ReplicateStateMessage(const NetworkGameObject *object, bool dirtyOnly) : networkGameObject(object)
 {
-
+	this->dirtyOnly = dirtyOnly;
 }
 
 
@@ -23,7 +23,7 @@ void mog::network::ReplicateStateMessage::fillData(ParameterContainer &parameter
 {
 	Buffer buffer;
 
-	networkGameObject->writeState(&buffer);
+	networkGameObject->writeState(&buffer, dirtyOnly);
 
 	char *data = buffer.getData();
 

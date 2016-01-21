@@ -34,7 +34,7 @@ namespace mog
 
 		gameObject.update(2);
 
-		CHECK_EQUAL(2, gameObject.getPosition().x);
-		CHECK_EQUAL(4, gameObject.getPosition().y);
+		CHECK_EQUAL(2, gameObject.getPosition().getX());
+		CHECK_EQUAL(4, gameObject.getPosition().getY());
 	}
 }

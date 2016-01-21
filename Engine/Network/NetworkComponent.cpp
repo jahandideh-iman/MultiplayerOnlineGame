@@ -11,7 +11,7 @@ mog::network::NetworkComponent::~NetworkComponent()
 {
 }
 
-void mog::network::NetworkComponent::addVariable(const std::string &name, Serializable *var)
+void mog::network::NetworkComponent::addVariable(const std::string &name, Replicable *var)
 {
 	replicationVars.emplace(name, var);
 }
@@ -34,17 +34,21 @@ void mog::network::NetworkComponent::addSelfToGame(Game *g)
 		netGame->getNetworkManager()->addNetworkComponent(this);*/
 }
 
-void mog::network::NetworkComponent::writeReplications(Buffer *buffer) const
+void mog::network::NetworkComponent::writeReplications(Buffer *buffer,bool dirtyOnly) const
 {
 	ParameterContainer container;
 	Buffer varBuffer;
 	for (auto var : replicationVars)
 	{
-		var.second->write(&varBuffer);
-		char *data = varBuffer.getData();
-		container.put(var.first, data);
-		delete[]data;
-		varBuffer.clear();
+		//If dirtiesOnly is true then var.second->isDirty() must be true
+		if (!dirtyOnly || var.second->isDirty())
+		{
+			var.second->write(&varBuffer);
+			char *data = varBuffer.getData();
+			container.put(var.first, data);
+			delete[]data;
+			varBuffer.clear();
+		}
 	}
 	container.write(buffer);	
 }
@@ -61,12 +65,27 @@ void mog::network::NetworkComponent::readReplications(const Buffer *buffer)
 			var.second->read(&varBuffer);
 			varBuffer.clear();
 		}
-
 	}
 }
 
 bool mog::network::NetworkComponent::hasVarialbe(const std::string &name)
 {
 	return replicationVars.find(name) != replicationVars.end();
+}
+
+bool mog::network::NetworkComponent::isDirty() const
+{
+	for (auto var : replicationVars)
+	{
+		if (var.second->isDirty())
+			return true;
+	}
+	return false;
+}
+
+void mog::network::NetworkComponent::setDirty(bool dirty)
+{
+	for (auto var : replicationVars)
+		var.second->setDirty(dirty);
 }
 

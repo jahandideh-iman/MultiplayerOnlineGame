@@ -17,6 +17,8 @@ namespace mog
 		void put(std::string name, std::string value);
 		std::string get(std::string name) const;
 
+		bool has(std::string name) const;
+
 		Buffer *write(Buffer *buffer) const;
 
 		void initialWithBuffer(const Buffer *buffer);

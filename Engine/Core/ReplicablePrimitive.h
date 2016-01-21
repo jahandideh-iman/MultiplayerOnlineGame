@@ -1,18 +1,18 @@
 #pragma once
 
-#include "Engine/Core/Serializable.h"
+#include "Engine/Core/Replicable.h"
 #include "Engine/Core/Buffer.h"
 
 namespace mog
 {
 	template<typename T>
-	class SerializablePrimitive : public Serializable
+	class ReplicablePrimitive : public Replicable
 	{
 	public:
-		SerializablePrimitive(T v){ setValue(v); }
-		SerializablePrimitive(T &v){ setValue(v); }
-		SerializablePrimitive(){}
-		~SerializablePrimitive(){}
+		ReplicablePrimitive(T v){ setValue(v); }
+		ReplicablePrimitive(T &v){ setValue(v); }
+		ReplicablePrimitive(){}
+		~ReplicablePrimitive(){}
 
 		virtual void write(Buffer *buffer) const override 
 		{
@@ -21,10 +21,18 @@ namespace mog
 
 		virtual void read(const Buffer *buffer) override {static_assert(false, "Type not supported")};
 
-		void setValue(T v){ this->value = v; };
+		void setValue(T v)
+		{ 
+			if (value != v)
+			{
+				this->value = v; 
+				setDirty(true);
+			}
+
+		}
 		T getValue(){ return value; }
 
-		SerializablePrimitive<T>& operator=(T const & value)
+		ReplicablePrimitive<T>& operator=(T const & value)
 		{
 			this->value = value;
 			return *this;
@@ -37,7 +45,7 @@ namespace mog
 
 
 	template<>
-	void SerializablePrimitive<int> ::read(const Buffer *buffer)
+	void ReplicablePrimitive<int> ::read(const Buffer *buffer)
 	{ 
 		char *data = buffer->getData();
 		value = std::stoi(data);
@@ -45,5 +53,5 @@ namespace mog
 	}
 
 	template<typename T>
-	using Var = SerializablePrimitive<T>;
+	using Var = ReplicablePrimitive<T>;
 }

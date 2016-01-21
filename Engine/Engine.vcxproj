@@ -161,7 +161,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="Core\LevelDatabase.cpp" />
     <ClCompile Include="Core\LevelFactory.cpp" />
     <ClCompile Include="Core\ParameterContainer.cpp" />
-    <ClCompile Include="Core\SerializablePoint.cpp" />
+    <ClCompile Include="Core\ReplicablePoint.cpp" />
     <ClCompile Include="Core\Utilities.cpp" />
     <ClCompile Include="Network\ClientGame.cpp" />
     <ClCompile Include="Network\ClientNetworkManager.cpp" />
@@ -193,6 +193,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
   <ItemGroup>
     <ClInclude Include="Core\Buffer.h" />
     <ClInclude Include="Core\Component.h" />
+    <ClInclude Include="Core\Dirtiable.h" />
     <ClInclude Include="Core\FactoryTemplate.h" />
     <ClInclude Include="Core\Game.h" />
     <ClInclude Include="Core\GameObject.h" />
@@ -204,9 +205,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="Core\ObjectPoolTemplate.h" />
     <ClInclude Include="Core\ParameterContainer.h" />
     <ClInclude Include="Core\Point.h" />
+    <ClInclude Include="Core\Replicable.h" />
     <ClInclude Include="Core\Serializable.h" />
-    <ClInclude Include="Core\SerializablePoint.h" />
-    <ClInclude Include="Core\SerializablePrimitive.h" />
+    <ClInclude Include="Core\ReplicablePoint.h" />
+    <ClInclude Include="Core\ReplicablePrimitive.h" />
     <ClInclude Include="Core\SingletonTemplate.h" />
     <ClInclude Include="Core\Types.h" />
     <ClInclude Include="Core\Utilities.h" />

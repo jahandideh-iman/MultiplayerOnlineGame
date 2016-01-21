@@ -20,8 +20,8 @@ namespace mog
 
 			pawn.update(2);
 
-			CHECK_EQUAL(2, pawn.getPosition().x);
-			CHECK_EQUAL(4, pawn.getPosition().y);
+			CHECK_EQUAL(2, pawn.getPosition().getX());
+			CHECK_EQUAL(4, pawn.getPosition().getY());
 		}
 	}
 }

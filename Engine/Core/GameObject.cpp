@@ -76,8 +76,8 @@ void mog::GameObject::updatePosition(float dt)
 
 void mog::GameObject::updateRotation(float dt)
 {
-	if (getVelocity().x != 0 || getVelocity().y != 0)
-		setRoation(atan2(getVelocity().y, getVelocity().x) * 180 / M_PI);
+	if (getVelocity().getX() != 0 || getVelocity().getY() != 0)
+		setRoation(atan2(getVelocity().getY(), getVelocity().getX()) * 180 / M_PI);
 }
 
 
@@ -113,12 +113,12 @@ mog::Vector mog::GameObject::getVelocity() const
 
 void mog::GameObject::setVelocityX(float x)
 {
-	velocity.x = x;
+	velocity.setX(x);
 }
 
 void mog::GameObject::setVelocityY(float y)
 {
-	velocity.y = y;
+	velocity.setY(y);
 }
 
 

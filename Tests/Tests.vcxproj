@@ -84,6 +84,7 @@
     <ClCompile Include="NetworkBase.h" />
     <ClCompile Include="TestBuffer.cpp" />
     <ClCompile Include="TestClientGame.cpp" />
+    <ClCompile Include="TestClientNetworkManager.cpp" />
     <ClCompile Include="TestGame.cpp" />
     <ClCompile Include="TestGameObject.cpp" />
     <ClCompile Include="TestJoinMessage.cpp" />
@@ -91,15 +92,15 @@
     <ClCompile Include="TestLoadLevelMessage.cpp" />
     <ClCompile Include="TestNetworkComponent.cpp" />
     <ClCompile Include="TestNetworkGameObject.cpp" />
-    <ClCompile Include="TestNetworkManager.cpp" />
     <ClCompile Include="TestNetworkPawn.cpp" />
     <ClCompile Include="TestParameterContainer.cpp" />
     <ClCompile Include="TestRemoteMethodCallMessage.cpp" />
     <ClCompile Include="TestRemoveInstanceMessage.cpp" />
     <ClCompile Include="TestReplicateInstanceMessage.cpp" />
     <ClCompile Include="TestReplicateStateMessage.cpp" />
-    <ClCompile Include="TestSerializablePoint.cpp" />
+    <ClCompile Include="TestReplicablePoint.cpp" />
     <ClCompile Include="TestServerGame.cpp" />
+    <ClCompile Include="TestServerNetworkManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MockGameObject.h" />

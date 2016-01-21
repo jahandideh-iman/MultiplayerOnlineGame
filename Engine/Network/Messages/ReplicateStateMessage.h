@@ -12,7 +12,7 @@ namespace mog
 		{
 		public:
 			ReplicateStateMessage();
-			ReplicateStateMessage(const NetworkGameObject *object);
+			ReplicateStateMessage(const NetworkGameObject *object, bool dirtyOnly = false);
 			virtual ~ReplicateStateMessage();
 
 			virtual void executeOnClient(ClientGame *game, const ParameterContainer &parameters, const network::InternetAddress &address) const override;
@@ -23,6 +23,7 @@ namespace mog
 
 		private:
 			const NetworkGameObject *networkGameObject;
+			bool dirtyOnly = false;
 		};
 	}
 }

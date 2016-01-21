@@ -5,6 +5,7 @@
 
 #include "MockNetworkGameObject.h"
 #include "MockNetworkGameObjectWithMethod.h"
+#include "MockNetworkGameObjectWithState.h"
 #include "NetworkBase.h"
 
 namespace mog
@@ -78,6 +79,26 @@ namespace mog
 			CHECK_EQUAL("2", params.get("var2"));
 		}
 
+		TEST(NetworkGameObject, WrittenStateForDirtyIsCorrectForNonEmptyNetowrkGameObject)
+		{
+			MockNetworkGameObject networkObject;
+			Integer var1 = 1;
+			Integer var2 = 2;
+			networkObject.getNetworkComponent()->addVariable("var1", &var1);
+			networkObject.getNetworkComponent()->addVariable("var2", &var2);
+
+			var1.setDirty(false);
+			var2.setDirty(true);
+
+			Buffer buffer;
+
+			networkObject.writeState(&buffer,true);
+			ParameterContainer params(&buffer);
+
+			CHECK_FALSE(params.has("var1"));
+			CHECK_TRUE(params.has("var2"));
+		}
+
 		TEST(NetworkGameObject, ReadStateIsCorrect)
 		{
 			MockNetworkGameObject networkObject;
@@ -100,7 +121,7 @@ namespace mog
 			CHECK_EQUAL(2, var2.getValue());
 		}
 
-		TEST(NetworkGameObject, callsRegisteredMethodsByName)
+		TEST(NetworkGameObject, CallsRegisteredMethodsByName)
 		{
 			MockNetworkGameObjectWithMethod networkObject;
 

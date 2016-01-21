@@ -28,8 +28,8 @@ void mog::SpriteComponent::addSelfToGame(Game *g)
 void mog::SpriteComponent::update(float dt)
 {
 	Component::update(dt);
-	sprite->setPositionX(owner->getPosition().x);
-	sprite->setPositionY(owner->getPosition().y);
+	sprite->setPositionX(owner->getPosition().getX());
+	sprite->setPositionY(owner->getPosition().getY());
 
 	sprite->setRotation(90 - owner->getRoation().getValue());
 

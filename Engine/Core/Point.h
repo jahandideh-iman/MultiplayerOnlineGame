@@ -10,8 +10,19 @@ namespace mog
 			this->x = x; this->y = y;
 		}
 		Point(){}
-		float x = 0;
-		float y = 0;
+
+		virtual void setX(float x)
+		{
+			this->x = x;
+		}
+
+		virtual void setY(float y)
+		{
+			this->y = y;
+		}
+
+		float getX() const { return x; }
+		float getY() const { return y; }
 
 		Point operator*(float f) 
 		{
@@ -29,5 +40,8 @@ namespace mog
 			x = x / s;
 			y = y / s;
 		}
+	private:
+		float x = 0;
+		float y = 0;
 	};
 }

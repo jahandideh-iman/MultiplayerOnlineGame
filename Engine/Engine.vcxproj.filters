@@ -109,9 +109,6 @@
     <ClCompile Include="Network\NetworkPawnFactory.cpp">
       <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="Core\SerializablePoint.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="Core\LevelFactory.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -123,6 +120,9 @@
     </ClCompile>
     <ClCompile Include="Network\Client.cpp">
       <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\ReplicablePoint.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -201,9 +201,6 @@
     <ClInclude Include="Core\Serializable.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Core\SerializablePrimitive.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Core\Types.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -231,9 +228,6 @@
     <ClInclude Include="Network\NetworkPawnFactory.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="Core\SerializablePoint.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Core\FactoryTemplate.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -260,6 +254,18 @@
     </ClInclude>
     <ClInclude Include="Network\Client.h">
       <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Dirtiable.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Replicable.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ReplicablePoint.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ReplicablePrimitive.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
