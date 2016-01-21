@@ -31,9 +31,46 @@ void mog::network::NetworkManager::setPort(unsigned port)
 	socket->open(port);
 }
 
+
+void mog::network::NetworkManager::setUpdateRate(float rate)
+{
+	updateRate = rate;
+}
+
 void mog::network::NetworkManager::update(float dt)
 {
+	elapsedTime += dt;
+	if (elapsedTime >= getFrameLenght())
+	{
+		processUpdate();
+		elapsedTime = 0;
+	}
+}
+
+void mog::network::NetworkManager::processUpdate()
+{
 	processMessages();
+}
+
+void mog::network::NetworkManager::processMessages()
+{
+	InternetAddress senderAddress;
+	while (true)
+	{
+		char data[256];
+		auto size = socket->receive(senderAddress, data, 256);
+
+		if (size != 0)
+		{
+			ID messageId = extractMessageId(data, size);
+			Buffer messageData = extractMessageData(data, size);
+			ParameterContainer parameters(&messageData);
+			executeMessage(*(MessageDatabase::get()->find(messageId)), parameters, senderAddress);
+		}
+		else
+			break;
+	}
+
 }
 
 void mog::network::NetworkManager::sendMessage(const Message &m, const InternetAddress &dest)
@@ -78,28 +115,6 @@ mog::Buffer mog::network::NetworkManager::extractMessageData(char* message, unsi
 
 	return Buffer(message+i+1);
 }
-
-void mog::network::NetworkManager::processMessages()
-{
-	InternetAddress senderAddress;
-	while (true)
-	{
-		char data[256];
-		auto size = socket->receive(senderAddress, data, 256);
-
-		if (size != 0)
-		{
-			ID messageId = extractMessageId(data, size);
-			Buffer messageData = extractMessageData(data, size);
-			ParameterContainer parameters(&messageData);
-			executeMessage(*(MessageDatabase::get()->find(messageId)), parameters, senderAddress);
-		}
-		else
-			break;
-	}
-
-}
-
 
 bool mog::network::NetworkManager::hasNetworkGameObject(const NetworkGameObject *gameObj) const
 {
@@ -152,3 +167,12 @@ void mog::network::NetworkManager::addNetworkGameObject(NetworkGameObject *objec
 {
 	networkGameObjects[object->getInstanceId()] = object;
 }
+
+float mog::network::NetworkManager::getFrameLenght()
+{
+	if (updateRate <= EPSILON)
+		return 0;
+	else
+		return 1 / updateRate;
+}
+

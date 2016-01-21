@@ -5,6 +5,7 @@
 #include "Engine/Network/NetworkComponent.h"
 #include <map>
 
+#define EPSILON 0.001
 namespace mog
 {
 	namespace network
@@ -20,7 +21,9 @@ namespace mog
 			NetworkManager(NetworkGame *game);
 			virtual ~NetworkManager();
 
-			virtual void update(float dt = 0);
+			void setUpdateRate(float rate);
+
+			void update(float dt = 0);
 
 			void sendMessage(const Message &m, const InternetAddress &address);
 
@@ -32,7 +35,7 @@ namespace mog
 			virtual void removeNetworkGameObject(NetworkGameObject *object);
 			NetworkGameObject *findNetworkGameObject(unsigned instaceId) const;
 		
-			virtual void executeMessage(const Message &meesage, const ParameterContainer &parameters, const InternetAddress &senderAddress) = 0;
+			virtual void executeMessage(const Message &meesage, const ParameterContainer &parameters, const InternetAddress &senderAddress) {};
 
 			//NOTE: For testing
 			bool hasNetworkGameObject(const NetworkGameObject *gameObj) const;
@@ -44,11 +47,16 @@ namespace mog
 			//NOTE: For testing
 			void setSocket(GameSocket *socket);
 
+		protected:
+			virtual void processUpdate();
+
 		private:
 			ID extractMessageId(char* message, unsigned size);
 			Buffer extractMessageData(char* message, unsigned size);
 
 			void processMessages();
+
+			float getFrameLenght();
 
 		protected:
 			NetworkGame *game = nullptr;
@@ -56,6 +64,9 @@ namespace mog
 
 		private:
 			GameSocket *socket = nullptr;
+
+			float updateRate = 0;
+			float elapsedTime = 0;
 
 		};
 	}

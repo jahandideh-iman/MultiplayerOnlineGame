@@ -137,9 +137,9 @@ void mog::network::ServerNetworkManager::removeNetworkGameObject(NetworkGameObje
 }
 
 
-void mog::network::ServerNetworkManager::update(float dt /* = 0 */)
+void mog::network::ServerNetworkManager::processUpdate()
 {
-	NetworkManager::update(dt);
+	NetworkManager::processUpdate();
 
 	//NOTE: The order may be important
 	processInstanceReplications();

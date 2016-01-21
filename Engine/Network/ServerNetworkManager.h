@@ -15,8 +15,6 @@ namespace mog
 			ServerNetworkManager(ServerGame *game);
 			virtual ~ServerNetworkManager();
 
-			void update(float dt  = 0) override;
-
 			void addNetworkGameObject(NetworkGameObject *object) override;
 			void removeNetworkGameObject(NetworkGameObject *object) override;
 
@@ -31,6 +29,9 @@ namespace mog
 			bool hasClient(const InternetAddress *address) const;
 
 		private:
+
+			void processUpdate() override;
+
 			void processInstanceReplications();
 			void processInstanceRemoval();
 			void processStateReplications();
