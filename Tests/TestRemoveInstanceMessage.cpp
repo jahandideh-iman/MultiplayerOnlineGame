@@ -32,7 +32,7 @@ namespace mog
 			MockNetworkGameObject networkObject;
 			networkObject.setInstanceId(arbitraryID);
 
-			serverManager->sendMessage(ReplicateInstanceMessage(&networkObject), clientAddress1);
+			serverManager->sendMessage(ReplicateInstanceMessage(&networkObject, Role_None), clientAddress1);
 			clientManager1->update();
 
 			serverManager->sendMessage(RemoveInstanceMessage(networkObject.getInstanceId()), clientAddress1);

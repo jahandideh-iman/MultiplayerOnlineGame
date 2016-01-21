@@ -38,7 +38,7 @@ namespace mog
 
 			serverGame->addGameObject(gameObject);
 
-			serverManager->sendMessage(ReplicateInstanceMessage(gameObject), clientAddress1);
+			serverManager->sendMessage(ReplicateInstanceMessage(gameObject,Role_None), clientAddress1);
 			clientManager1->update();
 
 			serverManager->sendMessage(ReplicateStateMessage(gameObject), clientAddress1);

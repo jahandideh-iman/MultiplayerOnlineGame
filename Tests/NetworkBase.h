@@ -28,6 +28,9 @@ namespace mog
 			ClientGame *clientGame1;
 			ClientGame *clientGame2;
 
+			Client *client1;
+			Client *client2;
+
 			ServerNetworkManager *serverManager;
 			NetworkManager *clientManager1;
 			NetworkManager *clientManager2;
@@ -45,9 +48,14 @@ namespace mog
 				clientGame1 = new ClientGame();
 				clientGame2 = new ClientGame();
 
+
+
 				serverAddress.setPort(8081);
 				clientAddress1.setPort(8082);
 				clientAddress2.setPort(8083);
+
+				client1 = new Client("clinet1", new InternetAddress(clientAddress1));
+				client2 = new Client("clinet1", new InternetAddress(clientAddress2));
 
 				serverManager = dynamic_cast<ServerNetworkManager *> (serverGame->getNetworkManager());
 				clientManager1 = clientGame1->getNetworkManager();
@@ -67,6 +75,10 @@ namespace mog
 
 			void teardown() override
 			{
+
+				delete client1;
+				delete client2;
+
 				delete serverGame;
 				delete clientGame1;
 				delete clientGame2;
@@ -76,11 +88,12 @@ namespace mog
 				NetworkPawnFactory::clear();
 			}
 
-			//NOTE: These parameters are normaly set in server
+			//NOTE: These parameters are normally set in server
 			void initialClientNetworkGameObject(NetworkGameObject *obj)
 			{
 				obj->setInstanceId(lastClientInstanceId);
-				obj->setIsReplica(true);
+				obj->setRole(Role_Proxy);
+
 
 				lastClientInstanceId++;
 			}

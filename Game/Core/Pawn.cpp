@@ -147,6 +147,6 @@ void mog::Pawn::addInputComponent()
 void mog::Pawn::onAddedToGame(Game *game)
 {
 	NetworkPawn::onAddedToGame(game);
-	if (this->isReplica() == false)
+	if (this->getRole() == network::Role_Proxy)
 		addInputComponent();
 }

@@ -10,6 +10,8 @@ namespace mog
 		{
 		public:
 			Client(std::string name, const network::InternetAddress *address);
+			Client(const Client *other);
+
 			~Client();
 
 			bool operator== (const Client &other) const;

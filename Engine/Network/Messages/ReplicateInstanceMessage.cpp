@@ -36,7 +36,6 @@ void mog::network::ReplicateInstanceMessage::executeOnClient(ClientGame *game, c
 
 	NetworkGameObject* o = dynamic_cast<NetworkGameObject*> (ConstructorDatabase::get()->create(type));
 	o->setInstanceId(std::stoi(index));
-	o->setIsReplica(true);
 	o->setRole(role);
 	game->addGameObject(o);
 }

@@ -23,7 +23,7 @@ mog::network::ServerGame::~ServerGame()
 void mog::network::ServerGame::joinNewPlayer(Client *client)
 {
 	playersInfo.push_back(client);
-	dynamic_cast<ServerNetworkManager* > (getNetworkManager())->addClient(client->address);
+	dynamic_cast<ServerNetworkManager* > (getNetworkManager())->addClient(client);
 
 	NetworkPawn *pawn;
 	if (NetworkPawnFactory::get()->isSet())
@@ -31,7 +31,7 @@ void mog::network::ServerGame::joinNewPlayer(Client *client)
 	else
 		pawn = new NetworkPawn();
 
-	pawn->setClinet(client);
+	pawn->setClient(client);
 	addGameObject(pawn);
 	onPawnCreated(pawn);
 

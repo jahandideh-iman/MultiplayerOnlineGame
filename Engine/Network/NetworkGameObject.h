@@ -49,11 +49,7 @@ namespace mog
 
 			NetworkComponent *getNetworkComponent();
 
-			//TODO: Find a way to reject more that one call to this function
-			void setIsReplica(bool isReplical);
-			bool isReplica() const;
-
-			void setClinet(const Client *client);
+			void setClient(const Client *client);
 			const Client *getClient() const;
 
 			Role getRole() const;
@@ -72,7 +68,6 @@ namespace mog
 
 		private:
 			unsigned instanceId;
-			bool bIsReplica = false;
 
 			const Client *client = nullptr;
 

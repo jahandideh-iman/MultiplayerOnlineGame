@@ -138,8 +138,8 @@ namespace mog
 			auto gameObject = new MockNetworkGameObject();
 
 			//NOTE: Clients are added first
-			serverManager->addClient(&clientAddress1);
-			serverManager->addClient(&clientAddress2);
+			serverManager->addClient(client1);
+			serverManager->addClient(client2);
 
 			serverGame->addGameObject(gameObject);
 
@@ -165,8 +165,8 @@ namespace mog
 			//NOTE: Network game object is added first
 			serverGame->addGameObject(gameObject);
 
-			serverManager->addClient(&clientAddress1);
-			serverManager->addClient(&clientAddress2);
+			serverManager->addClient(client1);
+			serverManager->addClient(client2);
 
 			serverManager->update();
 			clientManager1->update();
@@ -187,8 +187,8 @@ namespace mog
 			auto clientGame2ObjectSize = clientGame2->getGameObjects().size();
 			auto gameObject = new MockNetworkGameObject();
 
-			serverManager->addClient(&clientAddress1);
-			serverManager->addClient(&clientAddress2);
+			serverManager->addClient(client1);
+			serverManager->addClient(client2);
 			serverGame->addGameObject(gameObject);
 
 			serverManager->update();
@@ -223,10 +223,10 @@ namespace mog
 			auto gameObject1 = new MockNetworkGameObject();
 			auto gameObject2 = new MockNetworkGameObject();
 
-			serverManager->addClient(&clientAddress1);
+			serverManager->addClient(client1);
 			serverGame->addGameObject(gameObject1);
 
-			serverManager->addClient(&clientAddress2);
+			serverManager->addClient(client2);
 			serverGame->addGameObject(gameObject2);
 
 			serverManager->update();
@@ -269,9 +269,9 @@ namespace mog
 			auto gameObject = new MockNetworkGameObjectWithState();
 			gameObject->variable1 = 5;
 
-			serverManager->addClient(&clientAddress1);
+			serverManager->addClient(client1);
 			serverGame->addGameObject(gameObject);
-			serverManager->addClient(&clientAddress2);
+			serverManager->addClient(client2);
 
 			serverManager->update();
 			clientManager1->update();
@@ -294,9 +294,9 @@ namespace mog
 			auto gameObject = new MockNetworkGameObjectWithState();
 			gameObject->variable1 = 5;
 
-			serverManager->addClient(&clientAddress1);
+			serverManager->addClient(client1);
 			serverGame->addGameObject(gameObject);
-			serverManager->addClient(&clientAddress2);
+			serverManager->addClient(client2);
 
 			serverManager->update();
 			clientManager1->update();
@@ -307,6 +307,33 @@ namespace mog
 
 			CHECK_EQUAL(gameObject->variable1.getValue(), client1Object->variable1.getValue());
 			CHECK_EQUAL(gameObject->variable1.getValue(), client2Object->variable1.getValue());
+		}
+
+		TEST(NetworkManager, CorrectllySetObjectRolesInClient)
+		{
+			//NOTE: ReplicateInstaceMessage is needed because first instances must be replicated
+			REGISTER_MESSAGE(ReplicateInstanceMessage);
+			REGISTER_MESSAGE(ReplicateStateMessage);
+			REGISTER_CONSTRUCTOR(MockNetworkGameObject);
+
+			auto gameObject = new MockNetworkGameObject();
+
+			gameObject->setClient(client1);
+
+			serverGame->addGameObject(gameObject);
+
+			serverManager->addClient(client1);
+			serverManager->addClient(client2);
+
+			serverManager->update();
+			clientManager1->update();
+			clientManager2->update();
+
+			auto client1Object = dynamic_cast<MockNetworkGameObject *> (clientManager1->findNetworkGameObject(gameObject->getInstanceId()));
+			auto client2Object = dynamic_cast<MockNetworkGameObject *> (clientManager2->findNetworkGameObject(gameObject->getInstanceId()));
+
+			CHECK_EQUAL(Role_Proxy, client1Object->getRole());
+			CHECK_EQUAL(Role_Simulated, client2Object->getRole());
 		}
 	}
 }

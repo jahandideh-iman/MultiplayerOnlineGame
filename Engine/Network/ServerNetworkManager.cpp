@@ -15,14 +15,19 @@ namespace mog
 		class ClientReplicationInfo
 		{
 		public:
-			ClientReplicationInfo(const InternetAddress * address)
+			ClientReplicationInfo(const Client * client)
 			{
-				this->address = address;
+				this->client = client;
 			}
 
 			const InternetAddress *getAddress()
 			{
-				return address;
+				return client->address;
+			}
+
+			const Client *getClient()
+			{
+				return client;
 			}
 
 			void addToBeReplicatedInstance(unsigned  instanceId)
@@ -68,7 +73,7 @@ namespace mog
 			}
 
 		private:
-			const InternetAddress *address = nullptr;
+			const Client *client = nullptr;
 			std::set<unsigned > toBeReplicatedInstances;
 			std::set<unsigned > toBeRemovedInstaces;
 		};
@@ -86,9 +91,9 @@ mog::network::ServerNetworkManager::~ServerNetworkManager()
 		delete client;
 }
 
-void mog::network::ServerNetworkManager::addClient(const InternetAddress *address)
+void mog::network::ServerNetworkManager::addClient(const Client *client)
 {
-	auto clientRep = new ClientReplicationInfo(address);
+	auto clientRep = new ClientReplicationInfo(client);
 	for (auto networkObj : networkGameObjects)
 		clientRep->addToBeReplicatedInstance(networkObj.first);
 
@@ -110,7 +115,7 @@ void mog::network::ServerNetworkManager::removeClient(const InternetAddress *add
 
 void mog::network::ServerNetworkManager::addNetworkGameObject(NetworkGameObject *object)
 {
-	assert(object->isReplica() == false);
+	assert(object->getRole() == Role_Authority);
 
 	object->setInstanceId(lastNetworkGameObjectId);
 	lastNetworkGameObjectId++;
@@ -123,7 +128,7 @@ void mog::network::ServerNetworkManager::addNetworkGameObject(NetworkGameObject 
 
 void mog::network::ServerNetworkManager::removeNetworkGameObject(NetworkGameObject *object)
 {
-	assert(object->isReplica() == false);
+	assert(object->getRole() == Role_Authority);
 
 	for (auto client : clientReplicationInfos)
 		client->addToBeRemovedInstance(object->getInstanceId());
@@ -149,7 +154,14 @@ void mog::network::ServerNetworkManager::processInstanceReplications()
 		while (!clientRep->isToBeReplicatedEmpty())
 		{
 			auto instanceId = clientRep->getToBeReplicatedInstance();
-			sendMessage(ReplicateInstanceMessage(findNetworkGameObject(instanceId),Role_None), *(clientRep->getAddress()));
+			auto obj = findNetworkGameObject(instanceId);
+			Role role = Role_None;
+			if (*clientRep->getClient() == *obj->getClient())
+				role = Role_Proxy;
+			else
+				role = Role_Simulated;
+
+			sendMessage(ReplicateInstanceMessage(obj, role), *(clientRep->getAddress()));
 			clientRep->eraseToBeReplicatedInstance(instanceId);
 		}
 	}

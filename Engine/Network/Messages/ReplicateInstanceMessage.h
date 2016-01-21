@@ -1,17 +1,17 @@
 #pragma once
 
 #include "Engine/Network/Messages/Message.h"
-#include "Engine/Network/NetworkGameObject.h"
 
 namespace mog
 {
 	namespace network
 	{
 		class NetworkGameObject;
+		enum Role;
 		class ReplicateInstanceMessage : public Message
 		{
 		public:
-			ReplicateInstanceMessage(const NetworkGameObject *object,Role role = Role_None);
+			ReplicateInstanceMessage(const NetworkGameObject *object,Role role);
 			ReplicateInstanceMessage();
 			~ReplicateInstanceMessage();
 

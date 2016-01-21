@@ -8,6 +8,12 @@ mog::network::Client::Client(std::string name, const network::InternetAddress *a
 	this->address = address;
 }
 
+mog::network::Client::Client(const Client *other)
+{
+	this->address = new InternetAddress(*other->address);
+	this->name = other->name;
+}
+
 
 mog::network::Client::~Client()
 {
@@ -16,6 +22,8 @@ mog::network::Client::~Client()
 
 bool mog::network::Client::operator==(const Client &other) const
 {
+	if (&other == nullptr)
+		return false;
 	if (this->name == other.name && *address == *other.address)
 		return true;
 	return false;

@@ -31,9 +31,11 @@ void mog::network::NetworkGameObject::onAddedToGame(Game *game)
 	auto netGame = getNetworkGame();
 	if (netGame != nullptr)
 	{
-		netGame->getNetworkManager()->addNetworkGameObject(this);
 		if (netGame->getType() == Type_Server)
 			setRole(Role_Authority);
+
+		netGame->getNetworkManager()->addNetworkGameObject(this);
+
 	}
 }
 
@@ -56,16 +58,6 @@ void mog::network::NetworkGameObject::setInstanceId(unsigned i)
 unsigned mog::network::NetworkGameObject::getInstanceId() const
 {
 	return instanceId;
-}
-
-void mog::network::NetworkGameObject::setIsReplica(bool isReplical)
-{
-	bIsReplica = isReplical;
-}
-
-bool mog::network::NetworkGameObject::isReplica() const
-{
-	return bIsReplica;
 }
 
 void mog::network::NetworkGameObject::writeState(Buffer *buffer) const
@@ -113,7 +105,7 @@ void mog::network::NetworkGameObject::updatePosition(float dt)
 	}
 }
 
-void mog::network::NetworkGameObject::setClinet(const Client *client)
+void mog::network::NetworkGameObject::setClient(const Client *client)
 {
 	this->client = client;
 }

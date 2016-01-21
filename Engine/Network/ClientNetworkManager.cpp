@@ -16,7 +16,7 @@ mog::network::ClientNetworkManager::~ClientNetworkManager()
 
 void mog::network::ClientNetworkManager::addNetworkGameObject(NetworkGameObject *object)
 {
-	assert(object->isReplica());
+	assert(object->getRole() != Role_Authority);
 
 	NetworkManager::addNetworkGameObject(object);
 }

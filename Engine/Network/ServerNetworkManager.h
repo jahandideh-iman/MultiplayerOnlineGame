@@ -22,7 +22,7 @@ namespace mog
 
 			void executeMessage(const Message &message, const ParameterContainer &parameters, const InternetAddress &senderAddress) override;
 
-			void addClient(const InternetAddress *address);
+			void addClient(const Client *client);
 			void removeClient(const InternetAddress *address);
 
 			//NOTE: For testing

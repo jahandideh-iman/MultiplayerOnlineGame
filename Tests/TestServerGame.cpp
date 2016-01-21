@@ -144,8 +144,8 @@ namespace mog
 			unsigned assignedIndex = networkObject->getInstanceId();
 
 			//NOTE: Client are added to Manager instead of Game to prevent creating Pawn 
-			serverManager->addClient(&clientAddress1);
-			serverManager->addClient(&clientAddress2);
+			serverManager->addClient(client1);
+			serverManager->addClient(client2);
 
 			serverGame->update();
 			clientGame1->update();
