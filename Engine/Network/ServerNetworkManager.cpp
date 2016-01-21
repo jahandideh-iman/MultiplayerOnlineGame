@@ -149,7 +149,7 @@ void mog::network::ServerNetworkManager::processInstanceReplications()
 		while (!clientRep->isToBeReplicatedEmpty())
 		{
 			auto instanceId = clientRep->getToBeReplicatedInstance();
-			sendMessage(ReplicateInstanceMessage(findNetworkGameObject(instanceId)), *(clientRep->getAddress()));
+			sendMessage(ReplicateInstanceMessage(findNetworkGameObject(instanceId),Role_None), *(clientRep->getAddress()));
 			clientRep->eraseToBeReplicatedInstance(instanceId);
 		}
 	}

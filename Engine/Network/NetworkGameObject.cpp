@@ -11,6 +11,7 @@
 
 mog::network::NetworkGameObject::NetworkGameObject()
 {
+	setRole(Role_None);
 	networkComponent = new NetworkComponent("networkComponent", this);
 	networkComponent->addVariable("position", &position);
 	networkComponent->addVariable("rotation", &rotation);
@@ -27,9 +28,13 @@ void mog::network::NetworkGameObject::onAddedToGame(Game *game)
 
 	initialRegisteredMethods();
 
-	NetworkGame *netGame = dynamic_cast<NetworkGame*>(game);
+	auto netGame = getNetworkGame();
 	if (netGame != nullptr)
+	{
 		netGame->getNetworkManager()->addNetworkGameObject(this);
+		if (netGame->getType() == Type_Server)
+			setRole(Role_Authority);
+	}
 }
 
 
@@ -116,4 +121,19 @@ void mog::network::NetworkGameObject::setClinet(const Client *client)
 const mog::network::Client * mog::network::NetworkGameObject::getClient() const
 {
 	return client;
+}
+
+mog::network::Role mog::network::NetworkGameObject::getRole() const
+{
+	return role;
+}
+
+mog::network::NetworkGame * mog::network::NetworkGameObject::getNetworkGame()
+{
+	return dynamic_cast<NetworkGame*>(getOwner());
+}
+
+void mog::network::NetworkGameObject::setRole(Role role)
+{
+	this->role = role;
 }

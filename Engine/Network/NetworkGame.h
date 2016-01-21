@@ -5,7 +5,7 @@ namespace mog
 {
 	namespace network
 	{
-		enum NetworkGameType { T_None, T_Server, T_Client };
+		enum NetworkGameType { Type_None, Type_Server, Type_Client };
 
 		class NetworkManager;
 
@@ -17,7 +17,7 @@ namespace mog
 
 			void internalUpdate(float dt = 0) override;
 
-			virtual NetworkGameType getType() const{ return T_None; }
+			virtual NetworkGameType getType() const{ return Type_None; }
 
 			NetworkManager *getNetworkManager();
 

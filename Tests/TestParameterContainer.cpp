@@ -6,6 +6,7 @@ SimpleString StringFrom(const mog::ParameterContainer& o)
 {
 	return "ParameterContainer";
 }
+
 namespace mog
 {
 	TEST_GROUP(ParameterContainer)

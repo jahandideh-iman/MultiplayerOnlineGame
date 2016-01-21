@@ -160,5 +160,13 @@ namespace mog
 			CHECK_FALSE(clientManager1->hasNetworkGameObject(assignedIndex));
 			CHECK_FALSE(clientManager2->hasNetworkGameObject(assignedIndex));
 		}
+
+		TEST(ServerGame, NetworkGameObjectRoleIsSetCorrectly)
+		{
+			auto networkObject = new MockNetworkGameObject();
+			serverGame->addGameObject(networkObject);
+
+			CHECK_TRUE(networkObject->getRole() == Role_Authority);
+		}
 	}
 }

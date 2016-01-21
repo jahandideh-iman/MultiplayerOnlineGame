@@ -16,7 +16,7 @@ namespace mog
 			
 			void callRemoteMethod(std::string method, const NetworkGameObject *obj);
 
-			NetworkGameType getType() const final override { return T_Client; }
+			NetworkGameType getType() const final override { return Type_Client; }
 
 			InternetAddress getServerAddress();
 			void setServerAddress(InternetAddress address);

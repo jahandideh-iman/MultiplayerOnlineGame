@@ -18,7 +18,7 @@ namespace mog
 			void joinNewPlayer(Client *info);
 			void removePlayer(const Client *info);
 
-			NetworkGameType getType() const final override{ return T_Server; }
+			NetworkGameType getType() const final override{ return Type_Server; }
 
 			//Note: For testing.
 			const Client *getPlayerInfoByName(std::string name) const;

@@ -14,6 +14,16 @@ namespace mog
 	{
 		class Client;
 		class NetworkComponent;
+		class NetworkGame;
+
+		enum  Role
+		{
+			Role_None,
+			Role_Authority,
+			Role_Proxy,
+			Role_Simulated,
+		};
+
 		class NetworkGameObject : public GameObject, public NetworkObject
 		{
 			typedef std::function<void()> Method;
@@ -46,6 +56,14 @@ namespace mog
 			void setClinet(const Client *client);
 			const Client *getClient() const;
 
+			Role getRole() const;
+			//WARNING: It must not be public
+			//TODO: Find a way to make it private
+			void setRole(Role role);
+
+
+			NetworkGame *getNetworkGame();
+
 		protected:
 			void registerMethod(std::string name,Method method);
 
@@ -54,13 +72,13 @@ namespace mog
 
 		private:
 			unsigned instanceId;
-
 			bool bIsReplica = false;
 
 			const Client *client = nullptr;
 
 			std::map<std::string, Method> registeredMethods;
 
+			Role role;
 		};
 	}
 }
