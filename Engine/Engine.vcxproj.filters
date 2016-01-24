@@ -28,9 +28,6 @@
     <ClCompile Include="Network\NetworkManager.cpp">
       <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="Network\NetworkObject.cpp">
-      <Filter>Network</Filter>
-    </ClCompile>
     <ClCompile Include="Network\NetworkObjectConstructor.cpp">
       <Filter>Network</Filter>
     </ClCompile>
@@ -124,6 +121,9 @@
     <ClCompile Include="Core\ReplicablePoint.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Network\Networkable.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Network\ConstructorDatabase.h">
@@ -136,9 +136,6 @@
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="Network\NetworkManager.h">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="Network\NetworkObject.h">
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="Network\NetworkObjectConstructor.h">
@@ -266,6 +263,9 @@
     </ClInclude>
     <ClInclude Include="Core\ReplicablePrimitive.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Networkable.h">
+      <Filter>Network</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

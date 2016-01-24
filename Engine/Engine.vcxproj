@@ -187,7 +187,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="Network\InternetAddress.cpp" />
     <ClCompile Include="Network\NetworkGameObject.cpp" />
     <ClCompile Include="Network\NetworkManager.cpp" />
-    <ClCompile Include="Network\NetworkObject.cpp" />
+    <ClCompile Include="Network\Networkable.cpp" />
     <ClCompile Include="Network\NetworkObjectConstructor.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -236,7 +236,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="Network\InternetAddress.h" />
     <ClInclude Include="Network\NetworkGameObject.h" />
     <ClInclude Include="Network\NetworkManager.h" />
-    <ClInclude Include="Network\NetworkObject.h" />
+    <ClInclude Include="Network\Networkable.h" />
     <ClInclude Include="Network\NetworkObjectConstructor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

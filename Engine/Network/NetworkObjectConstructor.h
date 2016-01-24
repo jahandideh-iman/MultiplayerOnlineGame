@@ -8,19 +8,19 @@ namespace mog
 {
 	namespace network
 	{
-		class NetworkObject;
+		class Networkable;
 		class NetworkObjectConstructor
 		{
 		public:
 			NetworkObjectConstructor();
 			~NetworkObjectConstructor();
 
-			virtual mog::network::NetworkObject *create() = 0;
+			virtual mog::network::Networkable *create() = 0;
 		};
 
 		template<class T> class NetworkObjectConstructorT : public NetworkObjectConstructor {
 
-			mog::network::NetworkObject *create() override { return new T(); }
+			mog::network::Networkable *create() override { return new T(); }
 		};
 
 	}

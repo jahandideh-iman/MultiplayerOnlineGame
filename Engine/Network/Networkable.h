@@ -7,13 +7,19 @@ namespace mog
 {
 	namespace network
 	{
-		class NetworkObject
+		class Networkable
 		{
 		public:
-			NetworkObject();
-			virtual ~NetworkObject();
+			Networkable();
+			virtual ~Networkable();
 
 			virtual ID getNetworkID() const = 0;
+
+			unsigned getInstanceId() const;
+			void setInstanceId(unsigned i);
+
+		private:
+			unsigned instanceId;
 		};
 	}
 }

@@ -209,3 +209,4 @@ Engine/Release
 Engine/Release.win32/*
 Game/Release
 Game/Release.win32
+Models/*

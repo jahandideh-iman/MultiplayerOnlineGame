@@ -2,7 +2,7 @@
 
 #include "Engine/Core/GameObject.h"
 #include "Engine/Core/Dirtiable.h"
-#include "Engine/Network/NetworkObject.h"
+#include "Engine/Network/Networkable.h"
 #include "Engine/Network/Client.h"
 #include <functional>
 #include <map>
@@ -25,7 +25,7 @@ namespace mog
 			Role_Simulated,
 		};
 
-		class NetworkGameObject : public GameObject, public NetworkObject, public Dirtiable
+		class NetworkGameObject : public GameObject, public Networkable, public Dirtiable
 		{
 			typedef std::function<void()> Method;
 		public:
@@ -40,9 +40,6 @@ namespace mog
 			void updatePosition(float dt) override;
 
 			void callMethod(std::string name);
-
-			unsigned getInstanceId() const;
-			void setInstanceId(unsigned i);
 
 			void writeState(Buffer *buffer, bool dirtyOnly = false) const;
 			void readState(const Buffer *buffer);
@@ -71,8 +68,6 @@ namespace mog
 			NetworkComponent *networkComponent = nullptr;
 
 		private:
-			unsigned instanceId;
-
 			const Client *client = nullptr;
 
 			std::map<std::string, Method> registeredMethods;

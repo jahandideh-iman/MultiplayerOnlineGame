@@ -25,7 +25,7 @@ namespace mog
 
 			bool registerConstrcutor(NetworkObjectConstructor *c);
 
-			NetworkObject *create(ID typeId) const;
+			Networkable *create(ID typeId) const;
 
 		private:
 			ConstructorDatabase();

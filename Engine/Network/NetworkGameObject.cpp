@@ -50,15 +50,6 @@ void mog::network::NetworkGameObject::onRemovedFromGame(Game *game)
 }
 
 
-void mog::network::NetworkGameObject::setInstanceId(unsigned i)
-{
-	this->instanceId = i;
-}
-
-unsigned mog::network::NetworkGameObject::getInstanceId() const
-{
-	return instanceId;
-}
 
 void mog::network::NetworkGameObject::writeState(Buffer *buffer, bool dirtyOnly) const
 {

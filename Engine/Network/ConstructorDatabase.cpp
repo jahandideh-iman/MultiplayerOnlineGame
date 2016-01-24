@@ -16,7 +16,7 @@ mog::network::ConstructorDatabase::~ConstructorDatabase()
 
 bool mog::network::ConstructorDatabase::registerConstrcutor(NetworkObjectConstructor *c)
 {
-	NetworkObject *o = c->create();
+	Networkable *o = c->create();
 	reps.emplace(o->getNetworkID(), c);
 	delete o;
 	return true;
@@ -29,7 +29,7 @@ mog::network::ConstructorDatabase * mog::network::ConstructorDatabase::get()
 	return database;
 }
 
-mog::network::NetworkObject * mog::network::ConstructorDatabase::create(ID typeId) const
+mog::network::Networkable * mog::network::ConstructorDatabase::create(ID typeId) const
 {
 	return reps.find(typeId)->second->create();
 }
