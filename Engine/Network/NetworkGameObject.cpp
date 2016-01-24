@@ -52,7 +52,7 @@ void mog::network::NetworkGameObject::onRemovedFromGame(Game *game)
 
 void mog::network::NetworkGameObject::writeState(Buffer *buffer, bool dirtyOnly) const
 {
-	networkComponent->writeReplications(buffer, dirtyOnly);
+	networkComponent->writeReplicables(buffer, dirtyOnly);
 }
 
 mog::network::NetworkComponent * mog::network::NetworkGameObject::getNetworkComponent()

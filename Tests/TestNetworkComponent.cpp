@@ -44,7 +44,7 @@ namespace mog
 
 			Buffer buffer;
 
-			networkComponent.writeReplications(&buffer);
+			networkComponent.writeReplicables(&buffer);
 
 			ParameterContainer c(&buffer);
 
@@ -63,7 +63,7 @@ namespace mog
 			networkComponent2.addVariable("var", &comp2var);
 
 			Buffer buffer;
-			networkComponent1.writeReplications(&buffer);
+			networkComponent1.writeReplicables(&buffer);
 
 			networkComponent2.readReplications(&buffer);
 
@@ -111,7 +111,7 @@ namespace mog
 
 			Buffer buffer;
 
-			networkComponent.writeReplications(&buffer, true);
+			networkComponent.writeReplicables(&buffer, true);
 
 			ParameterContainer c(&buffer);
 

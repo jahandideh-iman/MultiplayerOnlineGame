@@ -2,7 +2,7 @@
 
 #include "cocos2d.h"
 
-#define UPDATE_RATE 30
+#define UPDATE_RATE 10
 namespace mog
 {
 

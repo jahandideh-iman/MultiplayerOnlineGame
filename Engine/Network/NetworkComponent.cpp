@@ -34,7 +34,7 @@ void mog::network::NetworkComponent::addSelfToGame(Game *g)
 		netGame->getNetworkManager()->addNetworkComponent(this);*/
 }
 
-void mog::network::NetworkComponent::writeReplications(Buffer *buffer,bool dirtyOnly) const
+void mog::network::NetworkComponent::writeReplicables(Buffer *buffer,bool dirtyOnly) const
 {
 	ParameterContainer container;
 	Buffer varBuffer;

@@ -188,7 +188,7 @@ void mog::network::ServerNetworkManager::processStateReplications()
 		for (auto clientRep : clientReplicationInfos)
 		{
 			if (netObjetPair.second->isDirty())
-				sendMessage(ReplicateStateMessage(netObjetPair.second), *(clientRep->getAddress()));
+				sendMessage(ReplicateStateMessage(netObjetPair.second, true), *(clientRep->getAddress()));
 		}
 		netObjetPair.second->setDirty(false);
 	}

@@ -24,7 +24,7 @@ namespace mog
 
 			void addSelfToGame(Game *g);
 
-			void writeReplications(Buffer *buffer, bool dirtyOnly = false) const;
+			void writeReplicables(Buffer *buffer, bool dirtyOnly = false) const;
 			void readReplications(const Buffer *buffer);
 
 			bool isDirty() const override;
