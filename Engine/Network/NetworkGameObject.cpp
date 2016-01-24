@@ -35,7 +35,6 @@ void mog::network::NetworkGameObject::onAddedToGame(Game *game)
 			setRole(Role_Authority);
 
 		netGame->getNetworkManager()->addNetworkGameObject(this);
-
 	}
 }
 
@@ -87,13 +86,14 @@ void mog::network::NetworkGameObject::callMethod(std::string name)
 
 void mog::network::NetworkGameObject::updatePosition(float dt)
 {
-	if (dynamic_cast<NetworkGame *> (getOwner()) == nullptr)
-		GameObject::updatePosition(dt);
-	else
-	{
-		if (dynamic_cast<ServerGame *> (getOwner()) != nullptr)
-			GameObject::updatePosition(dt);
-	}
+	GameObject::updatePosition(dt);
+	//if (dynamic_cast<NetworkGame *> (getOwner()) == nullptr)
+	//	GameObject::updatePosition(dt);
+	//else
+	//{
+	//	if (dynamic_cast<ServerGame *> (getOwner()) != nullptr)
+	//		GameObject::updatePosition(dt);
+	//}
 }
 
 void mog::network::NetworkGameObject::setClient(const Client *client)
