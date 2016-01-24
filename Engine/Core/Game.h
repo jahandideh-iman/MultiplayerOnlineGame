@@ -20,6 +20,8 @@ namespace mog
 
 		void update(float dt = 0);
 
+		float getTime() const;
+
 		//NOTE: For testing 
 		bool has(const GameObject *object) const;
 		//NOTE: For testing 
@@ -32,6 +34,8 @@ namespace mog
 		std::vector<GameObject *> gameObjects;
 
 		std::vector<GameObject *> toBeRemovedAtEndOfUpdate;
+
+		float time = 0;
 
 	};
 }

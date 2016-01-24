@@ -1,5 +1,5 @@
 #include "ConstructorDatabase.h"
-#include "NetworkObject.h"
+#include "Engine/Network/Networkable.h"
 
 mog::network::ConstructorDatabase * mog::network::ConstructorDatabase::database = nullptr;
 

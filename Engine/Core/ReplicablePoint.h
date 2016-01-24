@@ -10,6 +10,7 @@ namespace mog
 	public:
 		ReplicablePoint();
 		ReplicablePoint(float x, float y);
+
 		~ReplicablePoint();
 
 		ReplicablePoint &ReplicablePoint::operator= (const Point &);
@@ -19,6 +20,18 @@ namespace mog
 
 		void setX(float x) override;
 		void setY(float y) override;
+
+		void setValue(Replicable *r) override;
+
+		Replicable * clone() const override
+		{
+			return new ReplicablePoint(getX(), getY());
+		}
+
+		void add(Replicable *r) override;
+		void minus(Replicable *r) override;
+		void multiply(float r) override;
+
 
 		ReplicablePoint operator*(float f)
 		{

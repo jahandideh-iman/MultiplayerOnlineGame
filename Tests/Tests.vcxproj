@@ -95,7 +95,7 @@
     <ClCompile Include="TestNetworkManager.cpp" />
     <ClCompile Include="TestNetworkPawn.cpp" />
     <ClCompile Include="TestParameterContainer.cpp" />
-    <ClCompile Include="TestInterpolator.cpp" />
+    <ClCompile Include="TestExtrapolator.cpp" />
     <ClCompile Include="TestRemoteMethodCallMessage.cpp" />
     <ClCompile Include="TestRemoveInstanceMessage.cpp" />
     <ClCompile Include="TestReplicateInstanceMessage.cpp" />

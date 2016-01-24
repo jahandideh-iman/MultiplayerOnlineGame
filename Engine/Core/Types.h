@@ -14,7 +14,7 @@ namespace mog
 	typedef std::string ID;
 
 	typedef ReplicablePrimitive<int> Integer;
-	typedef ReplicablePrimitive<int> Float;
+	typedef ReplicablePrimitive<float> Float;
 
 	typedef ReplicablePoint Position;
 	typedef ReplicablePoint Vector;

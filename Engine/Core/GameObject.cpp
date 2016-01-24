@@ -81,7 +81,7 @@ void mog::GameObject::updateRotation(float dt)
 }
 
 
-mog::Game *mog::GameObject::getOwner()
+mog::Game *mog::GameObject::getOwner() const
 {
 	return owner;
 }

@@ -5,6 +5,8 @@
 #include "Engine/Core/Dirtiable.h"
 #include "Engine/Core/ParameterContainer.h"
 
+#include "Engine/Network/Estimator.h"
+
 #include <unordered_map>
 
 namespace mog
@@ -16,6 +18,8 @@ namespace mog
 		public:
 			NetworkComponent(ID id, const GameObject *owner);
 			~NetworkComponent();
+
+			void update(float dt) override;
 
 			void addVariable(const std::string &name, Replicable *var);
 			void removeVariable(const std::string &name);
@@ -30,9 +34,12 @@ namespace mog
 			bool isDirty() const override;
 			void setDirty(bool dirty) override;
 
+			void addEstimator(const std::string name, Estimator * estimator);
+
 
 		private:
 			std::unordered_map<std::string, Replicable*> replicationVars;
+			std::unordered_map<std::string, Estimator*> estimators;
 		};
 	}
 }

@@ -1,6 +1,7 @@
 #include "NetworkComponent.h"
 #include "Engine/Network/NetworkManager.h"
 #include "Engine/Network/NetworkGame.h"
+#include "Engine/Core/GameObject.h"
 
 mog::network::NetworkComponent::NetworkComponent(ID id, const GameObject *owner) : Component(id, owner)
 {
@@ -9,6 +10,13 @@ mog::network::NetworkComponent::NetworkComponent(ID id, const GameObject *owner)
 
 mog::network::NetworkComponent::~NetworkComponent()
 {
+	while (!estimators.empty())
+	{
+		delete estimators.begin()->second;
+		estimators.erase(estimators.begin());
+	}
+
+	estimators.clear();
 }
 
 void mog::network::NetworkComponent::addVariable(const std::string &name, Replicable *var)
@@ -62,8 +70,14 @@ void mog::network::NetworkComponent::readReplications(const Buffer *buffer)
 		if (container.get(var.first) != "")
 		{
 			varBuffer.write(container.get(var.first));
-			var.second->read(&varBuffer);
+
+			if (estimators.find(var.first) == estimators.end())
+				var.second->read(&varBuffer);
+			else
+				estimators[var.first]->read(&varBuffer, owner->getOwner()->getTime());
+			
 			varBuffer.clear();
+
 		}
 	}
 }
@@ -87,5 +101,21 @@ void mog::network::NetworkComponent::setDirty(bool dirty)
 {
 	for (auto var : replicationVars)
 		var.second->setDirty(dirty);
+}
+
+void mog::network::NetworkComponent::addEstimator(const std::string name, Estimator * estimator)
+{
+	estimators[name] = estimator;
+	estimator->setVar(replicationVars[name]);
+}
+
+void mog::network::NetworkComponent::update(float dt)
+{
+	Component::update(dt);
+	for (auto e : estimators)
+	{
+		e.second->setCurrentTime(owner->getOwner()->getTime());
+		e.second->update();
+	}
 }
 

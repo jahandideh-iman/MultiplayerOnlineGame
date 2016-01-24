@@ -124,6 +124,12 @@
     <ClCompile Include="Network\Networkable.cpp">
       <Filter>Network</Filter>
     </ClCompile>
+    <ClCompile Include="Network\Estimator.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Extrapolator.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Network\ConstructorDatabase.h">
@@ -265,6 +271,12 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Network\Networkable.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Estimator.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Extrapolator.h">
       <Filter>Network</Filter>
     </ClInclude>
   </ItemGroup>

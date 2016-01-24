@@ -1,8 +1,11 @@
 #include "CppUTest/TestHarness.h"
 
+#include "Engine/Core/Game.h"
 #include "Engine/Network/NetworkComponent.h"
 #include "Engine/Core/ParameterContainer.h"
+#include "Engine/Network/Extrapolator.h"
 #include "Engine/Core/Types.h"
+#include "MockNetworkGameObject.h"
 
 namespace mog
 {
@@ -137,6 +140,49 @@ namespace mog
 
 			CHECK_FALSE(comp1var.isDirty());
 			CHECK_TRUE(comp2var.isDirty());
+		}
+
+		TEST(NetworkComponent, IntergratesExtrapolator)
+		{
+			Game game;
+			auto networkObject = new MockNetworkGameObject();
+	
+			auto networkComponent1 = new NetworkComponent("net1", networkObject);
+			auto networkComponent2 = new NetworkComponent("net2", networkObject);
+
+			networkObject->addComponent(networkComponent1);
+			networkObject->addComponent(networkComponent2);
+			game.addGameObject(networkObject);
+
+			Float comp1var = 1;
+			Float comp2var;
+
+			Buffer buffer;
+
+			networkComponent1->addVariable("var", &comp1var);
+			networkComponent2->addVariable("var", &comp2var);
+
+			auto extrapolator = new Extrapolator();
+
+			networkComponent1->addEstimator("var", extrapolator);
+
+
+			comp2var = 1;
+			networkComponent2->writeReplications(&buffer);
+						
+			game.update(1); // time = 1
+			networkComponent1->readReplications(&buffer);
+
+			buffer.clear();
+			comp2var = 2;
+			networkComponent2->writeReplications(&buffer);
+
+			game.update(1); // time = 2
+			networkComponent1->readReplications(&buffer);
+
+			game.update(0.5); // time = 2.5
+			
+			CHECK_EQUAL(2.5, comp1var.getValue());
 		}
 	}
 }

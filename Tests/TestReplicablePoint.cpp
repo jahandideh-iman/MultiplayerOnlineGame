@@ -17,6 +17,13 @@ namespace mog
 		CHECK_EQUAL(2, point.getY());
 	}
 
+	TEST(ReplicablePoint, CanBeDeleted)
+	{
+		Replicable * r = new ReplicablePoint(1, 2);
+
+		delete r;
+	}
+
 	TEST(ReplicablePoint, CorrectlyReadsAndWirtes)
 	{
 		ReplicablePoint point1(1, 2);

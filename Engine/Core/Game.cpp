@@ -35,6 +35,8 @@ void mog::Game::addGameObject(GameObject *object)
 
 void mog::Game::update(float dt)
 {
+	time += dt;
+
 	for (GameObject * o : gameObjects)
 		o->update(dt);
 
@@ -87,4 +89,9 @@ void mog::Game::removeGameObject(GameObject *object)
 void mog::Game::removeGameObjectAtEndOfUpdate(GameObject *object)
 {
 	toBeRemovedAtEndOfUpdate.push_back(object);
+}
+
+float mog::Game::getTime() const
+{
+	return time;
 }

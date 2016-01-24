@@ -38,7 +38,7 @@ namespace mog
 		void setVelocityY(float y);
 		Vector getVelocity() const;
 
-		Game *getOwner();
+		Game *getOwner() const;
 
 	protected:
 		virtual void onAddedToGame(Game *game){};

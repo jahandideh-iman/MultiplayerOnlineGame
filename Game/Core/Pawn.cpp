@@ -3,6 +3,7 @@
 #include "Engine/Network/NetworkComponent.h"
 #include "Engine/Network/ClientGame.h"
 #include "InputComponent.h"
+#include "Engine/Network/Extrapolator.h"
 
 #include <math.h>
 
@@ -15,6 +16,7 @@ mog::Pawn::Pawn()
 	addComponent(new SpriteComponent("sprite",this,"pawn.png"));
 
 	getNetworkComponent()->addVariable("health", &health);
+	//getNetworkComponent()->addEstimator("position", new network::Extrapolator());
 
 }
 

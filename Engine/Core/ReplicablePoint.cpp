@@ -13,10 +13,6 @@ mog::ReplicablePoint::ReplicablePoint(float x, float y) : Point(x, y)
 }
 
 
-mog::ReplicablePoint::~ReplicablePoint()
-{
-}
-
 void mog::ReplicablePoint::read(const Buffer *buffer)
 {
 	ParameterContainer c(buffer);
@@ -56,4 +52,35 @@ void mog::ReplicablePoint::setY(float y)
 		Point::setY(y);
 		setDirty(true);
 	}
+}
+
+void mog::ReplicablePoint::add(Replicable *r)
+{
+	auto rp = dynamic_cast<ReplicablePoint *> (r);
+	setX(getX() + rp->getX());
+	setY(getY() + rp->getY());
+}
+
+void mog::ReplicablePoint::minus(Replicable *r)
+{
+	auto rp = dynamic_cast<ReplicablePoint *> (r);
+	setX(getX() - rp->getX());
+	setY(getY() - rp->getY());
+}
+
+void mog::ReplicablePoint::multiply(float r)
+{
+	setX(getX() * r);
+	setY(getY() * r);
+}
+
+void mog::ReplicablePoint::setValue(Replicable *r)
+{
+	auto rp = dynamic_cast<ReplicablePoint *> (r);
+	setX(rp->getX());
+	setY(rp->getY());
+}
+
+mog::ReplicablePoint::~ReplicablePoint()
+{
 }

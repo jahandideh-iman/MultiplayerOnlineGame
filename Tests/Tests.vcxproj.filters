@@ -99,7 +99,7 @@
     <ClCompile Include="TestNetworkManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TestInterpolator.cpp">
+    <ClCompile Include="TestExtrapolator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
