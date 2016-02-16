@@ -33,7 +33,7 @@ namespace mog
 			void processUpdate() override;
 
 			void processInstanceReplications();
-			void processInstanceRemoval();
+			void processInstanceRemovals();
 			void processStateReplications();
 
 		private:

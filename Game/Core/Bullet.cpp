@@ -2,6 +2,8 @@
 
 #include "SpriteComponent.h"
 #include "Engine/Network/ServerGame.h"
+#include "Core/Macros.h"
+
 
 mog::Bullet::Bullet()
 {
@@ -43,4 +45,20 @@ void mog::Bullet::initial()
 	auto spriteComp = new SpriteComponent("sprite", this, "bullet.png");
 	spriteComp->addOutOfViewCallback(std::bind(&mog::Bullet::onOutOfView, this));
 	addComponent(spriteComp);
+}
+
+void mog::Bullet::updatePosition(float dt)
+{
+	if (PREDICION_ON)
+		GameObject::updatePosition(dt);
+	else
+	{
+		if (dynamic_cast<network::NetworkGame *> (getOwner()) == nullptr)
+			GameObject::updatePosition(dt);
+		else
+		{
+			if (dynamic_cast<network::ServerGame *> (getOwner()) != nullptr)
+				GameObject::updatePosition(dt);
+		}
+	}
 }

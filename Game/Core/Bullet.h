@@ -18,6 +18,8 @@ namespace mog
 
 		void onOutOfView();
 
+		void updatePosition(float dt) override;
+
 		void initial();
 
 		AUTOID(Bullet, getNetworkID);

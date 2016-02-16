@@ -15,6 +15,7 @@ mog::network::NetworkGameObject::NetworkGameObject()
 	networkComponent = new NetworkComponent("networkComponent", this);
 	networkComponent->addVariable("position", &position);
 	networkComponent->addVariable("rotation", &rotation);
+	networkComponent->addVariable("velocity", &velocity);
 	this->addComponent(networkComponent);
 }
 
@@ -86,14 +87,13 @@ void mog::network::NetworkGameObject::callMethod(std::string name)
 
 void mog::network::NetworkGameObject::updatePosition(float dt)
 {
-	GameObject::updatePosition(dt);
-	//if (dynamic_cast<NetworkGame *> (getOwner()) == nullptr)
-	//	GameObject::updatePosition(dt);
-	//else
-	//{
-	//	if (dynamic_cast<ServerGame *> (getOwner()) != nullptr)
-	//		GameObject::updatePosition(dt);
-	//}
+	if (dynamic_cast<NetworkGame *> (getOwner()) == nullptr)
+		GameObject::updatePosition(dt);
+	else
+	{
+		if (dynamic_cast<ServerGame *> (getOwner()) != nullptr)
+			GameObject::updatePosition(dt);
+	}
 }
 
 void mog::network::NetworkGameObject::setClient(const Client *client)

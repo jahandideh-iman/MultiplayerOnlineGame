@@ -43,7 +43,7 @@ void mog::network::NetworkManager::update(float dt)
 	if (elapsedTime >= getFrameLenght())
 	{
 		processUpdate();
-		elapsedTime = 0;
+		elapsedTime = elapsedTime - getFrameLenght();
 	}
 }
 

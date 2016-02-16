@@ -2,7 +2,9 @@
 #include "SpriteComponent.h"
 #include "Engine/Network/NetworkComponent.h"
 #include "Engine/Network/ClientGame.h"
+#include "Engine/Network/ServerGame.h"
 #include "InputComponent.h"
+#include "Core/Macros.h"
 
 #include <math.h>
 
@@ -150,4 +152,21 @@ void mog::Pawn::onAddedToGame(Game *game)
 	if (this->getRole() == network::Role_Proxy)
 		addInputComponent();
 		
+}
+
+void mog::Pawn::updatePosition(float dt)
+{
+	if (PREDICION_ON)
+		GameObject::updatePosition(dt);
+	else
+	{
+		if (dynamic_cast<network::NetworkGame *> (getOwner()) == nullptr)
+			GameObject::updatePosition(dt);
+		else
+		{
+			if (dynamic_cast<network::ServerGame *> (getOwner()) != nullptr)
+				GameObject::updatePosition(dt);
+		}
+	}
+
 }

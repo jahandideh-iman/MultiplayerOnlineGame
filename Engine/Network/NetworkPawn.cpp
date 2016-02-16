@@ -5,7 +5,7 @@
 
 mog::network::NetworkPawn::NetworkPawn()
 {
-	getNetworkComponent()->addVariable("velocity", &velocity);
+
 }
 
 mog::network::NetworkPawn::~NetworkPawn()

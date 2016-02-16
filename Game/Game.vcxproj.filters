@@ -64,9 +64,6 @@
     <ClInclude Include="Core\GameMainMenu.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Macros.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Core\Pawn.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -86,6 +83,9 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\CCGame.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Macros.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>

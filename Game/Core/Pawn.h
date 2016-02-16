@@ -33,6 +33,8 @@ namespace mog
 
 		void addInputComponent();
 
+		void updatePosition(float dt) override;
+
 	protected:
 		void onAddedToGame(Game *game) override;
 

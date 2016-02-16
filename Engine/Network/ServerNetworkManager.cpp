@@ -143,7 +143,7 @@ void mog::network::ServerNetworkManager::processUpdate()
 
 	//NOTE: The order may be important
 	processInstanceReplications();
-	processInstanceRemoval();
+	processInstanceRemovals();
 	processStateReplications();
 }
 
@@ -168,7 +168,7 @@ void mog::network::ServerNetworkManager::processInstanceReplications()
 	}
 }
 
-void mog::network::ServerNetworkManager::processInstanceRemoval()
+void mog::network::ServerNetworkManager::processInstanceRemovals()
 {
 	for (auto clientRep : clientReplicationInfos)
 	{
@@ -185,12 +185,13 @@ void mog::network::ServerNetworkManager::processStateReplications()
 {
 	for (auto netObjetPair : networkGameObjects)
 	{
-		for (auto clientRep : clientReplicationInfos)
+		if (netObjetPair.second->isDirty())
 		{
-			if (netObjetPair.second->isDirty())
+			for (auto clientRep : clientReplicationInfos)
 				sendMessage(ReplicateStateMessage(netObjetPair.second, true), *(clientRep->getAddress()));
+			netObjetPair.second->setDirty(false);
 		}
-		netObjetPair.second->setDirty(false);
+
 	}
 
 }

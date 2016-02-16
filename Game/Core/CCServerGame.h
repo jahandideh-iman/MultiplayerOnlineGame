@@ -20,7 +20,7 @@ namespace mog
 			}
 			void onPawnCreated(network::NetworkPawn *p) override
 			{
-				p->setPosition(Point(50, 50));
+				p->setPosition(Point(300, 300));
 			}
 		};
 

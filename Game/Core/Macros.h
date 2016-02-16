@@ -1,4 +1,3 @@
-#include "Engine/Macros.h"
-#include "cocos2d.h"
+#pragma  once
 
-#define  MOGLOG(format, ...) CCLOG(format,  ##__VA_ARGS__)
+#define PREDICION_ON true

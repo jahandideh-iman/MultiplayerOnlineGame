@@ -75,14 +75,16 @@ bool CCClientGame::init()
 	menu->setPosition(Vec2::ZERO);
 	this->addChild(menu, 1);
 
-	auto label = Label::createWithTTF("Client", "fonts/Marker Felt.ttf", 24);
+	auto label = Label::createWithTTF("Client", "fonts/arial.ttf", 24);
+
+	label->setColor(Color3B::GREEN);
 
 	// position the label on the center of the screen
 	label->setPosition(Vec2(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - label->getContentSize().height));
 
 	// add the label as a child to this layer
-	this->addChild(label, 1);
+	this->addChild(label, 20);
 
 	this->scheduleUpdate();
 

@@ -48,7 +48,14 @@ bool CCServerGame::init()
 	menu->setPosition(Vec2::ZERO);
 	this->addChild(menu, 1);
 
-	auto label = Label::createWithTTF("Server", "fonts/Marker Felt.ttf", 24);
+	auto label = Label::createWithTTF("Server", "fonts/arial.ttf", 24);
+
+	label->setColor(Color3B::GREEN);
+
+	auto backGround = cocos2d::Sprite::create("background.png");
+	backGround->setRotation(90);
+	this->addChild(backGround,-1);
+
 
 	// position the label on the center of the screen
 	label->setPosition(Vec2(origin.x + visibleSize.width / 2,
